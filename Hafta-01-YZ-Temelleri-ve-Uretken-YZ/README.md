@@ -1,4 +1,4 @@
-# Hafta 1: Akademi Açılışı, YZ Temelleri ve Üretken YZ
+# Hafta 1: Akademi Açılışı, Yapay Zeka Temelleri ve Üretken Yapay Zeka
 
 Bu klasör, 28 Şubat Cumartesi ve 1 Mart Pazar günleri gerçekleştirilen eğitim oturumlarının kayıtlarını ve sunum materyallerini içermektedir.
 
