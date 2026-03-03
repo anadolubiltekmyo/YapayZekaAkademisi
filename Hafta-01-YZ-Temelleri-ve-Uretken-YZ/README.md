@@ -31,7 +31,7 @@ Bu klasör, 28 Şubat Cumartesi ve 1 Mart Pazar günleri gerçekleştirilen eği
 * **Eğitmen:** Öğr. Gör. Güvenç USANMAZ
 * 📺 [Oturum Video Kaydını İzle](https://youtu.be/_YHCdDQ9trY)
 * 📂 **Materyaller:**
-  * [Sunum Dosyası (PDF)](./yz-destekli-ide-kurulumu.pdf)
+  * [Sunum Dosyası (PDF)](./yz-kodlama.pdf)
   * [Sunum Dosyası (HTML)](./yz_kodlama_sunum.html)
   * [Notlar (HTML)](./yz_kodlama_notlar.html)
 
