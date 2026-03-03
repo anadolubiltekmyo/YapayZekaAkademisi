@@ -32,6 +32,8 @@ Bu klasör, 28 Şubat Cumartesi ve 1 Mart Pazar günleri gerçekleştirilen eği
 * 📺 [Oturum Video Kaydını İzle](https://youtu.be/_YHCdDQ9trY)
 * 📂 **Materyaller:**
   * [Sunum Dosyası (PDF)](./yz-destekli-ide-kurulumu.pdf)
+  * [Sunum Dosyası (HTML)](./yz_kodlama_sunum.html)
+  * [Notlar (HTML)](./yz_kodlama_notlar.html)
 
 **5. Metinden Videoya (Text-to-Video) Üretim ve Canlandırma (16:00 - 17:00)**
 * **Eğitmen:** Rıdvan ÇAKIR
