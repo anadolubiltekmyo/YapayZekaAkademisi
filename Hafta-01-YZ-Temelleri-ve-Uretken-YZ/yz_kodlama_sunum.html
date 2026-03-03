@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,22 +23,54 @@
         .reveal {
             font-family: 'Inter', -apple-system, sans-serif;
         }
-        .reveal h1, .reveal h2, .reveal h3 {
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3 {
             font-family: 'Inter', sans-serif;
             font-weight: 700;
             text-transform: none;
             letter-spacing: -0.02em;
         }
-        .reveal h1 { font-size: 2.2em; color: #fff; }
-        .reveal h2 { font-size: 1.6em; color: var(--accent); }
-        .reveal h3 { font-size: 1.15em; color: var(--orange); margin-bottom: 0.4em; }
-        .reveal p, .reveal li { font-size: 0.72em; line-height: 1.55; color: #c8c8e0; }
-        .reveal ul { margin-left: 0; }
-        .reveal li { margin-bottom: 0.3em; }
-        .reveal a { color: var(--blue); }
+
+        .reveal h1 {
+            font-size: 2.2em;
+            color: #fff;
+        }
+
+        .reveal h2 {
+            font-size: 1.6em;
+            color: var(--accent);
+        }
+
+        .reveal h3 {
+            font-size: 1.15em;
+            color: var(--orange);
+            margin-bottom: 0.4em;
+        }
+
+        .reveal p,
+        .reveal li {
+            font-size: 0.72em;
+            line-height: 1.55;
+            color: #c8c8e0;
+        }
+
+        .reveal ul {
+            margin-left: 0;
+        }
+
+        .reveal li {
+            margin-bottom: 0.3em;
+        }
+
+        .reveal a {
+            color: var(--blue);
+        }
+
         .reveal code {
             font-family: 'JetBrains Mono', monospace;
-            background: rgba(162,155,254,0.15);
+            background: rgba(162, 155, 254, 0.15);
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 0.85em;
@@ -51,6 +84,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
         .section-divider p {
             font-size: 1em;
             color: #888;
@@ -62,7 +96,8 @@
             background: var(--accent2);
             color: #fff;
             font-weight: 700;
-            min-width: 38px; height: 38px;
+            min-width: 38px;
+            height: 38px;
             line-height: 38px;
             padding: 0 10px;
             border-radius: 20px;
@@ -73,7 +108,11 @@
         }
 
         /* En-term styling */
-        .en { color: var(--blue); font-style: italic; font-weight: 400; }
+        .en {
+            color: var(--blue);
+            font-style: italic;
+            font-weight: 400;
+        }
 
         /* Tables */
         .reveal table {
@@ -82,6 +121,7 @@
             margin: 0 auto;
             width: auto;
         }
+
         .reveal table th {
             background: var(--accent2);
             color: #fff;
@@ -89,13 +129,15 @@
             font-weight: 600;
             text-align: left;
         }
+
         .reveal table td {
             padding: 6px 14px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             color: #c8c8e0;
         }
+
         .reveal table tr:nth-child(even) td {
-            background: rgba(162,155,254,0.06);
+            background: rgba(162, 155, 254, 0.06);
         }
 
         /* Cards grid */
@@ -105,22 +147,43 @@
             gap: 14px;
             margin-top: 16px;
         }
-        .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-        .card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+        .card-grid.cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .card-grid.cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
         .card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 10px;
             padding: 16px 14px;
             text-align: center;
         }
-        .card .icon { font-size: 1.5em; margin-bottom: 6px; }
-        .card .label { font-size: 0.65em; font-weight: 700; color: #fff; }
-        .card .sub { font-size: 0.52em; color: #888; margin-top: 4px; }
+
+        .card .icon {
+            font-size: 1.5em;
+            margin-bottom: 6px;
+        }
+
+        .card .label {
+            font-size: 0.65em;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .card .sub {
+            font-size: 0.52em;
+            color: #888;
+            margin-top: 4px;
+        }
 
         /* Callout boxes */
         .callout {
-            background: rgba(162,155,254,0.08);
+            background: rgba(162, 155, 254, 0.08);
             border-left: 4px solid var(--accent);
             padding: 14px 18px;
             border-radius: 0 8px 8px 0;
@@ -128,15 +191,20 @@
             margin: 16px 0;
             font-size: 0.68em;
         }
+
         .callout.warn {
-            background: rgba(255,118,117,0.08);
+            background: rgba(255, 118, 117, 0.08);
             border-left-color: var(--red);
         }
+
         .callout.success {
-            background: rgba(85,239,196,0.08);
+            background: rgba(85, 239, 196, 0.08);
             border-left-color: var(--green);
         }
-        .callout strong { color: #fff; }
+
+        .callout strong {
+            color: #fff;
+        }
 
         /* Timeline */
         .timeline-item {
@@ -146,6 +214,7 @@
             margin-bottom: 10px;
             text-align: left;
         }
+
         .timeline-item .year {
             background: var(--accent2);
             color: #fff;
@@ -157,31 +226,68 @@
             min-width: 70px;
             text-align: center;
         }
+
         .timeline-item .desc {
             font-size: 0.58em;
             color: #c8c8e0;
             line-height: 1.4;
         }
-        .timeline-item .desc strong { color: var(--blue); }
+
+        .timeline-item .desc strong {
+            color: var(--blue);
+        }
 
         /* LLM group table */
-        .llm-row-openai td { background: rgba(16,163,127,0.08) !important; }
-        .llm-row-anthropic td { background: rgba(217,119,6,0.08) !important; }
-        .llm-row-google td { background: rgba(66,133,244,0.08) !important; }
-        .llm-row-xai td { background: rgba(29,155,240,0.08) !important; }
-        .llm-row-deepseek td { background: rgba(77,107,254,0.08) !important; }
-        .llm-row-mistral td { background: rgba(255,112,0,0.08) !important; }
-        .llm-row-meta td { background: rgba(6,104,225,0.08) !important; }
-        .llm-row-groq td { background: rgba(245,80,54,0.08) !important; }
+        .llm-row-openai td {
+            background: rgba(16, 163, 127, 0.08) !important;
+        }
+
+        .llm-row-anthropic td {
+            background: rgba(217, 119, 6, 0.08) !important;
+        }
+
+        .llm-row-google td {
+            background: rgba(66, 133, 244, 0.08) !important;
+        }
+
+        .llm-row-xai td {
+            background: rgba(29, 155, 240, 0.08) !important;
+        }
+
+        .llm-row-deepseek td {
+            background: rgba(77, 107, 254, 0.08) !important;
+        }
+
+        .llm-row-mistral td {
+            background: rgba(255, 112, 0, 0.08) !important;
+        }
+
+        .llm-row-meta td {
+            background: rgba(6, 104, 225, 0.08) !important;
+        }
+
+        .llm-row-groq td {
+            background: rgba(245, 80, 54, 0.08) !important;
+        }
 
         /* Progress bar color */
-        .reveal .progress span { background: var(--accent); }
+        .reveal .progress span {
+            background: var(--accent);
+        }
 
         /* Slide number */
-        .reveal .slide-number { font-family: 'Inter'; font-size: 14px; color: #666; }
+        .reveal .slide-number {
+            font-family: 'Inter';
+            font-size: 14px;
+            color: #666;
+        }
 
         /* Link list */
-        .link-list { text-align: left; margin: 14px 0; }
+        .link-list {
+            text-align: left;
+            margin: 14px 0;
+        }
+
         .link-list a {
             display: block;
             font-size: 0.6em;
@@ -200,6 +306,7 @@
             max-width: 900px;
             margin: 0 auto;
         }
+
         .word-cloud span {
             display: inline-block;
             padding: 2px 8px;
@@ -208,17 +315,44 @@
             white-space: nowrap;
             transition: transform 0.2s;
         }
+
         .word-cloud span:hover {
             transform: scale(1.15);
             filter: brightness(1.3);
         }
-        .wc-prog { color: #ff7675; }
-        .wc-web  { color: #74b9ff; }
-        .wc-ai   { color: #55efc4; }
-        .wc-xl { font-size: 1.15em; font-weight: 700; }
-        .wc-lg { font-size: 0.9em; font-weight: 600; }
-        .wc-md { font-size: 0.7em; font-weight: 500; }
-        .wc-sm { font-size: 0.55em; font-weight: 400; opacity: 0.85; }
+
+        .wc-prog {
+            color: #ff7675;
+        }
+
+        .wc-web {
+            color: #74b9ff;
+        }
+
+        .wc-ai {
+            color: #55efc4;
+        }
+
+        .wc-xl {
+            font-size: 1.15em;
+            font-weight: 700;
+        }
+
+        .wc-lg {
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .wc-md {
+            font-size: 0.7em;
+            font-weight: 500;
+        }
+
+        .wc-sm {
+            font-size: 0.55em;
+            font-weight: 400;
+            opacity: 0.85;
+        }
 
         /* Comparison columns */
         .compare {
@@ -227,16 +361,25 @@
             gap: 20px;
             margin-top: 14px;
         }
-        .compare > div {
-            background: rgba(255,255,255,0.03);
+
+        .compare>div {
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 10px;
             padding: 18px;
             text-align: left;
         }
 
         /* Stat highlight */
-        .stat { font-size: 2em; font-weight: 800; color: var(--green); }
-        .stat-label { font-size: 0.6em; color: #888; }
+        .stat {
+            font-size: 2em;
+            font-weight: 800;
+            color: var(--green);
+        }
+
+        .stat-label {
+            font-size: 0.6em;
+            color: #888;
+        }
 
         /* embed responsive */
         .embed-container {
@@ -245,6 +388,7 @@
             max-width: 560px;
             margin: 10px auto;
         }
+
         .embed-container iframe {
             width: 100%;
             height: 315px;
@@ -277,8 +421,8 @@
             top: 14px;
             right: 14px;
             z-index: 100;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: #ccc;
             font-size: 20px;
             width: 40px;
@@ -290,95 +434,251 @@
             justify-content: center;
             transition: all 0.3s;
         }
+
         .theme-btn:hover {
             transform: scale(1.1);
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         /* Light theme overrides */
         html.light .reveal {
             background: #f8f9fc;
         }
+
         html.light .reveal .slide-background {
             background: #f8f9fc;
         }
-        html.light .reveal h1 { color: #1a1a2e; }
-        html.light .reveal h2 { color: #6c5ce7; }
-        html.light .reveal h3 { color: #b8860b; }
+
+        html.light .reveal h1 {
+            color: #1a1a2e;
+        }
+
+        html.light .reveal h2 {
+            color: #6c5ce7;
+        }
+
+        html.light .reveal h3 {
+            color: #b8860b;
+        }
+
         html.light .reveal p,
-        html.light .reveal li { color: #2d2d4a; }
-        html.light .reveal code { background: rgba(108,92,231,0.12); color: #5b3cc4; font-weight: 600; }
-        html.light .reveal table td { color: #2d2d4a; border-bottom-color: rgba(0,0,0,0.1); }
-        html.light .reveal table tr:nth-child(even) td { background: rgba(108,92,231,0.05) !important; }
-        html.light .card { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.1); }
-        html.light .card .label { color: #1a1a2e; }
-        html.light .card .sub { color: #5a5a7a; }
-        html.light .callout { background: rgba(108,92,231,0.1); border-left-color: #6c5ce7; color: #2d2d4a; }
-        html.light .callout strong { color: #1a1a2e; }
-        html.light .callout.warn { background: rgba(220,53,69,0.08); border-left-color: #c0392b; color: #2d2d4a; }
-        html.light .callout.success { background: rgba(13,122,95,0.08); border-left-color: #0d7a5f; color: #2d2d4a; }
-        html.light .callout em { color: #2d2d4a; }
-        html.light blockquote { color: #2d2d4a !important; }
-        html.light blockquote span { color: #4a4a6a !important; }
-        html.light .branding { color: #999; }
+        html.light .reveal li {
+            color: #2d2d4a;
+        }
+
+        html.light .reveal code {
+            background: rgba(108, 92, 231, 0.12);
+            color: #5b3cc4;
+            font-weight: 600;
+        }
+
+        html.light .reveal table td {
+            color: #2d2d4a;
+            border-bottom-color: rgba(0, 0, 0, 0.1);
+        }
+
+        html.light .reveal table tr:nth-child(even) td {
+            background: rgba(108, 92, 231, 0.05) !important;
+        }
+
+        html.light .card {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        html.light .card .label {
+            color: #1a1a2e;
+        }
+
+        html.light .card .sub {
+            color: #5a5a7a;
+        }
+
+        html.light .callout {
+            background: rgba(108, 92, 231, 0.1);
+            border-left-color: #6c5ce7;
+            color: #2d2d4a;
+        }
+
+        html.light .callout strong {
+            color: #1a1a2e;
+        }
+
+        html.light .callout.warn {
+            background: rgba(220, 53, 69, 0.08);
+            border-left-color: #c0392b;
+            color: #2d2d4a;
+        }
+
+        html.light .callout.success {
+            background: rgba(13, 122, 95, 0.08);
+            border-left-color: #0d7a5f;
+            color: #2d2d4a;
+        }
+
+        html.light .callout em {
+            color: #2d2d4a;
+        }
+
+        html.light blockquote {
+            color: #2d2d4a !important;
+        }
+
+        html.light blockquote span {
+            color: #4a4a6a !important;
+        }
+
+        html.light .branding {
+            color: #999;
+        }
+
         html.light .section-divider h1 {
             background: linear-gradient(135deg, #6c5ce7, #3498db);
             -webkit-background-clip: text;
             background-clip: text;
         }
-        html.light .compare > div { background: rgba(0,0,0,0.02); }
-        html.light .timeline-item .desc { color: #4a4a6a; }
-        html.light .theme-btn { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.15); color: #555; }
-        html.light .theme-btn:hover { background: rgba(0,0,0,0.1); }
+
+        html.light .compare>div {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        html.light .timeline-item .desc {
+            color: #4a4a6a;
+        }
+
+        html.light .theme-btn {
+            background: rgba(0, 0, 0, 0.06);
+            border-color: rgba(0, 0, 0, 0.15);
+            color: #555;
+        }
+
+        html.light .theme-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
 
         /* Light: fix low-contrast colors (yellow, green, light-blue) */
-        html.light .reveal h3 { color: #9a6700; }
-        html.light .reveal a { color: #2563eb; }
-        html.light .reveal .num { background: #6c5ce7; }
-        html.light .reveal .en { color: #2563eb; }
-        html.light .stat { color: #0d7a5f; }
-        html.light .timeline-item .year { background: #6c5ce7; }
-        html.light .timeline-item .desc strong { color: #2563eb; }
-        html.light .wc-prog { color: #c0392b; }
-        html.light .wc-web  { color: #2563eb; }
-        html.light .wc-ai   { color: #0d7a5f; }
-        html.light .reveal table th { background: #6c5ce7; }
-        html.light .reveal .progress span { background: #6c5ce7; }
-        html.light .reveal .slide-number { color: #999; }
+        html.light .reveal h3 {
+            color: #9a6700;
+        }
+
+        html.light .reveal a {
+            color: #2563eb;
+        }
+
+        html.light .reveal .num {
+            background: #6c5ce7;
+        }
+
+        html.light .reveal .en {
+            color: #2563eb;
+        }
+
+        html.light .stat {
+            color: #0d7a5f;
+        }
+
+        html.light .timeline-item .year {
+            background: #6c5ce7;
+        }
+
+        html.light .timeline-item .desc strong {
+            color: #2563eb;
+        }
+
+        html.light .wc-prog {
+            color: #c0392b;
+        }
+
+        html.light .wc-web {
+            color: #2563eb;
+        }
+
+        html.light .wc-ai {
+            color: #0d7a5f;
+        }
+
+        html.light .reveal table th {
+            background: #6c5ce7;
+        }
+
+        html.light .reveal .progress span {
+            background: #6c5ce7;
+        }
+
+        html.light .reveal .slide-number {
+            color: #999;
+        }
+
         /* Override inline yellow/orange/green used via style="" */
         html.light [style*="color:#ffeaa7"],
         html.light [style*="color: #ffeaa7"],
         html.light [style*="color:var(--orange)"],
-        html.light [style*="color: var(--orange)"] { color: #9a6700 !important; }
+        html.light [style*="color: var(--orange)"] {
+            color: #9a6700 !important;
+        }
+
         html.light [style*="color:#55efc4"],
         html.light [style*="color: #55efc4"],
         html.light [style*="color:var(--green)"],
-        html.light [style*="color: var(--green)"] { color: #0d7a5f !important; }
+        html.light [style*="color: var(--green)"] {
+            color: #0d7a5f !important;
+        }
+
         html.light [style*="color:#74b9ff"],
         html.light [style*="color: #74b9ff"],
         html.light [style*="color:var(--blue)"],
-        html.light [style*="color: var(--blue)"] { color: #2563eb !important; }
+        html.light [style*="color: var(--blue)"] {
+            color: #2563eb !important;
+        }
+
         html.light [style*="color:#ff7675"],
         html.light [style*="color: #ff7675"],
         html.light [style*="color:var(--red)"],
-        html.light [style*="color: var(--red)"] { color: #c0392b !important; }
+        html.light [style*="color: var(--red)"] {
+            color: #c0392b !important;
+        }
+
         html.light [style*="color:var(--accent)"],
-        html.light [style*="color: var(--accent)"] { color: #6c5ce7 !important; }
+        html.light [style*="color: var(--accent)"] {
+            color: #6c5ce7 !important;
+        }
+
         html.light [style*="color:#aaa"],
-        html.light [style*="color: #aaa"] { color: #555 !important; }
+        html.light [style*="color: #aaa"] {
+            color: #555 !important;
+        }
+
         html.light [style*="color:#888"],
-        html.light [style*="color: #888"] { color: #555 !important; }
+        html.light [style*="color: #888"] {
+            color: #555 !important;
+        }
+
         html.light [style*="color:#777"],
-        html.light [style*="color: #777"] { color: #555 !important; }
+        html.light [style*="color: #777"] {
+            color: #555 !important;
+        }
+
         html.light [style*="color:#666"],
-        html.light [style*="color: #666"] { color: #555 !important; }
+        html.light [style*="color: #666"] {
+            color: #555 !important;
+        }
+
         html.light [style*="color:#555"],
-        html.light [style*="color: #555"] { color: #666 !important; }
+        html.light [style*="color: #555"] {
+            color: #666 !important;
+        }
+
         html.light [style*="color:#c8c8e0"],
-        html.light [style*="color: #c8c8e0"] { color: #2d2d4a !important; }
+        html.light [style*="color: #c8c8e0"] {
+            color: #2d2d4a !important;
+        }
+
         html.light [style*="color:#fff"],
         html.light [style*="color: #fff"],
-        html.light [style*="color:#ffffff"] { color: #1a1a2e !important; }
+        html.light [style*="color:#ffffff"] {
+            color: #1a1a2e !important;
+        }
+
         html.light .llm-row-openai td,
         html.light .llm-row-anthropic td,
         html.light .llm-row-google td,
@@ -386,30 +686,89 @@
         html.light .llm-row-deepseek td,
         html.light .llm-row-mistral td,
         html.light .llm-row-meta td,
-        html.light .llm-row-groq td { color: #4a4a6a; }
+        html.light .llm-row-groq td {
+            color: #4a4a6a;
+        }
 
         /* Light: SVG fill overrides for diagrams */
-        html.light svg text[fill="#c8c8e0"] { fill: #1a1a2e !important; }
-        html.light svg text[fill="#ffeaa7"] { fill: #9a6700 !important; }
-        html.light svg [stroke="#ffeaa7"] { stroke: #b8860b !important; }
-        html.light svg circle[fill="#ffeaa7"] { fill: #b8860b !important; }
-        html.light svg text[fill="#55efc4"] { fill: #0d7a5f !important; }
-        html.light svg [stroke="#55efc4"] { stroke: #0d7a5f !important; }
-        html.light svg circle[fill="#55efc4"] { fill: #0d7a5f !important; }
-        html.light svg text[fill="#74b9ff"] { fill: #2563eb !important; }
-        html.light svg [stroke="#74b9ff"] { stroke: #2563eb !important; }
-        html.light svg circle[fill="#74b9ff"] { fill: #2563eb !important; }
-        html.light svg text[fill="#ff7675"] { fill: #c0392b !important; }
-        html.light svg [stroke="#ff7675"] { stroke: #c0392b !important; }
-        html.light svg circle[fill="#ff7675"] { fill: #c0392b !important; }
-        html.light svg text[fill="#fd79a8"] { fill: #c0255a !important; }
-        html.light svg [stroke="#fd79a8"] { stroke: #c0255a !important; }
-        html.light svg circle[fill="#fd79a8"] { fill: #c0255a !important; }
-        html.light svg text[fill="#a29bfe"] { fill: #5b3cc4 !important; }
-        html.light svg circle[stroke="#a29bfe"] { stroke: #5b3cc4 !important; }
-        html.light svg circle[fill="#a29bfe"] { fill: #5b3cc4 !important; }
+        html.light svg text[fill="#c8c8e0"] {
+            fill: #1a1a2e !important;
+        }
+
+        html.light svg text[fill="#ffeaa7"] {
+            fill: #9a6700 !important;
+        }
+
+        html.light svg [stroke="#ffeaa7"] {
+            stroke: #b8860b !important;
+        }
+
+        html.light svg circle[fill="#ffeaa7"] {
+            fill: #b8860b !important;
+        }
+
+        html.light svg text[fill="#55efc4"] {
+            fill: #0d7a5f !important;
+        }
+
+        html.light svg [stroke="#55efc4"] {
+            stroke: #0d7a5f !important;
+        }
+
+        html.light svg circle[fill="#55efc4"] {
+            fill: #0d7a5f !important;
+        }
+
+        html.light svg text[fill="#74b9ff"] {
+            fill: #2563eb !important;
+        }
+
+        html.light svg [stroke="#74b9ff"] {
+            stroke: #2563eb !important;
+        }
+
+        html.light svg circle[fill="#74b9ff"] {
+            fill: #2563eb !important;
+        }
+
+        html.light svg text[fill="#ff7675"] {
+            fill: #c0392b !important;
+        }
+
+        html.light svg [stroke="#ff7675"] {
+            stroke: #c0392b !important;
+        }
+
+        html.light svg circle[fill="#ff7675"] {
+            fill: #c0392b !important;
+        }
+
+        html.light svg text[fill="#fd79a8"] {
+            fill: #c0255a !important;
+        }
+
+        html.light svg [stroke="#fd79a8"] {
+            stroke: #c0255a !important;
+        }
+
+        html.light svg circle[fill="#fd79a8"] {
+            fill: #c0255a !important;
+        }
+
+        html.light svg text[fill="#a29bfe"] {
+            fill: #5b3cc4 !important;
+        }
+
+        html.light svg circle[stroke="#a29bfe"] {
+            stroke: #5b3cc4 !important;
+        }
+
+        html.light svg circle[fill="#a29bfe"] {
+            fill: #5b3cc4 !important;
+        }
     </style>
 </head>
+
 <body>
     <button class="theme-btn" onclick="toggleSlideTheme()" title="Tema değiştir">☀️</button>
     <div class="branding">Anadolu Üniversitesi · YZ Akademisi · 2026</div>
@@ -417,938 +776,1470 @@
     <div class="reveal">
         <div class="slides">
 
-<!-- ============================== -->
-<!-- TITLE SLIDE                    -->
-<!-- ============================== -->
-<section>
-    <h1 style="font-size:2em; margin-bottom:0.2em;">Yapay Zeka ile<br>Programlamaya Giriş</h1>
-    <p style="font-size:0.8em; color: var(--accent);">Anadolu Üniversitesi · Yapay Zeka Akademisi</p>
-    <p style="font-size:0.62em; color:#aaa; margin-top: 16px;">Güvenç Usanmaz</p>
-    <p style="font-size:0.52em; color:#777;">Öğretim Görevlisi · Bilişim Teknolojileri MYO<br>Oyun Geliştirme ve Programlama Programı</p>
-    <p style="font-size:0.45em; color:#555; margin-top: 30px;">
-        ⌨️ <strong style="color:#888;">→</strong> ile ilerle · <strong style="color:#888;">↓</strong> ile alt slayt · <strong style="color:#888;">ESC</strong> ile genel görünüm
-    </p>
-</section>
+            <!-- ============================== -->
+            <!-- TITLE SLIDE                    -->
+            <!-- ============================== -->
+            <section>
+                <h1 style="font-size:2em; margin-bottom:0.2em;">Yapay Zeka ile<br>Programlamaya Giriş</h1>
+                <p style="font-size:0.8em; color: var(--accent);">Anadolu Üniversitesi · Yapay Zeka Akademisi</p>
+                <p style="font-size:0.62em; color:#aaa; margin-top: 16px;">Güvenç Usanmaz</p>
+                <p style="font-size:0.52em; color:#777;">Öğretim Görevlisi · Bilişim Teknolojileri MYO<br>Oyun
+                    Geliştirme ve Programlama Programı</p>
+                <p style="font-size:0.45em; color:#555; margin-top: 30px;">
+                    ⌨️ <strong style="color:#888;">→</strong> ile ilerle · <strong style="color:#888;">↓</strong> ile
+                    alt slayt · <strong style="color:#888;">ESC</strong> ile genel görünüm
+                </p>
+            </section>
 
-<!-- ============================== -->
-<!-- LINKS & QR CODES               -->
-<!-- ============================== -->
-<section>
-    <h2>📎 Ders Materyalleri</h2>
-    <div style="display:flex; gap:40px; justify-content:center; margin-top:24px; flex-wrap:wrap;">
-        <div style="text-align:center;">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://gusanmaz.github.io/ai-coding-guide/notlar.html&bgcolor=0f0f1a&color=ffeaa7" alt="Notlar QR" style="border-radius:10px;">
-            <p style="font-size:0.55em; color:#aaa; margin-top:8px;">📄 <strong style="color:#fff;">Ders Notları</strong></p>
-            <p style="font-size:0.42em; color:#666;">gusanmaz.github.io/ai-coding-guide/notlar.html</p>
-        </div>
-        <div style="text-align:center;">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://gusanmaz.github.io/ai-coding-guide/slayt1.html&bgcolor=0f0f1a&color=a29bfe" alt="Slayt QR" style="border-radius:10px;">
-            <p style="font-size:0.55em; color:#aaa; margin-top:8px;">📽️ <strong style="color:#fff;">Bu Slaytlar</strong></p>
-            <p style="font-size:0.42em; color:#666;">gusanmaz.github.io/ai-coding-guide/slayt1.html</p>
-        </div>
-        <div style="text-align:center;">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yzakademi.anadolu.edu.tr/&bgcolor=0f0f1a&color=55efc4" alt="Akademi QR" style="border-radius:10px;">
-            <p style="font-size:0.55em; color:#aaa; margin-top:8px;">🎓 <strong style="color:#fff;">YZ Akademisi</strong></p>
-            <p style="font-size:0.42em; color:#666;">yzakademi.anadolu.edu.tr</p>
-        </div>
-    </div>
-    <p style="font-size:0.45em; color:#555; margin-top:24px;">QR kodları telefonunuzla tarayarak kaynaklara erişebilirsiniz.</p>
-</section>
+            <!-- ============================== -->
+            <!-- LINKS & QR CODES               -->
+            <!-- ============================== -->
+            <section>
+                <h2>📎 Ders Materyalleri</h2>
+                <div style="display:flex; gap:40px; justify-content:center; margin-top:24px; flex-wrap:wrap;">
+                    <div style="text-align:center;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://anadolubiltekmyo.github.io/YapayZekaAkademisi/Hafta-01-YZ-Temelleri-ve-Uretken-YZ/yz_kodlama_notlar.html&bgcolor=0f0f1a&color=ffeaa7"
+                            alt="Notlar QR" style="border-radius:10px;">
+                        <p style="font-size:0.55em; color:#aaa; margin-top:8px;">📄 <strong style="color:#fff;">Ders
+                                Notları</strong></p>
+                        <p style="font-size:0.42em;"><a
+                                href="https://anadolubiltekmyo.github.io/YapayZekaAkademisi/Hafta-01-YZ-Temelleri-ve-Uretken-YZ/yz_kodlama_notlar.html"
+                                target="_blank" style="color:#888;">🔗 Notlara Git</a></p>
+                    </div>
+                    <div style="text-align:center;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://anadolubiltekmyo.github.io/YapayZekaAkademisi/Hafta-01-YZ-Temelleri-ve-Uretken-YZ/yz_kodlama_sunum.html&bgcolor=0f0f1a&color=a29bfe"
+                            alt="Slayt QR" style="border-radius:10px;">
+                        <p style="font-size:0.55em; color:#aaa; margin-top:8px;">📽️ <strong style="color:#fff;">Bu
+                                Slaytlar</strong></p>
+                        <p style="font-size:0.42em;"><a
+                                href="https://anadolubiltekmyo.github.io/YapayZekaAkademisi/Hafta-01-YZ-Temelleri-ve-Uretken-YZ/yz_kodlama_sunum.html"
+                                target="_blank" style="color:#888;">🔗 Sunuma Git</a></p>
+                    </div>
+                    <div style="text-align:center;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yzakademi.anadolu.edu.tr/&bgcolor=0f0f1a&color=55efc4"
+                            alt="Akademi QR" style="border-radius:10px;">
+                        <p style="font-size:0.55em; color:#aaa; margin-top:8px;">🎓 <strong style="color:#fff;">YZ
+                                Akademisi</strong></p>
+                        <p style="font-size:0.42em; color:#666;">yzakademi.anadolu.edu.tr</p>
+                    </div>
+                </div>
+                <p style="font-size:0.45em; color:#555; margin-top:24px;">QR kodları telefonunuzla tarayarak kaynaklara
+                    erişebilirsiniz.</p>
+            </section>
 
-<!-- ============================== -->
-<!-- RICK RUBIN YOUTUBE VIDEO       -->
-<!-- ============================== -->
-<section>
-    <div style="position:relative; width:85%; max-width:760px; margin:0 auto; padding-bottom:48%; height:0; overflow:hidden; border-radius:12px;">
-        <iframe src="https://www.youtube.com/embed/rgOPHBLj6VA" title="Rick Rubin Interview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
-    </div>
-</section>
+            <!-- ============================== -->
+            <!-- RICK RUBIN YOUTUBE VIDEO       -->
+            <!-- ============================== -->
+            <section>
+                <div
+                    style="position:relative; width:85%; max-width:760px; margin:0 auto; padding-bottom:48%; height:0; overflow:hidden; border-radius:12px;">
+                    <iframe src="https://www.youtube.com/embed/rgOPHBLj6VA" title="Rick Rubin Interview" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+                </div>
+            </section>
 
-<!-- ============================== -->
-<!-- RICK RUBIN EPIGRAPH            -->
-<!-- ============================== -->
-<section>
-    <blockquote style="border-left: 4px solid var(--accent); padding: 20px 30px; text-align:left; font-style:italic; font-size:0.8em; color:#aaa; line-height:1.7;">
-        "I have no technical ability. I know nothing about music.<br>I get paid for my taste."
-        <br><br>
-        <span style="font-size:0.75em; color:#777; font-style:normal;">"Teknik yeteneğim yok. Müzikten hiçbir şey anlamam.<br>Bana <strong style='color:var(--orange);'>zevkim</strong> için para ödüyorlar."</span>
-    </blockquote>
-    <p style="margin-top:16px; font-size:0.65em; color:#666;">— <strong style="color:var(--orange);">Rick Rubin</strong></p>
-    <p style="font-size:0.52em; color:#888; max-width:650px; margin:8px auto 0;">
-        🎵 Amerikalı efsanevi müzik yapımcısı. Johnny Cash, Beastie Boys, Red Hot Chili Peppers, Jay-Z, Adele gibi sanatçılarla çalıştı.
-        Enstrüman çalmaz, nota bilmez — ama müzikal <em>vizyonu</em> ve <em>zevki</em> ile albümleri şekillendirdi.
-    </p>
-    <div class="callout success" style="margin-top:16px;">
-        <strong>💡 Dersin mesajı:</strong> Teknik altyapınız olmadan yazılım dünyasına girebilir, <em>zevkinizi</em> ve <em>vizyonunuzu</em> dijital ürünlere dönüştürmek için AI araçlarını kullanabilirsiniz.
-    </div>
-</section>
+            <!-- ============================== -->
+            <!-- RICK RUBIN EPIGRAPH            -->
+            <!-- ============================== -->
+            <section>
+                <blockquote
+                    style="border-left: 4px solid var(--accent); padding: 20px 30px; text-align:left; font-style:italic; font-size:0.8em; color:#aaa; line-height:1.7;">
+                    "I have no technical ability. I know nothing about music.<br>I get paid for my taste."
+                    <br><br>
+                    <span style="font-size:0.75em; color:#777; font-style:normal;">"Teknik yeteneğim yok. Müzikten
+                        hiçbir şey anlamam.<br>Bana <strong style='color:var(--orange);'>zevkim</strong> için para
+                        ödüyorlar."</span>
+                </blockquote>
+                <p style="margin-top:16px; font-size:0.65em; color:#666;">— <strong style="color:var(--orange);">Rick
+                        Rubin</strong></p>
+                <p style="font-size:0.52em; color:#888; max-width:650px; margin:8px auto 0;">
+                    🎵 Amerikalı efsanevi müzik yapımcısı. Johnny Cash, Beastie Boys, Red Hot Chili Peppers, Jay-Z,
+                    Adele gibi sanatçılarla çalıştı.
+                    Enstrüman çalmaz, nota bilmez — ama müzikal <em>vizyonu</em> ve <em>zevki</em> ile albümleri
+                    şekillendirdi.
+                </p>
+                <div class="callout success" style="margin-top:16px;">
+                    <strong>💡 Dersin mesajı:</strong> Teknik altyapınız olmadan yazılım dünyasına girebilir,
+                    <em>zevkinizi</em> ve <em>vizyonunuzu</em> dijital ürünlere dönüştürmek için AI araçlarını
+                    kullanabilirsiniz.
+                </div>
+            </section>
 
-<!-- ============================== -->
-<!-- DERS 1 DIVIDER                 -->
-<!-- ============================== -->
-<section class="section-divider">
-    <p style="font-size:0.7em; color:#666;">DERS 1</p>
-    <h1>Programlamanın<br>Temelleri</h1>
-    <p>Bölüm 1 – 7</p>
-</section>
-
-
-<!-- ============================== -->
-<!-- 1. Program Nedir? GUI vs CLI   -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">1</span> Program Nedir? <span class="en">GUI vs CLI</span></h2>
-        <div class="compare">
-            <div>
-                <h3>🖱️ GUI</h3>
-                <p>Grafik Arayüz — fare ile tıklanan, görsel programlar</p>
-                <p style="font-size:0.6em; color:#888;">Firefox, Photoshop, Word, mobil uygulamalar</p>
-            </div>
-            <div>
-                <h3>⌨️ CLI</h3>
-                <p>Komut Satırı — metin tabanlı, komut yazılan programlar</p>
-                <p style="font-size:0.6em; color:#888;">Terminal, PowerShell, komut yazarak çalıştırma</p>
-            </div>
-        </div>
-    </section>
-    <section>
-        <h3>CLI Neden Önemli?</h3>
-        <ul>
-            <li><strong>Hız:</strong> Deneyimli kullanıcılar için çok daha hızlı</li>
-            <li><strong>Otomasyon:</strong> Komutları zincirleme çalıştırabilirsiniz <span class="en">(scripting)</span></li>
-            <li><strong>Sunucularda zorunluluk:</strong> Uzak sunucularda GUI yoktur</li>
-            <li><strong>AI ile kolay:</strong> AI metin tabanlı program yazmakta çok daha başarılı</li>
-        </ul>
-        <div class="callout">
-            <strong>📝 Not:</strong> Bu derslerde yazacağımız bazı programlar CLI tabanlı olacak.
-        </div>
-    </section>
-    <section>
-        <h3>⌨️ Terminalde Kullanılan CLI Programları</h3>
-        <table>
-            <thead><tr><th>Komut</th><th>Açıklama</th><th>Örnek</th></tr></thead>
-            <tbody>
-                <tr><td><code>date</code></td><td>Sistem tarih ve saatini gösterir</td><td><code>date +"%Y-%m-%d"</code></td></tr>
-                <tr><td><code>cal</code></td><td>Terminal içinde takvim görüntüler</td><td><code>cal 2026</code></td></tr>
-                <tr><td><code>top</code></td><td>Canlı sistem kaynak kullanımını izler (CPU, RAM)</td><td><code>top</code> veya <code>htop</code></td></tr>
-                <tr><td><code>wget</code></td><td>Web'den dosya indirir</td><td><code>wget https://example.com/data.csv</code></td></tr>
-                <tr><td><code>ollama</code></td><td>Yerel bilgisayarda LLM çalıştırır</td><td><code>ollama run llama3</code></td></tr>
-            </tbody>
-        </table>
-        <div class="callout success" style="margin-top:12px;">
-            <strong>💡</strong> Bu komutların hepsi GUI'siz çalışır: ekranda pencere açmaz, metin girer / metin çıkarır. Terminal'e yazıp Enter'a basın.
-        </div>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- DERS 1 DIVIDER                 -->
+            <!-- ============================== -->
+            <section class="section-divider">
+                <p style="font-size:0.7em; color:#666;">DERS 1</p>
+                <h1>Programlamanın<br>Temelleri</h1>
+                <p>Bölüm 1 – 7</p>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 2. Programlama Dilleri          -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">2</span> Programlama Dilleri <span class="en">Programming Languages</span></h2>
-        <div class="compare" style="margin-bottom:16px;">
-            <div>
-                <h3 style="color:var(--orange);">🌍 Doğal Diller</h3>
-                <p>Türkçe, İngilizce, Japonca, Arapça…</p>
-                <p style="font-size:0.55em; color:#888;">Farklı görünür ama hepsinin amacı: <strong>insanlarla iletişim</strong></p>
-            </div>
-            <div>
-                <h3 style="color:var(--accent);">💻 Programlama Dilleri</h3>
-                <p>Python, JavaScript, C, Rust…</p>
-                <p style="font-size:0.55em; color:#888;">Farklı söz dizimi ama hepsinin amacı: <strong>bilgisayara iş yaptırmak</strong></p>
-            </div>
-        </div>
-        <div class="callout" style="font-size:0.85em;">
-            <strong>💡</strong> Bir dili bilmek diğerlerini öğrenmeyi kolaylaştırır — tıpkı İspanyolca bilen birinin İtalyancayı daha kolay öğrenmesi gibi.
-        </div>
-    </section>
-    <section>
-        <h3>Popüler Programlama Dilleri</h3>
-        <div class="card-grid cols-4">
-            <div class="card"><div class="icon">🐍</div><div class="label">Python</div><div class="sub">AI, veri, otomasyon</div></div>
-            <div class="card"><div class="icon">🌐</div><div class="label">JavaScript</div><div class="sub">Web</div></div>
-            <div class="card"><div class="icon">☕</div><div class="label">Java</div><div class="sub">Kurumsal, Android</div></div>
-            <div class="card"><div class="icon">⚙️</div><div class="label">C / C++</div><div class="sub">Sistem, oyun</div></div>
-            <div class="card"><div class="icon">🦀</div><div class="label">Rust</div><div class="sub">Güvenli sistemler</div></div>
-            <div class="card"><div class="icon">🐹</div><div class="label">Go</div><div class="sub">Bulut, sunucu</div></div>
-            <div class="card"><div class="icon">🍎</div><div class="label">Swift</div><div class="sub">iOS / macOS</div></div>
-            <div class="card"><div class="icon">📱</div><div class="label">Kotlin</div><div class="sub">Android</div></div>
-        </div>
-    </section>
-    <section>
-        <h3>Kod Nasıl Çalışır?</h3>
-        <div class="compare">
-            <div>
-                <h3 style="color:var(--green);">🔨 Derleyici <span class="en">Compiler</span></h3>
-                <p>Tüm kodu bir seferde çevirir → çalıştırılabilir dosya üretir</p>
-                <p style="font-size:0.55em; color:#888;">C, C++, Go, Rust</p>
-            </div>
-            <div>
-                <h3 style="color:var(--orange);">▶️ Yorumlayıcı <span class="en">Interpreter</span></h3>
-                <p>Kodu satır satır okur ve anında çalıştırır</p>
-                <p style="font-size:0.55em; color:#888;">Python, JavaScript, Ruby</p>
-            </div>
-        </div>
-    </section>
-    <section>
-        <h3>Hangi Dil Nerede Yazılır?</h3>
-        <table>
-            <thead><tr><th>Dil</th><th>Popüler IDE</th><th>Online Seçenek</th></tr></thead>
-            <tbody>
-                <tr><td>Python</td><td>PyCharm, VS Code</td><td>Google Colab, Replit</td></tr>
-                <tr><td>JavaScript / TS</td><td>VS Code, WebStorm</td><td>CodeSandbox, Replit</td></tr>
-                <tr><td>Java</td><td>IntelliJ IDEA, Eclipse</td><td>Replit</td></tr>
-                <tr><td>C / C++</td><td>CLion, VS Code</td><td>OnlineGDB</td></tr>
-                <tr><td>Go</td><td>GoLand, VS Code</td><td>Go Playground</td></tr>
-                <tr><td>Rust</td><td>RustRover, VS Code</td><td>Rust Playground</td></tr>
-            </tbody>
-        </table>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 1. Program Nedir? GUI vs CLI   -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">1</span> Program Nedir? <span class="en">GUI vs CLI</span></h2>
+                    <div class="compare">
+                        <div>
+                            <h3>🖱️ GUI</h3>
+                            <p>Grafik Arayüz — fare ile tıklanan, görsel programlar</p>
+                            <p style="font-size:0.6em; color:#888;">Firefox, Photoshop, Word, mobil uygulamalar</p>
+                        </div>
+                        <div>
+                            <h3>⌨️ CLI</h3>
+                            <p>Komut Satırı — metin tabanlı, komut yazılan programlar</p>
+                            <p style="font-size:0.6em; color:#888;">Terminal, PowerShell, komut yazarak çalıştırma</p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>CLI Neden Önemli?</h3>
+                    <ul>
+                        <li><strong>Hız:</strong> Deneyimli kullanıcılar için çok daha hızlı</li>
+                        <li><strong>Otomasyon:</strong> Komutları zincirleme çalıştırabilirsiniz <span
+                                class="en">(scripting)</span></li>
+                        <li><strong>Sunucularda zorunluluk:</strong> Uzak sunucularda GUI yoktur</li>
+                        <li><strong>AI ile kolay:</strong> AI metin tabanlı program yazmakta çok daha başarılı</li>
+                    </ul>
+                    <div class="callout">
+                        <strong>📝 Not:</strong> Bu derslerde yazacağımız bazı programlar CLI tabanlı olacak.
+                    </div>
+                </section>
+                <section>
+                    <h3>⌨️ Terminalde Kullanılan CLI Programları</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Komut</th>
+                                <th>Açıklama</th>
+                                <th>Örnek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>date</code></td>
+                                <td>Sistem tarih ve saatini gösterir</td>
+                                <td><code>date +"%Y-%m-%d"</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>cal</code></td>
+                                <td>Terminal içinde takvim görüntüler</td>
+                                <td><code>cal 2026</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>top</code></td>
+                                <td>Canlı sistem kaynak kullanımını izler (CPU, RAM)</td>
+                                <td><code>top</code> veya <code>htop</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>wget</code></td>
+                                <td>Web'den dosya indirir</td>
+                                <td><code>wget https://example.com/data.csv</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>ollama</code></td>
+                                <td>Yerel bilgisayarda LLM çalıştırır</td>
+                                <td><code>ollama run llama3</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="callout success" style="margin-top:12px;">
+                        <strong>💡</strong> Bu komutların hepsi GUI'siz çalışır: ekranda pencere açmaz, metin girer /
+                        metin çıkarır. Terminal'e yazıp Enter'a basın.
+                    </div>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 3. Kodun Yapı Taşları           -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">3</span> Kodun Yapı Taşları <span class="en">Functions, Classes & Modules</span></h2>
-        <div class="card-grid cols-2">
-            <div class="card">
-                <div class="icon">🔧</div>
-                <div class="label">Fonksiyon <span class="en">Function</span></div>
-                <div class="sub">Belirli bir işi yapan, isimli kod bloğu.<br>Bir kere yaz, istediğin kadar çağır.</div>
-            </div>
-            <div class="card">
-                <div class="icon">📦</div>
-                <div class="label">Sınıf <span class="en">Class</span></div>
-                <div class="sub">Veri + davranış şablonu.<br>Nesneler bu şablondan üretilir.</div>
-            </div>
-            <div class="card">
-                <div class="icon">📂</div>
-                <div class="label">Modül <span class="en">Module</span></div>
-                <div class="sub">Fonksiyon ve sınıfları içeren dosya.<br><code>import</code> ile kullanılır.</div>
-            </div>
-            <div class="card">
-                <div class="icon">🗃️</div>
-                <div class="label">Paket <span class="en">Package</span></div>
-                <div class="sub">Birden fazla modülün<br>organize edilmiş hali → kütüphane.</div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <h3>Neden Önemli?</h3>
-        <div class="callout success">
-            <strong>💡</strong> AI'a şunu söyleyebilirsiniz:
-            <br><br>
-            ❌ <em>"Bir şey yap sayıları toplasın"</em><br>
-            ✅ <em>"Bir <strong>fonksiyon</strong> yaz, parametre olarak liste alsın, toplamını döndürsün"</em><br>
-            ✅ <em>"Bir <strong>sınıf</strong> oluştur: Öğrenci, ad ve not özellikleri olsun"</em><br>
-            ✅ <em>"pandas <strong>kütüphanesini</strong> import et"</em>
-        </div>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 2. Programlama Dilleri          -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">2</span> Programlama Dilleri <span class="en">Programming Languages</span>
+                    </h2>
+                    <div class="compare" style="margin-bottom:16px;">
+                        <div>
+                            <h3 style="color:var(--orange);">🌍 Doğal Diller</h3>
+                            <p>Türkçe, İngilizce, Japonca, Arapça…</p>
+                            <p style="font-size:0.55em; color:#888;">Farklı görünür ama hepsinin amacı:
+                                <strong>insanlarla iletişim</strong>
+                            </p>
+                        </div>
+                        <div>
+                            <h3 style="color:var(--accent);">💻 Programlama Dilleri</h3>
+                            <p>Python, JavaScript, C, Rust…</p>
+                            <p style="font-size:0.55em; color:#888;">Farklı söz dizimi ama hepsinin amacı:
+                                <strong>bilgisayara iş yaptırmak</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="callout" style="font-size:0.85em;">
+                        <strong>💡</strong> Bir dili bilmek diğerlerini öğrenmeyi kolaylaştırır — tıpkı İspanyolca bilen
+                        birinin İtalyancayı daha kolay öğrenmesi gibi.
+                    </div>
+                </section>
+                <section>
+                    <h3>Popüler Programlama Dilleri</h3>
+                    <div class="card-grid cols-4">
+                        <div class="card">
+                            <div class="icon">🐍</div>
+                            <div class="label">Python</div>
+                            <div class="sub">AI, veri, otomasyon</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🌐</div>
+                            <div class="label">JavaScript</div>
+                            <div class="sub">Web</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">☕</div>
+                            <div class="label">Java</div>
+                            <div class="sub">Kurumsal, Android</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">⚙️</div>
+                            <div class="label">C / C++</div>
+                            <div class="sub">Sistem, oyun</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🦀</div>
+                            <div class="label">Rust</div>
+                            <div class="sub">Güvenli sistemler</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🐹</div>
+                            <div class="label">Go</div>
+                            <div class="sub">Bulut, sunucu</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🍎</div>
+                            <div class="label">Swift</div>
+                            <div class="sub">iOS / macOS</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">📱</div>
+                            <div class="label">Kotlin</div>
+                            <div class="sub">Android</div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>Kod Nasıl Çalışır?</h3>
+                    <div class="compare">
+                        <div>
+                            <h3 style="color:var(--green);">🔨 Derleyici <span class="en">Compiler</span></h3>
+                            <p>Tüm kodu bir seferde çevirir → çalıştırılabilir dosya üretir</p>
+                            <p style="font-size:0.55em; color:#888;">C, C++, Go, Rust</p>
+                        </div>
+                        <div>
+                            <h3 style="color:var(--orange);">▶️ Yorumlayıcı <span class="en">Interpreter</span></h3>
+                            <p>Kodu satır satır okur ve anında çalıştırır</p>
+                            <p style="font-size:0.55em; color:#888;">Python, JavaScript, Ruby</p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>Hangi Dil Nerede Yazılır?</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dil</th>
+                                <th>Popüler IDE</th>
+                                <th>Online Seçenek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Python</td>
+                                <td>PyCharm, VS Code</td>
+                                <td>Google Colab, Replit</td>
+                            </tr>
+                            <tr>
+                                <td>JavaScript / TS</td>
+                                <td>VS Code, WebStorm</td>
+                                <td>CodeSandbox, Replit</td>
+                            </tr>
+                            <tr>
+                                <td>Java</td>
+                                <td>IntelliJ IDEA, Eclipse</td>
+                                <td>Replit</td>
+                            </tr>
+                            <tr>
+                                <td>C / C++</td>
+                                <td>CLion, VS Code</td>
+                                <td>OnlineGDB</td>
+                            </tr>
+                            <tr>
+                                <td>Go</td>
+                                <td>GoLand, VS Code</td>
+                                <td>Go Playground</td>
+                            </tr>
+                            <tr>
+                                <td>Rust</td>
+                                <td>RustRover, VS Code</td>
+                                <td>Rust Playground</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 4. Kütüphane Kavramı            -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">4</span> Kütüphane Kavramı <span class="en">Libraries & Packages</span></h2>
-        <p>Modern yazılım = başkalarının yazdığı, test edilmiş hazır parçaları birleştirmek</p>
-        <p style="margin-top:20px; font-size:0.75em; color:var(--orange);">Boeing 787 Dreamliner Analojisi</p>
-        <div class="card-grid" style="font-size:0.9em;">
-            <div class="card"><div class="icon">✈️</div><div class="label">Kanat</div><div class="sub">Mitsubishi · Subaru 🇯🇵</div></div>
-            <div class="card"><div class="icon">🛩️</div><div class="label">Gövde</div><div class="sub">Spirit 🇺🇸 · Kawasaki 🇯🇵 · Alenia 🇮🇹</div></div>
-            <div class="card"><div class="icon">🔧</div><div class="label">Motor</div><div class="sub">Rolls-Royce 🇬🇧 · GE 🇺🇸</div></div>
-            <div class="card"><div class="icon">🛞</div><div class="label">İniş Takımı</div><div class="sub">Safran 🇫🇷 · Collins 🇺🇸</div></div>
-            <div class="card"><div class="icon">🔲</div><div class="label">Kuyruk</div><div class="sub">Alenia 🇮🇹 · Korea Aero. 🇰🇷</div></div>
-            <div class="card"><div class="icon">🎬</div><div class="label">IFE</div><div class="sub">Panasonic 🇯🇵 · Thales 🇫🇷</div></div>
-        </div>
-        <p style="font-size:0.55em; color:#666; margin-top:10px;">8+ ülke, 40+ tedarikçi → Boeing Everett'te 3 günde monte edilir</p>
-    </section>
-    <section>
-        <h3>Yazılımdaki Karşılığı</h3>
-        <table>
-            <thead><tr><th>Dil</th><th>Paket Yöneticisi</th><th>Örnek Komut</th></tr></thead>
-            <tbody>
-                <tr><td>Python</td><td>pip</td><td><code>pip install pandas</code></td></tr>
-                <tr><td>JavaScript</td><td>npm / yarn</td><td><code>npm install express</code></td></tr>
-                <tr><td>Java</td><td>Maven / Gradle</td><td>pom.xml yapılandırma</td></tr>
-                <tr><td>Rust</td><td>Cargo</td><td><code>cargo add serde</code></td></tr>
-                <tr><td>Go</td><td>Go Modules</td><td><code>go get github.com/gin-gonic/gin</code></td></tr>
-            </tbody>
-        </table>
-        <div class="callout success" style="margin-top:14px;">
-            <strong>💡</strong> Aynı kütüphane birçok projede tekrar kullanılabilir — tıpkı aynı motorun farklı uçaklara takılması gibi.
-        </div>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 3. Kodun Yapı Taşları           -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">3</span> Kodun Yapı Taşları <span class="en">Functions, Classes &
+                            Modules</span></h2>
+                    <div class="card-grid cols-2">
+                        <div class="card">
+                            <div class="icon">🔧</div>
+                            <div class="label">Fonksiyon <span class="en">Function</span></div>
+                            <div class="sub">Belirli bir işi yapan, isimli kod bloğu.<br>Bir kere yaz, istediğin kadar
+                                çağır.</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">📦</div>
+                            <div class="label">Sınıf <span class="en">Class</span></div>
+                            <div class="sub">Veri + davranış şablonu.<br>Nesneler bu şablondan üretilir.</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">📂</div>
+                            <div class="label">Modül <span class="en">Module</span></div>
+                            <div class="sub">Fonksiyon ve sınıfları içeren dosya.<br><code>import</code> ile kullanılır.
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🗃️</div>
+                            <div class="label">Paket <span class="en">Package</span></div>
+                            <div class="sub">Birden fazla modülün<br>organize edilmiş hali → kütüphane.</div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>Neden Önemli?</h3>
+                    <div class="callout success">
+                        <strong>💡</strong> AI'a şunu söyleyebilirsiniz:
+                        <br><br>
+                        ❌ <em>"Bir şey yap sayıları toplasın"</em><br>
+                        ✅ <em>"Bir <strong>fonksiyon</strong> yaz, parametre olarak liste alsın, toplamını
+                            döndürsün"</em><br>
+                        ✅ <em>"Bir <strong>sınıf</strong> oluştur: Öğrenci, ad ve not özellikleri olsun"</em><br>
+                        ✅ <em>"pandas <strong>kütüphanesini</strong> import et"</em>
+                    </div>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 5. IDE                          -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">5</span> IDE: Kod Yazma Ortamları <span class="en">IDE</span></h2>
-        <p>Kod Notepad'de de yazılabilir ama profesyoneller IDE kullanır</p>
-        <div class="card-grid cols-2" style="margin-top:16px;">
-            <div class="card">
-                <div class="icon">📁</div>
-                <div class="label">Dosya Gezgini</div>
-                <div class="sub">Proje dosyalarını ağaç yapısında gösterir</div>
-            </div>
-            <div class="card">
-                <div class="icon">✏️</div>
-                <div class="label">Kod Editörü</div>
-                <div class="sub">Sekmeli, syntax highlighted alan</div>
-            </div>
-            <div class="card">
-                <div class="icon">▶️</div>
-                <div class="label">Terminal & Çalıştır</div>
-                <div class="sub">Kodu doğrudan çalıştırma</div>
-            </div>
-            <div class="card">
-                <div class="icon">🐛</div>
-                <div class="label">Debugger</div>
-                <div class="sub">Hata ayıklama, adım adım çalıştırma</div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <h3>🤖 AI Araçlarının IDE Entegrasyonu</h3>
-        <table>
-            <thead><tr><th>Yaklaşım</th><th>Örnekler</th><th>Açıklama</th></tr></thead>
-            <tbody>
-                <tr><td><strong>AI-first IDE</strong></td><td>Cursor, Windsurf, Antigravity</td><td>Sıfırdan AI etrafında tasarlanmış</td></tr>
-                <tr><td><strong>Eklenti</strong></td><td>GitHub Copilot, Kilo Code</td><td>VS Code'a eklenen AI uzantısı</td></tr>
-                <tr><td><strong>Terminal aracı</strong></td><td>Claude Code</td><td>IDE'den bağımsız, terminalde çalışır</td></tr>
-            </tbody>
-        </table>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 4. Kütüphane Kavramı            -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">4</span> Kütüphane Kavramı <span class="en">Libraries & Packages</span></h2>
+                    <p>Modern yazılım = başkalarının yazdığı, test edilmiş hazır parçaları birleştirmek</p>
+                    <p style="margin-top:20px; font-size:0.75em; color:var(--orange);">Boeing 787 Dreamliner Analojisi
+                    </p>
+                    <div class="card-grid" style="font-size:0.9em;">
+                        <div class="card">
+                            <div class="icon">✈️</div>
+                            <div class="label">Kanat</div>
+                            <div class="sub">Mitsubishi · Subaru 🇯🇵</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🛩️</div>
+                            <div class="label">Gövde</div>
+                            <div class="sub">Spirit 🇺🇸 · Kawasaki 🇯🇵 · Alenia 🇮🇹</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🔧</div>
+                            <div class="label">Motor</div>
+                            <div class="sub">Rolls-Royce 🇬🇧 · GE 🇺🇸</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🛞</div>
+                            <div class="label">İniş Takımı</div>
+                            <div class="sub">Safran 🇫🇷 · Collins 🇺🇸</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🔲</div>
+                            <div class="label">Kuyruk</div>
+                            <div class="sub">Alenia 🇮🇹 · Korea Aero. 🇰🇷</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🎬</div>
+                            <div class="label">IFE</div>
+                            <div class="sub">Panasonic 🇯🇵 · Thales 🇫🇷</div>
+                        </div>
+                    </div>
+                    <p style="font-size:0.55em; color:#666; margin-top:10px;">8+ ülke, 40+ tedarikçi → Boeing Everett'te
+                        3 günde monte edilir</p>
+                </section>
+                <section>
+                    <h3>Yazılımdaki Karşılığı</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dil</th>
+                                <th>Paket Yöneticisi</th>
+                                <th>Örnek Komut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Python</td>
+                                <td>pip</td>
+                                <td><code>pip install pandas</code></td>
+                            </tr>
+                            <tr>
+                                <td>JavaScript</td>
+                                <td>npm / yarn</td>
+                                <td><code>npm install express</code></td>
+                            </tr>
+                            <tr>
+                                <td>Java</td>
+                                <td>Maven / Gradle</td>
+                                <td>pom.xml yapılandırma</td>
+                            </tr>
+                            <tr>
+                                <td>Rust</td>
+                                <td>Cargo</td>
+                                <td><code>cargo add serde</code></td>
+                            </tr>
+                            <tr>
+                                <td>Go</td>
+                                <td>Go Modules</td>
+                                <td><code>go get github.com/gin-gonic/gin</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="callout success" style="margin-top:14px;">
+                        <strong>💡</strong> Aynı kütüphane birçok projede tekrar kullanılabilir — tıpkı aynı motorun
+                        farklı uçaklara takılması gibi.
+                    </div>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 6. Syntax Highlighting          -->
-<!-- ============================== -->
-<section>
-    <h2><span class="num">6</span> Söz Dizimi Renklendirme <span class="en">Syntax Highlighting</span></h2>
-    <div class="compare">
-        <div>
-            <h3 style="color:var(--blue);">📝 Word</h3>
-            <ul style="font-size:0.9em;">
-                <li>Renk, kalınlık, boyut <strong>elle</strong> ayarlanır</li>
-                <li>Farklı fontlar, boyutlar karışık</li>
-            </ul>
-        </div>
-        <div>
-            <h3 style="color:var(--green);">💻 Kod Editörü</h3>
-            <ul style="font-size:0.9em;">
-                <li>Renkler <strong>otomatik</strong> atanır (dil kurallarına göre)</li>
-                <li>Monospace font — tüm karakterler eşit genişlik</li>
-            </ul>
-        </div>
-    </div>
-    <div class="callout warn" style="margin-top:16px;">
-        <strong>Monospace:</strong> <code>i</code> ve <code>m</code> harfi aynı genişlikte → kod hizalı ve okunabilir kalır.
-    </div>
-</section>
+            <!-- ============================== -->
+            <!-- 5. IDE                          -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">5</span> IDE: Kod Yazma Ortamları <span class="en">IDE</span></h2>
+                    <p>Kod Notepad'de de yazılabilir ama profesyoneller IDE kullanır</p>
+                    <div class="card-grid cols-2" style="margin-top:16px;">
+                        <div class="card">
+                            <div class="icon">📁</div>
+                            <div class="label">Dosya Gezgini</div>
+                            <div class="sub">Proje dosyalarını ağaç yapısında gösterir</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">✏️</div>
+                            <div class="label">Kod Editörü</div>
+                            <div class="sub">Sekmeli, syntax highlighted alan</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">▶️</div>
+                            <div class="label">Terminal & Çalıştır</div>
+                            <div class="sub">Kodu doğrudan çalıştırma</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🐛</div>
+                            <div class="label">Debugger</div>
+                            <div class="sub">Hata ayıklama, adım adım çalıştırma</div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>🤖 AI Araçlarının IDE Entegrasyonu</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Yaklaşım</th>
+                                <th>Örnekler</th>
+                                <th>Açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>AI-first IDE</strong></td>
+                                <td>Cursor, Windsurf, Antigravity</td>
+                                <td>Sıfırdan AI etrafında tasarlanmış</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Eklenti</strong></td>
+                                <td>GitHub Copilot, Kilo Code</td>
+                                <td>VS Code'a eklenen AI uzantısı</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Terminal aracı</strong></td>
+                                <td>Claude Code</td>
+                                <td>IDE'den bağımsız, terminalde çalışır</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 7. Proje Yapısı                 -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">7</span> Proje Yapısı <span class="en">Project Structure</span></h2>
-        <p>Gerçek projeler onlarca-binlerce dosya içerir</p>
-        <div class="card-grid cols-2" style="margin-top:14px; font-size:0.9em;">
-            <div class="card"><div class="icon">📄</div><div class="label">Kaynak Kodu</div><div class="sub">.py, .js, .ts</div></div>
-            <div class="card"><div class="icon">⚙️</div><div class="label">Yapılandırma</div><div class="sub">config.json, .env</div></div>
-            <div class="card"><div class="icon">📖</div><div class="label">Dokümantasyon</div><div class="sub">README.md</div></div>
-            <div class="card"><div class="icon">📦</div><div class="label">Bağımlılıklar</div><div class="sub">requirements.txt, package.json</div></div>
-        </div>
-    </section>
-    <section>
-        <h3>Derste İncelenecek Projeler</h3>
-        <table>
-            <thead><tr><th>Proje</th><th>Açıklama</th><th>Link</th></tr></thead>
-            <tbody>
-                <tr><td>🎲 Randomizer</td><td>Rastgele seçim aracı</td><td><a href="https://github.com/shiffman/randomizer" target="_blank">GitHub</a></td></tr>
-                <tr><td>📰 HNTerm</td><td>CLI Hacker News istemcisi</td><td><a href="https://github.com/ggerganov/hnterm" target="_blank">GitHub</a></td></tr>
-                <tr><td>📁 OneFile</td><td>Tek dosyalık programlar koleksiyonu</td><td><a href="https://github.com/gusanmaz/onefile" target="_blank">GitHub</a></td></tr>
-                <tr><td>🚀 Apollo-11</td><td>NASA'nın orijinal uçuş yazılımı (Assembly)</td><td><a href="https://github.com/chrislgarry/Apollo-11" target="_blank">GitHub</a></td></tr>
-            </tbody>
-        </table>
-        <div class="callout" style="margin-top:14px;">
-            <strong>💡</strong> Soyutlama seviyesi hep yükseldi: Assembly → C → C++ → Python → AI. Her aşamada direnç oldu ama araçlar yazılımı daha erişilebilir kıldı.
-        </div>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 6. Syntax Highlighting          -->
+            <!-- ============================== -->
+            <section>
+                <h2><span class="num">6</span> Söz Dizimi Renklendirme <span class="en">Syntax Highlighting</span></h2>
+                <div class="compare">
+                    <div>
+                        <h3 style="color:var(--blue);">📝 Word</h3>
+                        <ul style="font-size:0.9em;">
+                            <li>Renk, kalınlık, boyut <strong>elle</strong> ayarlanır</li>
+                            <li>Farklı fontlar, boyutlar karışık</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--green);">💻 Kod Editörü</h3>
+                        <ul style="font-size:0.9em;">
+                            <li>Renkler <strong>otomatik</strong> atanır (dil kurallarına göre)</li>
+                            <li>Monospace font — tüm karakterler eşit genişlik</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="callout warn" style="margin-top:16px;">
+                    <strong>Monospace:</strong> <code>i</code> ve <code>m</code> harfi aynı genişlikte → kod hizalı ve
+                    okunabilir kalır.
+                </div>
+            </section>
 
 
-<!-- ============================== -->
-<!-- DERS 2 DIVIDER                 -->
-<!-- ============================== -->
-<section class="section-divider">
-    <p style="font-size:0.7em; color:#666;">DERS 2</p>
-    <h1>Yapay Zeka Çağında<br>Programlama</h1>
-    <p>Bölüm 8 – 17</p>
-</section>
+            <!-- ============================== -->
+            <!-- 7. Proje Yapısı                 -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">7</span> Proje Yapısı <span class="en">Project Structure</span></h2>
+                    <p>Gerçek projeler onlarca-binlerce dosya içerir</p>
+                    <div class="card-grid cols-2" style="margin-top:14px; font-size:0.9em;">
+                        <div class="card">
+                            <div class="icon">📄</div>
+                            <div class="label">Kaynak Kodu</div>
+                            <div class="sub">.py, .js, .ts</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">⚙️</div>
+                            <div class="label">Yapılandırma</div>
+                            <div class="sub">config.json, .env</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">📖</div>
+                            <div class="label">Dokümantasyon</div>
+                            <div class="sub">README.md</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">📦</div>
+                            <div class="label">Bağımlılıklar</div>
+                            <div class="sub">requirements.txt, package.json</div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>Derste İncelenecek Projeler</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Proje</th>
+                                <th>Açıklama</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>🎲 Randomizer</td>
+                                <td>Rastgele seçim aracı</td>
+                                <td><a href="https://github.com/shiffman/randomizer" target="_blank">GitHub</a></td>
+                            </tr>
+                            <tr>
+                                <td>📰 HNTerm</td>
+                                <td>CLI Hacker News istemcisi</td>
+                                <td><a href="https://github.com/ggerganov/hnterm" target="_blank">GitHub</a></td>
+                            </tr>
+                            <tr>
+                                <td>📁 OneFile</td>
+                                <td>Tek dosyalık programlar koleksiyonu</td>
+                                <td><a href="https://github.com/gusanmaz/onefile" target="_blank">GitHub</a></td>
+                            </tr>
+                            <tr>
+                                <td>🚀 Apollo-11</td>
+                                <td>NASA'nın orijinal uçuş yazılımı (Assembly)</td>
+                                <td><a href="https://github.com/chrislgarry/Apollo-11" target="_blank">GitHub</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="callout" style="margin-top:14px;">
+                        <strong>💡</strong> Soyutlama seviyesi hep yükseldi: Assembly → C → C++ → Python → AI. Her
+                        aşamada direnç oldu ama araçlar yazılımı daha erişilebilir kıldı.
+                    </div>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 8. Yazılım Dünyası Değişti      -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">8</span> Yazılım Dünyası Nasıl Değişti? <span class="en">Impact</span></h2>
-        <div class="card-grid cols-2" style="font-size:0.9em;">
-            <div class="card">
-                <div class="stat">%55</div>
-                <div class="stat-label">Copilot ile daha hızlı kodlama<br><a href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/" target="_blank" style="font-size:0.85em;">GitHub, 2022</a></div>
-            </div>
-            <div class="card">
-                <div class="stat">%20-45</div>
-                <div class="stat-label">GenAI ile üretkenlik artışı<br><a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/unleashing-developer-productivity-with-generative-ai" target="_blank" style="font-size:0.85em;">McKinsey, 2023</a></div>
-            </div>
-            <div class="card">
-                <div class="stat">%76</div>
-                <div class="stat-label">Geliştiriciler AI araç kullanıyor/planlıyor<br><a href="https://survey.stackoverflow.co/2024/" target="_blank" style="font-size:0.85em;">Stack Overflow, 2024</a></div>
-            </div>
-            <div class="card">
-                <div class="stat">>%25</div>
-                <div class="stat-label">Google'da AI tarafından üretilen kod<br><a href="https://blog.google/technology/ai/google-gemini-ai-update-december-2024/" target="_blank" style="font-size:0.85em;">Google, 2024</a></div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <h3>🎵 "Vibe Coding" — Hissederek Kodlama</h3>
-        <blockquote style="border-left:4px solid var(--orange); padding:12px 20px; text-align:left; font-size:0.68em; color:#aaa; font-style:italic;">
-            "There's a new kind of coding I call 'vibe coding'… you just see stuff, say 'run it,'<br>and if it works — great."
-        </blockquote>
-        <p style="font-size:0.6em; color:#666;">— <strong style="color:var(--blue);">Andrej Karpathy</strong>, 2025</p>
-
-        <div class="embed-container" style="margin-top:12px;">
-            <iframe src="https://www.youtube.com/embed/rgOPHBLj6VA" allowfullscreen></iframe>
-        </div>
-    </section>
-    <section>
-        <h3>🔗 Idan Gol — Viral LinkedIn Paylaşımı</h3>
-        <div class="embed-container">
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7313283794956922880" height="400" allowfullscreen></iframe>
-        </div>
-        <div class="link-list">
-            <a href="https://www.linkedin.com/posts/idangol_i-have-no-technical-ability-i-know-nothing-activity-7313283824962990080-t_wD/" target="_blank">📎 Idan Gol — LinkedIn'de oku</a>
-        </div>
-    </section>
-    <section>
-        <h3>⚠️ "Vibe Coding" Eleştirisi</h3>
-        <ul>
-            <li><strong>Güvenlik açıkları:</strong> İncelenmemiş kod, sızıntı riski</li>
-            <li><strong>Bakım zorluğu:</strong> Anlamadığınız kodu güncelleyemezsiniz</li>
-            <li><strong>Teknik borç:</strong> "Next, next, accept" yaklaşımı birikim yaratır</li>
-            <li><strong>Kod kokusu:</strong> Çalışan ama kötü yapılandırılmış kod</li>
-        </ul>
-        <div class="callout" style="margin-top:14px;">
-            <strong>🎯 Hedef:</strong> Bilinçli vibe coding — AI'ın ürettiğini anlayarak, yönlendirerek kullanmak.
-        </div>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- DERS 2 DIVIDER                 -->
+            <!-- ============================== -->
+            <section class="section-divider">
+                <p style="font-size:0.7em; color:#666;">DERS 2</p>
+                <h1>Yapay Zeka Çağında<br>Programlama</h1>
+                <p>Bölüm 8 – 17</p>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 9. LLM ile Kod Yazma            -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">9</span> LLM ile Kod Yazma <span class="en">Coding with ChatGPT</span></h2>
-        <h3>Temel İş Akışı</h3>
-        <div class="card-grid cols-3" style="font-size:0.9em;">
-            <div class="card"><div class="icon">1️⃣</div><div class="sub">ChatGPT aç</div></div>
-            <div class="card"><div class="icon">2️⃣</div><div class="sub">Ne istediğini yaz</div></div>
-            <div class="card"><div class="icon">3️⃣</div><div class="sub">Kodu kopyala</div></div>
-            <div class="card"><div class="icon">4️⃣</div><div class="sub">IDE'ye yapıştır</div></div>
-            <div class="card"><div class="icon">5️⃣</div><div class="sub">Çalıştır</div></div>
-            <div class="card"><div class="icon">6️⃣</div><div class="sub">Hata varsa geri gönder</div></div>
-        </div>
-        <div class="callout success" style="margin-top:14px;">
-            <strong>✅</strong> Programlama bilmeden bile basit-orta karmaşıklıktaki programları oluşturabilirsiniz!
-        </div>
-    </section>
-    <section>
-        <h3>🌐 Popüler LLM'ler — Kapalı Kaynak</h3>
-        <table>
-            <thead><tr><th>Şirket</th><th>Model</th><th>Context</th><th>Skor</th><th>Özellik</th></tr></thead>
-            <tbody>
-                <tr class="llm-row-openai"><td><strong>OpenAI</strong></td><td>GPT-5.2</td><td>256K</td><td>~96%</td><td>Flagship, multimodal</td></tr>
-                <tr class="llm-row-openai"><td></td><td>GPT-5.3</td><td>512K</td><td>~97%</td><td>En yeni (Şub 2026)</td></tr>
-                <tr class="llm-row-openai"><td></td><td>o3-pro</td><td>200K</td><td>~95%</td><td>Chain of thought</td></tr>
-                <tr class="llm-row-anthropic"><td><strong>Anthropic</strong></td><td>Claude 4.5 Sonnet</td><td>500K</td><td>~96%</td><td>Kod kalitesi, agent</td></tr>
-                <tr class="llm-row-anthropic"><td></td><td>Claude 4.6</td><td>500K</td><td>~98%</td><td>Benchmark lideri</td></tr>
-                <tr class="llm-row-google"><td><strong>Google</strong></td><td>Gemini 3.0 Pro</td><td>2M</td><td>~95%</td><td>Devasa context</td></tr>
-                <tr class="llm-row-google"><td></td><td>Gemini 3.1</td><td>2M</td><td>~96%</td><td>En yeni (Oca 2026)</td></tr>
-                <tr class="llm-row-xai"><td><strong>xAI</strong></td><td>Grok 4</td><td>256K</td><td>~95%</td><td>X/Twitter entegrasyonu</td></tr>
-            </tbody>
-        </table>
-    </section>
-    <section>
-        <h3>🌐 Popüler LLM'ler — Açık Kaynak & Platform</h3>
-        <table>
-            <thead><tr><th>Şirket</th><th>Model</th><th>Context</th><th>Skor</th><th>Özellik</th></tr></thead>
-            <tbody>
-                <tr class="llm-row-deepseek"><td><strong>DeepSeek</strong> 🇨🇳</td><td>DeepSeek-V4</td><td>256K</td><td>~93%</td><td>Açık kaynak, MoE, ucuz</td></tr>
-                <tr class="llm-row-deepseek"><td></td><td>DeepSeek-R2</td><td>256K</td><td>~94%</td><td>Açık kaynak reasoning</td></tr>
-                <tr class="llm-row-mistral"><td><strong>Mistral</strong> 🇫🇷</td><td>Mistral Large 3</td><td>256K</td><td>~91%</td><td>Avrupa, çok dilli</td></tr>
-                <tr class="llm-row-mistral"><td></td><td>Codestral 2</td><td>128K</td><td>~93%</td><td>Kodlamaya özel</td></tr>
-                <tr class="llm-row-meta"><td><strong>Meta</strong></td><td>Llama 4</td><td>1M/10M</td><td>~92%</td><td>Tamamen açık kaynak</td></tr>
-                <tr class="llm-row-groq"><td><strong>Groq</strong></td><td>Llama, Mistral host</td><td>—</td><td>—</td><td>LPU çip, ultra hızlı</td></tr>
-            </tbody>
-        </table>
-        <div class="callout" style="margin-top:12px;">
-            <strong>💡 Açık vs Kapalı:</strong> Kapalı kaynak = şirket sunucuları. Açık kaynak = kendi sunucunuzda çalıştırılabilir.
-        </div>
-    </section>
-    <section>
-        <h3>🔤 Token Kavramı <span class="en">Tokens & Context Window</span></h3>
-        <ul>
-            <li><strong>Token</strong> ≈ ¾ kelime veya 3–4 karakter</li>
-            <li><strong>Context window</strong> = tek sohbetteki toplam girdi + çıktı token limiti</li>
-            <li>128K ≈ 300 sayfa, 1M ≈ 2.500 sayfa</li>
-        </ul>
-        <div class="link-list">
-            <a href="https://platform.openai.com/tokenizer" target="_blank">🔗 OpenAI Token Calculator</a>
-        </div>
-        <div class="callout warn" style="margin-top:12px;">
-            <strong>⚠️ Token Limiti Neden Önemli?</strong>
-            <ul style="margin-top:6px;">
-                <li>Büyük kod tabanları tek sohbete <strong>sığmaz</strong></li>
-                <li>Sohbet uzadıkça <strong>halüsinasyon</strong> (uydurma) artar, geçmiş unutulur</li>
-                <li>API'de her token <strong>ücretli</strong></li>
-            </ul>
-        </div>
-        <p style="font-size:0.6em; color:#888; margin-top:10px;">
-            → Cursor, Windsurf gibi AI IDE'ler tüm codebase yerine <strong>sadece ilgili dosyaları</strong> akıllıca seçerek LLM'e gönderir.
-        </p>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 8. Yazılım Dünyası Değişti      -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">8</span> Yazılım Dünyası Nasıl Değişti? <span class="en">Impact</span></h2>
+                    <div class="card-grid cols-2" style="font-size:0.9em;">
+                        <div class="card">
+                            <div class="stat">%55</div>
+                            <div class="stat-label">Copilot ile daha hızlı kodlama<br><a
+                                    href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/"
+                                    target="_blank" style="font-size:0.85em;">GitHub, 2022</a></div>
+                        </div>
+                        <div class="card">
+                            <div class="stat">%20-45</div>
+                            <div class="stat-label">GenAI ile üretkenlik artışı<br><a
+                                    href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/unleashing-developer-productivity-with-generative-ai"
+                                    target="_blank" style="font-size:0.85em;">McKinsey, 2023</a></div>
+                        </div>
+                        <div class="card">
+                            <div class="stat">%76</div>
+                            <div class="stat-label">Geliştiriciler AI araç kullanıyor/planlıyor<br><a
+                                    href="https://survey.stackoverflow.co/2024/" target="_blank"
+                                    style="font-size:0.85em;">Stack Overflow, 2024</a></div>
+                        </div>
+                        <div class="card">
+                            <div class="stat">>%25</div>
+                            <div class="stat-label">Google'da AI tarafından üretilen kod<br><a
+                                    href="https://blog.google/technology/ai/google-gemini-ai-update-december-2024/"
+                                    target="_blank" style="font-size:0.85em;">Google, 2024</a></div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>🎵 "Vibe Coding" — Hissederek Kodlama</h3>
+                    <blockquote
+                        style="border-left:4px solid var(--orange); padding:12px 20px; text-align:left; font-size:0.68em; color:#aaa; font-style:italic;">
+                        "There's a new kind of coding I call 'vibe coding'… you just see stuff, say 'run it,'<br>and if
+                        it works — great."
+                    </blockquote>
+                    <p style="font-size:0.6em; color:#666;">— <strong style="color:var(--blue);">Andrej
+                            Karpathy</strong>, 2025</p>
+
+                    <div class="embed-container" style="margin-top:12px;">
+                        <iframe src="https://www.youtube.com/embed/rgOPHBLj6VA" allowfullscreen></iframe>
+                    </div>
+                </section>
+                <section>
+                    <h3>🔗 Idan Gol — Viral LinkedIn Paylaşımı</h3>
+                    <div class="embed-container">
+                        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7313283794956922880"
+                            height="400" allowfullscreen></iframe>
+                    </div>
+                    <div class="link-list">
+                        <a href="https://www.linkedin.com/posts/idangol_i-have-no-technical-ability-i-know-nothing-activity-7313283824962990080-t_wD/"
+                            target="_blank">📎 Idan Gol — LinkedIn'de oku</a>
+                    </div>
+                </section>
+                <section>
+                    <h3>⚠️ "Vibe Coding" Eleştirisi</h3>
+                    <ul>
+                        <li><strong>Güvenlik açıkları:</strong> İncelenmemiş kod, sızıntı riski</li>
+                        <li><strong>Bakım zorluğu:</strong> Anlamadığınız kodu güncelleyemezsiniz</li>
+                        <li><strong>Teknik borç:</strong> "Next, next, accept" yaklaşımı birikim yaratır</li>
+                        <li><strong>Kod kokusu:</strong> Çalışan ama kötü yapılandırılmış kod</li>
+                    </ul>
+                    <div class="callout" style="margin-top:14px;">
+                        <strong>🎯 Hedef:</strong> Bilinçli vibe coding — AI'ın ürettiğini anlayarak, yönlendirerek
+                        kullanmak.
+                    </div>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 10. Sınırlar                    -->
-<!-- ============================== -->
-<section>
-    <h2><span class="num">10</span> Bu Yöntemin Sınırları <span class="en">Limitations</span></h2>
-    <ul>
-        <li><strong>Context Switch:</strong> ChatGPT ↔ IDE arası sürekli gidip gelme</li>
-        <li><strong>Farklı LLM'ler farklı alanlarda iyi:</strong> En iyisini seçmek zor</li>
-        <li><strong>Context window limiti:</strong> Tüm projeyi gönderemezsiniz</li>
-        <li><strong>Otomasyon yok:</strong> ChatGPT kodu yazar ama çalıştırmaz, hata ayıklamaz</li>
-    </ul>
-    <div class="callout warn" style="margin-top:14px;">
-        <strong>→</strong> Bu sınırlar, doğrudan IDE'ye entegre <strong>AI kodlama araçlarının</strong> doğmasına yol açtı.
-    </div>
-</section>
+            <!-- ============================== -->
+            <!-- 9. LLM ile Kod Yazma            -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">9</span> LLM ile Kod Yazma <span class="en">Coding with ChatGPT</span></h2>
+                    <h3>Temel İş Akışı</h3>
+                    <div class="card-grid cols-3" style="font-size:0.9em;">
+                        <div class="card">
+                            <div class="icon">1️⃣</div>
+                            <div class="sub">ChatGPT aç</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">2️⃣</div>
+                            <div class="sub">Ne istediğini yaz</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">3️⃣</div>
+                            <div class="sub">Kodu kopyala</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">4️⃣</div>
+                            <div class="sub">IDE'ye yapıştır</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">5️⃣</div>
+                            <div class="sub">Çalıştır</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">6️⃣</div>
+                            <div class="sub">Hata varsa geri gönder</div>
+                        </div>
+                    </div>
+                    <div class="callout success" style="margin-top:14px;">
+                        <strong>✅</strong> Programlama bilmeden bile basit-orta karmaşıklıktaki programları
+                        oluşturabilirsiniz!
+                    </div>
+                </section>
+                <section>
+                    <h3>🌐 Popüler LLM'ler — Kapalı Kaynak</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Şirket</th>
+                                <th>Model</th>
+                                <th>Context</th>
+                                <th>Skor</th>
+                                <th>Özellik</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="llm-row-openai">
+                                <td><strong>OpenAI</strong></td>
+                                <td>GPT-5.2</td>
+                                <td>256K</td>
+                                <td>~96%</td>
+                                <td>Flagship, multimodal</td>
+                            </tr>
+                            <tr class="llm-row-openai">
+                                <td></td>
+                                <td>GPT-5.3</td>
+                                <td>512K</td>
+                                <td>~97%</td>
+                                <td>En yeni (Şub 2026)</td>
+                            </tr>
+                            <tr class="llm-row-openai">
+                                <td></td>
+                                <td>o3-pro</td>
+                                <td>200K</td>
+                                <td>~95%</td>
+                                <td>Chain of thought</td>
+                            </tr>
+                            <tr class="llm-row-anthropic">
+                                <td><strong>Anthropic</strong></td>
+                                <td>Claude 4.5 Sonnet</td>
+                                <td>500K</td>
+                                <td>~96%</td>
+                                <td>Kod kalitesi, agent</td>
+                            </tr>
+                            <tr class="llm-row-anthropic">
+                                <td></td>
+                                <td>Claude 4.6</td>
+                                <td>500K</td>
+                                <td>~98%</td>
+                                <td>Benchmark lideri</td>
+                            </tr>
+                            <tr class="llm-row-google">
+                                <td><strong>Google</strong></td>
+                                <td>Gemini 3.0 Pro</td>
+                                <td>2M</td>
+                                <td>~95%</td>
+                                <td>Devasa context</td>
+                            </tr>
+                            <tr class="llm-row-google">
+                                <td></td>
+                                <td>Gemini 3.1</td>
+                                <td>2M</td>
+                                <td>~96%</td>
+                                <td>En yeni (Oca 2026)</td>
+                            </tr>
+                            <tr class="llm-row-xai">
+                                <td><strong>xAI</strong></td>
+                                <td>Grok 4</td>
+                                <td>256K</td>
+                                <td>~95%</td>
+                                <td>X/Twitter entegrasyonu</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3>🌐 Popüler LLM'ler — Açık Kaynak & Platform</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Şirket</th>
+                                <th>Model</th>
+                                <th>Context</th>
+                                <th>Skor</th>
+                                <th>Özellik</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="llm-row-deepseek">
+                                <td><strong>DeepSeek</strong> 🇨🇳</td>
+                                <td>DeepSeek-V4</td>
+                                <td>256K</td>
+                                <td>~93%</td>
+                                <td>Açık kaynak, MoE, ucuz</td>
+                            </tr>
+                            <tr class="llm-row-deepseek">
+                                <td></td>
+                                <td>DeepSeek-R2</td>
+                                <td>256K</td>
+                                <td>~94%</td>
+                                <td>Açık kaynak reasoning</td>
+                            </tr>
+                            <tr class="llm-row-mistral">
+                                <td><strong>Mistral</strong> 🇫🇷</td>
+                                <td>Mistral Large 3</td>
+                                <td>256K</td>
+                                <td>~91%</td>
+                                <td>Avrupa, çok dilli</td>
+                            </tr>
+                            <tr class="llm-row-mistral">
+                                <td></td>
+                                <td>Codestral 2</td>
+                                <td>128K</td>
+                                <td>~93%</td>
+                                <td>Kodlamaya özel</td>
+                            </tr>
+                            <tr class="llm-row-meta">
+                                <td><strong>Meta</strong></td>
+                                <td>Llama 4</td>
+                                <td>1M/10M</td>
+                                <td>~92%</td>
+                                <td>Tamamen açık kaynak</td>
+                            </tr>
+                            <tr class="llm-row-groq">
+                                <td><strong>Groq</strong></td>
+                                <td>Llama, Mistral host</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>LPU çip, ultra hızlı</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="callout" style="margin-top:12px;">
+                        <strong>💡 Açık vs Kapalı:</strong> Kapalı kaynak = şirket sunucuları. Açık kaynak = kendi
+                        sunucunuzda çalıştırılabilir.
+                    </div>
+                </section>
+                <section>
+                    <h3>🔤 Token Kavramı <span class="en">Tokens & Context Window</span></h3>
+                    <ul>
+                        <li><strong>Token</strong> ≈ ¾ kelime veya 3–4 karakter</li>
+                        <li><strong>Context window</strong> = tek sohbetteki toplam girdi + çıktı token limiti</li>
+                        <li>128K ≈ 300 sayfa, 1M ≈ 2.500 sayfa</li>
+                    </ul>
+                    <div class="link-list">
+                        <a href="https://platform.openai.com/tokenizer" target="_blank">🔗 OpenAI Token Calculator</a>
+                    </div>
+                    <div class="callout warn" style="margin-top:12px;">
+                        <strong>⚠️ Token Limiti Neden Önemli?</strong>
+                        <ul style="margin-top:6px;">
+                            <li>Büyük kod tabanları tek sohbete <strong>sığmaz</strong></li>
+                            <li>Sohbet uzadıkça <strong>halüsinasyon</strong> (uydurma) artar, geçmiş unutulur</li>
+                            <li>API'de her token <strong>ücretli</strong></li>
+                        </ul>
+                    </div>
+                    <p style="font-size:0.6em; color:#888; margin-top:10px;">
+                        → Cursor, Windsurf gibi AI IDE'ler tüm codebase yerine <strong>sadece ilgili dosyaları</strong>
+                        akıllıca seçerek LLM'e gönderir.
+                    </p>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 11. AI Araçları Tarihçesi       -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">11</span> AI Kodlama Araçları Tarihçesi <span class="en">History</span></h2>
-        <table>
-            <thead><tr><th>Tarih</th><th>Araç</th><th>Tür</th><th>Açıklama</th></tr></thead>
-            <tbody>
-                <tr><td>Haz 2021</td><td><strong>GitHub Copilot</strong></td><td>Eklenti</td><td>OpenAI Codex · VS Code içi ilk AI asistan</td></tr>
-                <tr><td>Haz 2022</td><td><strong>Copilot GA</strong></td><td>Eklenti</td><td>Ücretli abonelik · %55 hız artışı</td></tr>
-                <tr><td>2023</td><td><strong>Cursor</strong></td><td>IDE</td><td>AI-first IDE (VS Code fork) · Chat + Agent</td></tr>
-                <tr><td>2023</td><td><strong>Replit AI</strong></td><td>Tarayıcı</td><td>Doğal dilden uygulama · bulut tabanlı</td></tr>
-                <tr><td>Kas 2024</td><td><strong>Windsurf</strong></td><td>IDE</td><td>Codeium · Cascade agent sistemi</td></tr>
-                <tr><td>2025</td><td><strong>Claude Code</strong></td><td>Terminal</td><td>IDE bağımsız terminal agent</td></tr>
-                <tr><td>2025</td><td><strong>Kilo Code</strong></td><td>Eklenti</td><td>Açık kaynak VS Code eklentisi</td></tr>
-                <tr><td>2025</td><td><strong>Antigravity</strong></td><td>IDE</td><td>AI-first · uçtan uca geliştirme</td></tr>
-            </tbody>
-        </table>
-    </section>
-    <section>
-        <h3>🔗 Araç Linkleri</h3>
-        <div class="link-list" style="font-size:1.1em;">
-            <a href="https://github.com/features/copilot" target="_blank">GitHub Copilot</a>
-            <a href="https://www.cursor.com" target="_blank">Cursor</a>
-            <a href="https://replit.com" target="_blank">Replit</a>
-            <a href="https://codeium.com/windsurf" target="_blank">Windsurf</a>
-            <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Claude Code</a>
-            <a href="https://kilocode.ai" target="_blank">Kilo Code</a>
-            <a href="https://antigravity.ai" target="_blank">Antigravity</a>
-            <a href="https://www.cognition.ai/blog/introducing-devin" target="_blank">Devin (Cognition Labs)</a>
-        </div>
-    </section>
-    <section>
-        <h3>🚀 Antigravity Kurulumu</h3>
-        <ol style="font-size:0.65em;">
-            <li>İndir → <a href="https://antigravity.ai" target="_blank">antigravity.ai</a></li>
-            <li>Agent Manager'da AI modelini seç, API key gir</li>
-        </ol>
-        <div class="link-list" style="margin-top:16px;">
-            <a href="https://codelabs.developers.google.com/getting-started-google-antigravity?hl=tr" target="_blank">📘 Antigravity Kullanım Kılavuzu (Türkçe — Google Codelabs)</a>
-            <a href="https://www.youtube.com/@googleantigravity" target="_blank">📺 YouTube kanalı</a>
-        </div>
-        <div class="embed-container" style="margin-top:10px;">
-            <iframe src="https://www.youtube.com/embed/ZFl8IZDCrw4" allowfullscreen></iframe>
-        </div>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 10. Sınırlar                    -->
+            <!-- ============================== -->
+            <section>
+                <h2><span class="num">10</span> Bu Yöntemin Sınırları <span class="en">Limitations</span></h2>
+                <ul>
+                    <li><strong>Context Switch:</strong> ChatGPT ↔ IDE arası sürekli gidip gelme</li>
+                    <li><strong>Farklı LLM'ler farklı alanlarda iyi:</strong> En iyisini seçmek zor</li>
+                    <li><strong>Context window limiti:</strong> Tüm projeyi gönderemezsiniz</li>
+                    <li><strong>Otomasyon yok:</strong> ChatGPT kodu yazar ama çalıştırmaz, hata ayıklamaz</li>
+                </ul>
+                <div class="callout warn" style="margin-top:14px;">
+                    <strong>→</strong> Bu sınırlar, doğrudan IDE'ye entegre <strong>AI kodlama araçlarının</strong>
+                    doğmasına yol açtı.
+                </div>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 12. Fiyatlandırma               -->
-<!-- ============================== -->
-<section>
-    <h2><span class="num">12</span> Fiyatlandırma <span class="en">Pricing</span></h2>
-    <table>
-        <thead><tr><th>Araç</th><th>Ücretsiz</th><th>Bireysel</th><th>Takım</th><th>Not</th></tr></thead>
-        <tbody>
-            <tr><td>GitHub Copilot</td><td>✓ Sınırlı</td><td>~$10/ay</td><td>~$19-39/ay</td><td>VS Code, JetBrains</td></tr>
-            <tr><td>Cursor</td><td>✓ Sınırlı</td><td>~$20/ay</td><td>~$40/ay</td><td>AI-first IDE</td></tr>
-            <tr><td>Windsurf</td><td>✓ Var</td><td>~$15/ay</td><td>Değişken</td><td>VS Code tabanlı</td></tr>
-            <tr><td>Replit</td><td>✓ Var</td><td>~$25/ay</td><td>Değişken</td><td>Tarayıcı tabanlı</td></tr>
-            <tr><td>Claude Code</td><td>—</td><td>API / Pro</td><td>API</td><td>Terminal agent</td></tr>
-            <tr><td>Kilo Code</td><td>✓ Açık kaynak</td><td>BYO API key</td><td>—</td><td>VS Code eklentisi</td></tr>
-        </tbody>
-    </table>
-    <div class="callout" style="margin-top:14px;">
-        <strong>📌</strong> Fiyatlar değişkendir, güncel bilgi için resmi siteleri kontrol edin. Kilo Code ücretsiz ama LLM API'si ücretli.
-    </div>
-</section>
+            <!-- ============================== -->
+            <!-- 11. AI Araçları Tarihçesi       -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">11</span> AI Kodlama Araçları Tarihçesi <span class="en">History</span></h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tarih</th>
+                                <th>Araç</th>
+                                <th>Tür</th>
+                                <th>Açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Haz 2021</td>
+                                <td><strong>GitHub Copilot</strong></td>
+                                <td>Eklenti</td>
+                                <td>OpenAI Codex · VS Code içi ilk AI asistan</td>
+                            </tr>
+                            <tr>
+                                <td>Haz 2022</td>
+                                <td><strong>Copilot GA</strong></td>
+                                <td>Eklenti</td>
+                                <td>Ücretli abonelik · %55 hız artışı</td>
+                            </tr>
+                            <tr>
+                                <td>2023</td>
+                                <td><strong>Cursor</strong></td>
+                                <td>IDE</td>
+                                <td>AI-first IDE (VS Code fork) · Chat + Agent</td>
+                            </tr>
+                            <tr>
+                                <td>2023</td>
+                                <td><strong>Replit AI</strong></td>
+                                <td>Tarayıcı</td>
+                                <td>Doğal dilden uygulama · bulut tabanlı</td>
+                            </tr>
+                            <tr>
+                                <td>Kas 2024</td>
+                                <td><strong>Windsurf</strong></td>
+                                <td>IDE</td>
+                                <td>Codeium · Cascade agent sistemi</td>
+                            </tr>
+                            <tr>
+                                <td>2025</td>
+                                <td><strong>Claude Code</strong></td>
+                                <td>Terminal</td>
+                                <td>IDE bağımsız terminal agent</td>
+                            </tr>
+                            <tr>
+                                <td>2025</td>
+                                <td><strong>Kilo Code</strong></td>
+                                <td>Eklenti</td>
+                                <td>Açık kaynak VS Code eklentisi</td>
+                            </tr>
+                            <tr>
+                                <td>2025</td>
+                                <td><strong>Antigravity</strong></td>
+                                <td>IDE</td>
+                                <td>AI-first · uçtan uca geliştirme</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section>
+                    <h3>🔗 Araç Linkleri</h3>
+                    <div class="link-list" style="font-size:1.1em;">
+                        <a href="https://github.com/features/copilot" target="_blank">GitHub Copilot</a>
+                        <a href="https://www.cursor.com" target="_blank">Cursor</a>
+                        <a href="https://replit.com" target="_blank">Replit</a>
+                        <a href="https://codeium.com/windsurf" target="_blank">Windsurf</a>
+                        <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank">Claude Code</a>
+                        <a href="https://kilocode.ai" target="_blank">Kilo Code</a>
+                        <a href="https://antigravity.ai" target="_blank">Antigravity</a>
+                        <a href="https://www.cognition.ai/blog/introducing-devin" target="_blank">Devin (Cognition
+                            Labs)</a>
+                    </div>
+                </section>
+                <section>
+                    <h3>🚀 Antigravity Kurulumu</h3>
+                    <ol style="font-size:0.65em;">
+                        <li>İndir → <a href="https://antigravity.ai" target="_blank">antigravity.ai</a></li>
+                        <li>Agent Manager'da AI modelini seç, API key gir</li>
+                    </ol>
+                    <div class="link-list" style="margin-top:16px;">
+                        <a href="https://codelabs.developers.google.com/getting-started-google-antigravity?hl=tr"
+                            target="_blank">📘 Antigravity Kullanım Kılavuzu (Türkçe — Google Codelabs)</a>
+                        <a href="https://www.youtube.com/@googleantigravity" target="_blank">📺 YouTube kanalı</a>
+                    </div>
+                    <div class="embed-container" style="margin-top:10px;">
+                        <iframe src="https://www.youtube.com/embed/ZFl8IZDCrw4" allowfullscreen></iframe>
+                    </div>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 13. Agent Yapısı                -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">13</span> Agent Yapısı ve Otomasyon <span class="en">Agent Architecture</span></h2>
-        <p>Modern AI araçları sadece kod önermez — <strong>Agent</strong> olarak çalışır:</p>
-        <div class="card-grid cols-3" style="margin-top:14px; font-size:0.9em;">
-            <div class="card"><div class="icon">📁</div><div class="sub">Dosya oluştur / düzenle</div></div>
-            <div class="card"><div class="icon">⌨️</div><div class="sub">Terminal komutu çalıştır</div></div>
-            <div class="card"><div class="icon">📦</div><div class="sub">Paket kur</div></div>
-            <div class="card"><div class="icon">▶️</div><div class="sub">Programı çalıştır & test et</div></div>
-            <div class="card"><div class="icon">🐛</div><div class="sub">Hatayı tespit et & düzelt</div></div>
-            <div class="card"><div class="icon">🌐</div><div class="sub">Web'de arama yap</div></div>
-        </div>
-    </section>
-    <section>
-        <h3>İzin Modelleri</h3>
-        <div class="compare">
-            <div>
-                <h3 style="color:var(--green);">🔒 Ask Mode</h3>
-                <p>Her eylem öncesi izin ister</p>
-                <p style="font-size:0.65em; color:#888;">Güvenli ama yavaş</p>
-            </div>
-            <div>
-                <h3 style="color:var(--red);">🔓 Auto / YOLO Mode</h3>
-                <p>Sormadan hepsini yapar</p>
-                <p style="font-size:0.65em; color:#888;">Hızlı ama riskli!</p>
-            </div>
-        </div>
-        <div class="callout warn" style="margin-top:14px;">
-            <strong>⚠️</strong> Başlangıçta Ask Mode kullanın — agent yanlışlıkla dosya silebilir veya güvensiz kod çalıştırabilir.
-        </div>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 12. Fiyatlandırma               -->
+            <!-- ============================== -->
+            <section>
+                <h2><span class="num">12</span> Fiyatlandırma <span class="en">Pricing</span></h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Araç</th>
+                            <th>Ücretsiz</th>
+                            <th>Bireysel</th>
+                            <th>Takım</th>
+                            <th>Not</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GitHub Copilot</td>
+                            <td>✓ Sınırlı</td>
+                            <td>~$10/ay</td>
+                            <td>~$19-39/ay</td>
+                            <td>VS Code, JetBrains</td>
+                        </tr>
+                        <tr>
+                            <td>Cursor</td>
+                            <td>✓ Sınırlı</td>
+                            <td>~$20/ay</td>
+                            <td>~$40/ay</td>
+                            <td>AI-first IDE</td>
+                        </tr>
+                        <tr>
+                            <td>Windsurf</td>
+                            <td>✓ Var</td>
+                            <td>~$15/ay</td>
+                            <td>Değişken</td>
+                            <td>VS Code tabanlı</td>
+                        </tr>
+                        <tr>
+                            <td>Replit</td>
+                            <td>✓ Var</td>
+                            <td>~$25/ay</td>
+                            <td>Değişken</td>
+                            <td>Tarayıcı tabanlı</td>
+                        </tr>
+                        <tr>
+                            <td>Claude Code</td>
+                            <td>—</td>
+                            <td>API / Pro</td>
+                            <td>API</td>
+                            <td>Terminal agent</td>
+                        </tr>
+                        <tr>
+                            <td>Kilo Code</td>
+                            <td>✓ Açık kaynak</td>
+                            <td>BYO API key</td>
+                            <td>—</td>
+                            <td>VS Code eklentisi</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="callout" style="margin-top:14px;">
+                    <strong>📌</strong> Fiyatlar değişkendir, güncel bilgi için resmi siteleri kontrol edin. Kilo Code
+                    ücretsiz ama LLM API'si ücretli.
+                </div>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 14. Teknik Bilgi Neden Önemli   -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">14</span> Teknik Bilgi Neden Hâlâ Önemli? <span class="en">Why It Matters</span></h2>
-        <h3>✈️ Pilot ve Otopilot Analojisi</h3>
-        <ul>
-            <li>Modern uçaklarda gelişmiş otopilot var — ama <strong>pilotlar hâlâ gerekli</strong></li>
-            <li>Beklenmedik durumlar insan kararı gerektirir</li>
-            <li>Pilot doğru parametreleri girer, otopilotun ne yaptığını anlar</li>
-        </ul>
-        <div class="callout" style="margin-top:14px;">
-            <strong>AI kodlama araçları = otopilot, siz = pilot</strong>
-        </div>
-    </section>
-    <section>
-        <h3>Teknik Bilginin Somut Avantajları</h3>
-        <ul>
-            <li><strong>Daha iyi prompt:</strong> "responsive design, grid layout" vs "telefonda güzel görünsün"</li>
-            <li><strong>Doğru yönlendirme:</strong> "cache ekle", "binary search kullan", "async/await yap"</li>
-            <li><strong>Doğru kütüphane seçimi:</strong> Hangi araç ne işe yarar bilmek</li>
-            <li><strong>Hataları anlama:</strong> AI'ın hatasını yakalamak</li>
-            <li><strong>Sistem tasarımı:</strong> HTTP, API, REST, DNS, client/server kavramları</li>
-        </ul>
-        <div class="callout" style="margin-top:10px;">
-            <strong>🌐</strong> UI bileşen isimleri: <a href="https://component.gallery/components/" target="_blank">component.gallery</a>
-            <br>"Accordion", "modal", "tabs", "breadcrumbs" gibi terimleri bilmek AI ile iletişimi güçlendirir.
-        </div>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 13. Agent Yapısı                -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">13</span> Agent Yapısı ve Otomasyon <span class="en">Agent Architecture</span>
+                    </h2>
+                    <p>Modern AI araçları sadece kod önermez — <strong>Agent</strong> olarak çalışır:</p>
+                    <div class="card-grid cols-3" style="margin-top:14px; font-size:0.9em;">
+                        <div class="card">
+                            <div class="icon">📁</div>
+                            <div class="sub">Dosya oluştur / düzenle</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">⌨️</div>
+                            <div class="sub">Terminal komutu çalıştır</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">📦</div>
+                            <div class="sub">Paket kur</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">▶️</div>
+                            <div class="sub">Programı çalıştır & test et</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🐛</div>
+                            <div class="sub">Hatayı tespit et & düzelt</div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">🌐</div>
+                            <div class="sub">Web'de arama yap</div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>İzin Modelleri</h3>
+                    <div class="compare">
+                        <div>
+                            <h3 style="color:var(--green);">🔒 Ask Mode</h3>
+                            <p>Her eylem öncesi izin ister</p>
+                            <p style="font-size:0.65em; color:#888;">Güvenli ama yavaş</p>
+                        </div>
+                        <div>
+                            <h3 style="color:var(--red);">🔓 Auto / YOLO Mode</h3>
+                            <p>Sormadan hepsini yapar</p>
+                            <p style="font-size:0.65em; color:#888;">Hızlı ama riskli!</p>
+                        </div>
+                    </div>
+                    <div class="callout warn" style="margin-top:14px;">
+                        <strong>⚠️</strong> Başlangıçta Ask Mode kullanın — agent yanlışlıkla dosya silebilir veya
+                        güvensiz kod çalıştırabilir.
+                    </div>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 15. AI'ın Güncel Sınırları      -->
-<!-- ============================== -->
-<section>
-    <h2><span class="num">15</span> AI'ın Güncel Sınırları <span class="en">Current Limitations</span></h2>
-    <div class="card-grid cols-2" style="font-size:0.9em;">
-        <div class="card">
-            <div class="icon">🏗️</div>
-            <div class="label">Karmaşık Projeler</div>
-            <div class="sub">Proje büyüdükçe AI zorlanır<br>Context window yetmez, maliyet artar</div>
-        </div>
-        <div class="card">
-            <div class="icon">💡</div>
-            <div class="label">Yenilikçilik Sınırı</div>
-            <div class="sub">Eğitim verisindeki kalıpları taklit eder<br>Yeni/niş alanlarda zayıf</div>
-        </div>
-        <div class="card">
-            <div class="icon">⚡</div>
-            <div class="label">Optimallik</div>
-            <div class="sub">Her zaman en verimli kodu üretmez<br>Yönlendirme gerekir</div>
-        </div>
-        <div class="card">
-            <div class="icon">🔒</div>
-            <div class="label">Güvenlik</div>
-            <div class="sub">Açıklar, API key sızıntısı<br>İncelenmemiş kod riskleri</div>
-        </div>
-    </div>
-    <div class="callout warn" style="margin-top:14px;">
-        <strong>⚠️</strong> AI = <strong>prototipleme</strong> için harika, <strong>büyük/karmaşık projeler</strong> için hâlâ sınırlı.
-    </div>
-</section>
+            <!-- ============================== -->
+            <!-- 14. Teknik Bilgi Neden Önemli   -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">14</span> Teknik Bilgi Neden Hâlâ Önemli? <span class="en">Why It
+                            Matters</span></h2>
+                    <h3>✈️ Pilot ve Otopilot Analojisi</h3>
+                    <ul>
+                        <li>Modern uçaklarda gelişmiş otopilot var — ama <strong>pilotlar hâlâ gerekli</strong></li>
+                        <li>Beklenmedik durumlar insan kararı gerektirir</li>
+                        <li>Pilot doğru parametreleri girer, otopilotun ne yaptığını anlar</li>
+                    </ul>
+                    <div class="callout" style="margin-top:14px;">
+                        <strong>AI kodlama araçları = otopilot, siz = pilot</strong>
+                    </div>
+                </section>
+                <section>
+                    <h3>Teknik Bilginin Somut Avantajları</h3>
+                    <ul>
+                        <li><strong>Daha iyi prompt:</strong> "responsive design, grid layout" vs "telefonda güzel
+                            görünsün"</li>
+                        <li><strong>Doğru yönlendirme:</strong> "cache ekle", "binary search kullan", "async/await yap"
+                        </li>
+                        <li><strong>Doğru kütüphane seçimi:</strong> Hangi araç ne işe yarar bilmek</li>
+                        <li><strong>Hataları anlama:</strong> AI'ın hatasını yakalamak</li>
+                        <li><strong>Sistem tasarımı:</strong> HTTP, API, REST, DNS, client/server kavramları</li>
+                    </ul>
+                    <div class="callout" style="margin-top:10px;">
+                        <strong>🌐</strong> UI bileşen isimleri: <a href="https://component.gallery/components/"
+                            target="_blank">component.gallery</a>
+                        <br>"Accordion", "modal", "tabs", "breadcrumbs" gibi terimleri bilmek AI ile iletişimi
+                        güçlendirir.
+                    </div>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 16. Geleceğe Bakış              -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">16</span> Yazılım Mühendisliğinin Geleceği <span class="en">Future</span></h2>
-        <!-- SVG: Future Skills Diagram -->
-        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="max-height:340px; width:100%; margin: 0 auto;">
-            <text x="400" y="28" text-anchor="middle" fill="#c8c8e0" font-size="15" font-weight="700" font-family="Inter, sans-serif">Geleceğin Yazılım Geliştirici Becerileri</text>
-            <!-- Center circle -->
-            <circle cx="400" cy="175" r="55" fill="#a29bfe" opacity="0.15" stroke="#a29bfe" stroke-width="2"/>
-            <text x="400" y="170" text-anchor="middle" fill="#a29bfe" font-size="13" font-weight="700" font-family="Inter">Yazılım</text>
-            <text x="400" y="188" text-anchor="middle" fill="#a29bfe" font-size="13" font-weight="700" font-family="Inter">Geliştirici</text>
-            <!-- Skill 1: Fikir -->
-            <circle cx="170" cy="95" r="52" fill="#ff7675" opacity="0.12" stroke="#ff7675" stroke-width="1.5"/>
-            <text x="170" y="88" text-anchor="middle" fill="#ff7675" font-size="11" font-weight="700" font-family="Inter">💡 Fikir &amp;</text>
-            <text x="170" y="104" text-anchor="middle" fill="#ff7675" font-size="11" font-weight="700" font-family="Inter">Vizyon</text>
-            <line x1="222" y1="112" x2="348" y2="155" stroke="#ff7675" stroke-width="1.5" opacity="0.4"/>
-            <!-- Skill 2: Proje Yönetimi -->
-            <circle cx="630" cy="95" r="52" fill="#74b9ff" opacity="0.12" stroke="#74b9ff" stroke-width="1.5"/>
-            <text x="630" y="88" text-anchor="middle" fill="#74b9ff" font-size="11" font-weight="700" font-family="Inter">📋 Proje</text>
-            <text x="630" y="104" text-anchor="middle" fill="#74b9ff" font-size="11" font-weight="700" font-family="Inter">Yönetimi</text>
-            <line x1="578" y1="112" x2="452" y2="155" stroke="#74b9ff" stroke-width="1.5" opacity="0.4"/>
-            <!-- Skill 3: Mimari -->
-            <circle cx="170" cy="260" r="52" fill="#55efc4" opacity="0.12" stroke="#55efc4" stroke-width="1.5"/>
-            <text x="170" y="253" text-anchor="middle" fill="#55efc4" font-size="11" font-weight="700" font-family="Inter">🏗️ Sistem</text>
-            <text x="170" y="269" text-anchor="middle" fill="#55efc4" font-size="11" font-weight="700" font-family="Inter">Mimarisi</text>
-            <line x1="222" y1="242" x2="348" y2="195" stroke="#55efc4" stroke-width="1.5" opacity="0.4"/>
-            <!-- Skill 4: Entegrasyon -->
-            <circle cx="630" cy="260" r="52" fill="#ffeaa7" opacity="0.12" stroke="#ffeaa7" stroke-width="1.5"/>
-            <text x="630" y="253" text-anchor="middle" fill="#ffeaa7" font-size="11" font-weight="700" font-family="Inter">🔗 Parçaları</text>
-            <text x="630" y="269" text-anchor="middle" fill="#ffeaa7" font-size="11" font-weight="700" font-family="Inter">Birleştirme</text>
-            <line x1="578" y1="242" x2="452" y2="195" stroke="#ffeaa7" stroke-width="1.5" opacity="0.4"/>
-            <!-- Skill 5: AI Yönetme -->
-            <circle cx="400" cy="370" r="52" fill="#fd79a8" opacity="0.12" stroke="#fd79a8" stroke-width="1.5"/>
-            <text x="400" y="363" text-anchor="middle" fill="#fd79a8" font-size="11" font-weight="700" font-family="Inter">🤖 AI Araçlarını</text>
-            <text x="400" y="379" text-anchor="middle" fill="#fd79a8" font-size="11" font-weight="700" font-family="Inter">Yönetme</text>
-            <line x1="400" y1="318" x2="400" y2="230" stroke="#fd79a8" stroke-width="1.5" opacity="0.4"/>
-        </svg>
-    </section>
-    <section>
-        <div class="callout success">
-            <strong>✅ Yazılım mühendisliği ölmüyor — dönüşüyor.</strong>
-            <br><br>
-            <em>Ne</em> yapılacağını bilmek ve kalite kararları vermek, <em>nasıl</em> yapılacağından daha değerli hale geliyor.
-        </div>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 15. AI'ın Güncel Sınırları      -->
+            <!-- ============================== -->
+            <section>
+                <h2><span class="num">15</span> AI'ın Güncel Sınırları <span class="en">Current Limitations</span></h2>
+                <div class="card-grid cols-2" style="font-size:0.9em;">
+                    <div class="card">
+                        <div class="icon">🏗️</div>
+                        <div class="label">Karmaşık Projeler</div>
+                        <div class="sub">Proje büyüdükçe AI zorlanır<br>Context window yetmez, maliyet artar</div>
+                    </div>
+                    <div class="card">
+                        <div class="icon">💡</div>
+                        <div class="label">Yenilikçilik Sınırı</div>
+                        <div class="sub">Eğitim verisindeki kalıpları taklit eder<br>Yeni/niş alanlarda zayıf</div>
+                    </div>
+                    <div class="card">
+                        <div class="icon">⚡</div>
+                        <div class="label">Optimallik</div>
+                        <div class="sub">Her zaman en verimli kodu üretmez<br>Yönlendirme gerekir</div>
+                    </div>
+                    <div class="card">
+                        <div class="icon">🔒</div>
+                        <div class="label">Güvenlik</div>
+                        <div class="sub">Açıklar, API key sızıntısı<br>İncelenmemiş kod riskleri</div>
+                    </div>
+                </div>
+                <div class="callout warn" style="margin-top:14px;">
+                    <strong>⚠️</strong> AI = <strong>prototipleme</strong> için harika, <strong>büyük/karmaşık
+                        projeler</strong> için hâlâ sınırlı.
+                </div>
+            </section>
 
 
-<!-- ============================== -->
-<!-- 17. Terimler Sözlüğü            -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h2><span class="num">17</span> Terimler Sözlüğü <span class="en">Glossary</span></h2>
-        <p style="font-size:0.6em; color:#888; margin-bottom:8px;">3 kategoride 58 terim · <span style="color:#ff7675;">■</span> Programlama &nbsp;<span style="color:#74b9ff;">■</span> Web & Sistem &nbsp;<span style="color:#55efc4;">■</span> AI & LLM</p>
-        <div class="word-cloud">
-            <span class="wc-prog wc-xl">Algorithm</span>
-            <span class="wc-web wc-lg">API</span>
-            <span class="wc-web wc-md">Authentication</span>
-            <span class="wc-web wc-lg">Backend</span>
-            <span class="wc-prog wc-xl">Bug</span>
-            <span class="wc-web wc-md">Cache</span>
-            <span class="wc-web wc-sm">CDN</span>
-            <span class="wc-prog wc-xl">CLI</span>
-            <span class="wc-web wc-md">Client / Server</span>
-            <span class="wc-prog wc-lg">Compiler</span>
-            <span class="wc-web wc-sm">Container</span>
-            <span class="wc-ai wc-xl">Context Window</span>
-            <span class="wc-web wc-sm">CRUD</span>
-            <span class="wc-web wc-md">Database</span>
-            <span class="wc-prog wc-lg">Debug</span>
-            <span class="wc-prog wc-md">Dependency</span>
-            <span class="wc-web wc-md">Deployment</span>
-            <span class="wc-web wc-md">DNS</span>
-            <span class="wc-web wc-sm">Endpoint</span>
-            <span class="wc-prog wc-sm">Executable</span>
-            <span class="wc-ai wc-lg">Fork</span>
-            <span class="wc-prog wc-lg">Framework</span>
-            <span class="wc-web wc-lg">Frontend</span>
-            <span class="wc-prog wc-xl">GUI</span>
-            <span class="wc-web wc-lg">HTTP</span>
-            <span class="wc-prog wc-xl">IDE</span>
-            <span class="wc-prog wc-lg">Interpreter</span>
-            <span class="wc-web wc-lg">JSON</span>
-            <span class="wc-web wc-sm">Latency</span>
-            <span class="wc-prog wc-xl">Library</span>
-            <span class="wc-ai wc-xl">LLM</span>
-            <span class="wc-web wc-sm">Load Balancer</span>
-            <span class="wc-web wc-md">Microservices</span>
-            <span class="wc-web wc-sm">Middleware</span>
-            <span class="wc-prog wc-md">Open Source</span>
-            <span class="wc-prog wc-lg">Package Manager</span>
-            <span class="wc-web wc-sm">Pagination</span>
-            <span class="wc-ai wc-xl">Prompt</span>
-            <span class="wc-ai wc-lg">Prototype</span>
-            <span class="wc-prog wc-md">Repository</span>
-            <span class="wc-web wc-md">Request / Response</span>
-            <span class="wc-web wc-md">Responsive Design</span>
-            <span class="wc-web wc-lg">REST API</span>
-            <span class="wc-prog wc-md">Runtime</span>
-            <span class="wc-web wc-md">Scalability</span>
-            <span class="wc-prog wc-md">Script</span>
-            <span class="wc-web wc-sm">SDK</span>
-            <span class="wc-prog wc-lg">Source Code</span>
-            <span class="wc-web wc-sm">SSL/TLS</span>
-            <span class="wc-web wc-sm">Status Code</span>
-            <span class="wc-prog wc-xl">Syntax</span>
-            <span class="wc-prog wc-md">Syntax Highlighting</span>
-            <span class="wc-prog wc-lg">Terminal</span>
-            <span class="wc-ai wc-xl">Token</span>
-            <span class="wc-prog wc-xl">Variable</span>
-            <span class="wc-prog wc-lg">Version Control</span>
-            <span class="wc-web wc-md">Web Service</span>
-            <span class="wc-web wc-md">Webhook</span>
-        </div>
-    </section>
-    <section>
-        <h3>📚 Ek Kaynaklar</h3>
-        <div class="link-list" style="font-size:1.1em;">
-            <a href="https://component.gallery/components/" target="_blank">🎨 component.gallery — UI bileşen isimleri ve örnekleri</a>
-            <a href="https://roadmap.sh/" target="_blank">🗺️ roadmap.sh — Yazılım alanları yol haritaları</a>
-            <a href="https://platform.openai.com/tokenizer" target="_blank">🔤 OpenAI Tokenizer — Token hesaplayıcı</a>
-        </div>
-        <div class="callout" style="margin-top:16px;">
-            <strong>🗺️ roadmap.sh</strong> — Hangi alanda yazılım geliştirmek istiyorsanız (frontend, backend, DevOps, AI/ML…)
-            o alandaki terimleri zaman içinde araştırın ve AI ile iletişiminize bu kavramları ekleyin.
-            <br><br>
-            Tıpkı bir ülkeye gitmeden önce temel kelimelerini öğrenmek gibi — doğru terimlerle çok daha iyi sonuçlar alırsınız.
-        </div>
-    </section>
-</section>
+            <!-- ============================== -->
+            <!-- 16. Geleceğe Bakış              -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">16</span> Yazılım Mühendisliğinin Geleceği <span class="en">Future</span></h2>
+                    <!-- SVG: Future Skills Diagram -->
+                    <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg"
+                        style="max-height:340px; width:100%; margin: 0 auto;">
+                        <text x="400" y="28" text-anchor="middle" fill="#c8c8e0" font-size="15" font-weight="700"
+                            font-family="Inter, sans-serif">Geleceğin Yazılım Geliştirici Becerileri</text>
+                        <!-- Center circle -->
+                        <circle cx="400" cy="175" r="55" fill="#a29bfe" opacity="0.15" stroke="#a29bfe"
+                            stroke-width="2" />
+                        <text x="400" y="170" text-anchor="middle" fill="#a29bfe" font-size="13" font-weight="700"
+                            font-family="Inter">Yazılım</text>
+                        <text x="400" y="188" text-anchor="middle" fill="#a29bfe" font-size="13" font-weight="700"
+                            font-family="Inter">Geliştirici</text>
+                        <!-- Skill 1: Fikir -->
+                        <circle cx="170" cy="95" r="52" fill="#ff7675" opacity="0.12" stroke="#ff7675"
+                            stroke-width="1.5" />
+                        <text x="170" y="88" text-anchor="middle" fill="#ff7675" font-size="11" font-weight="700"
+                            font-family="Inter">💡 Fikir &amp;</text>
+                        <text x="170" y="104" text-anchor="middle" fill="#ff7675" font-size="11" font-weight="700"
+                            font-family="Inter">Vizyon</text>
+                        <line x1="222" y1="112" x2="348" y2="155" stroke="#ff7675" stroke-width="1.5" opacity="0.4" />
+                        <!-- Skill 2: Proje Yönetimi -->
+                        <circle cx="630" cy="95" r="52" fill="#74b9ff" opacity="0.12" stroke="#74b9ff"
+                            stroke-width="1.5" />
+                        <text x="630" y="88" text-anchor="middle" fill="#74b9ff" font-size="11" font-weight="700"
+                            font-family="Inter">📋 Proje</text>
+                        <text x="630" y="104" text-anchor="middle" fill="#74b9ff" font-size="11" font-weight="700"
+                            font-family="Inter">Yönetimi</text>
+                        <line x1="578" y1="112" x2="452" y2="155" stroke="#74b9ff" stroke-width="1.5" opacity="0.4" />
+                        <!-- Skill 3: Mimari -->
+                        <circle cx="170" cy="260" r="52" fill="#55efc4" opacity="0.12" stroke="#55efc4"
+                            stroke-width="1.5" />
+                        <text x="170" y="253" text-anchor="middle" fill="#55efc4" font-size="11" font-weight="700"
+                            font-family="Inter">🏗️ Sistem</text>
+                        <text x="170" y="269" text-anchor="middle" fill="#55efc4" font-size="11" font-weight="700"
+                            font-family="Inter">Mimarisi</text>
+                        <line x1="222" y1="242" x2="348" y2="195" stroke="#55efc4" stroke-width="1.5" opacity="0.4" />
+                        <!-- Skill 4: Entegrasyon -->
+                        <circle cx="630" cy="260" r="52" fill="#ffeaa7" opacity="0.12" stroke="#ffeaa7"
+                            stroke-width="1.5" />
+                        <text x="630" y="253" text-anchor="middle" fill="#ffeaa7" font-size="11" font-weight="700"
+                            font-family="Inter">🔗 Parçaları</text>
+                        <text x="630" y="269" text-anchor="middle" fill="#ffeaa7" font-size="11" font-weight="700"
+                            font-family="Inter">Birleştirme</text>
+                        <line x1="578" y1="242" x2="452" y2="195" stroke="#ffeaa7" stroke-width="1.5" opacity="0.4" />
+                        <!-- Skill 5: AI Yönetme -->
+                        <circle cx="400" cy="370" r="52" fill="#fd79a8" opacity="0.12" stroke="#fd79a8"
+                            stroke-width="1.5" />
+                        <text x="400" y="363" text-anchor="middle" fill="#fd79a8" font-size="11" font-weight="700"
+                            font-family="Inter">🤖 AI Araçlarını</text>
+                        <text x="400" y="379" text-anchor="middle" fill="#fd79a8" font-size="11" font-weight="700"
+                            font-family="Inter">Yönetme</text>
+                        <line x1="400" y1="318" x2="400" y2="230" stroke="#fd79a8" stroke-width="1.5" opacity="0.4" />
+                    </svg>
+                </section>
+                <section>
+                    <div class="callout success">
+                        <strong>✅ Yazılım mühendisliği ölmüyor — dönüşüyor.</strong>
+                        <br><br>
+                        <em>Ne</em> yapılacağını bilmek ve kalite kararları vermek, <em>nasıl</em> yapılacağından daha
+                        değerli hale geliyor.
+                    </div>
+                </section>
+            </section>
 
 
-<!-- ============================== -->
-<!-- FINAL SLIDE                    -->
-<!-- ============================== -->
-<section>
-    <section>
-        <h1 style="font-size:2em;">Teşekkürler! 🎓</h1>
-        <p style="font-size:0.75em; color:var(--accent); margin-top:16px;">Güvenç Usanmaz</p>
-        <p style="font-size:0.55em; color:#888;">Anadolu Üniversitesi · Bilişim Teknolojileri MYO<br>Oyun Geliştirme ve Web Programlama · Öğretim Görevlisi</p>
-        <div style="display:flex; gap:30px; justify-content:center; margin-top:24px; flex-wrap:wrap;">
-            <div style="text-align:center;">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=mailto:guvencu@anadolu.edu.tr&bgcolor=0f0f1a&color=a29bfe" alt="Email QR" style="border-radius:8px;">
-                <p style="font-size:0.45em; color:#aaa; margin-top:6px;">📧 guvencu@anadolu.edu.tr</p>
-            </div>
-            <div style="text-align:center;">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://linkedin.com/in/gusanmaz&bgcolor=0f0f1a&color=74b9ff" alt="LinkedIn QR" style="border-radius:8px;">
-                <p style="font-size:0.45em; color:#aaa; margin-top:6px;">💼 linkedin.com/in/gusanmaz</p>
-            </div>
-            <div style="text-align:center;">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://github.com/gusanmaz&bgcolor=0f0f1a&color=55efc4" alt="GitHub QR" style="border-radius:8px;">
-                <p style="font-size:0.45em; color:#aaa; margin-top:6px;">🐙 github.com/gusanmaz</p>
-            </div>
-        </div>
-    </section>
-    <section>
-        <h3>🐙 Açık Kaynak & Katkı</h3>
-        <p style="font-size:0.65em; color:#888; margin-bottom:16px;">Bu ders notları ve slaytlar açık kaynak olarak paylaşılmaktadır.</p>
-        <div style="text-align:center; margin-bottom:16px;">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://github.com/gusanmaz/ai-coding-guide&bgcolor=0f0f1a&color=55efc4" alt="GitHub QR" style="border-radius:10px;">
-            <p style="font-size:0.55em; color:var(--green); margin-top:8px; font-weight:600;">github.com/gusanmaz/ai-coding-guide</p>
-        </div>
-        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; font-size:0.58em;">
-            <div class="card" style="padding:12px 16px; min-width:160px;">
-                <div class="icon">📌</div>
-                <div class="label">Issue Açın</div>
-                <div class="sub">Hata, öneri veya soru bildirin</div>
-            </div>
-            <div class="card" style="padding:12px 16px; min-width:160px;">
-                <div class="icon">🔀</div>
-                <div class="label">Pull Request</div>
-                <div class="sub">Düzeltme veya ekleme önerin</div>
-            </div>
-            <div class="card" style="padding:12px 16px; min-width:160px;">
-                <div class="icon">🍴</div>
-                <div class="label">Fork’layın</div>
-                <div class="sub">Kendi kopyanızı oluşturun</div>
-            </div>
-        </div>
-        <p style="font-size:0.45em; color:#555; margin-top:20px;">✍️ Güvenç Usanmaz tarafından hazırlanmıştır · 🤖 İçeriğin oluşturulmasında AI araçlarından yararlanılmıştır</p>
-    </section>
-</section>
-    </div><!-- /reveal -->
+            <!-- ============================== -->
+            <!-- 17. Terimler Sözlüğü            -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h2><span class="num">17</span> Terimler Sözlüğü <span class="en">Glossary</span></h2>
+                    <p style="font-size:0.6em; color:#888; margin-bottom:8px;">3 kategoride 58 terim · <span
+                            style="color:#ff7675;">■</span> Programlama &nbsp;<span style="color:#74b9ff;">■</span> Web
+                        & Sistem &nbsp;<span style="color:#55efc4;">■</span> AI & LLM</p>
+                    <div class="word-cloud">
+                        <span class="wc-prog wc-xl">Algorithm</span>
+                        <span class="wc-web wc-lg">API</span>
+                        <span class="wc-web wc-md">Authentication</span>
+                        <span class="wc-web wc-lg">Backend</span>
+                        <span class="wc-prog wc-xl">Bug</span>
+                        <span class="wc-web wc-md">Cache</span>
+                        <span class="wc-web wc-sm">CDN</span>
+                        <span class="wc-prog wc-xl">CLI</span>
+                        <span class="wc-web wc-md">Client / Server</span>
+                        <span class="wc-prog wc-lg">Compiler</span>
+                        <span class="wc-web wc-sm">Container</span>
+                        <span class="wc-ai wc-xl">Context Window</span>
+                        <span class="wc-web wc-sm">CRUD</span>
+                        <span class="wc-web wc-md">Database</span>
+                        <span class="wc-prog wc-lg">Debug</span>
+                        <span class="wc-prog wc-md">Dependency</span>
+                        <span class="wc-web wc-md">Deployment</span>
+                        <span class="wc-web wc-md">DNS</span>
+                        <span class="wc-web wc-sm">Endpoint</span>
+                        <span class="wc-prog wc-sm">Executable</span>
+                        <span class="wc-ai wc-lg">Fork</span>
+                        <span class="wc-prog wc-lg">Framework</span>
+                        <span class="wc-web wc-lg">Frontend</span>
+                        <span class="wc-prog wc-xl">GUI</span>
+                        <span class="wc-web wc-lg">HTTP</span>
+                        <span class="wc-prog wc-xl">IDE</span>
+                        <span class="wc-prog wc-lg">Interpreter</span>
+                        <span class="wc-web wc-lg">JSON</span>
+                        <span class="wc-web wc-sm">Latency</span>
+                        <span class="wc-prog wc-xl">Library</span>
+                        <span class="wc-ai wc-xl">LLM</span>
+                        <span class="wc-web wc-sm">Load Balancer</span>
+                        <span class="wc-web wc-md">Microservices</span>
+                        <span class="wc-web wc-sm">Middleware</span>
+                        <span class="wc-prog wc-md">Open Source</span>
+                        <span class="wc-prog wc-lg">Package Manager</span>
+                        <span class="wc-web wc-sm">Pagination</span>
+                        <span class="wc-ai wc-xl">Prompt</span>
+                        <span class="wc-ai wc-lg">Prototype</span>
+                        <span class="wc-prog wc-md">Repository</span>
+                        <span class="wc-web wc-md">Request / Response</span>
+                        <span class="wc-web wc-md">Responsive Design</span>
+                        <span class="wc-web wc-lg">REST API</span>
+                        <span class="wc-prog wc-md">Runtime</span>
+                        <span class="wc-web wc-md">Scalability</span>
+                        <span class="wc-prog wc-md">Script</span>
+                        <span class="wc-web wc-sm">SDK</span>
+                        <span class="wc-prog wc-lg">Source Code</span>
+                        <span class="wc-web wc-sm">SSL/TLS</span>
+                        <span class="wc-web wc-sm">Status Code</span>
+                        <span class="wc-prog wc-xl">Syntax</span>
+                        <span class="wc-prog wc-md">Syntax Highlighting</span>
+                        <span class="wc-prog wc-lg">Terminal</span>
+                        <span class="wc-ai wc-xl">Token</span>
+                        <span class="wc-prog wc-xl">Variable</span>
+                        <span class="wc-prog wc-lg">Version Control</span>
+                        <span class="wc-web wc-md">Web Service</span>
+                        <span class="wc-web wc-md">Webhook</span>
+                    </div>
+                </section>
+                <section>
+                    <h3>📚 Ek Kaynaklar</h3>
+                    <div class="link-list" style="font-size:1.1em;">
+                        <a href="https://component.gallery/components/" target="_blank">🎨 component.gallery — UI
+                            bileşen isimleri ve örnekleri</a>
+                        <a href="https://roadmap.sh/" target="_blank">🗺️ roadmap.sh — Yazılım alanları yol
+                            haritaları</a>
+                        <a href="https://platform.openai.com/tokenizer" target="_blank">🔤 OpenAI Tokenizer — Token
+                            hesaplayıcı</a>
+                    </div>
+                    <div class="callout" style="margin-top:16px;">
+                        <strong>🗺️ roadmap.sh</strong> — Hangi alanda yazılım geliştirmek istiyorsanız (frontend,
+                        backend, DevOps, AI/ML…)
+                        o alandaki terimleri zaman içinde araştırın ve AI ile iletişiminize bu kavramları ekleyin.
+                        <br><br>
+                        Tıpkı bir ülkeye gitmeden önce temel kelimelerini öğrenmek gibi — doğru terimlerle çok daha iyi
+                        sonuçlar alırsınız.
+                    </div>
+                </section>
+            </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
-    <script>
-        Reveal.initialize({
-            hash: true,
-            slideNumber: 'c/t',
-            progress: true,
-            center: true,
-            transition: 'slide',
-            transitionSpeed: 'default',
-            width: 1100,
-            height: 700,
-            margin: 0.08,
-            embedded: false,
-            keyboard: true,
-            overview: true,
-            touch: true,
-        });
 
-        function toggleSlideTheme() {
-            var html = document.documentElement;
-            var btn = document.querySelector('.theme-btn');
-            html.classList.toggle('light');
-            if (html.classList.contains('light')) {
-                btn.textContent = '🌙';
-                document.querySelector('.reveal').style.background = '#f8f9fc';
-            } else {
-                btn.textContent = '☀️';
-                document.querySelector('.reveal').style.background = '';
+            <!-- ============================== -->
+            <!-- FINAL SLIDE                    -->
+            <!-- ============================== -->
+            <section>
+                <section>
+                    <h1 style="font-size:2em;">Teşekkürler! 🎓</h1>
+                    <p style="font-size:0.75em; color:var(--accent); margin-top:16px;">Güvenç Usanmaz</p>
+                    <p style="font-size:0.55em; color:#888;">Anadolu Üniversitesi · Bilişim Teknolojileri MYO<br>Oyun
+                        Geliştirme ve Web Programlama · Öğretim Görevlisi</p>
+                    <div style="display:flex; gap:30px; justify-content:center; margin-top:24px; flex-wrap:wrap;">
+                        <div style="text-align:center;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=mailto:guvencu@anadolu.edu.tr&bgcolor=0f0f1a&color=a29bfe"
+                                alt="Email QR" style="border-radius:8px;">
+                            <p style="font-size:0.45em; margin-top:6px;"><a href="mailto:guvencu@anadolu.edu.tr"
+                                    style="color:#aaa;">📧 guvencu@anadolu.edu.tr</a></p>
+                        </div>
+                        <div style="text-align:center;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://linkedin.com/in/gusanmaz&bgcolor=0f0f1a&color=74b9ff"
+                                alt="LinkedIn QR" style="border-radius:8px;">
+                            <p style="font-size:0.45em; margin-top:6px;"><a href="https://linkedin.com/in/gusanmaz"
+                                    target="_blank" style="color:#aaa;">💼 linkedin.com/in/gusanmaz</a></p>
+                        </div>
+                        <div style="text-align:center;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://github.com/gusanmaz&bgcolor=0f0f1a&color=55efc4"
+                                alt="GitHub QR" style="border-radius:8px;">
+                            <p style="font-size:0.45em; margin-top:6px;"><a href="https://github.com/gusanmaz"
+                                    target="_blank" style="color:#aaa;">🐙 github.com/gusanmaz</a></p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h3>🐙 Açık Kaynak & Katkı</h3>
+                    <p style="font-size:0.65em; color:#888; margin-bottom:16px;">Bu ders notları ve slaytlar açık kaynak
+                        olarak paylaşılmaktadır.</p>
+                    <div style="text-align:center; margin-bottom:16px;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://github.com/anadolubiltekmyo/YapayZekaAkademisi&bgcolor=0f0f1a&color=55efc4"
+                            alt="GitHub QR" style="border-radius:10px;">
+                        <p style="font-size:0.55em; margin-top:8px; font-weight:600;"><a
+                                href="https://github.com/anadolubiltekmyo/YapayZekaAkademisi" target="_blank"
+                                style="color:var(--green);">github.com/anadolubiltekmyo/YapayZekaAkademisi</a></p>
+                    </div>
+                    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; font-size:0.58em;">
+                        <div class="card" style="padding:12px 16px; min-width:160px;">
+                            <div class="icon">📌</div>
+                            <div class="label">Issue Açın</div>
+                            <div class="sub">Hata, öneri veya soru bildirin</div>
+                        </div>
+                        <div class="card" style="padding:12px 16px; min-width:160px;">
+                            <div class="icon">🔀</div>
+                            <div class="label">Pull Request</div>
+                            <div class="sub">Düzeltme veya ekleme önerin</div>
+                        </div>
+                        <div class="card" style="padding:12px 16px; min-width:160px;">
+                            <div class="icon">🍴</div>
+                            <div class="label">Fork’layın</div>
+                            <div class="sub">Kendi kopyanızı oluşturun</div>
+                        </div>
+                    </div>
+                    <p style="font-size:0.45em; color:#555; margin-top:20px;">✍️ Güvenç Usanmaz tarafından
+                        hazırlanmıştır · 🤖 İçeriğin oluşturulmasında AI araçlarından yararlanılmıştır</p>
+                </section>
+            </section>
+        </div><!-- /reveal -->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+        <script>
+            Reveal.initialize({
+                hash: true,
+                slideNumber: 'c/t',
+                progress: true,
+                center: true,
+                transition: 'slide',
+                transitionSpeed: 'default',
+                width: 1100,
+                height: 700,
+                margin: 0.08,
+                embedded: false,
+                keyboard: true,
+                overview: true,
+                touch: true,
+            });
+
+            function toggleSlideTheme() {
+                var html = document.documentElement;
+                var btn = document.querySelector('.theme-btn');
+                html.classList.toggle('light');
+                if (html.classList.contains('light')) {
+                    btn.textContent = '🌙';
+                    document.querySelector('.reveal').style.background = '#f8f9fc';
+                } else {
+                    btn.textContent = '☀️';
+                    document.querySelector('.reveal').style.background = '';
+                }
             }
-        }
-    </script>
+        </script>
 </body>
+
 </html>
