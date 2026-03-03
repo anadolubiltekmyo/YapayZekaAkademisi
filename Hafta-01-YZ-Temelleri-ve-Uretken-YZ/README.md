@@ -14,8 +14,8 @@ Bu klasör, 28 Şubat Cumartesi ve 1 Mart Pazar günleri gerçekleştirilen eği
 * **Eğitmen:** Dr. Melike PALSÜ KURT
 * 📺 [Oturum Video Kaydını İzle](https://youtu.be/YcU-9_c9C-8)
 * 📂 **Materyaller:**
-  * [Sunum Dosyası - Bölüm A Grubu (PDF)](./anadolu_yz_akademisi-a.pdf)
-  * [Sunum Dosyası - Bölüm B Grubu (PDF)](./anadolu_yz_akademisi-b.pdf)
+  * [Sunum Dosyası - Bölüm A Grubu (PDF)](./yapay_zekaya_giris_ve_model_mimarisi-a.pdf)
+  * [Sunum Dosyası - Bölüm B Grubu (PDF)](./yapay_zekaya_giris_ve_model_mimarisi-b.pdf)
 
 **3. Metinden Görsele (Text-to-Image) Üretim ve Tasarım (16:00 - 17:00)**
 * **Eğitmen:** Rıdvan ÇAKIR
