@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yapay Zeka Akademisi — Takip Edilmesi Gereken Kişi ve Kaynaklar</title>
+    <style>
+        :root {
+            --font-main: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+            --max-width: 960px;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f9fc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f0f2f8;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a6a;
+            --text-tertiary: #7a7a9a;
+            --accent: #6c5ce7;
+            --accent-light: #a29bfe;
+            --accent-bg: #f0eeff;
+            --border: #e2e4f0;
+            --shadow: 0 2px 16px rgba(108, 92, 231, 0.08);
+            --shadow-lg: 0 8px 32px rgba(108, 92, 231, 0.12);
+            --gradient: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            --tag-bg: #eee8ff;
+            --tag-text: #6c5ce7;
+            --card-hover: #f8f7ff;
+            --link-color: #6c5ce7;
+            --link-hover: #5a4bd6;
+            --badge-researcher: #6c5ce7;
+            --badge-org: #00b894;
+            --badge-newsletter: #e17055;
+            --badge-podcast: #fdcb6e;
+            --badge-youtube: #d63031;
+            --badge-community: #0984e3;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #252540;
+            --text-primary: #e8e8f0;
+            --text-secondary: #b0b0ca;
+            --text-tertiary: #7a7a9a;
+            --accent: #a29bfe;
+            --accent-light: #6c5ce7;
+            --accent-bg: #1e1a3a;
+            --border: #2a2a45;
+            --shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --gradient: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            --tag-bg: #2a2050;
+            --tag-text: #a29bfe;
+            --card-hover: #252540;
+            --link-color: #a29bfe;
+            --link-hover: #b8b2ff;
+            --badge-researcher: #a29bfe;
+            --badge-org: #55efc4;
+            --badge-newsletter: #fab1a0;
+            --badge-podcast: #ffeaa7;
+            --badge-youtube: #ff7675;
+            --badge-community: #74b9ff;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.75;
+            transition: background var(--transition), color var(--transition);
+            min-height: 100vh;
+        }
+
+        /* ===== THEME TOGGLE ===== */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .theme-toggle svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--accent);
+            transition: fill var(--transition);
+        }
+
+        .theme-toggle .sun {
+            display: none;
+        }
+
+        .theme-toggle .moon {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .sun {
+            display: block;
+        }
+
+        [data-theme="dark"] .theme-toggle .moon {
+            display: none;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: var(--gradient);
+            padding: 80px 24px 60px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--bg-primary);
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* ===== INTRO ===== */
+        .intro-box {
+            background: var(--accent-bg);
+            border-left: 4px solid var(--accent);
+            border-radius: var(--radius-sm);
+            padding: 20px 24px;
+            margin-bottom: 40px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .intro-box strong {
+            color: var(--accent);
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.4rem;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 0.92rem;
+        }
+
+        /* ===== CARDS ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        @media (min-width: 640px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            transition: all var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            background: var(--card-hover);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .card-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .card-title {
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .card-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .card-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.78rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            background: var(--bg-tertiary);
+        }
+
+        .card-links a:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        .card-links a .link-icon {
+            font-size: 0.85rem;
+        }
+
+        /* ===== BADGES ===== */
+        .badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #fff;
+        }
+
+        .badge-researcher {
+            background: var(--badge-researcher);
+        }
+
+        .badge-org {
+            background: var(--badge-org);
+            color: #0f0f1a;
+        }
+
+        .badge-newsletter {
+            background: var(--badge-newsletter);
+        }
+
+        .badge-podcast {
+            background: var(--badge-podcast);
+            color: #0f0f1a;
+        }
+
+        .badge-youtube {
+            background: var(--badge-youtube);
+        }
+
+        .badge-community {
+            background: var(--badge-community);
+        }
+
+        /* ===== TABLE OF CONTENTS ===== */
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 28px;
+            margin-bottom: 40px;
+        }
+
+        .toc h3 {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc li {
+            margin-bottom: 6px;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition);
+        }
+
+        .toc a:hover {
+            color: var(--accent);
+        }
+
+        .toc a::before {
+            content: '→ ';
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            padding: 30px 24px;
+            color: var(--text-tertiary);
+            font-size: 0.82rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 60px 16px 40px;
+            }
+
+            .container {
+                padding: 24px 16px 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" title="Temayı Değiştir">
+        <svg class="sun" viewBox="0 0 24 24">
+            <path
+                d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z" />
+        </svg>
+        <svg class="moon" viewBox="0 0 24 24">
+            <path
+                d="M10 7a7 7 0 0 0 12 4.9v.1c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2h.1A6.98 6.98 0 0 0 10 7zm-6 5a8 8 0 0 0 15.062 3.762A9 9 0 0 1 8.238 4.938 7.999 7.999 0 0 0 4 12z" />
+        </svg>
+    </button>
+
+    <!-- Hero -->
+    <header class="hero">
+        <h1>🌐 AI Dünyasında Takip Edilmesi Gereken Kişi ve Kaynaklar</h1>
+        <p>Yapay zeka, LLM'ler, prompt engineering, AI agents ve güncel gelişmelerden haberdar olmak için en önemli isimler ve organizasyonlar</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Intro -->
+        <div class="intro-box">
+            <strong>Neden bu liste?</strong> Yapay zeka alanı inanılmaz bir hızla ilerliyor. Yeni modeller, teknikler ve araçlar neredeyse her gün ortaya çıkıyor. Bu alandaki en etkili araştırmacıları, kuruluşları ve içerik üreticilerini takip etmek, güncel gelişmelerden haberdar olmanın en etkili yoludur. Aşağıda LLM'ler, prompt engineering, AI agents, güvenlik ve daha birçok konuda takip etmeniz gereken isimleri ve kaynakları bulabilirsiniz.
+        </div>
+
+        <!-- Table of Contents -->
+        <nav class="toc">
+            <h3>📑 İçindekiler</h3>
+            <ul>
+                <li><a href="#pioneers">Yapay Zeka Öncüleri ve Araştırmacılar</a></li>
+                <li><a href="#llm-experts">LLM ve Üretken YZ Uzmanları</a></li>
+                <li><a href="#ai-engineers">AI Mühendisleri ve Uygulayıcılar</a></li>
+                <li><a href="#orgs">Önemli Organizasyonlar ve Şirketler</a></li>
+                <li><a href="#youtube">YouTube Kanalları ve Eğitim İçerikleri</a></li>
+                <li><a href="#newsletters">Bültenler (Newsletters) ve Bloglar</a></li>
+                <li><a href="#podcasts">Podcast'ler</a></li>
+                <li><a href="#communities">Topluluklar ve Forumlar</a></li>
+                <li><a href="#awesome-lists">GitHub Awesome Listeleri ve Kaynak Rehberleri</a></li>
+            </ul>
+        </nav>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 1: PIONEERS -->
+        <!-- ============================================================ -->
+        <section class="section" id="pioneers">
+            <h2 class="section-title"><span class="icon">🏛️</span> Yapay Zeka Öncüleri ve Araştırmacılar</h2>
+            <p class="section-desc">Deep learning devriminin mimarları ve AI alanının kurucu isimleri. Alanın geleceğini şekillendiren temel araştırmacılar.</p>
+
+            <div class="card-grid">
+
+                <!-- Geoffrey Hinton -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Geoffrey Hinton</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">University of Toronto | Nobel Fizik Ödülü (2024) | Turing Ödülü (2018)</div>
+                    <div class="card-desc">
+                        "Yapay zekanın babası" olarak bilinen Hinton, backpropagation, Boltzmann makineleri ve deep learning'in temellerini attı. 2023'te Google'dan ayrılarak AI riskleri konusunda uyarılarda bulunuyor.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/geoffreyhinton" target="_blank"><span class="link-icon">𝕏</span> @geoffreyhinton</a>
+                        <a href="https://scholar.google.com/citations?user=JicYPdAAAAAJ" target="_blank"><span class="link-icon">📄</span> Google Scholar</a>
+                    </div>
+                </div>
+
+                <!-- Yann LeCun -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Yann LeCun</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">NYU | AMI Labs Kurucu | Turing Ödülü (2018)</div>
+                    <div class="card-desc">
+                        Convolutional neural network (CNN) mimarisi ile tanınan LeCun, Meta AI'ın baş bilim insanıydı. "World models" ve LLM'lerin ötesindeki AI mimarileri üzerine çalışıyor. X'te çok aktif ve tartışmacı.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/ylecun" target="_blank"><span class="link-icon">𝕏</span> @ylecun</a>
+                        <a href="https://www.linkedin.com/in/yann-lecun/" target="_blank"><span class="link-icon">💼</span> LinkedIn</a>
+                        <a href="http://yann.lecun.com/" target="_blank"><span class="link-icon">🌐</span> Website</a>
+                    </div>
+                </div>
+
+                <!-- Yoshua Bengio -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Yoshua Bengio</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">Mila (Montreal) | Turing Ödülü (2018)</div>
+                    <div class="card-desc">
+                        Sequence-to-sequence öğrenme ve attention mekanizmasının öncülerinden. AI güvenliği konusunda güçlü bir savunucu. Mila Enstitüsü'nün kurucusu.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/Yoshua_Bengio" target="_blank"><span class="link-icon">𝕏</span> @Yoshua_Bengio</a>
+                        <a href="https://yoshuabengio.org/" target="_blank"><span class="link-icon">🌐</span> Website</a>
+                        <a href="https://scholar.google.com/citations?user=kukA0LcAAAAJ" target="_blank"><span class="link-icon">📄</span> Google Scholar</a>
+                    </div>
+                </div>
+
+                <!-- Fei-Fei Li -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Fei-Fei Li</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">Stanford HAI | World Labs Kurucu</div>
+                    <div class="card-desc">
+                        ImageNet'in yaratıcısı ve Stanford Human-Centered AI Institute'un kurucu direktörü. Computer vision alanının en etkili isimlerinden. "Spatial intelligence" üzerine çalışıyor.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/drfeifei" target="_blank"><span class="link-icon">𝕏</span> @drfeifei</a>
+                        <a href="https://profiles.stanford.edu/fei-fei-li" target="_blank"><span class="link-icon">🌐</span> Stanford</a>
+                    </div>
+                </div>
+
+                <!-- Demis Hassabis -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Demis Hassabis</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">Google DeepMind CEO | Nobel Kimya Ödülü (2024)</div>
+                    <div class="card-desc">
+                        DeepMind'ın kurucusu. AlphaGo, AlphaFold gibi devrim niteliğinde projelerin arkasındaki isim. Protein katlanması sorununu çözmesiyle Nobel Kimya Ödülü aldı.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/demishassabis" target="_blank"><span class="link-icon">𝕏</span> @demishassabis</a>
+                        <a href="https://www.linkedin.com/in/demis-hassabis/" target="_blank"><span class="link-icon">💼</span> LinkedIn</a>
+                    </div>
+                </div>
+
+                <!-- Ilya Sutskever -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Ilya Sutskever</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">Safe Superintelligence Inc. (SSI) Kurucu</div>
+                    <div class="card-desc">
+                        OpenAI'ın kurucu ortağı ve eski baş bilim insanı. Hinton'ın öğrencisi, AlexNet'in mimarlarından. Şu an güvenli süper zeka üzerine çalışan SSI'ı kurdu.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/ilyasut" target="_blank"><span class="link-icon">𝕏</span> @ilyasut</a>
+                    </div>
+                </div>
+
+                <!-- Jeff Dean -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Jeff Dean</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">Google DeepMind Chief Scientist & Gemini Lead</div>
+                    <div class="card-desc">
+                        Google'un efsanevi mühendisi, MapReduce, TensorFlow ve Gemini'nin arkasındaki isim. Makine öğrenimi altyapısını şekillendiren kişi. Büyük ölçekli AI sistemleri hakkında paylaşımlarda bulunur.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/JeffDean" target="_blank"><span class="link-icon">𝕏</span> @JeffDean</a>
+                        <a href="https://research.google/people/jeff/" target="_blank"><span class="link-icon">🔗</span> Google Research</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 2: LLM EXPERTS -->
+        <!-- ============================================================ -->
+        <section class="section" id="llm-experts">
+            <h2 class="section-title"><span class="icon">🧠</span> LLM ve Üretken YZ Uzmanları</h2>
+            <p class="section-desc">Büyük dil modelleri, prompt engineering, agents ve üretken yapay zeka konularında en etkili isimler.</p>
+
+            <div class="card-grid">
+
+                <!-- Andrej Karpathy -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Andrej Karpathy</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">Eureka Labs Kurucu | Eski OpenAI / Tesla AI Direktörü</div>
+                    <div class="card-desc">
+                        LLM'leri en iyi anlatan isimlerden biri. "Zero to Hero" video serisi ve "vibe coding" teriminin mucidi. YouTube kanalı LLM'lerin nasıl çalıştığını sıfırdan öğrenmek için mükemmel. <strong>Mutlaka takip edin!</strong>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/karpathy" target="_blank"><span class="link-icon">𝕏</span> @karpathy</a>
+                        <a href="https://www.youtube.com/@AndrejKarpathy" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                        <a href="https://karpathy.ai/" target="_blank"><span class="link-icon">🌐</span> Website</a>
+                        <a href="https://github.com/karpathy" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Sam Altman -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Sam Altman</span>
+                        <span class="badge badge-researcher">Lider</span>
+                    </div>
+                    <div class="card-title">OpenAI CEO</div>
+                    <div class="card-desc">
+                        ChatGPT ve GPT serisinin arkasındaki şirketin CEO'su. AI endüstrisinin gidişatı hakkında ilk elden bilgi ve vizyoner bakış açısı sunar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/sama" target="_blank"><span class="link-icon">𝕏</span> @sama</a>
+                        <a href="https://blog.samaltman.com/" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                    </div>
+                </div>
+
+                <!-- Dario Amodei -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Dario Amodei</span>
+                        <span class="badge badge-researcher">Lider</span>
+                    </div>
+                    <div class="card-title">Anthropic CEO</div>
+                    <div class="card-desc">
+                        Claude modellerinin arkasındaki Anthropic'in CEO'su. AI güvenliği odaklı yaklaşımıyla öne çıkan, "Machines of Loving Grace" başlıklı etkili makalesinin yazarı.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/DarioAmodei" target="_blank"><span class="link-icon">𝕏</span> @DarioAmodei</a>
+                        <a href="https://darioamodei.com/" target="_blank"><span class="link-icon">🌐</span> Website</a>
+                    </div>
+                </div>
+
+                <!-- Jim Fan -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Jim Fan</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">NVIDIA Senior Research Scientist</div>
+                    <div class="card-desc">
+                        Foundation agents, embodied AI ve robotik üzerine çalışıyor. AI gelişmelerini erişilebilir ve ilgi çekici şekilde açıklayan tweet zincirleriyle ünlü.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/DrJimFan" target="_blank"><span class="link-icon">𝕏</span> @DrJimFan</a>
+                        <a href="https://jimfan.me/" target="_blank"><span class="link-icon">🌐</span> Website</a>
+                    </div>
+                </div>
+
+                <!-- Jason Wei -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Jason Wei</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">OpenAI Araştırmacı</div>
+                    <div class="card-desc">
+                        "Chain-of-Thought Prompting" makalesinin baş yazarı. LLM'lerdeki emergent abilities (ortaya çıkan yetenekler) konusundaki araştırmalarıyla tanınır.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/jasonwei20" target="_blank"><span class="link-icon">𝕏</span> @jasonwei20</a>
+                        <a href="https://www.jasonwei.net/" target="_blank"><span class="link-icon">🌐</span> Website</a>
+                    </div>
+                </div>
+
+                <!-- Sebastian Raschka -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Sebastian Raschka</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">Lightning AI | "Build an LLM from Scratch" Yazarı</div>
+                    <div class="card-desc">
+                        "Build a Large Language Model (from Scratch)" kitabının yazarı. LLM'leri derinlemesine anlatan Ahead of AI bülteninin sahibi. Teknik ama erişilebilir içerik üretir.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/rasbt" target="_blank"><span class="link-icon">𝕏</span> @rasbt</a>
+                        <a href="https://magazine.sebastianraschka.com/" target="_blank"><span class="link-icon">📨</span> Ahead of AI</a>
+                        <a href="https://github.com/rasbt" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Ethan Mollick -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Ethan Mollick</span>
+                        <span class="badge badge-researcher">Eğitimci</span>
+                    </div>
+                    <div class="card-title">Wharton (UPenn) | "Co-Intelligence" Yazarı</div>
+                    <div class="card-desc">
+                        AI'ın iş, eğitim ve yaratıcılık üzerindeki pratik etkilerini araştıran Wharton profesörü. "Co-Intelligence" kitabıyla tanınır. AI gelişmelerini herkesin anlayabileceği dilde, hype'dan uzak, deney odaklı paylaşır. <strong>Başlangıç için ideal!</strong>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/emollick" target="_blank"><span class="link-icon">𝕏</span> @emollick</a>
+                        <a href="https://www.oneusefulthing.org/" target="_blank"><span class="link-icon">📝</span> One Useful Thing</a>
+                    </div>
+                </div>
+
+                <!-- Simon Willison -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Simon Willison</span>
+                        <span class="badge badge-researcher">Geliştirici</span>
+                    </div>
+                    <div class="card-title">Datasette Yaratıcısı | Django Ortak Yaratıcısı</div>
+                    <div class="card-desc">
+                        AI araçlarını pratikte kullanma konusunda en detaylı blog yazılarını yazan isim. LLM CLI aracının geliştiricisi. Prompt injection güvenlik konularında uzman.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/simonw" target="_blank"><span class="link-icon">𝕏</span> @simonw</a>
+                        <a href="https://simonwillison.net/" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                        <a href="https://github.com/simonw" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Lilian Weng -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Lilian Weng</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">OpenAI VP of Research</div>
+                    <div class="card-desc">
+                        "Lil'Log" blogu AI alanındaki en kapsamlı teknik özetleri sunar. LLM agents, prompting teknikleri ve RLHF konularındaki blog yazıları referans niteliğindedir.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/lilianweng" target="_blank"><span class="link-icon">𝕏</span> @lilianweng</a>
+                        <a href="https://lilianweng.github.io/" target="_blank"><span class="link-icon">📝</span> Lil'Log</a>
+                    </div>
+                </div>
+
+                <!-- Harrison Chase -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Harrison Chase</span>
+                        <span class="badge badge-researcher">Geliştirici</span>
+                    </div>
+                    <div class="card-title">LangChain CEO & Kurucu</div>
+                    <div class="card-desc">
+                        LLM uygulamaları geliştirmek için en popüler framework olan LangChain'in kurucusu. AI agents, RAG ve LLM uygulama mimarisi konularında önde gelen isim.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/hwchase17" target="_blank"><span class="link-icon">𝕏</span> @hwchase17</a>
+                        <a href="https://blog.langchain.dev/" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                        <a href="https://github.com/langchain-ai" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Swyx -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Swyx (Shawn Wang)</span>
+                        <span class="badge badge-researcher">Geliştirici</span>
+                    </div>
+                    <div class="card-title">Small AI (smol.ai) Kurucu</div>
+                    <div class="card-desc">
+                        "AI Engineer" kavramını popülerleştiren isim. AI mühendisliği topluluğunun güçlü seslerinden. Latent Space podcast'i AI hakkında en iyi teknik podcast'lerden biri.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/swyx" target="_blank"><span class="link-icon">𝕏</span> @swyx</a>
+                        <a href="https://www.latent.space/" target="_blank"><span class="link-icon">🎙️</span> Latent Space</a>
+                    </div>
+                </div>
+
+                <!-- Aravind Srinivas -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Aravind Srinivas</span>
+                        <span class="badge badge-researcher">CEO / Araştırmacı</span>
+                    </div>
+                    <div class="card-title">Perplexity AI CEO</div>
+                    <div class="card-desc">
+                        AI destekli arama motorunun kurucusu. Eski Google / DeepMind araştırmacısı. AI ürün vizyonu, arama teknolojisi ve girişimcilik üzerine erişilebilir paylaşımlar yapar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/AravSrinivas" target="_blank"><span class="link-icon">𝕏</span> @AravSrinivas</a>
+                        <a href="https://www.perplexity.ai/" target="_blank"><span class="link-icon">🔗</span> Perplexity AI</a>
+                    </div>
+                </div>
+
+                <!-- Nathan Lambert -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Nathan Lambert</span>
+                        <span class="badge badge-researcher">Araştırmacı</span>
+                    </div>
+                    <div class="card-title">Allen AI — RLHF Uzmanı</div>
+                    <div class="card-desc">
+                        RLHF (insan geribildirimiyle pekiştirmeli öğrenme) ve açık kaynak model eğitimi konularında önde gelen isim. "Interconnects" bülteni ve "The RLHF Book" kitabının yazarı.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/natolambert" target="_blank"><span class="link-icon">𝕏</span> @natolambert</a>
+                        <a href="https://www.interconnects.ai/" target="_blank"><span class="link-icon">📝</span> Interconnects</a>
+                    </div>
+                </div>
+
+                <!-- Clement Delangue -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Clément Delangue</span>
+                        <span class="badge badge-researcher">CEO</span>
+                    </div>
+                    <div class="card-title">Hugging Face Co-founder & CEO</div>
+                    <div class="card-desc">
+                        Açık kaynak AI'nın en büyük savunucusu. Hugging Face'i AI dünyasının GitHub'ına dönüştüren isim. Açık modeller, topluluk odaklı AI geliştirme ve demokratik AI erişimi üzerine paylaşımlar yapar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/ClementDelangue" target="_blank"><span class="link-icon">𝕏</span> @ClementDelangue</a>
+                        <a href="https://huggingface.co/clem" target="_blank"><span class="link-icon">🤗</span> HF Profil</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 3: AI ENGINEERS -->
+        <!-- ============================================================ -->
+        <section class="section" id="ai-engineers">
+            <h2 class="section-title"><span class="icon">⚡</span> AI Mühendisleri ve Uygulayıcılar</h2>
+            <p class="section-desc">AI'ı pratikte kullanan, araç ve framework geliştiren, topluluk oluşturan mühendisler.</p>
+
+            <div class="card-grid">
+
+                <!-- Chip Huyen -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Chip Huyen</span>
+                        <span class="badge badge-researcher">Yazar</span>
+                    </div>
+                    <div class="card-title">"AI Engineering" Kitabı Yazarı</div>
+                    <div class="card-desc">
+                        MLOps ve AI mühendisliği konularında "AI Engineering" ve "Designing Machine Learning Systems" kitaplarının yazarı. Pratik ML sistemleri hakkında mükemmel içerik üretir.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/chipro" target="_blank"><span class="link-icon">𝕏</span> @chipro</a>
+                        <a href="https://huyenchip.com/" target="_blank"><span class="link-icon">🌐</span> Website</a>
+                    </div>
+                </div>
+
+                <!-- Jeremy Howard -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Jeremy Howard</span>
+                        <span class="badge badge-researcher">Eğitimci</span>
+                    </div>
+                    <div class="card-title">fast.ai Kurucu</div>
+                    <div class="card-desc">
+                        fast.ai'ın kurucusu ve "Practical Deep Learning for Coders" kursunun yaratıcısı. Deep learning'i demokratikleştirme misyonuyla tanınır. En erişilebilir AI eğitim kaynaklarından birini sunar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/jeremyphoward" target="_blank"><span class="link-icon">𝕏</span> @jeremyphoward</a>
+                        <a href="https://www.fast.ai/" target="_blank"><span class="link-icon">🌐</span> fast.ai</a>
+                    </div>
+                </div>
+
+                <!-- Hamel Husain -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Hamel Husain</span>
+                        <span class="badge badge-researcher">Mühendis</span>
+                    </div>
+                    <div class="card-title">Bağımsız AI Danışman</div>
+                    <div class="card-desc">
+                        LLM fine-tuning, evaluation ve pratik AI mühendisliği konularında derin bilgi sahibi. GitHub Copilot'un ilk ekibindendi. Blogunda LLM'leri gerçek dünyada kullanma konulu yazılar paylaşır.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/HamelHusain" target="_blank"><span class="link-icon">𝕏</span> @HamelHusain</a>
+                        <a href="https://hamel.dev/" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                    </div>
+                </div>
+
+                <!-- Elvis Saravia -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Elvis Saravia</span>
+                        <span class="badge badge-researcher">Eğitimci</span>
+                    </div>
+                    <div class="card-title">DAIR.AI Kurucu</div>
+                    <div class="card-desc">
+                        "Prompt Engineering Guide"un yaratıcısı — prompt mühendisliği konusundaki en kapsamlı açık kaynak rehber. AI araştırma özetleri ve eğitim materyalleri paylaşır.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/omarsar0" target="_blank"><span class="link-icon">𝕏</span> @omarsar0</a>
+                        <a href="https://www.promptingguide.ai/" target="_blank"><span class="link-icon">📚</span> Prompt Guide</a>
+                        <a href="https://github.com/dair-ai" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Abhishek Thakur -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Abhishek Thakur</span>
+                        <span class="badge badge-researcher">Mühendis</span>
+                    </div>
+                    <div class="card-title">Hugging Face | Dünyanın İlk 4x Kaggle Grandmaster'ı</div>
+                    <div class="card-desc">
+                        Kaggle'da dört farklı kategoride Grandmaster unvanına sahip ilk kişi. ML mühendisliği ve pratik AI uygulamaları konusunda YouTube'da eğitim videoları paylaşır.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/abhi1thakur" target="_blank"><span class="link-icon">𝕏</span> @abhi1thakur</a>
+                        <a href="https://www.youtube.com/@abhishekkrtha" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <!-- AK (_akhaliq) -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">AK (Ahsen Khaliq)</span>
+                        <span class="badge badge-researcher">Küratör</span>
+                    </div>
+                    <div class="card-title">Hugging Face | Günlük AI Haber Makinesi</div>
+                    <div class="card-desc">
+                        X'te günde onlarca yeni AI makalesi ve gelişme paylaşan isim. Yeni çıkan modelleri, demoları ve araştırmaları ilk paylaşanlardan. Haberleri kaçırmak istemiyorsanız takip şart. <strong>AI haberlerinin Reuters'ı!</strong>
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/_akhaliq" target="_blank"><span class="link-icon">𝕏</span> @_akhaliq</a>
+                        <a href="https://huggingface.co/akhaliq" target="_blank"><span class="link-icon">🤗</span> HF Profil</a>
+                    </div>
+                </div>
+
+                <!-- Philipp Schmid -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Philipp Schmid</span>
+                        <span class="badge badge-researcher">Mühendis</span>
+                    </div>
+                    <div class="card-title">Hugging Face | LLM Deployment Uzmanı</div>
+                    <div class="card-desc">
+                        Hugging Face'te teknik lider. LLM fine-tuning, deployment ve inference optimizasyonu konularında pratik rehberler ve kod örnekleri paylaşır. Hands-on içerik arayanlar için mükemmel.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/_philschmid" target="_blank"><span class="link-icon">𝕏</span> @_philschmid</a>
+                        <a href="https://www.philschmid.de/" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                    </div>
+                </div>
+
+                <!-- Matt Shumer -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Matt Shumer</span>
+                        <span class="badge badge-researcher">Girişimci</span>
+                    </div>
+                    <div class="card-title">HyperWrite / OthersideAI CEO</div>
+                    <div class="card-desc">
+                        AI agents ve prompt engineering konularında pratik deneyimlerini paylaşır. AI ürün geliştirme süreçleri hakkında değerli içgörüler sunar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/MattShumer_" target="_blank"><span class="link-icon">𝕏</span> @MattShumer_</a>
+                    </div>
+                </div>
+
+                <!-- Riley Goodside -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Riley Goodside</span>
+                        <span class="badge badge-researcher">Prompt Mühendisi</span>
+                    </div>
+                    <div class="card-title">Staff Prompt Engineer @ Google DeepMind</div>
+                    <div class="card-desc">
+                        Dünyanın ilk profesyonel "prompt engineer" unvanını alan kişi (eski Scale AI). Yaratıcı prompt hacking, jailbreak deneyleri ve LLM davranış analizi paylaşımlarıyla tanınır.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/goodside" target="_blank"><span class="link-icon">𝕏</span> @goodside</a>
+                    </div>
+                </div>
+
+                <!-- Logan Kilpatrick -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Logan Kilpatrick</span>
+                        <span class="badge badge-researcher">Geliştirici İlişkileri</span>
+                    </div>
+                    <div class="card-title">Google AI Studio & Gemini API</div>
+                    <div class="card-desc">
+                        OpenAI'ın ilk Developer Relations yöneticisiydi, şimdi Google'da AI Studio ve Gemini API üzerine çalışıyor. AI araçlarını erişilebilir şekilde tanıtan, geliştirici topluluğuna yakın bir isim.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/OfficialLoganK" target="_blank"><span class="link-icon">𝕏</span> @OfficialLoganK</a>
+                        <a href="https://logank.ai/" target="_blank"><span class="link-icon">🔗</span> Web</a>
+                    </div>
+                </div>
+
+                <!-- Maxime Labonne -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Maxime Labonne</span>
+                        <span class="badge badge-researcher">Mühendis</span>
+                    </div>
+                    <div class="card-title">Head of Post-Training @ Liquid AI</div>
+                    <div class="card-desc">
+                        GitHub'daki "LLM Course" reposunun yaratıcısı (30K+ star). LLM fine-tuning, quantization ve model merge konularında uygulamalı rehberler paylaşır.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/maximelabonne" target="_blank"><span class="link-icon">𝕏</span> @maximelabonne</a>
+                        <a href="https://github.com/mlabonne" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                        <a href="https://mlabonne.github.io/blog" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                    </div>
+                </div>
+
+                <!-- Yohei Nakajima -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Yohei Nakajima</span>
+                        <span class="badge badge-researcher">AI Builder</span>
+                    </div>
+                    <div class="card-title">BabyAGI Yaratıcısı</div>
+                    <div class="card-desc">
+                        İlk viral AI agent framework'lerinden BabyAGI'nin yaratıcısı. Gündüz VC (Untapped Capital), gece AI builder. "Build in public" tarzıyla agent mimarileri ve otonom AI deneyleri paylaşır.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/yoheinakajima" target="_blank"><span class="link-icon">𝕏</span> @yoheinakajima</a>
+                        <a href="https://github.com/yoheinakajima/babyagi" target="_blank"><span class="link-icon">💻</span> BabyAGI</a>
+                    </div>
+                </div>
+
+                <!-- Santiago -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Santiago (@svpino)</span>
+                        <span class="badge badge-researcher">Eğitimci</span>
+                    </div>
+                    <div class="card-title">ML School & Underfitted YouTube</div>
+                    <div class="card-desc">
+                        444K+ takipçisiyle AI/ML eğitim içeriğinin en popüler isimlerinden. ml.school eğitim platformu ve Underfitted YouTube kanalıyla pratik ML mühendisliği öğretiyor. Karmaşık konuları erişilebilir hale getirmesiyle tanınır.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/svpino" target="_blank"><span class="link-icon">𝕏</span> @svpino</a>
+                        <a href="https://www.ml.school/" target="_blank"><span class="link-icon">🎓</span> ML School</a>
+                        <a href="https://www.youtube.com/@underfitted" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Rohan Paul -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Rohan Paul</span>
+                        <span class="badge badge-researcher">İçerik Üretici</span>
+                    </div>
+                    <div class="card-title">Günlük AI Analizi</div>
+                    <div class="card-desc">
+                        "The Largest Show on X for AI" sloganlı günlük AI analiz dizisi. Yeni model karşılaştırmaları, benchmark sonuçları ve trend olan AI gelişmelerini hızlıca özetler.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/rohanpaul_ai" target="_blank"><span class="link-icon">𝕏</span> @rohanpaul_ai</a>
+                        <a href="https://rohan-paul.com" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                    </div>
+                </div>
+
+                <!-- Rowan Cheung -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Rowan Cheung</span>
+                        <span class="badge badge-researcher">İçerik Üretici</span>
+                    </div>
+                    <div class="card-title">The Rundown AI Kurucusu</div>
+                    <div class="card-desc">
+                        2M+ okuyucusuyla dünyanın en çok okunan günlük AI bülteninin kurucusu. AI araçları, ürün lansmanları ve sektör haberlerini 576K+ takipçisine özetleyen popüler bir AI trend takipçisi.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/rowancheung" target="_blank"><span class="link-icon">𝕏</span> @rowancheung</a>
+                        <a href="https://www.therundown.ai/" target="_blank"><span class="link-icon">📨</span> The Rundown AI</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 4: ORGANIZATIONS -->
+        <!-- ============================================================ -->
+        <section class="section" id="orgs">
+            <h2 class="section-title"><span class="icon">🏢</span> Önemli Organizasyonlar ve Şirketler</h2>
+            <p class="section-desc">AI alanını yönlendiren şirketler, araştırma laboratuvarları ve açık kaynak toplulukları.</p>
+
+            <div class="card-grid">
+
+                <!-- OpenAI -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">OpenAI</span>
+                        <span class="badge badge-org">Şirket</span>
+                    </div>
+                    <div class="card-title">ChatGPT, GPT-4, GPT-4o, o1, o3, DALL-E, Sora</div>
+                    <div class="card-desc">
+                        Günümüzün en etkili AI şirketi. ChatGPT ile LLM'leri ana akıma taşıdı. Model güncellemeleri, API değişiklikleri ve yeni özellikler için takip şart.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/OpenAI" target="_blank"><span class="link-icon">𝕏</span> @OpenAI</a>
+                        <a href="https://openai.com/blog" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                        <a href="https://www.youtube.com/@OpenAI" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Anthropic -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Anthropic</span>
+                        <span class="badge badge-org">Şirket</span>
+                    </div>
+                    <div class="card-title">Claude Modelleri (Sonnet, Opus, Haiku)</div>
+                    <div class="card-desc">
+                        AI güvenliği odaklı yaklaşımıyla öne çıkan şirket. Claude modelleri kodlama ve uzun metin analizi konularında çok başarılı. Araştırma makaleleri çok değerli.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/AnthropicAI" target="_blank"><span class="link-icon">𝕏</span> @AnthropicAI</a>
+                        <a href="https://www.anthropic.com/research" target="_blank"><span class="link-icon">📝</span> Research</a>
+                    </div>
+                </div>
+
+                <!-- Google DeepMind -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Google DeepMind</span>
+                        <span class="badge badge-org">Şirket</span>
+                    </div>
+                    <div class="card-title">Gemini, AlphaFold, AlphaGo</div>
+                    <div class="card-desc">
+                        Google'ın birleşik AI araştırma laboratuvarı. Gemini model ailesi, bilimsel AI (AlphaFold) ve multimodal AI konularında lider. Teknik blog yazıları çok kaliteli.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/GoogleDeepMind" target="_blank"><span class="link-icon">𝕏</span> @GoogleDeepMind</a>
+                        <a href="https://deepmind.google/research/" target="_blank"><span class="link-icon">📝</span> Research</a>
+                        <a href="https://www.youtube.com/@GoogleDeepMind" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Meta AI (FAIR) -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Meta AI (FAIR)</span>
+                        <span class="badge badge-org">Şirket</span>
+                    </div>
+                    <div class="card-title">LLaMA Serisi, Segment Anything</div>
+                    <div class="card-desc">
+                        Açık kaynak AI modelleri konusunda lider. LLaMA model ailesi, açık kaynak topluluğu için devrim niteliğinde. Araştırma makaleleri serbestçe erişilebilir.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/MetaAI" target="_blank"><span class="link-icon">𝕏</span> @MetaAI</a>
+                        <a href="https://ai.meta.com/research/" target="_blank"><span class="link-icon">📝</span> Research</a>
+                        <a href="https://github.com/meta-llama" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <!-- Hugging Face -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Hugging Face 🤗</span>
+                        <span class="badge badge-org">Platform</span>
+                    </div>
+                    <div class="card-title">AI Modellerinin GitHub'ı</div>
+                    <div class="card-desc">
+                        AI modelleri, veri setleri ve uygulamalar için merkezi platform. Transformers kütüphanesi ve model hub'ı ile açık kaynak AI ekosisteminin kalbi. Her AI geliştiricisinin bilmesi gereken platform.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/huggingface" target="_blank"><span class="link-icon">𝕏</span> @huggingface</a>
+                        <a href="https://huggingface.co/" target="_blank"><span class="link-icon">🌐</span> Platform</a>
+                        <a href="https://huggingface.co/blog" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                    </div>
+                </div>
+
+                <!-- NVIDIA -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">NVIDIA</span>
+                        <span class="badge badge-org">Şirket</span>
+                    </div>
+                    <div class="card-title">GPU, CUDA, NeMo, TensorRT</div>
+                    <div class="card-desc">
+                        AI devriminin donanım tarafı. Jensen Huang liderliğinde, AI eğitimi ve inference için temel altyapıyı sunar. GTC konferansları önemli duyuruların yapıldığı etkinlikler.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/NVIDIAAI" target="_blank"><span class="link-icon">𝕏</span> @NVIDIAAI</a>
+                        <a href="https://developer.nvidia.com/blog/" target="_blank"><span class="link-icon">📝</span> Dev Blog</a>
+                    </div>
+                </div>
+
+                <!-- Mistral AI -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Mistral AI</span>
+                        <span class="badge badge-org">Şirket</span>
+                    </div>
+                    <div class="card-title">Mistral, Mixtral, Le Chat</div>
+                    <div class="card-desc">
+                        Fransız AI girişimi. Açık ağırlıklı modelleriyle performans/maliyet dengesinde çok başarılı. Avrupa'nın en önemli AI şirketi.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/MistralAI" target="_blank"><span class="link-icon">𝕏</span> @MistralAI</a>
+                        <a href="https://mistral.ai/news" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                    </div>
+                </div>
+
+                <!-- xAI -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">xAI</span>
+                        <span class="badge badge-org">Şirket</span>
+                    </div>
+                    <div class="card-title">Grok Modelleri</div>
+                    <div class="card-desc">
+                        Elon Musk'ın kurduğu AI şirketi. Grok modelleri X (Twitter) platformuna entegre. Büyük GPU altyapısı (Colossus) ile dikkat çekiyor.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/xai" target="_blank"><span class="link-icon">𝕏</span> @xai</a>
+                        <a href="https://x.ai/" target="_blank"><span class="link-icon">🌐</span> Website</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 5: YOUTUBE  -->
+        <!-- ============================================================ -->
+        <section class="section" id="youtube">
+            <h2 class="section-title"><span class="icon">▶️</span> YouTube Kanalları ve Eğitim İçerikleri</h2>
+            <p class="section-desc">AI konularında kaliteli video eğitim ve güncel gelişme analizleri sunan kanallar.</p>
+
+            <div class="card-grid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Andrej Karpathy</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        "Neural Networks: Zero to Hero" serisi ile LLM'leri sıfırdan anlatan en iyi kaynak. Teknik ama takip edilebilir anlatım.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@AndrejKarpathy" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">3Blue1Brown</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        Grant Sanderson'ın kanalı. Neural network ve deep learning videolarındaki görselleştirmeler eşsiz. Matematiği sezgisel hale getiren animasyonlar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@3blue1brown" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Two Minute Papers</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        Károly Zsolnai-Fehér'in AI araştırma makalelerini 2-5 dakikada özetlediği kanal. "What a time to be alive!" sloganıyla güncel gelişmeleri takip etmek için ideal.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@TwoMinutePapers" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Yannic Kilcher</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        AI araştırma makalelerini derinlemesine inceleyen video analizler. Transformer, diffusion modelleri ve güncel AI trendleri hakkında detaylı açıklamalar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@YannicKilcher" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                        <a href="https://x.com/ykilcher" target="_blank"><span class="link-icon">𝕏</span> @ykilcher</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">AI Explained</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        Yeni model duyurularını ve AI gelişmelerini dengeli ve analitik bir bakış açısıyla değerlendiren kanal. Hype'dan uzak, gerçekçi analizler.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@aiexplained-official" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Matthew Berman</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        Yeni AI modelleri ve araçlarını test eden, karşılaştıran günlük videolar. Lokal LLM'ler ve pratik kullanım senaryoları hakkında detaylı içerik.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@matthew_berman" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Fireship</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        Jeff Delaney'nin kanalı. "100 seconds of X" formatında hızlı teknoloji açıklamaları. AI haberlerini eğlenceli ve kısa formatta sunar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@Fireship" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Stanford Online</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        CS229 (ML), CS231n (CV), CS224n (NLP) gibi efsanevi derslerin tamamı ücretsiz. Akademik kalitede AI eğitimi.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@stanfordonline" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <!-- Sentdex -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Sentdex (Harrison Kinsley)</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        1.3M+ aboneyle Python ve ML dünyasının en köklü YouTube kanallarından biri. "Neural Networks from Scratch" kitabının yazarı. Pratik kodlama odaklı AI/ML eğitimleri.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@sentdex" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                        <a href="https://x.com/Sentdex" target="_blank"><span class="link-icon">𝕏</span> @Sentdex</a>
+                        <a href="https://nnfs.io/" target="_blank"><span class="link-icon">📘</span> NNFS</a>
+                    </div>
+                </div>
+
+                <!-- Wes Roth -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Wes Roth</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        Günlük AI haber ve yorum videoları. Yeni model lansmanları, AGI tartışmaları ve AI güvenliği konularını erişilebilir ve ilgi çekici bir üslupla anlatır.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@WesRoth" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                        <a href="https://x.com/WesRoth" target="_blank"><span class="link-icon">𝕏</span> @WesRoth</a>
+                    </div>
+                </div>
+
+                <!-- TheAIGRID -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">TheAIGRID</span>
+                        <span class="badge badge-youtube">YouTube</span>
+                    </div>
+                    <div class="card-desc">
+                        390K+ aboneyle günlük AI haber videosu üreten kanal. Yeni araştırmalar, ürün güncellemeleri ve yapay zeka trendlerini 10 dakikalık özetlerle sunar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@TheAiGrid" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                        <a href="https://x.com/TheAiGrid" target="_blank"><span class="link-icon">𝕏</span> @TheAiGrid</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 6: NEWSLETTERS -->
+        <!-- ============================================================ -->
+        <section class="section" id="newsletters">
+            <h2 class="section-title"><span class="icon">📨</span> Bültenler (Newsletters) ve Bloglar</h2>
+            <p class="section-desc">Her hafta veya her gün e-postanıza gelen, AI gelişmelerini özetleyen en iyi bültenler.</p>
+
+            <div class="card-grid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">The Batch (deeplearning.ai)</span>
+                        <span class="badge badge-newsletter">Bülten</span>
+                    </div>
+                    <div class="card-desc">
+                        Andrew Ng'nin haftalık AI bülteni. Haftanın en önemli AI gelişmelerini özet ve erişilebilir formatta sunar. Başlangıç seviyesi için mükemmel.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.deeplearning.ai/the-batch/" target="_blank"><span class="link-icon">📨</span> Abone Ol</a>
+                        <a href="https://x.com/AndrewYNg" target="_blank"><span class="link-icon">𝕏</span> @AndrewYNg</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">TLDR AI</span>
+                        <span class="badge badge-newsletter">Bülten</span>
+                    </div>
+                    <div class="card-desc">
+                        Günlük AI haberleri bülteni. 5 dakikada okunabilir formatta en önemli AI haberlerini, araştırmaları ve araçları özetler.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://tldr.tech/ai" target="_blank"><span class="link-icon">📨</span> Abone Ol</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Ahead of AI</span>
+                        <span class="badge badge-newsletter">Bülten</span>
+                    </div>
+                    <div class="card-desc">
+                        Sebastian Raschka'nın bülteni. LLM mimarileri, fine-tuning ve AI araştırmaları hakkında derinlemesine teknik içerik.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://magazine.sebastianraschka.com/" target="_blank"><span class="link-icon">📨</span> Abone Ol</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Ben's Bites</span>
+                        <span class="badge badge-newsletter">Bülten</span>
+                    </div>
+                    <div class="card-desc">
+                        Ben Tossell tarafından hazırlanan günlük bülten. AI startupları, yeni araçlar ve iş dünyasındaki AI kullanım örneklerini özetler.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://bensbites.com/" target="_blank"><span class="link-icon">📨</span> Abone Ol</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">The Neuron</span>
+                        <span class="badge badge-newsletter">Bülten</span>
+                    </div>
+                    <div class="card-desc">
+                        AI haberlerini eğlenceli ve erişilebilir formatta sunan günlük bülten. Teknik olmayan okuyucular için de uygun.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.theneurondaily.com/" target="_blank"><span class="link-icon">📨</span> Abone Ol</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">The Rundown AI</span>
+                        <span class="badge badge-newsletter">Bülten</span>
+                    </div>
+                    <div class="card-desc">
+                        Rowan Cheung tarafından hazırlanan günlük AI bülteni. 600K+ abonesiyle en hızlı büyüyen AI bültenlerinden. Yeni araçlar, model güncellemeleri ve trendleri kısa ve öz formatta özetler.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.therundown.ai/" target="_blank"><span class="link-icon">📨</span> Abone Ol</a>
+                        <a href="https://x.com/rowancheung" target="_blank"><span class="link-icon">𝕏</span> @rowancheung</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">AlphaSignal</span>
+                        <span class="badge badge-newsletter">Bülten</span>
+                    </div>
+                    <div class="card-desc">
+                        Haftanın en önemli AI araştırma makalelerini ve gelişmelerini sıralayan bülten. Teknik ama sindirilebilir özetler sunar. Hangi makalelerin gerçekten önemli olduğunu anlamak için ideal.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://alphasignal.ai/" target="_blank"><span class="link-icon">📨</span> Abone Ol</a>
+                        <a href="https://x.com/AlphaSignalAI" target="_blank"><span class="link-icon">𝕏</span> @AlphaSignalAI</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Import AI</span>
+                        <span class="badge badge-newsletter">Bülten</span>
+                    </div>
+                    <div class="card-desc">
+                        Jack Clark (Anthropic kurucu ortağı) tarafından hazırlanan haftalık bülten. AI politikası, güvenlik ve araştırma gelişmeleri odaklı.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://importai.substack.com/" target="_blank"><span class="link-icon">📨</span> Abone Ol</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Lil'Log</span>
+                        <span class="badge badge-newsletter">Blog</span>
+                    </div>
+                    <div class="card-desc">
+                        Lilian Weng'in blogu. LLM agents, RLHF, prompt engineering gibi konularda en kapsamlı teknik referans yazıları burada.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://lilianweng.github.io/" target="_blank"><span class="link-icon">📝</span> Blog</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Prompt Engineering Guide</span>
+                        <span class="badge badge-newsletter">Kaynak</span>
+                    </div>
+                    <div class="card-desc">
+                        DAIR.AI tarafından hazırlanan kapsamlı prompt mühendisliği rehberi. Chain-of-thought, few-shot, zero-shot ve daha birçok tekniği detaylıca açıklar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.promptingguide.ai/" target="_blank"><span class="link-icon">📚</span> Rehber</a>
+                        <a href="https://github.com/dair-ai/Prompt-Engineering-Guide" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 7: PODCASTS -->
+        <!-- ============================================================ -->
+        <section class="section" id="podcasts">
+            <h2 class="section-title"><span class="icon">🎙️</span> Podcast'ler</h2>
+            <p class="section-desc">AI konularında derinlemesine sohbetler ve röportajlar sunan podcast'ler.</p>
+
+            <div class="card-grid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Lex Fridman Podcast</span>
+                        <span class="badge badge-podcast">Podcast</span>
+                    </div>
+                    <div class="card-desc">
+                        AI araştırmacıları, teknoloji liderleri ve bilim insanlarıyla derin sohbetler. Karpathy, Altman, Musk, Hinton gibi isimlerle saatlerce süren röportajlar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@lexfridman" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                        <a href="https://lexfridman.com/podcast/" target="_blank"><span class="link-icon">🎙️</span> Podcast</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Latent Space</span>
+                        <span class="badge badge-podcast">Podcast</span>
+                    </div>
+                    <div class="card-desc">
+                        Swyx & Alessio Fanelli tarafından hazırlanan teknik AI podcast'i. AI mühendisliği, yeni araçlar ve framework'ler hakkında derinlemesine teknik tartışmalar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.latent.space/podcast" target="_blank"><span class="link-icon">🎙️</span> Podcast</a>
+                        <a href="https://www.youtube.com/@LatentSpaceTV" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Practical AI</span>
+                        <span class="badge badge-podcast">Podcast</span>
+                    </div>
+                    <div class="card-desc">
+                        Changelog Media tarafından üretilen haftalık podcast. AI'ın pratik uygulamaları, araçları ve endüstrideki kullanım örnekleri odaklı.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://changelog.com/practicalai" target="_blank"><span class="link-icon">🎙️</span> Podcast</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">The AI Podcast (NVIDIA)</span>
+                        <span class="badge badge-podcast">Podcast</span>
+                    </div>
+                    <div class="card-desc">
+                        NVIDIA tarafından üretilen podcast. AI'ın farklı endüstrilerdeki uygulamalarını ve araştırma gelişmelerini kapsar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://blogs.nvidia.com/ai-podcast/" target="_blank"><span class="link-icon">🎙️</span> Podcast</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">No Priors</span>
+                        <span class="badge badge-podcast">Podcast</span>
+                    </div>
+                    <div class="card-desc">
+                        Sarah Guo & Elad Gil tarafından hazırlanan podcast. AI girişimcileri ve araştırmacılarıyla güncel konularda sohbetler. Yatırım perspektifi de sunar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@NoPriorsPodcast" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Machine Learning Street Talk</span>
+                        <span class="badge badge-podcast">Podcast</span>
+                    </div>
+                    <div class="card-desc">
+                        Tim Scarfe liderliğinde, AI araştırmacılarıyla derinlemesine teknik tartışmalar. Araştırma makaleleri ve teorik tartışmalar ağırlıklı.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.youtube.com/@MachineLearningStreetTalk" target="_blank"><span class="link-icon">▶️</span> YouTube</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 8: COMMUNITIES -->
+        <!-- ============================================================ -->
+        <section class="section" id="communities">
+            <h2 class="section-title"><span class="icon">👥</span> Topluluklar ve Forumlar</h2>
+            <p class="section-desc">AI konularında tartışma, soru-cevap ve güncel gelişmeleri takip edebileceğiniz topluluklar.</p>
+
+            <div class="card-grid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">r/MachineLearning</span>
+                        <span class="badge badge-community">Reddit</span>
+                    </div>
+                    <div class="card-desc">
+                        Reddit'in en büyük ML topluluğu. Araştırma makaleleri tartışmaları, AMA'lar ve güncel gelişmeler burada paylaşılır.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.reddit.com/r/MachineLearning/" target="_blank"><span class="link-icon">🔗</span> Subreddit</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">r/LocalLLaMA</span>
+                        <span class="badge badge-community">Reddit</span>
+                    </div>
+                    <div class="card-desc">
+                        Yerel (local) LLM çalıştırma, fine-tuning ve açık kaynak model topluluğu. Ollama, llama.cpp, GGUF formatları gibi konularda aktif tartışmalar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://www.reddit.com/r/LocalLLaMA/" target="_blank"><span class="link-icon">🔗</span> Subreddit</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Hugging Face Community</span>
+                        <span class="badge badge-community">Forum</span>
+                    </div>
+                    <div class="card-desc">
+                        Hugging Face'in Discord sunucusu ve forumu. Model paylaşımı, teknik sorular ve açık kaynak AI projeleri hakkında yardımlaşma.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://discuss.huggingface.co/" target="_blank"><span class="link-icon">🔗</span> Forum</a>
+                        <a href="https://discord.gg/huggingface" target="_blank"><span class="link-icon">💬</span> Discord</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Hacker News</span>
+                        <span class="badge badge-community">Forum</span>
+                    </div>
+                    <div class="card-desc">
+                        Y Combinator'ın teknoloji haber ve tartışma platformu. AI ile ilgili haberler genellikle ilk burada tartışılır. Kaliteli teknik yorumlar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://news.ycombinator.com/" target="_blank"><span class="link-icon">🔗</span> HN</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">AI Twitter/X Topluluğu</span>
+                        <span class="badge badge-community">Sosyal</span>
+                    </div>
+                    <div class="card-desc">
+                        X (Twitter) AI araştırmacıları için ana iletişim platformu. Yeni makaleler, model duyuruları ve tartışmalar genelde ilk burada başlar. Bu sayfadaki isimlerin çoğu burada aktif.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://x.com/i/lists" target="_blank"><span class="link-icon">𝕏</span> X'te AI Listeleri</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Papers With Code</span>
+                        <span class="badge badge-community">Kaynak</span>
+                    </div>
+                    <div class="card-desc">
+                        AI araştırma makaleleri ve onların kod uygulamalarını eşleştiren platform. Trend makaleleri ve state-of-the-art sonuçları takip etmek için ideal.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://paperswithcode.com/" target="_blank"><span class="link-icon">🔗</span> Website</a>
+                        <a href="https://x.com/paperswithcode" target="_blank"><span class="link-icon">𝕏</span> @paperswithcode</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">arXiv (cs.AI / cs.CL / cs.LG)</span>
+                        <span class="badge badge-community">Kaynak</span>
+                    </div>
+                    <div class="card-desc">
+                        AI araştırma makalelerinin yayınlandığı açık erişimli preprint sunucusu. cs.AI (yapay zeka), cs.CL (doğal dil işleme), cs.LG (makine öğrenmesi) kategorilerini takip edin.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://arxiv.org/list/cs.AI/recent" target="_blank"><span class="link-icon">📄</span> cs.AI</a>
+                        <a href="https://arxiv.org/list/cs.CL/recent" target="_blank"><span class="link-icon">📄</span> cs.CL</a>
+                        <a href="https://arxiv.org/list/cs.LG/recent" target="_blank"><span class="link-icon">📄</span> cs.LG</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- SECTION 9: GITHUB AWESOME LISTS -->
+        <!-- ============================================================ -->
+        <section class="section" id="awesome-lists">
+            <h2 class="section-title"><span class="icon">📚</span> GitHub Awesome Listeleri ve Kaynak Rehberleri</h2>
+            <p class="section-desc">GitHub'daki küratörlü "awesome" listeleri, AI alanındaki en iyi kaynakları, araçları, modelleri ve rehberleri bir arada sunar. Yeni başlayanlar ve uzmanlar için vazgeçilmez referans noktaları.</p>
+
+            <div class="card-grid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Awesome ChatGPT Prompts</span>
+                        <span class="badge badge-community">⭐ 150k</span>
+                    </div>
+                    <div class="card-desc">
+                        GitHub'ın en popüler AI reposu. ChatGPT, Claude, Gemini ve diğer modeller için kullanılabilir prompt örnekleri koleksiyonu. Prompt mühendisliğine başlamak için ilk durak.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/f/awesome-chatgpt-prompts" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                        <a href="https://prompts.chat/" target="_blank"><span class="link-icon">🌐</span> prompts.chat</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Awesome Machine Learning</span>
+                        <span class="badge badge-community">⭐ 71.9k</span>
+                    </div>
+                    <div class="card-desc">
+                        Programlama diline göre organize edilmiş ML framework, kütüphane ve araç listesi. Python, R, JavaScript ve daha fazlası için kapsamlı kaynak rehberi. Klasik referans.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/josephmisiti/awesome-machine-learning" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Awesome-LLM</span>
+                        <span class="badge badge-community">⭐ 26.4k</span>
+                    </div>
+                    <div class="card-desc">
+                        LLM dünyasının kapsamlı rehberi. Milestone makaleler, açık kaynak modeller, eğitim framework'leri, inference araçları, kurslar ve kitaplar tek bir listede. LLM öğrenmek isteyenler için altın madeni.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/Hannibal046/Awesome-LLM" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Open LLMs</span>
+                        <span class="badge badge-community">⭐ 12.7k</span>
+                    </div>
+                    <div class="card-desc">
+                        Ticari kullanıma açık tüm açık kaynak LLM'lerin listesi. Model boyutu, context uzunluğu, lisans türü ve eğitim verisi bilgileriyle birlikte. Hangi modeli kullanacağınıza karar verirken çok faydalı.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/eugeneyan/open-llms" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Awesome Generative AI</span>
+                        <span class="badge badge-community">⭐ 11.6k</span>
+                    </div>
+                    <div class="card-desc">
+                        Üretken AI araçları ve servisleri rehberi. Metin, görüntü, video, ses üretimi; kodlama asistanları; AI agentlar ve daha fazlası kategorilere ayrılmış şekilde. Güncel araç keşfi için ideal.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/steven2358/awesome-generative-ai" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">LLM Course</span>
+                        <span class="badge badge-community">Kurs</span>
+                    </div>
+                    <div class="card-desc">
+                        Maxime Labonne tarafından hazırlanan kapsamlı LLM kursu. Roadmap'ler ve Colab notebook'ları ile LLM fundamentals, LLM scientist ve LLM engineer yol haritalarını sunar.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/mlabonne/llm-course" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Prompt Engineering Guide</span>
+                        <span class="badge badge-community">Rehber</span>
+                    </div>
+                    <div class="card-desc">
+                        DAIR.AI'ın prompt mühendisliği rehberi (bu listede de mevcut). Chain-of-thought, few-shot, ReAct ve daha birçok tekniği detaylıca açıklayan en kapsamlı açık kaynak prompt rehberi.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/dair-ai/Prompt-Engineering-Guide" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                        <a href="https://www.promptingguide.ai/" target="_blank"><span class="link-icon">🌐</span> Website</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-name">Awesome AI Papers</span>
+                        <span class="badge badge-community">📄 Makaleler</span>
+                    </div>
+                    <div class="card-desc">
+                        Yıllara göre organize edilmiş en önemli AI makaleleri. Computer vision, NLP, ses işleme, multimodal öğrenme ve RL alanlarını kapsar. 🏆 tarihi, ⭐ önemli ve ⏫ trend makaleler olarak sınıflandırılmış.
+                    </div>
+                    <div class="card-links">
+                        <a href="https://github.com/aimerou/awesome-ai-papers" target="_blank"><span class="link-icon">💻</span> GitHub</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><a href="yz_kodlama_notlar.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">📄 Ders Notları</a>
+            &nbsp;·&nbsp;
+            <a href="yz_kodlama_sunum.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">📽️ Ders Slaytları</a></p>
+        <p style="margin-top: 8px;">Anadolu Üniversitesi Yapay Zeka Akademisi — Hafta 1 Ek Kaynak</p>
+        <p style="margin-top: 4px; font-size: 0.75rem;">Bu liste sürekli güncellenmektedir. Son güncelleme: Mart 2026</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+            localStorage.setItem('theme', html.getAttribute('data-theme'));
+        }
+
+        // Restore saved theme
+        const saved = localStorage.getItem('theme');
+        if (saved) {
+            document.documentElement.setAttribute('data-theme', saved);
+        }
+    </script>
+
+</body>
+</html>
