@@ -10,7 +10,7 @@ Bu klasör, 7 Mart Cumartesi ve 8 Mart Pazar günleri gerçekleştirilen eğitim
 * **Eğitmen:** Dr. Metehan GÜZEL
 * 📺 [Oturum Video Kaydını İzle](#)
 * 📂 **Materyaller:**
-  * [Sunum Dosyası (PDF)](#)
+  * [Sunum Dosyası (PDF)](./prompt-muhendisligi.pdf)
 
 **2. NotebookLM ile Yapay Zeka Destekli Öğrenme ve Bilgi Analizi (13:00 - 14:00)**
 * **Eğitmen:** Mustafa BİÇER
