@@ -26,11 +26,12 @@ Bu klasör, 7 Mart Cumartesi ve 8 Mart Pazar günleri gerçekleştirilen eğitim
 * **Eğitmen:** Öğr. Gör. Güvenç USANMAZ
 * 📺 [Oturum Video Kaydını İzle](#)
 * 📂 **Materyaller:**
-  * [Sunum Dosyası (PDF)](#)
+  * [Sunum Dosyası (PDF)](./yz-kodlama-antigravity.pdf)
+  * [Projeler (ZIP)](./yz-kodlama-projeler.zip)
 
 **4. NotebookLM ile Yapay Zeka Destekli Öğrenme ve Bilgi Analizi (13:00 - 14:00)**
 * **Eğitmen:** Mustafa BİÇER
 * 📺 [Oturum Video Kaydını İzle](#)
 * 📂 **Materyaller:**
-  * [Uygulama-1](https://gemini.google.com/share/51828375cb32)
-  * [Uygulama-2](https://gemini.google.com/share/9fe11ca56784)
+  * [Uygulama-1 (GEMINI)](https://gemini.google.com/share/51828375cb32)
+  * [Uygulama-2 (GEMINI)](https://gemini.google.com/share/9fe11ca56784)
