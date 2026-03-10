@@ -16,7 +16,7 @@ Bu klasör, 7 Mart Cumartesi ve 8 Mart Pazar günleri gerçekleştirilen eğitim
 * **Eğitmen:** Mustafa BİÇER
 * 📺 [Oturum Video Kaydını İzle](#)
 * 📂 **Materyaller:**
-  * [Sunum Dosyası (PDF)](./Yapay-Zeka-ile-Akilli-Not-Alma.pptx)
+  * [Sunum Dosyası (Pptx)](./Yapay-Zeka-ile-Akilli-Not-Alma.pptx)
 
 ---
 
