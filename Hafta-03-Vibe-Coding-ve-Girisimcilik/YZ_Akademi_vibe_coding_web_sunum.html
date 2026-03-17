@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI ile Web Sitesi Oluşturma — Sunum</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --accent: #0ea5e9;
+            --green: #10b981;
+            --orange: #f59e0b;
+            --red: #ef4444;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+        }
+
+        .reveal {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-900);
+            font-weight: 700;
+            text-transform: none;
+        }
+        .reveal h1 { font-size: 2.2em; }
+        .reveal h2 { font-size: 1.6em; margin-bottom: 0.5em; }
+        .reveal h3 { font-size: 1.2em; }
+        .reveal p, .reveal li {
+            font-size: 0.7em;
+            line-height: 1.6;
+            color: var(--gray-600);
+        }
+        .reveal ul, .reveal ol {
+            display: block;
+            margin-left: 1em;
+        }
+        .reveal li {
+            margin-bottom: 0.3em;
+        }
+        .reveal code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--gray-100);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: var(--primary);
+        }
+        .reveal pre {
+            width: 90%;
+            margin: 0.5em auto;
+            font-size: 0.48em;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .reveal pre code {
+            padding: 1em;
+            line-height: 1.5;
+            max-height: 500px;
+            background: var(--gray-900);
+            color: #e2e8f0;
+            border-radius: 10px;
+        }
+        .reveal .slides section {
+            padding: 20px 40px;
+        }
+
+        /* Title slide */
+        .title-slide h1 {
+            font-size: 2.4em;
+            margin-bottom: 0.2em;
+        }
+        .title-slide .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .title-slide .subtitle {
+            font-size: 0.8em;
+            color: var(--gray-600);
+            margin-top: 0.5em;
+        }
+        .title-slide .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 1.2em;
+        }
+        .title-slide .stat {
+            text-align: center;
+        }
+        .title-slide .stat-number {
+            display: block;
+            font-size: 1.6em;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .title-slide .stat-label {
+            font-size: 0.55em;
+            color: var(--gray-600);
+        }
+
+        /* Section divider */
+        .section-divider {
+            background: linear-gradient(135deg, var(--primary), var(--accent)) !important;
+            color: white !important;
+        }
+        .section-divider h2 {
+            color: white !important;
+            font-size: 2em !important;
+        }
+        .section-divider p {
+            color: rgba(255,255,255,0.85) !important;
+            font-size: 0.9em !important;
+        }
+        .section-divider .section-emoji {
+            font-size: 3em;
+            margin-bottom: 0.3em;
+        }
+
+        /* Tool cards */
+        .tools-flex {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 0.5em;
+        }
+        .tool-mini {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px 20px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .tool-mini .icon { font-size: 1.8em; }
+        .tool-mini h4 {
+            font-size: 0.7em;
+            margin: 6px 0 4px;
+            color: var(--gray-800);
+        }
+        .tool-mini p {
+            font-size: 0.5em !important;
+            color: var(--gray-600);
+            margin: 0;
+        }
+        .tool-mini.featured {
+            border: 2px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(99,102,241,0.15);
+        }
+
+        /* Info box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(14,165,233,0.08));
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 0.5em auto;
+            width: 85%;
+            text-align: left;
+        }
+        .info-box p, .info-box li {
+            font-size: 0.6em !important;
+            margin: 0;
+        }
+
+        .warning-box {
+            background: rgba(245,158,11,0.08);
+            border-left: 4px solid var(--orange);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 0.5em auto;
+            width: 85%;
+            text-align: left;
+        }
+        .warning-box p {
+            font-size: 0.6em !important;
+            margin: 0;
+        }
+
+        /* Two column */
+        .two-col {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            text-align: left;
+        }
+        .two-col > div { flex: 1; }
+        .two-col h3 {
+            font-size: 0.9em;
+            margin-bottom: 0.3em;
+        }
+
+        /* Three column */
+        .three-col {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            text-align: left;
+        }
+        .three-col > div {
+            flex: 1;
+            background: var(--gray-50);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .three-col h4 {
+            font-size: 0.65em;
+            margin-bottom: 0.3em;
+        }
+        .three-col p, .three-col li {
+            font-size: 0.52em !important;
+        }
+
+        /* Step indicators */
+        .step-list {
+            text-align: left;
+            width: 85%;
+            margin: 0.3em auto;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+        .step-num {
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.6em;
+            flex-shrink: 0;
+        }
+        .step-text h4 {
+            font-size: 0.65em;
+            margin: 0 0 2px;
+            color: var(--gray-800);
+        }
+        .step-text p {
+            font-size: 0.52em !important;
+            margin: 0;
+        }
+
+        /* Comparison table */
+        .reveal table {
+            font-size: 0.55em;
+            border-collapse: collapse;
+            width: 90%;
+            margin: 0.5em auto;
+        }
+        .reveal table th {
+            background: var(--primary);
+            color: white;
+            padding: 10px 14px;
+            font-weight: 600;
+        }
+        .reveal table td {
+            padding: 8px 14px;
+            border-bottom: 1px solid #e2e8f0;
+            color: var(--gray-600);
+        }
+        .reveal table tr:nth-child(even) td {
+            background: var(--gray-50);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.5em;
+            font-weight: 600;
+        }
+        .badge-free { background: #d1fae5; color: #065f46; }
+        .badge-paid { background: #fef3c7; color: #92400e; }
+        .badge-featured { background: #e0e7ff; color: #3730a3; }
+
+        /* Checklist */
+        .checklist {
+            text-align: left;
+            width: 85%;
+            margin: 0.3em auto;
+        }
+        .checklist-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.6em;
+            color: var(--gray-600);
+        }
+        .checklist-row .check { color: var(--green); font-weight: 700; }
+
+        /* Prompt example */
+        .prompt-box {
+            background: var(--gray-900);
+            color: #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            width: 85%;
+            margin: 0.5em auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.48em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        /* Keyboard shortcut */
+        kbd {
+            background: var(--gray-100);
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+            color: var(--gray-800);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Grid cards */
+        .card-grid {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card-grid .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 16px;
+            width: 180px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .card-grid .card h4 {
+            font-size: 0.6em;
+            margin: 6px 0 4px;
+        }
+        .card-grid .card p {
+            font-size: 0.48em !important;
+        }
+
+        /* Print/PDF styles */
+        @media print {
+            @page {
+                margin: 0;
+                size: 1280px 720px;
+            }
+            .reveal .slides section {
+                page-break-after: always;
+            }
+            .reveal .slides {
+                width: 100% !important;
+                height: 100% !important;
+            }
+            .reveal .slides section {
+                margin: 0 !important;
+                padding: 20px !important;
+                box-sizing: border-box;
+            }
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Footer on slides */
+        .slide-footer {
+            position: absolute;
+            bottom: 16px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.4em;
+            color: #94a3b8;
+        }
+
+        .icon-large {
+            font-size: 2.5em;
+            margin-bottom: 0.2em;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--gray-100);
+            border: 1px solid #d1d5db;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Dark theme */
+        body.dark-theme .reveal {
+            background: #0f172a;
+        }
+        body.dark-theme .reveal .slides section {
+            background: #0f172a;
+        }
+        body.dark-theme .reveal h1,
+        body.dark-theme .reveal h2,
+        body.dark-theme .reveal h3,
+        body.dark-theme .reveal h4 {
+            color: #f1f5f9;
+        }
+        body.dark-theme .reveal p,
+        body.dark-theme .reveal li {
+            color: #94a3b8;
+        }
+        body.dark-theme .reveal code {
+            background: #1e293b;
+            color: var(--primary-light);
+        }
+        body.dark-theme .tool-mini {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        body.dark-theme .tool-mini h4 {
+            color: #f1f5f9;
+        }
+        body.dark-theme .tool-mini p {
+            color: #94a3b8 !important;
+        }
+        body.dark-theme .tool-mini.featured {
+            border-color: var(--primary);
+        }
+        body.dark-theme .info-box {
+            background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(14,165,233,0.15));
+        }
+        body.dark-theme .info-box p,
+        body.dark-theme .info-box li {
+            color: #cbd5e1 !important;
+        }
+        body.dark-theme .warning-box {
+            background: rgba(245,158,11,0.15);
+        }
+        body.dark-theme .warning-box p {
+            color: #cbd5e1 !important;
+        }
+        body.dark-theme .three-col > div {
+            background: #1e293b;
+        }
+        body.dark-theme .three-col h4 {
+            color: #f1f5f9;
+        }
+        body.dark-theme .three-col p,
+        body.dark-theme .three-col li {
+            color: #94a3b8 !important;
+        }
+        body.dark-theme .reveal table td {
+            border-bottom-color: #334155;
+            color: #94a3b8;
+        }
+        body.dark-theme .reveal table tr:nth-child(even) td {
+            background: #1e293b;
+        }
+        body.dark-theme .card-grid .card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        body.dark-theme .card-grid .card h4 {
+            color: #f1f5f9;
+        }
+        body.dark-theme .card-grid .card p {
+            color: #94a3b8 !important;
+        }
+        body.dark-theme .checklist-row {
+            color: #94a3b8;
+        }
+        body.dark-theme kbd {
+            background: #1e293b;
+            border-color: #475569;
+            color: #e2e8f0;
+        }
+        body.dark-theme .step-text h4 {
+            color: #f1f5f9;
+        }
+        body.dark-theme .step-text p {
+            color: #94a3b8 !important;
+        }
+        body.dark-theme .title-slide .subtitle {
+            color: #94a3b8;
+        }
+        body.dark-theme .title-slide .stat-label {
+            color: #94a3b8;
+        }
+        body.dark-theme .theme-toggle {
+            background: #1e293b;
+            border-color: #475569;
+            color: #f1f5f9;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle" title="Tema Değiştir">🌙</button>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- ============================================== -->
+            <!-- SLIDE 1: Title -->
+            <!-- ============================================== -->
+            <section class="title-slide">
+                <p style="font-size:1.5em; margin-bottom:0;">🤖🌐</p>
+                <h1 style="font-size:1.8em; margin-bottom:0.1em;">AI Araçları ile<br><span class="gradient-text">Web Sitesi Oluşturma</span><br>Rehberi</h1>
+                <p style="font-size:0.55em; color:var(--gray-600); margin-top:0.8em; margin-bottom:0;">Öğr. Gör. <strong>Güvenç Usanmaz</strong> — Anadolu Üniversitesi</p>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SLIDE 2: İçerik Haritası -->
+            <!-- ============================================== -->
+            <section>
+                <h2>📋 Bugün Neler Öğreneceğiz?</h2>
+                <div class="two-col" style="width:85%; margin:0 auto;">
+                    <div>
+                        <ol>
+                            <li><strong>AI Araçları</strong> — Hangi araç ne işe yarar?</li>
+                            <li><strong>Prompt Yazma</strong> — AI'ya nasıl talimat verilir?</li>
+                            <li><strong>Temel Kavramlar</strong> — HTML, CSS, JavaScript nedir?</li>
+                            <li><strong>Yerel Geliştirme</strong> — Siteyi kendi bilgisayarımda nasıl görürüm?</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <ol start="5">
+                            <li><strong>DevTools</strong> — Tarayıcı geliştirici araçları</li>
+                            <li><strong>Kod Düzenleme</strong> — Basit değişiklikler nasıl yapılır?</li>
+                            <li><strong>Proje Örnekleri</strong> — Hazır promptlar ile projeler</li>
+                            <li><strong>Yayınlama</strong> — GitHub Pages ile siteyi internete çıkarma</li>
+                            <li><strong>Frontend &amp; Backend</strong> — Farkı anlayın</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SECTION: AI Araçları -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">🛠️</div>
+                <h2>AI Kod Yazma Araçları</h2>
+                <p>Bu araçlar, sizin yerinize kod yazar.<br>Siz sadece ne istediğinizi anlatırsınız.</p>
+            </section>
+
+            <!-- SLIDE: Masaüstü Editörler 1 -->
+            <section>
+                <h2>💻 Masaüstü AI Editörleri (1/3)</h2>
+                <p>Bilgisayarınıza indirip kuracağınız editörler</p>
+                <div class="tools-flex">
+                    <div class="tool-mini">
+                        <div class="icon">🎨</div>
+                        <h4>Trae</h4>
+                        <p>ByteDance'ın AI editörü. SOLO modu ile otonom kodlama.</p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">🐙</div>
+                        <h4>GitHub Copilot</h4>
+                        <p>VS Code içinde Agent modu ile komple projeler üretir.</p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">⚡</div>
+                        <h4>Cursor</h4>
+                        <p>VS Code tabanlı AI editörü. Composer ile sıfırdan proje oluşturma.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Masaüstü Editörler 2 -->
+            <section>
+                <h2>💻 Masaüstü AI Editörleri (2/3)</h2>
+                <div class="tools-flex">
+                    <div class="tool-mini">
+                        <div class="icon">🧠</div>
+                        <h4>Claude</h4>
+                        <p>Artifact ile anında HTML önizleme. Uzun ve detaylı kod üretimi.</p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">🏄</div>
+                        <h4>Windsurf</h4>
+                        <p>Cascade ile çok adımlı görevleri otonom halleder.</p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">⚡</div>
+                        <h4>Zed</h4>
+                        <p>Ultra hızlı, Rust tabanlı editör. Agent paneli ile proje oluşturma.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Masaüstü Editörler 3 -->
+            <section>
+                <h2>💻 Masaüstü AI Editörleri (3/3)</h2>
+                <div class="tools-flex">
+                    <div class="tool-mini">
+                        <div class="icon">🧩</div>
+                        <h4>Kilo Code</h4>
+                        <p>VS Code eklentisi. Açık kaynak, kendi API anahtarınızla çalışır.</p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">🐴</div>
+                        <h4>Junie</h4>
+                        <p>JetBrains IDE'leri için AI asistan. IntelliJ, PyCharm, WebStorm desteği.</p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">🚀</div>
+                        <h4>Antigravity</h4>
+                        <p>Google'ın agent-first IDE'si. VS Code fork'u, Gemini destekli.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Tarayıcı Tabanlı Araçlar -->
+            <section>
+                <h2>🌐 Tarayıcı Tabanlı AI Araçları</h2>
+                <p>Kurulum gerektirmez — tarayıcıdan doğrudan kullanın</p>
+                <div class="tools-flex">
+                    <div class="tool-mini">
+                        <div class="icon">⚡</div>
+                        <h4>Bolt.new</h4>
+                        <p>Tarayıcıda tam geliştirme ortamı. Anında önizleme ve tek tıkla deploy.</p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">💜</div>
+                        <h4>Lovable</h4>
+                        <p>Doğal dilde uygulama oluşturma. Supabase entegrasyonu dahil.</p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">💻</div>
+                        <h4>Replit</h4>
+                        <p>Tarayıcıda tam IDE. 50+ dil desteği. Replit Agent ile proje oluşturma.</p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">🔥</div>
+                        <h4>Firebase Studio</h4>
+                        <p>Google'ın bulut IDE'si. Gemini AI entegrasyonu.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Hangisini Seçmeliyim? -->
+            <section>
+                <h2>🤔 Hangisini Seçmeliyim?</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Durum</th>
+                            <th>Önerilen Araç</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Hiç kurulum yapmak istemiyorum</td>
+                            <td><strong>Bolt.new</strong> veya <strong>Lovable</strong></td>
+                        </tr>
+                        <tr>
+                            <td>En popüler ve güçlü editör istiyorum</td>
+                            <td><strong>Cursor</strong></td>
+                        </tr>
+
+                        <tr>
+                            <td>Zaten VS Code kullanıyorum</td>
+                            <td><strong>GitHub Copilot</strong> veya <strong>Kilo Code</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Hızlı bir deneme yapmak istiyorum</td>
+                            <td><strong>Claude</strong> (claude.ai) — Artifact ile anında sonuç</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- SLIDE: Öğrenci Avantajları -->
+            <section>
+                <h2>🎓 Öğrenciler İçin Özel Fırsatlar</h2>
+                <div class="info-box">
+                    <p>Üniversite e-posta adresiniz (.edu.tr) ile bazı AI araçlarından öğrencilere özel avantajlar sağlanabilir. Güncel bilgi için araçların kendi sitelerini kontrol edin:</p>
+                </div>
+                <div class="tools-flex" style="margin-top:0.5em;">
+                    <div class="tool-mini">
+                        <div class="icon">🐙</div>
+                        <h4>GitHub Student Pack</h4>
+                        <p><a href="https://education.github.com/pack" style="color:var(--primary);">education.github.com/pack</a></p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">🐴</div>
+                        <h4>JetBrains Eğitim Lisansı</h4>
+                        <p><a href="https://www.jetbrains.com/community/education/" style="color:var(--primary);">jetbrains.com/education</a></p>
+                    </div>
+                    <div class="tool-mini">
+                        <div class="icon">⚡</div>
+                        <h4>Zed Öğrenci Planı</h4>
+                        <p><a href="https://zed.dev/blog/student-plan" style="color:var(--primary);">zed.dev/blog/student-plan</a></p>
+                    </div>
+                </div>
+                <div class="info-box" style="margin-top:0.4em;">
+                    <p>💡 Fiyatlandırmalar sık değişir — başlamadan önce araçların kendi sitelerinden güncel bilgiyi kontrol edin.</p>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SECTION: Prompt Yazma -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">✍️</div>
+                <h2>Etkili Prompt Yazma Rehberi</h2>
+                <p>AI'ya ne kadar detaylı anlatırsanız,<br>o kadar iyi sonuç alırsınız.</p>
+            </section>
+
+            <!-- SLIDE: 6 Altın Kural Genel Bakış -->
+            <section>
+                <h2>✍️ 6 Altın Kural</h2>
+                <div style="width:80%; margin:0 auto; text-align:left;">
+                    <ul style="list-style:none; padding:0;">
+                        <li style="margin-bottom:0.3em;">1️⃣ <strong>Net &amp; Spesifik Olun</strong> — "Güzel bir site yap" yerine detay verin</li>
+                        <li style="margin-bottom:0.3em;">2️⃣ <strong>Yapıyı Belirtin</strong> — Bölümleri ve sırayı açıkça tarif edin</li>
+                        <li style="margin-bottom:0.3em;">3️⃣ <strong>Görsel Detay Verin</strong> — Renk (HEX), font, layout, bileşenler, görseller</li>
+                        <li style="margin-bottom:0.3em;">4️⃣ <strong>İçerik Sağlayın</strong> — Gerçek metin ve verileri aktarın</li>
+                        <li style="margin-bottom:0.3em;">5️⃣ <strong>Teknik Detaylar</strong> — Responsive, API, harici kütüphane kullanımı</li>
+                        <li style="margin-bottom:0.3em;">6️⃣ <strong>Referans Gösterin</strong> — Benzetmek istediğiniz siteleri belirtin</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SLIDE: Kural 1 - Net & Spesifik -->
+            <section>
+                <h2>1️⃣ Net ve Spesifik Olun</h2>
+                <div class="two-col" style="width:90%; margin:0 auto;">
+                    <div>
+                        <h3 style="color:var(--red);">❌ Kötü Prompt</h3>
+                        <div class="prompt-box" style="font-size:0.4em;">Bana güzel bir web sitesi yap.</div>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--green);">✅ İyi Prompt</h3>
+                        <div class="prompt-box" style="font-size:0.4em;">Bir fotoğrafçı portfolyo sitesi oluştur. Tek sayfa olsun. Hero bölümünde büyük bir başlık ve arka plan görseli olsun. Altında masonry grid düzeninde galeri olsun.</div>
+                    </div>
+                </div>
+                <div class="info-box" style="margin-top:0.5em;">
+                    <p>💡 Ne kadar detay verirseniz, AI o kadar isabetli sonuç üretir. "Güzel" veya "modern" gibi sıfatlar yeterli değildir — somut özellikler belirtin.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Kural 2 - Yapı -->
+            <section>
+                <h2>2️⃣ Yapıyı Belirtin</h2>
+                <p>Sayfanın bölümlerini sırasıyla tarif edin:</p>
+                <div class="prompt-box">1) Hero: Tam ekran arka plan, slogan ve "Hakkımda" butonu
+2) Hakkımda: Sol tarafta fotoğraf, sağ tarafta kısa biyografi
+3) Projeler: 3 sütunlu grid, her kartta proje adı, açıklama ve link
+4) İletişim: Basit form — isim, e-posta, mesaj
+5) Footer: Sosyal medya ikonları ve telif hakkı</div>
+            </section>
+
+            <!-- SLIDE: Kural 3 - Görsel Detay -->
+            <section>
+                <h2>3️⃣ Görsel Detay Verin</h2>
+                <div class="three-col">
+                    <div>
+                        <h4>🎨 Renkler (HEX)</h4>
+                        <p>Ana renk: <code>#6366f1</code><br>Vurgu: <code>#0ea5e9</code><br>Arka plan: <code>#f8fafc</code></p>
+                        <p style="margin-top:8px;">💡 <a href="https://coolors.co" style="color:var(--primary)">coolors.co</a> ile palet oluşturun</p>
+                    </div>
+                    <div>
+                        <h4>🔤 Fontlar</h4>
+                        <p>Başlıklar: Poppins (bold)<br>Gövde: Inter (regular)</p>
+                        <p style="margin-top:8px;">💡 <a href="https://fonts.google.com" style="color:var(--primary)">fonts.google.com</a></p>
+                    </div>
+                    <div>
+                        <h4>📐 Layout</h4>
+                        <p>3 sütunlu grid<br>Masonry düzen<br>Flexbox ile ortalama<br>Responsive breakpointler</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Kural 3 devam - Bileşenler & Görseller -->
+            <section>
+                <h2>3️⃣ Görsel Detay — Bileşenler &amp; Görseller</h2>
+                <div class="two-col" style="width:90%; margin:0 auto;">
+                    <div>
+                        <h3>🧩 UI Bileşenleri</h3>
+                        <ul>
+                            <li>Yuvarlak köşeli kartlar (<code>border-radius: 12px</code>)</li>
+                            <li>Hover'da hafif yükselme efekti</li>
+                            <li>Gradient arka planlı butonlar</li>
+                            <li>Yapışkan (sticky) navigasyon</li>
+                            <li>Hamburger menü (mobil)</li>
+                            <li>Lightbox (fotoğraf büyütme)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>🖼️ Görseller</h3>
+                        <ul>
+                            <li><strong>Placeholder:</strong> "Renkli kutular kullan"</li>
+                            <li><strong>Unsplash:</strong> <code>unsplash.com/photos/...</code></li>
+                            <li><strong>Picsum:</strong> <code>picsum.photos/800/600</code></li>
+                            <li><strong>Emoji:</strong> 🎨 📸 🍕 ✈️</li>
+                            <li><strong>SVG ikon:</strong> Heroicons, Lucide</li>
+                            <li><strong>CSS ile:</strong> Gradientler, şekiller</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Kural 4, 5, 6 -->
+            <section>
+                <h2>✍️ Kurallar (devam)</h2>
+                <div class="three-col">
+                    <div>
+                        <h4>4️⃣ İçerik Sağlayın</h4>
+                        <p>Gerçek metin, isimler, marka bilgileri verin. AI'ın uydurmasını beklemeyin.</p>
+                        <p style="margin-top:4px;"><em>"Firma adı: TechStart, slogan: Geleceği birlikte kodluyoruz"</em></p>
+                    </div>
+                    <div>
+                        <h4>5️⃣ Teknik Detaylar</h4>
+                        <ul>
+                            <li>Responsive / mobil uyumlu</li>
+                            <li>Sadece HTML, CSS, JS</li>
+                            <li>Harici kütüphane kullanma</li>
+                            <li>API entegrasyonu</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>6️⃣ Referans Verin</h4>
+                        <p>"Apple.com gibi minimalist", "Notion.so gibi temiz tipografi", "Stripe.com gibi modern"</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Örnek Tam Prompt -->
+            <section>
+                <h2>📋 Tam Prompt Örneği</h2>
+                <div class="prompt-box" style="font-size:0.36em;">Bir fotoğrafçı portfolyo sitesi oluştur. Tek sayfa olsun.
+
+Bölümler:
+1) Hero: Tam ekran arka plan görseli, üzerinde ad ve "Portfolyo" başlığı
+2) Galeri: Masonry grid, placeholder için farklı boyutlarda renkli kutular
+3) Hakkımda: Portre alanı, biyografi, ekipman listesi
+4) İletişim: Basit form (isim, e-posta, mesaj)
+
+Tasarım: Siyah arka plan, fotoğraflar ön planda. Minimal tipografi.
+Font: Google Fonts'tan "Inter". Ana renk: #f59e0b (altın).
+Lightbox'ı sadece HTML, CSS ve JavaScript ile yap.
+Tamamen responsive olsun.</div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SECTION: Temel Kavramlar -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">📚</div>
+                <h2>Web'in Temel Kavramları</h2>
+                <p>HTML, CSS ve JavaScript —<br>her web sitesinin üç temel taşı.</p>
+            </section>
+
+            <!-- SLIDE: HTML/CSS/JS -->
+            <section>
+                <h2>🏗️ HTML, CSS, JavaScript</h2>
+                <div class="three-col">
+                    <div style="border-top: 4px solid var(--orange);">
+                        <h4>📄 HTML — İskelet</h4>
+                        <p>Sayfanın yapısı: başlıklar, paragraflar, resimler, linkler, listeler.</p>
+                        <p><code>&lt;h1&gt;Başlık&lt;/h1&gt;</code></p>
+                        <p><code>&lt;p&gt;Paragraf&lt;/p&gt;</code></p>
+                        <p><code>&lt;img src="foto.jpg"&gt;</code></p>
+                    </div>
+                    <div style="border-top: 4px solid var(--primary);">
+                        <h4>🎨 CSS — Stil</h4>
+                        <p>Görünüm: renkler, fontlar, boyutlar, yerleşim, animasyonlar.</p>
+                        <p><code>color: #6366f1;</code></p>
+                        <p><code>font-size: 18px;</code></p>
+                        <p><code>display: flex;</code></p>
+                    </div>
+                    <div style="border-top: 4px solid var(--green);">
+                        <h4>⚙️ JavaScript — Davranış</h4>
+                        <p>Etkileşim: buton tıklama, animasyon, veri çekme, form kontrolü.</p>
+                        <p><code>addEventListener</code></p>
+                        <p><code>fetch(url)</code></p>
+                        <p><code>classList.toggle</code></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Responsive Tasarım -->
+            <section>
+                <h2>📱 Responsive Tasarım</h2>
+                <p>Aynı site, her ekran boyutuna otomatik uyum sağlar</p>
+                <div class="three-col" style="margin-top:0.3em;">
+                    <div style="text-align:center;">
+                        <div style="height:60px;display:flex;align-items:center;justify-content:center;">
+                            <svg viewBox="0 0 24 40" width="30" height="50"><rect x="1" y="1" width="22" height="38" rx="3" ry="3" fill="none" stroke="#334155" stroke-width="1.5"/><circle cx="12" cy="36" r="1.5" fill="#334155"/><line x1="8" y1="3.5" x2="16" y2="3.5" stroke="#334155" stroke-width="1" stroke-linecap="round"/></svg>
+                        </div>
+                        <h4>Mobil</h4>
+                        <p>Tek sütun düzen. İçerik alt alta dizilir.</p>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="height:60px;display:flex;align-items:center;justify-content:center;">
+                            <svg viewBox="0 0 36 44" width="42" height="52"><rect x="1" y="1" width="34" height="42" rx="3" ry="3" fill="none" stroke="#334155" stroke-width="1.5"/><circle cx="18" cy="39" r="1.8" fill="#334155"/><line x1="13" y1="3.5" x2="23" y2="3.5" stroke="#334155" stroke-width="1" stroke-linecap="round"/></svg>
+                        </div>
+                        <h4>Tablet</h4>
+                        <p>2 sütun düzen. Kartlar yan yana gelir.</p>
+                    </div>
+                    <div style="text-align:center;">
+                        <div style="height:60px;display:flex;align-items:center;justify-content:center;">
+                            <svg viewBox="0 0 56 46" width="60" height="50"><rect x="3" y="1" width="50" height="34" rx="2" ry="2" fill="none" stroke="#334155" stroke-width="1.5"/><line x1="20" y1="35" x2="36" y2="35" stroke="#334155" stroke-width="1.5"/><rect x="18" y="35" width="20" height="3" rx="1" fill="none" stroke="#334155" stroke-width="1"/><rect x="10" y="38" width="36" height="3" rx="1.5" fill="none" stroke="#334155" stroke-width="1.2"/></svg>
+                        </div>
+                        <h4>Masaüstü</h4>
+                        <p>Çok sütunlu düzen. Tüm alanlar kullanılır.</p>
+                    </div>
+                </div>
+                <div class="info-box" style="margin-top:0.5em;">
+                    <p>💡 AI araçlarına <strong>"tamamen responsive olsun"</strong> veya <strong>"mobil uyumlu olsun"</strong> demeniz yeterli — media query'leri otomatik üretir.</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Temel Kavramlar -->
+            <section>
+                <h2>📚 Bilmenizde Fayda Olan Bazı Kavramlar</h2>
+                <div class="three-col">
+                    <div>
+                        <h4>📦 &lt;div&gt;</h4>
+                        <p>Kutu/kapsayıcı. İçerikleri gruplar.</p>
+                    </div>
+                    <div>
+                        <h4>🏷️ class / id</h4>
+                        <p>Etiketleme sistemi. CSS ile hedefleme.</p>
+                    </div>
+                    <div>
+                        <h4>📐 Flexbox</h4>
+                        <p>Öğeleri yatay/dikey hizalar.</p>
+                    </div>
+                </div>
+                <div class="three-col" style="margin-top:12px;">
+                    <div>
+                        <h4>🔲 Grid</h4>
+                        <p>2 boyutlu ızgara sistemi.</p>
+                    </div>
+                    <div>
+                        <h4>📱 Media Query</h4>
+                        <p>Ekran boyutuna göre farklı stil.</p>
+                    </div>
+                    <div>
+                        <h4>🔗 &lt;a href&gt;</h4>
+                        <p>Link oluşturmanın HTML yolu.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SECTION: Yerel Geliştirme -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">🖥️</div>
+                <h2>Yerel Geliştirme Ortamı</h2>
+                <p>Sitenizi kendi bilgisayarınızda<br>nasıl test edersiniz?</p>
+            </section>
+
+            <!-- SLIDE: 3 Yöntem -->
+            <section>
+                <h2>🖥️ Siteyi Lokal Olarak Görüntüleme</h2>
+                <div class="three-col">
+                    <div style="border-top: 3px solid var(--green);">
+                        <h4>1. Dosyayı Aç 🟢 En Kolay</h4>
+                        <p><code>index.html</code> dosyasına çift tıklayın — tarayıcıda açılır.</p>
+                        <p style="margin-top:4px;">⚠️ <code>file:///</code> protokolü bazı özellikleri kısıtlar.</p>
+                    </div>
+                    <div style="border-top: 3px solid var(--primary);">
+                        <h4>2. VS Code Live Server</h4>
+                        <p>Live Server eklentisini kurun → "Go Live" butonuna tıklayın.</p>
+                        <p style="margin-top:4px;">✅ Otomatik yenileme özelliği</p>
+                    </div>
+                    <div style="border-top: 3px solid var(--accent);">
+                        <h4>3. Tarayıcı Araçları</h4>
+                        <p>Bolt.new, Lovable, Replit gibi araçlarda otomatik önizleme vardır.</p>
+                    </div>
+                </div>
+                <div class="warning-box" style="margin-top:0.4em;">
+                    <p>⚠️ <code>file:///</code> ile açtığınızda API çağrıları ve bazı JS özellikleri çalışmayabilir. Bu durumda Python ile yerel sunucu başlatabilirsiniz: <code>python3 -m http.server 8000</code></p>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SECTION: DevTools -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">🔍</div>
+                <h2>Tarayıcı Geliştirici Araçları</h2>
+                <p>DevTools — Web geliştiricilerin en güçlü silahı</p>
+            </section>
+
+            <!-- SLIDE: DevTools Açma -->
+            <section>
+                <h2>🔍 DevTools Nasıl Açılır?</h2>
+                <div class="three-col">
+                    <div>
+                        <h4>🌐 Chrome / Edge</h4>
+                        <ul>
+                            <li><kbd>F12</kbd></li>
+                            <li><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd></li>
+                            <li>Sağ tık → İncele</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>🦊 Firefox</h4>
+                        <ul>
+                            <li><kbd>F12</kbd></li>
+                            <li><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd></li>
+                            <li>Sağ tık → Öğeyi İncele</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>🧭 Safari</h4>
+                        <ul>
+                            <li><kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>I</kbd></li>
+                            <li>Geliştir → Web Denetçisi</li>
+                        </ul>
+                        <p style="color:var(--orange); font-size:0.5em !important; margin-top:4px;">⚠️ Önce Ayarlar → Gelişmiş → "Web Geliştiricileri için özellikleri göster" aktif edin</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: DevTools Sekmeler -->
+            <section>
+                <h2>🔍 DevTools Ana Sekmeler</h2>
+                <div class="three-col">
+                    <div style="border-top: 3px solid var(--orange);">
+                        <h4>📋 Elements (Öğeler)</h4>
+                        <p>HTML yapısını görüntüleyin, herhangi bir öğeye tıklayarak inceleyebilirsiniz.</p>
+                        <p>👆 Sol üst ok simgesi ile sayfadaki herhangi bir öğeyi seçin.</p>
+                    </div>
+                    <div style="border-top: 3px solid var(--primary);">
+                        <h4>🎨 Styles (Stiller)</h4>
+                        <p>Seçili öğenin CSS'ini görün ve canlı olarak düzenleyin.</p>
+                        <p>🎯 Değişiklikler anında sayfaya yansır (geçicidir).</p>
+                    </div>
+                    <div style="border-top: 3px solid var(--red);">
+                        <h4>🖥️ Console (Konsol)</h4>
+                        <p>JavaScript hatalarını görün, komut çalıştırın.</p>
+                        <p>🔴 Kırmızı hata mesajları burada görünür.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Device Toolbar -->
+            <section>
+                <h2>📱 Device Toolbar — Mobil Önizleme</h2>
+                <p>Sitenizin mobilde nasıl göründüğünü bilgisayardan test edin</p>
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-text">
+                            <h4>DevTools'u açın</h4>
+                            <p><kbd>F12</kbd> veya <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>I</kbd></p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-text">
+                            <h4>Device Toolbar'ı aktifleştirin</h4>
+                            <p><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> veya 📱 telefon ikonuna tıklayın</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-text">
+                            <h4>Cihaz seçin</h4>
+                            <p>Üst menüden iPhone, iPad, Galaxy vb. seçin veya "Responsive" ile serbest boyutlandırın</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">4</div>
+                        <div class="step-text">
+                            <h4>Test edin!</h4>
+                            <p>Farklı cihazlarda kontrol edin, sorunları tespit edip AI'ya bildirin</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SECTION: Kod Düzenleme -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">✏️</div>
+                <h2>Basit Kod Düzenlemeleri</h2>
+                <p>AI'ın ürettiği kodda küçük değişiklikleri<br>kendiniz yapabilirsiniz!</p>
+            </section>
+
+            <!-- SLIDE: 6 Kolay Düzenleme -->
+            <section>
+                <h2>✏️ Yapabileceğiniz 6 Basit Düzenleme</h2>
+                <div class="three-col">
+                    <div>
+                        <h4>📝 Metin Değiştirme</h4>
+                        <p>HTML'de metni bulun ve değiştirin</p>
+                    </div>
+                    <div>
+                        <h4>🎨 Renk Değiştirme</h4>
+                        <p>CSS'de <code>#HEX</code> kodunu değiştirin</p>
+                    </div>
+                    <div>
+                        <h4>🖼️ Resim Değiştirme</h4>
+                        <p><code>src="..."</code> adresini değiştirin</p>
+                    </div>
+                </div>
+                <div class="three-col" style="margin-top:12px;">
+                    <div>
+                        <h4>🔗 Link Değiştirme</h4>
+                        <p><code>href="..."</code> adresini güncelleyin</p>
+                    </div>
+                    <div>
+                        <h4>🔤 Font Boyutu</h4>
+                        <p><code>font-size: 18px</code> değerini değiştirin</p>
+                    </div>
+                    <div>
+                        <h4>📏 Boşluk/Kenar</h4>
+                        <p><code>margin</code> ve <code>padding</code> ayarlayın</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Metin ve Renk Örnekleri -->
+            <section>
+                <h2>📝 Metin &amp; 🎨 Renk Değiştirme</h2>
+                <div class="two-col" style="width:90%; margin:0 auto;">
+                    <div>
+                        <h3>Metin Değiştirme (HTML)</h3>
+                        <pre><code>&lt;!-- Önceki --&gt;
+&lt;h1&gt;Merhaba Dünya&lt;/h1&gt;
+
+&lt;!-- Sonraki --&gt;
+&lt;h1&gt;Hoş Geldiniz&lt;/h1&gt;</code></pre>
+                    </div>
+                    <div>
+                        <h3>Renk Değiştirme (CSS)</h3>
+                        <pre><code>/* Önceki */
+color: #6366f1;
+background: #ffffff;
+
+/* Sonraki */
+color: #059669;
+background: #f0fdf4;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Resim ve Link Örnekleri -->
+            <section>
+                <h2>🖼️ Resim &amp; 🔗 Link Değiştirme</h2>
+                <div class="two-col" style="width:90%; margin:0 auto;">
+                    <div>
+                        <h3>Resim Değiştirme</h3>
+                        <pre><code>&lt;!-- Önceki --&gt;
+&lt;img src="eski-foto.jpg" alt="Fotoğraf"&gt;
+
+&lt;!-- Sonraki --&gt;
+&lt;img src="images/yeni-foto.jpg" alt="Fotoğraf"&gt;</code></pre>
+                    </div>
+                    <div>
+                        <h3>Link Değiştirme</h3>
+                        <pre><code>&lt;!-- Önceki --&gt;
+&lt;a href="https://eski-site.com"&gt;
+  Siteye Git
+&lt;/a&gt;
+
+&lt;!-- Sonraki --&gt;
+&lt;a href="https://yeni-site.com"&gt;
+  Siteye Git
+&lt;/a&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Font ve Boşluk -->
+            <section>
+                <h2>🔤 Font Boyutu &amp; 📏 Boşluklar</h2>
+                <div class="two-col" style="width:90%; margin:0 auto;">
+                    <div>
+                        <h3>Font Boyutu (CSS)</h3>
+                        <pre><code>/* Başlıkları büyütmek */
+h1 { font-size: 42px; }  /* → 48px */
+h2 { font-size: 28px; }  /* → 32px */
+
+/* Paragraf metni */
+p { font-size: 16px; }   /* → 18px */</code></pre>
+                    </div>
+                    <div>
+                        <h3>Boşluk Ayarları (CSS)</h3>
+                        <pre><code>/* margin = dış boşluk */
+.card { margin: 20px; }
+
+/* padding = iç boşluk */
+.card { padding: 24px; }
+
+/* Sadece üstten boşluk */
+.section { margin-top: 60px; }</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Mini Uygulama -->
+            <section>
+                <h2>🎯 Mini Uygulama: Kendiniz Deneyin!</h2>
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-text">
+                            <h4>Sayfa başlığını değiştirin</h4>
+                            <p><code>&lt;h1&gt;</code> etiketindeki metni bulun → kendi adınızı yazın</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-text">
+                            <h4>Ana rengi değiştirin</h4>
+                            <p>CSS'te <code>color:</code> veya <code>background:</code> satırını bulun → yeni HEX kodu yapıştırın</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-text">
+                            <h4>Bir link güncelleyin</h4>
+                            <p><code>href="..."</code> içindeki URL'yi kendi sosyal medya adresinizle değiştirin</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">4</div>
+                        <div class="step-text">
+                            <h4>Kaydedin ve tarayıcıda yenileyin</h4>
+                            <p><kbd>Ctrl</kbd>+<kbd>S</kbd> ile kaydedin, <kbd>F5</kbd> ile sayfayı yenileyin</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SECTION: Proje Örnekleri -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">🚀</div>
+                <h2>Proje Örnekleri</h2>
+                <p>Hazır promptları kopyalayıp<br>AI aracınıza yapıştırın!</p>
+            </section>
+
+            <!-- SLIDE: Projeler Genel Bakış -->
+            <section>
+                <h2>🚀 8 Hazır Proje Şablonu</h2>
+                <div class="card-grid">
+                    <div class="card"><h4>🎨 Portfolyo</h4><p>Kişisel vitrin sitesi</p></div>
+                    <div class="card"><h4>📝 Blog</h4><p>Kişisel blog sayfası</p></div>
+                    <div class="card"><h4>🍽️ Restoran</h4><p>Kafe/restoran tanıtımı</p></div>
+                    <div class="card"><h4>📄 CV</h4><p>Online özgeçmiş</p></div>
+                    <div class="card"><h4>📱 Landing Page</h4><p>Ürün tanıtım sayfası</p></div>
+                    <div class="card"><h4>📸 Fotoğraf Galerisi</h4><p>Portfolyo & lightbox</p></div>
+                    <div class="card"><h4>📊 Veri Görüntüleyici</h4><p>CSV/JSON dashboard</p></div>
+                    <div class="card"><h4>💍 Davetiye</h4><p>Dijital düğün davetiyesi</p></div>
+                </div>
+                <div class="info-box" style="margin-top:0.5em;">
+                    <p>💡 Her projenin hazır promptu web sitemizde mevcut. Kopyalayıp AI aracınıza yapıştırın!</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Proje 1 - Portfolyo -->
+            <section>
+                <h2>🎨 Proje: Kişisel Portfolyo Sitesi</h2>
+                <div class="prompt-box" style="font-size:0.34em;">Kişisel portfolyo web sitesi oluştur. Tek sayfa (single page) olsun.
+
+Bölümler:
+1) Hero/Tanıtım: İsim, unvan, kısa slogan, profil fotoğrafı placeholder
+2) Hakkımda: 2-3 paragraf biyografi
+3) Yetenekler: İkon veya progress bar ile göster (HTML, CSS, JS, Photoshop vb.)
+4) Projeler: 3-4 adet proje kartı (grid layout). Her kartta:
+   - Proje görseli placeholder, Proje adı, Kısa açıklama, "Demo" ve "GitHub" linkleri
+5) İletişim: Basit form (İsim, E-posta, Mesaj) + sosyal medya linkleri
+6) Footer: Telif hakkı, sosyal linkler
+
+Tasarım: Modern, minimalist. Ana renk: #6366f1 (indigo). Karanlık tema.
+Font: Google Fonts - "Inter". Smooth scroll, mobil uyumlu.</div>
+            </section>
+
+            <!-- SLIDE: Proje 2 - Blog -->
+            <section>
+                <h2>📝 Proje: Kişisel Blog</h2>
+                <div class="prompt-box" style="font-size:0.34em;">Kişisel blog web sitesi oluştur. İki sayfa olsun: Ana sayfa ve Yazı sayfası.
+
+Ana Sayfa:
+- Üstte navigasyon (Blog adı, Hakkımda, Kategoriler)
+- Hero: Blog adı, kısa açıklama
+- Blog yazıları listesi: Kart düzeninde, her kartta tarih, kategori, başlık, özet, "Devamını Oku"
+- Sidebar: Hakkımda kutusu, Kategoriler listesi, Son yazılar
+
+Yazı Sayfası:
+- Başlık, yazar, tarih, okuma süresi
+- Makale içeriği (güzel tipografi ile)
+- Fotoğraf alanı, detaylı biyografi, sosyal medya linkleri
+
+Tasarım: Temiz, okunabilir, beyaz arka plan, tipografi odaklı.
+Ana renk: #059669 (yeşil). Mobil uyumlu.
+Örnek blog yazıları (3 adet): teknoloji, seyahat ve yemek konularında.</div>
+            </section>
+
+            <!-- SLIDE: Proje 3 - Restoran -->
+            <section>
+                <h2>🍽️ Proje: Restoran / Kafe Sitesi</h2>
+                <div class="prompt-box" style="font-size:0.34em;">Bir kafe/restoran için tanıtım web sitesi oluştur. Tek sayfa olsun.
+
+İşletme Bilgileri:
+- İsim: "Kahve Durağı", Slogan: "Her yudumda bir hikaye"
+- Adres: İstanbul, Kadıköy | Çalışma saatleri: 08:00 - 22:00
+
+Bölümler:
+1) Hero: Tam ekran arka plan görseli, kafe adı ve sloganı
+2) Hakkımızda: Kısa hikaye, kuruluş yılı
+3) Menü: Kategorilere ayrılmış (Kahveler, Tatlılar, Atıştırmalıklar)
+4) Galeri: 6 adet fotoğraf placeholder'ı grid düzeninde
+5) Konum ve İletişim: Google Maps placeholder, adres, telefon
+6) Footer: Sosyal medya ikonları
+
+Tasarım: Sıcak renkler (kahverengi, krem tonları), zarif font. Mobil uyumlu.</div>
+            </section>
+
+            <!-- SLIDE: Proje 4 - CV -->
+            <section>
+                <h2>📄 Proje: Online CV / Özgeçmiş</h2>
+                <div class="prompt-box" style="font-size:0.34em;">Online CV (özgeçmiş) web sayfası oluştur. Tek sayfa, A4 kağıt görünümünde.
+
+Sol Sütun (koyu arka plan):
+- Profil fotoğrafı (yuvarlak), isim ve unvan
+- İletişim bilgileri (e-posta, telefon, konum)
+- Beceriler (progress bar: Photoshop %90, Illustrator %85, Figma %80)
+- Yabancı Dil (İngilizce: İleri, Almanca: Orta)
+
+Sağ Sütun (açık arka plan):
+- Profil/Özet paragrafı
+- İş Deneyimi (3 adet), Eğitim (2 adet), Sertifikalar
+
+Tasarım: Profesyonel, temiz. Yazdırılabilir olsun (print CSS).
+Renk: koyu lacivert + beyaz. Mobilde tek sütun.
+Kişi: "Mehmet Kaya, Dijital Pazarlama Uzmanı"</div>
+            </section>
+
+            <!-- SLIDE: Proje 5 - Landing Page -->
+            <section>
+                <h2>📱 Proje: Ürün Tanıtım Sayfası</h2>
+                <div class="prompt-box" style="font-size:0.34em;">Mobil uygulama için landing page oluştur.
+Uygulama: "FitTakip" — Egzersiz ve beslenme takip uygulaması
+
+Bölümler:
+1) Hero: Başlık, açıklama, "Hemen İndir" butonu + telefon mockup (CSS ile)
+2) Özellikler: 3 sütun — "Egzersiz Takibi", "Kalori Sayacı", "İlerleme Grafikleri"
+3) Nasıl Çalışır: 3 adım (1-Kaydol, 2-Hedef Belirle, 3-Takip Et)
+4) Kullanıcı Yorumları: 3 testimonial kartı
+5) Fiyatlandırma: 2 plan (Ücretsiz, Premium — 49.99 TL/ay)
+6) SSS: 4-5 accordion soru-cevap
+7) CTA: "Bugün başla", e-posta giriş alanı
+
+Tasarım: Gradient (mor-mavi), modern, enerjik, animasyonlu, responsive.</div>
+            </section>
+
+            <!-- SLIDE: Proje 6-7-8 Özet -->
+            <section>
+                <h2>📸 📊 💍 Diğer Proje Şablonları</h2>
+                <div class="three-col">
+                    <div>
+                        <h4>📸 Fotoğraf Galerisi</h4>
+                        <p>Masonry düzeninde galeri, lightbox, kategori filtreleri. Siyah arka plan, minimal tipografi.</p>
+                        <ul>
+                            <li>Filtreleme: Portre, Manzara, Sokak</li>
+                            <li>Lightbox: Saf CSS/JS ile</li>
+                            <li>Hakkımda sayfası dahil</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>📊 Veri Görüntüleyici</h4>
+                        <p>CSV/JSON dosya yükleme, tablo, sıralama, filtreleme, Chart.js grafikler.</p>
+                        <ul>
+                            <li>Dosya sürükle-bırak</li>
+                            <li>A-Z sıralama</li>
+                            <li>CSV dışa aktarma</li>
+                            <li>Koyu tema seçeneği</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>💍 Düğün Davetiyesi</h4>
+                        <p>Geri sayım sayacı, hikaye çizelgesi, RSVP formu, fotoğraf galerisi.</p>
+                        <ul>
+                            <li>Canlı geri sayım (JS)</li>
+                            <li>Paralaks efekti</li>
+                            <li>El yazısı fontları</li>
+                            <li>RSVP formu</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Veri Kaynakları -->
+            <section>
+                <h2>📊 Hazır Veri Kaynakları — CSV &amp; JSON</h2>
+                <p>Veri Görüntüleyici projesinde kullanabileceğiniz ücretsiz açık veriler:</p>
+                <table>
+                    <thead>
+                        <tr><th>Veri Seti</th><th>Format</th><th>Kaynak</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>🌍 Dünya Nüfus Verileri</td><td>CSV</td><td>World Bank</td></tr>
+                        <tr><td>🏙️ Dünya Şehirleri</td><td>CSV</td><td>datasets/world-cities</td></tr>
+                        <tr><td>🚢 Titanic Yolcuları</td><td>CSV</td><td>datasciencedojo</td></tr>
+                        <tr><td>🌍 REST Countries API</td><td>JSON</td><td>restcountries.com</td></tr>
+                        <tr><td>🏅 Nobel Ödülleri</td><td>JSON</td><td>nobelprize.org</td></tr>
+                        <tr><td>🌍 USGS Deprem Verileri</td><td>JSON</td><td>earthquake.usgs.gov</td></tr>
+                    </tbody>
+                </table>
+                <div class="info-box" style="margin-top:0.3em;">
+                    <p>💡 Daha fazlası: Kaggle Datasets, Google Dataset Search, TÜİK Açık Veri</p>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SECTION: Yayınlama -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">🚀</div>
+                <h2>Sitenizi İnternete Yayınlayın</h2>
+                <p>GitHub Pages ile ücretsiz yayınlama</p>
+            </section>
+
+            <!-- SLIDE: GitHub Pages Adımlar -->
+            <section>
+                <h2>🐙 GitHub Pages — 4 Adım</h2>
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-text">
+                            <h4>GitHub Hesabı Oluşturun</h4>
+                            <p><a href="https://github.com">github.com</a> adresine gidin ve ücretsiz bir hesap açın.</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-text">
+                            <h4>Repository Oluşturun</h4>
+                            <p>Sağ üstteki <strong>+</strong> → "New repository". İsim: <code>kullaniciadi.github.io</code></p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-text">
+                            <h4>Dosyalarınızı Yükleyin</h4>
+                            <p>"uploading an existing file" linkine tıklayın → dosyaları sürükleyip bırakın → "Commit changes"</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">4</div>
+                        <div class="step-text">
+                            <h4>Siteniz Yayında! 🎉</h4>
+                            <p><code>kullaniciadi.github.io</code> formatındaki repolar otomatik etkindir. Birkaç dakika bekleyin!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: GitHub Pages Detaylar -->
+            <section>
+                <h2>🐙 GitHub Pages — Önemli Detaylar</h2>
+                <div class="two-col" style="width:90%; margin:0 auto;">
+                    <div>
+                        <h3>👤 Kullanıcı Adınızı Bulma</h3>
+                        <ul>
+                            <li>Sağ üst profil fotoğrafına tıklayın</li>
+                            <li>Profil URL'niz: github.com/<strong>kullaniciadi</strong></li>
+                            <li>Repo oluştururken Owner alanında görünür</li>
+                        </ul>
+                        <h3 style="margin-top:0.5em;">📁 Dosya Yükleme</h3>
+                        <ul>
+                            <li><strong>İlk yükleme:</strong> "uploading an existing file" linki</li>
+                            <li><strong>Sonraki yüklemeler:</strong> "Add file" → "Upload files"</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>📊 Limitler</h3>
+                        <table style="width:100%; font-size:0.9em;">
+                            <tr><td><strong>Repo boyutu</strong></td><td>1 GB</td></tr>
+                            <tr><td><strong>Bant genişliği</strong></td><td>100 GB/ay</td></tr>
+                            <tr><td><strong>Build limiti</strong></td><td>10/saat</td></tr>
+                            <tr><td><strong>Dosya başına</strong></td><td>100 MB</td></tr>
+                            <tr><td><strong>Web yükleme</strong></td><td>25 MB/dosya</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="warning-box" style="margin-top:0.3em;">
+                    <p>⚠️ Reponuzun kök dizininde mutlaka <code>index.html</code> olmalıdır, aksi halde site açılmaz!</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Diğer Hosting Alternatifleri -->
+            <section>
+                <h2>🌐 Diğer Ücretsiz Hosting Alternatifleri</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>▲ Vercel</h4>
+                        <p>Next.js'in yaratıcıları. GitHub ile otomatik deploy, ücretsiz SSL.</p>
+                    </div>
+                    <div class="card">
+                        <h4>◆ Netlify</h4>
+                        <p>Sürükle-bırak deploy. Ücretsiz form işleme. 100GB/ay bant genişliği.</p>
+                    </div>
+                    <div class="card">
+                        <h4>☁️ Cloudflare Pages</h4>
+                        <p>Sınırsız bant genişliği! Global CDN (250+ lokasyon).</p>
+                    </div>
+                    <div class="card">
+                        <h4>🔥 Firebase Hosting</h4>
+                        <p>Google altyapısı. 10GB ücretsiz depolama. Firestore entegrasyonu.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Proje Bazlı Repolar -->
+            <section>
+                <h2>📂 İleri Seviye: Proje Bazlı Ayrı Repolar</h2>
+                <p>Birden fazla site yayınlayacaksanız, her biri için ayrı repo oluşturmanız tavsiye edilir</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Tek Repo (kullaniciadi.github.io)</th>
+                            <th>Proje Bazlı Repolar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Adres</strong></td><td>kullaniciadi.github.io</td><td>kullaniciadi.github.io/repo-adi</td></tr>
+                        <tr><td><strong>Dosyalar</strong></td><td>Tüm projeler iç içe</td><td>Her repo kendi dosyalarını içerir</td></tr>
+                        <tr><td><strong>Güncelleme</strong></td><td>Karışma riski</td><td>Sadece o projenin dosyaları</td></tr>
+                        <tr><td><strong>En iyi</strong></td><td>Ana kişisel siteniz</td><td>Her ek proje/etkinlik</td></tr>
+                    </tbody>
+                </table>
+                <div class="info-box" style="margin-top:0.3em;">
+                    <p>💡 <strong>Altın kural:</strong> Ana siteniz → <code>kullaniciadi.github.io</code> | Her ek proje → Ayrı repo</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Proje Bazlı Repo Adımları -->
+            <section>
+                <h2>📋 Proje Bazlı Repo — Adımlar</h2>
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-text">
+                            <h4>Yeni Repo Oluşturun</h4>
+                            <p>"+" → "New repository". Anlamlı isim verin: <code>dugun-davetiye</code>, <code>blog</code>, <code>etkinlik-2025</code></p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-text">
+                            <h4>Dosyalarınızı Yükleyin</h4>
+                            <p>"Add file" → "Upload files". <strong>Seçenek A:</strong> Kök dizine | <strong>Seçenek B:</strong> <code>/docs</code> klasörüne</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-text">
+                            <h4>GitHub Pages'i Aktifleştirin</h4>
+                            <p>Settings → Pages → Branch: main → Klasör: <code>/ (root)</code> veya <code>/docs</code> → Save</p>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">4</div>
+                        <div class="step-text">
+                            <h4>Yayında! 🎉</h4>
+                            <p>Adres: <code>kullaniciadi.github.io/repo-adi</code></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SECTION: Frontend & Backend -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">🔄</div>
+                <h2>Frontend vs Backend</h2>
+                <p>Web sitelerinin iki temel katmanı</p>
+            </section>
+
+            <!-- SLIDE: Frontend vs Backend Açıklama -->
+            <section>
+                <h2>🔄 Frontend vs Backend</h2>
+                <div class="two-col" style="width:90%; margin:0 auto;">
+                    <div style="background:rgba(99,102,241,0.05); padding:16px; border-radius:10px; border-top:4px solid var(--primary);">
+                        <h3 style="margin-bottom:0.1em;">🎨 Frontend (Ön Yüz)</h3>
+                        <p style="margin:0;"><strong>HTML + CSS + JavaScript</strong> — Tarayıcıda çalışır</p>
+                        <ul style="margin-top:0.2em;">
+                            <li>Kullanıcının gördüğü her şey</li>
+                            <li>Tasarım, renkler, animasyonlar</li>
+                            <li>Buton tıklamaları, menüler, mobil uyumluluk</li>
+                        </ul>
+                    </div>
+                    <div style="background:rgba(16,185,129,0.05); padding:16px; border-radius:10px; border-top:4px solid var(--green);">
+                        <h3 style="margin-bottom:0.1em;">⚙️ Backend (Arka Yüz)</h3>
+                        <p style="margin:0;"><strong>Node.js, Python, Veritabanı</strong> — Sunucuda çalışır</p>
+                        <ul style="margin-top:0.2em;">
+                            <li>Kullanıcının görmediği kısım</li>
+                            <li>Veritabanı işlemleri, güvenlik</li>
+                            <li>E-posta, ödeme, veri analizi</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-box" style="margin-top:0.3em;">
+                    <p>🍽️ <strong>Restoran benzetmesi:</strong> Frontend = yemek salonu | Backend = mutfak. AI ile yaptığımız siteler sadece "salon" kısmıdır — çoğu proje için yeterli!</p>
+                </div>
+            </section>
+
+            <!-- SLIDE: Statik vs Dinamik -->
+            <section>
+                <h2>📄 Statik Site vs ⚙️ Dinamik Site</h2>
+                <div class="two-col" style="width:90%; margin:0 auto;">
+                    <div>
+                        <h3>📄 Statik Site (Sadece Frontend)</h3>
+                        <p>HTML, CSS ve JS dosyaları olduğu gibi gönderilir.</p>
+                        <p><strong>Örnekler:</strong> Portfolyo, Blog, CV, Düğün Davetiyesi, Ürün Tanıtımı</p>
+                        <ul>
+                            <li>✅ GitHub Pages ile ücretsiz</li>
+                            <li>✅ Süper hızlı (CDN)</li>
+                            <li>✅ Güvenlik riski minimal</li>
+                            <li>✅ AI araçları ile kolayca yapılır</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>⚙️ Dinamik Site (Frontend + Backend)</h3>
+                        <p>Sunucuda kod çalışır, veritabanından veri çekilir.</p>
+                        <p><strong>Örnekler:</strong> E-ticaret, Sosyal Medya, Bankacılık</p>
+                        <ul>
+                            <li>⚠️ Sunucu ve veritabanı gerekir</li>
+                            <li>⚠️ Daha karmaşık ve maliyetli</li>
+                            <li>⚠️ Güvenlik bilgisi önemli</li>
+                            <li>⚠️ Bakım ve güncelleme gerekir</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Yapabilecekler / Yapamayacaklar -->
+            <section>
+                <h2>✅ Yapabilecekleriniz &amp; ❌ Yapamayacaklarınız</h2>
+                <div class="two-col" style="width:90%; margin:0 auto;">
+                    <div>
+                        <h3 style="color:var(--green);">✅ Statik Site ile</h3>
+                        <ul>
+                            <li>Kişisel web sitesi / Portfolyo</li>
+                            <li>Blog yazıları</li>
+                            <li>İletişim formu (Formspree ile)</li>
+                            <li>Yorum sistemi (Giscus ile)</li>
+                            <li>Fotoğraf galerisi & Etkinlik sayfası</li>
+                            <li>Veri görselleştirme (CSV/JSON)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color:var(--red);">❌ Statik Site ile</h3>
+                        <ul>
+                            <li>Kullanıcı kayıt/giriş sistemi</li>
+                            <li>Veritabanına veri kaydetme</li>
+                            <li>E-posta gönderme</li>
+                            <li>Ödeme alma</li>
+                            <li>Gerçek zamanlı sohbet</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Backend Olmadan Çözümler -->
+            <section>
+                <h2>🔧 Backend Olmadan Çözümler</h2>
+                <div class="three-col">
+                    <div>
+                        <h4>💾 localStorage</h4>
+                        <p>Tarayıcıda küçük veri saklama (tema, checklist durumu)</p>
+                    </div>
+                    <div>
+                        <h4>📬 Formspree</h4>
+                        <p>İletişim formlarından e-posta alma. Aylık 50 ücretsiz.</p>
+                    </div>
+                    <div>
+                        <h4>💬 Giscus</h4>
+                        <p>GitHub Discussions tabanlı ücretsiz yorum sistemi.</p>
+                    </div>
+                </div>
+                <div class="three-col" style="margin-top:12px;">
+                    <div>
+                        <h4>🔐 Auth0 / Firebase Auth</h4>
+                        <p>Google, GitHub ile giriş. 7.000 kullanıcı ücretsiz.</p>
+                    </div>
+                    <div>
+                        <h4>📊 Google Sheets API</h4>
+                        <p>Google Sheets'i basit veritabanı olarak kullanın.</p>
+                    </div>
+                    <div>
+                        <h4>🍪 Cookies</h4>
+                        <p>Küçük metin verileri. Dil tercihi, bildirimler.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Veritabanı Servisleri -->
+            <section>
+                <h2>🗄️ Ücretsiz Veritabanı Servisleri</h2>
+                <div class="three-col">
+                    <div>
+                        <h4>🔥 Firebase Firestore</h4>
+                        <p>Google'ın NoSQL veritabanı. Gerçek zamanlı senkronizasyon.</p>
+                        <ul>
+                            <li>1 GB depolama</li>
+                            <li>50K okuma/gün</li>
+                            <li>20K yazma/gün</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>⚡ Supabase</h4>
+                        <p>Açık kaynak Firebase alternatifi. PostgreSQL.</p>
+                        <ul>
+                            <li>500 MB veritabanı</li>
+                            <li>1 GB dosya depolama</li>
+                            <li>50K aktif kullanıcı/ay</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>🍃 MongoDB Atlas</h4>
+                        <p>En popüler NoSQL. JSON benzeri belgeler.</p>
+                        <ul>
+                            <li>512 MB depolama</li>
+                            <li>Esnek şema</li>
+                            <li>MongoDB Compass</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE: Full Backend Platformları -->
+            <section>
+                <h2>🖥️ Tam Backend İstiyorsanız</h2>
+                <p>Bu platformlar ücretsiz başlangıç katmanları sunar:</p>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>🚂 Railway</h4>
+                        <p>Node.js, Python, Go. GitHub'dan otomatik deploy. Aylık $5 kredi.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🎨 Render</h4>
+                        <p>Statik siteler, web servisleri, veritabanları. Ücretsiz katman.</p>
+                    </div>
+                    <div class="card">
+                        <h4>🪁 Fly.io</h4>
+                        <p>Docker container dağıtımı. 3 paylaşımlı VM ücretsiz.</p>
+                    </div>
+                    <div class="card">
+                        <h4>⚡ Replit</h4>
+                        <p>Tarayıcıdan tam backend. AI destekli kodlama dahil.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SECTION: Kontrol Listesi -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">✅</div>
+                <h2>Kontrol Listesi</h2>
+                <p>İlk web siteniz için yol haritası</p>
+            </section>
+
+            <!-- SLIDE: Checklist -->
+            <section>
+                <h2>✅ İlk Web Siteniz İçin Yol Haritası</h2>
+                <div class="checklist">
+                    <div class="checklist-row"><span class="check">☐</span> <strong>1.</strong> AI aracınızı seçin ve kurun (Cursor, Trae, Bolt.new vb.)</div>
+                    <div class="checklist-row"><span class="check">☐</span> <strong>2.</strong> İlk prompt'unuzu yazın — detaylıca tarif edin</div>
+                    <div class="checklist-row"><span class="check">☐</span> <strong>3.</strong> HTML, CSS, JS temellerini öğrenin</div>
+                    <div class="checklist-row"><span class="check">☐</span> <strong>4.</strong> Sitenizi yerel olarak test edin (tarayıcıda açın veya Live Server)</div>
+                    <div class="checklist-row"><span class="check">☐</span> <strong>5.</strong> DevTools ile inceleyin — F12 ile açın, mobil görünümü kontrol edin</div>
+                    <div class="checklist-row"><span class="check">☐</span> <strong>6.</strong> Basit düzenlemeleri kendiniz yapın (metin, renk, link)</div>
+                    <div class="checklist-row"><span class="check">☐</span> <strong>7.</strong> Proje örneklerinden birini deneyin</div>
+                    <div class="checklist-row"><span class="check">☐</span> <strong>8.</strong> GitHub hesabı oluşturun</div>
+                    <div class="checklist-row"><span class="check">☐</span> <strong>9.</strong> Sitenizi GitHub Pages'e yükleyin</div>
+                    <div class="checklist-row"><span class="check">☐</span> <strong>10.</strong> Sitenizin linkini paylaşın 🎉</div>
+                    <div class="checklist-row"><span class="check">☐</span> <strong>11.</strong> Frontend & Backend farkını öğrenin</div>
+                </div>
+            </section>
+
+            <!-- ============================================== -->
+            <!-- SLIDE: Final -->
+            <!-- ============================================== -->
+            <section class="section-divider">
+                <div class="section-emoji">🎉</div>
+                <h2>Hadi Başlayalım!</h2>
+                <p>AI araçları ile ilk web sitenizi oluşturmak<br>hiç bu kadar kolay olmamıştı.</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: true,
+            width: 1280,
+            height: 720,
+            margin: 0.04,
+            transition: 'slide',
+            pdfMaxPagesPerSlide: 1,
+            pdfSeparateFragments: false
+        });
+
+        // Dark theme toggle
+        const toggle = document.getElementById('themeToggle');
+        const saved = localStorage.getItem('slides-theme');
+        if (saved === 'dark') {
+            document.body.classList.add('dark-theme');
+            toggle.textContent = '☀️';
+        }
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            toggle.textContent = isDark ? '☀️' : '🌙';
+            localStorage.setItem('slides-theme', isDark ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>

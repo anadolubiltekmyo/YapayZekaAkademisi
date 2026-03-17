@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI ile Web Sitesi Oluşturma Rehberi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-icon">🤖🌐</span>
+                <span>AI Web Rehberi</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menü">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#ai-tools">AI Araçları</a></li>
+                <li><a href="#prompt-guide">Prompt Yazma</a></li>
+                <li><a href="#fundamentals">Temel Kavramlar</a></li>
+                <li><a href="#local-dev">Yerel Geliştirme</a></li>
+                <li><a href="#manual-edits">Kod Düzenleme</a></li>
+                <li><a href="#projects">Proje Örnekleri</a></li>
+                <li><a href="#hosting">Yayınlama</a></li>
+                <li><a href="#frontend-backend">Frontend &amp; Backend</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="hero-badge">✨ Kodlama bilmiyorsanız bile web sitesi yapabilirsiniz</div>
+            <h1>AI Araçları ile<br><span class="gradient-text">Web Sitesi Oluşturma</span><br>Rehberi</h1>
+            <p class="hero-subtitle">Cursor, Claude, GitHub Copilot, Windsurf, Bolt.new, Lovable, Replit ve diğer AI araçlarını kullanarak kişisel web sayfanızı veya blogunuzu sıfırdan oluşturun — tek satır kod yazmadan.</p>
+            <div class="hero-buttons">
+                <a href="#ai-tools" class="btn btn-primary">Hemen Başla →</a>
+                <a href="#projects" class="btn btn-secondary">Proje Örnekleri</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Kodlama bilgisi gerekli</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">%100</span>
+                    <span class="stat-label">Ücretsiz yayınlama</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">~30dk</span>
+                    <span class="stat-label">İlk site süresi</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================================================================ -->
+    <!-- AI Tools Section -->
+    <!-- ================================================================ -->
+    <section class="section" id="ai-tools">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🛠️ Araçlar</span>
+                <h2>AI Kod Yazma Araçları</h2>
+                <p>Bu araçlar, sizin yerinize kod yazar. Siz sadece ne istediğinizi anlatırsınız.</p>
+            </div>
+
+            <!-- Desktop AI Editors -->
+            <h3 class="tools-category-title">💻 Masaüstü AI Editörleri</h3>
+            <p class="tools-category-desc">Bilgisayarınıza indirip kuracağınız editörler. Dosyalarınız kendi bilgisayarınızda kalır, daha fazla kontrol sağlar.</p>
+
+            <div class="tools-grid">
+                <!-- Trae -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🎨</div>
+                    </div>
+                    <h3>Trae</h3>
+                    <p class="tool-desc">ByteDance'ın AI editörü. VS Code tabanlı, şık arayüzü ve SOLO modu ile tamamen otonom proje oluşturabilir. Tamamen ücretsiz.</p>
+                    <ul class="tool-features">
+                        <li>✅ SOLO modu ile otonom kodlama</li>
+                        <li>✅ VS Code tabanlı, geçiş kolay</li>
+                        <li>✅ Tamamen ücretsiz</li>
+                        <li>✅ Çoklu AI agent desteği</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://trae.ai" target="_blank">trae.ai</a> adresinden indirin</li>
+                            <li>Hesap oluşturup giriş yapın</li>
+                            <li>Yeni klasör açın</li>
+                            <li>SOLO modunu seçip projenizi tarif edin!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- GitHub Copilot -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🐙</div>
+                    </div>
+                    <h3>GitHub Copilot</h3>
+                    <p class="tool-desc">GitHub'ın AI asistanı. VS Code içinde çalışır ve Agent modu ile komple projeler üretebilir.</p>
+                    <ul class="tool-features">
+                        <li>✅ VS Code entegrasyonu</li>
+                        <li>✅ Agent modu ile proje oluşturma</li>
+                        <li>✅ Ücretsiz plan mevcut</li>
+                        <li>✅ GitHub ile doğrudan entegrasyon</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://code.visualstudio.com" target="_blank">VS Code</a>'u indirin</li>
+                            <li>GitHub Copilot eklentisini kurun</li>
+                            <li>GitHub hesabınızla giriş yapın</li>
+                            <li>Chat panelinden <strong>Agent</strong> modunu seçin</li>
+                            <li>Projenizi tarif edin!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Cursor -->
+                <div class="tool-card featured">
+                    <div class="tool-header">
+                        <div class="tool-icon">⚡</div>
+                    </div>
+                    <h3>Cursor</h3>
+                    <p class="tool-desc">VS Code tabanlı, AI destekli kod editörü. Doğal dilde talimat vererek komple projeler oluşturabilirsiniz.</p>
+                    <ul class="tool-features">
+                        <li>✅ Composer ile sıfırdan proje oluşturma</li>
+                        <li>✅ Chat ile kodda değişiklik yapma</li>
+                        <li>✅ Türkçe talimat desteği</li>
+                        <li>✅ Ücretsiz plan mevcut</li>
+                        <li>⚠️ Türkiye ücretsiz plan listesinden çıkarıldı — VPN gerekebilir</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://cursor.sh" target="_blank">cursor.sh</a> adresinden indirin</li>
+                            <li>Kurulum sonrası açın</li>
+                            <li>Bir klasör oluşturup açın (örn: "benim-sitem")</li>
+                            <li><kbd>Cmd+I</kbd> (Mac) veya <kbd>Ctrl+I</kbd> (Windows) ile Composer'ı açın</li>
+                            <li>Ne istediğinizi Türkçe yazın!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Claude -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🧠</div>
+                    </div>
+                    <h3>Claude (Anthropic)</h3>
+                    <p class="tool-desc">Anthropic'in güçlü AI modeli. <strong>claude.ai</strong> web arayüzünde "Artifact" özelliği ile anında HTML/CSS/JS kodu üretir ve önizleme gösterir.</p>
+                    <ul class="tool-features">
+                        <li>✅ Artifact ile anında önizleme</li>
+                        <li>✅ Uzun ve detaylı kod üretimi</li>
+                        <li>✅ Türkçe konuşma desteği</li>
+                        <li>✅ Ücretsiz plan mevcut</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://claude.ai" target="_blank">claude.ai</a> adresine gidin</li>
+                            <li>Hesap oluşturup giriş yapın</li>
+                            <li>"Bana bir portfolyo web sitesi oluştur" yazın</li>
+                            <li>Artifact panelinde sonucu anında görün</li>
+                            <li>Kodu kopyalayıp dosyalarınıza yapıştırın</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Windsurf -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🏄</div>
+                    </div>
+                    <h3>Windsurf</h3>
+                    <p class="tool-desc">Codeium'un AI editörü. Cascade özelliği ile çok adımlı görevleri otomatik halleder.</p>
+                    <ul class="tool-features">
+                        <li>✅ Cascade ile otonom çalışma</li>
+                        <li>✅ VS Code tabanlı arayüz</li>
+                        <li>✅ Ücretsiz plan mevcut</li>
+                        <li>✅ Hızlı ve akıcı deneyim</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://windsurf.com" target="_blank">windsurf.com</a>'dan indirin</li>
+                            <li>Hesap oluşturup giriş yapın</li>
+                            <li>Yeni klasör açın</li>
+                            <li>Cascade panelini açın</li>
+                            <li>İstediğinizi yazın!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Zed -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">⚡</div>
+                    </div>
+                    <h3>Zed</h3>
+                    <p class="tool-desc">Rust ile yazılmış ultra hızlı, açık kaynak editör. Agentic Editing özelliği ile AI destekli kodlama yapabilirsiniz.</p>
+                    <ul class="tool-features">
+                        <li>✅ Açık kaynak ve çok hızlı</li>
+                        <li>✅ Agentic Editing (AI agent modu)</li>
+                        <li>✅ Ücretsiz (öğrencilere Pro 1 yıl bedava)</li>
+                        <li>✅ macOS, Linux ve Windows desteği</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://zed.dev" target="_blank">zed.dev</a> adresinden indirin</li>
+                            <li>Hesap oluşturun (opsiyonel)</li>
+                            <li>Agent panelini açın</li>
+                            <li>AI modelinizi seçip kodlamaya başlayın!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Kilo Code -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🔧</div>
+                    </div>
+                    <h3>Kilo Code</h3>
+                    <p class="tool-desc">Açık kaynak AI kodlama platformu. VS Code, JetBrains IDE'leri ve CLI'da çalışır. 500+ AI modeli destekler.</p>
+                    <ul class="tool-features">
+                        <li>✅ Açık kaynak (Apache 2.0)</li>
+                        <li>✅ VS Code + JetBrains + CLI desteği</li>
+                        <li>✅ 500+ AI model seçeneği</li>
+                        <li>✅ Kullandığın kadar öde (BYOK da olur)</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://kilo.ai" target="_blank">kilo.ai</a> adresine gidin</li>
+                            <li>VS Code veya JetBrains eklentisini kurun</li>
+                            <li>Hesap oluşturun veya kendi API anahtarınızı girin</li>
+                            <li>Chat panelinden projenizi tarif edin!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Junie (JetBrains) -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🧩</div>
+                    </div>
+                    <h3>Junie (JetBrains)</h3>
+                    <p class="tool-desc">JetBrains'in AI kodlama ajanı. IntelliJ IDEA, WebStorm, PyCharm gibi JetBrains IDE'leri içinde çalışır. VS Code kullanmıyorsanız güçlü bir alternatif.</p>
+                    <ul class="tool-features">
+                        <li>✅ Tüm JetBrains IDE'lerinde çalışır</li>
+                        <li>✅ AI agent ile otonom kodlama</li>
+                        <li>✅ Güçlü refactoring ve kod analizi</li>
+                        <li>⚠️ AI Pro ($100/yıl) veya AI Ultimate ($300/yıl) gerektirir</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://www.jetbrains.com/junie/" target="_blank">jetbrains.com/junie</a> sayfasından bilgi alın</li>
+                            <li>JetBrains IDE'nizi açın (ör. WebStorm, IntelliJ)</li>
+                            <li>Junie eklentisini kurun</li>
+                            <li>AI aboneliğinizi aktif edin</li>
+                            <li>Junie panelinden projenizi tarif edin!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Antigravity (Google) -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🚀</div>
+                    </div>
+                    <h3>Antigravity (Google)</h3>
+                    <p class="tool-desc">Google'ın agent-first IDE'si. VS Code tabanlı, Gemini 3 modelleriyle çalışır. Manager View ile birden fazla AI ajanını aynı anda yönetebilirsiniz.</p>
+                    <ul class="tool-features">
+                        <li>✅ Agent-first tasarım (Manager View)</li>
+                        <li>✅ Gemini 3 + Claude + GPT desteği</li>
+                        <li>✅ Tarayıcı, terminal ve editör entegrasyonu</li>
+                        <li>✅ Önizleme süresince tamamen ücretsiz</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://antigravity.google" target="_blank">antigravity.google</a> adresinden indirin</li>
+                            <li>Google hesabınızla giriş yapın</li>
+                            <li>Yeni proje oluşturun</li>
+                            <li>Agent panelinden projenizi tarif edin!</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Browser-Based AI Tools -->
+            <h3 class="tools-category-title" style="margin-top:56px;">🌐 Tarayıcı Tabanlı AI Araçları</h3>
+            <p class="tools-category-desc">Hiçbir şey indirmeden, doğrudan tarayıcınızda web sitesi oluşturabileceğiniz araçlar.</p>
+
+            <div class="tools-grid">
+                <!-- Bolt.new -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">⚡</div>
+                    </div>
+                    <h3>Bolt.new</h3>
+                    <p class="tool-desc">StackBlitz'in tarayıcı tabanlı AI aracı. Tarayıcıda tam bir geliştirme ortamı çalışır, anında önizleme görürsünüz.</p>
+                    <ul class="tool-features">
+                        <li>✅ Kurulum gerektirmez</li>
+                        <li>✅ Anlık önizleme</li>
+                        <li>✅ Tek tıkla Netlify/Vercel'e yayınlama</li>
+                        <li>⚠️ Ücretsiz kullanım sınırlı (günlük token)</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://bolt.new" target="_blank">bolt.new</a> adresine gidin</li>
+                            <li>Hesap oluşturun (Google ile giriş yapabilirsiniz)</li>
+                            <li>Ne istediğinizi yazın</li>
+                            <li>Sonucu anında görün ve düzenleyin!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Lovable -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">💜</div>
+                    </div>
+                    <h3>Lovable</h3>
+                    <p class="tool-desc">Daha önce "GPT Engineer" olarak bilinen araç. Görsel olarak çok şık sonuçlar üretir, Supabase entegrasyonu ile backend de ekleyebilirsiniz.</p>
+                    <ul class="tool-features">
+                        <li>✅ Çok şık varsayılan tasarımlar</li>
+                        <li>✅ Supabase entegrasyonu (veritabanı)</li>
+                        <li>✅ GitHub'a otomatik kaydetme</li>
+                        <li>⚠️ Ücretsiz kullanım sınırlı</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://lovable.dev" target="_blank">lovable.dev</a> adresine gidin</li>
+                            <li>Hesap oluşturun</li>
+                            <li>Projenizi tarif edin</li>
+                            <li>Oluşturulan siteyi düzenleyin ve yayınlayın!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Replit -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🔷</div>
+                    </div>
+                    <h3>Replit</h3>
+                    <p class="tool-desc">Tarayıcıda çalışan tam bir geliştirme ortamı. AI Agent özelliği ile doğal dilde proje oluşturabilirsiniz. Backend da çalıştırabilir!</p>
+                    <ul class="tool-features">
+                        <li>✅ Tarayıcıda tam geliştirme ortamı</li>
+                        <li>✅ AI Agent ile proje oluşturma</li>
+                        <li>✅ Backend + veritabanı desteği</li>
+                        <li>✅ Tek tıkla yayınlama (deploy)</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://replit.com" target="_blank">replit.com</a> adresine gidin</li>
+                            <li>Hesap oluşturun</li>
+                            <li>"Create Repl" → "AI" seçeneğini kullanın</li>
+                            <li>Projenizi tarif edin ve çalışmasını izleyin!</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Firebase Studio -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <div class="tool-icon">🔥</div>
+                    </div>
+                    <h3>Firebase Studio (Google)</h3>
+                    <p class="tool-desc">Google'ın tarayıcı tabanlı AI geliştirme ortamı (eski adıyla Project IDX). Gemini AI ile doğal dilde uygulama oluşturabilirsiniz.</p>
+                    <ul class="tool-features">
+                        <li>✅ Google hesabı ile hemen başlayın</li>
+                        <li>✅ Gemini AI entegrasyonu</li>
+                        <li>✅ Önizlemede ücretsiz (3 workspace)</li>
+                        <li>✅ GitHub/GitLab'dan repo içe aktarma</li>
+                    </ul>
+                    <div class="tool-how">
+                        <strong>Nasıl Başlanır:</strong>
+                        <ol>
+                            <li><a href="https://firebase.studio" target="_blank">firebase.studio</a> adresine gidin</li>
+                            <li>Google hesabınızla giriş yapın</li>
+                            <li>Şablon seçin veya "App Prototyping" ile başlayın</li>
+                            <li>Doğal dilde uygulamanızı tarif edin!</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-box">
+                <h3>🤔 Hangisini Seçmeliyim?</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-item">
+                        <strong>Yeni başlıyorsanız:</strong>
+                        <p>Bolt.new, Lovable veya Replit ile deneyin — tarayıcıda anında sonuç görürsünüz, hiçbir kurulum gerekmez.</p>
+                    </div>
+                    <div class="comparison-item">
+                        <strong>Daha fazla kontrol istiyorsanız:</strong>
+                        <p>Cursor indirin — Composer özelliği ile çok güçlü projeler oluşturabilirsiniz.</p>
+                    </div>
+                    <div class="comparison-item">
+                        <strong>Kod yazmadan sadece sohbet ile:</strong>
+                        <p>Claude.ai'da Artifact özelliği ile anında HTML/CSS/JS kodu üretip önizleyebilirsiniz.</p>
+                    </div>
+                    <div class="comparison-item">
+                        <strong>GitHub kullanıyorsanız:</strong>
+                        <p>VS Code + GitHub Copilot — GitHub Pages ile yayınlama çok kolay olur.</p>
+                    </div>
+                    <div class="comparison-item">
+                        <strong>Hepsini deneyin!</strong>
+                        <p>Her aracın ücretsiz planı var. Deneyerek size en uygun olanı bulun.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top:24px;">
+                🎓 <strong>Öğrenciler İçin Ücretsiz/İndirimli Erişim:</strong> Birçok AI aracı öğrencilere özel avantajlar sunar.
+                <ul style="margin:8px 0 0 0;line-height:2;">
+                    <li><strong><a href="https://education.github.com/pack" target="_blank">GitHub Student Developer Pack</a></strong> — GitHub Copilot dahil onlarca araç ücretsiz (.edu e-postası gerekli)</li>
+                    <li><strong><a href="https://www.jetbrains.com/community/education/" target="_blank">JetBrains Eğitim Lisansı</a></strong> — Tüm JetBrains IDE'leri öğrencilere ücretsiz (Junie AI ayrı abonelik)</li>
+                    <li><strong><a href="https://zed.dev/blog/student-plan" target="_blank">Zed Öğrenci Planı</a></strong> — Pro özellikleri 1 yıl ücretsiz</li>
+                    <li><strong>Cursor, Windsurf, Trae, Antigravity</strong> ve diğer araçların çoğu zaten ücretsiz planları var — başlamak için yeterli</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="section section-alt" id="prompt-guide">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💬 Prompt Rehberi</span>
+                <h2>AI'ya Nasıl Talimat Verilir?</h2>
+                <p>İyi bir prompt (talimat), iyi bir sonuç demektir. İşte etkili prompt yazmanın sırları.</p>
+            </div>
+
+            <div class="prompt-principles">
+                <!-- Principle 1 -->
+                <div class="principle-card">
+                    <div class="principle-number">1</div>
+                    <h3>Net ve Spesifik Olun</h3>
+                    <div class="prompt-comparison">
+                        <div class="prompt-bad">
+                            <span class="prompt-label">❌ Kötü Prompt</span>
+                            <code>Bir web sitesi yap</code>
+                        </div>
+                        <div class="prompt-good">
+                            <span class="prompt-label">✅ İyi Prompt</span>
+                            <code>Kişisel portfolyo web sitesi oluştur. Üstte bir navigasyon barı olsun, ana sayfada büyük bir karşılama bölümü, altında 3 sütunlu beceriler bölümü ve en altta iletişim formu olsun. Renk teması koyu mavi ve beyaz olsun.</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Principle 2 -->
+                <div class="principle-card">
+                    <div class="principle-number">2</div>
+                    <h3>Yapıyı Tarif Edin</h3>
+                    <div class="prompt-comparison">
+                        <div class="prompt-bad">
+                            <span class="prompt-label">❌ Kötü Prompt</span>
+                            <code>Blog sitesi yap</code>
+                        </div>
+                        <div class="prompt-good">
+                            <span class="prompt-label">✅ İyi Prompt</span>
+                            <code>Kişisel blog sitesi oluştur. Şu sayfalar olsun: 
+1) Ana sayfa — son yazıların kartlar halinde listesi 
+2) Hakkımda sayfası — fotoğraf alanı ve biyografi 
+3) Yazı detay sayfası — başlık, tarih, içerik alanı
+Tasarım minimal ve modern olsun, mobilde de güzel görünsün.</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Principle 3 — with HEX color codes -->
+                <div class="principle-card">
+                    <div class="principle-number">3</div>
+                    <h3>Görsel Detaylar Verin</h3>
+                    <div class="prompt-comparison">
+                        <div class="prompt-bad">
+                            <span class="prompt-label">❌ Kötü Prompt</span>
+                            <code>Güzel bir site yap</code>
+                        </div>
+                        <div class="prompt-good">
+                            <span class="prompt-label">✅ İyi Prompt</span>
+                            <code>Modern bir tasarımla kişisel site oluştur. Arka plan gradient olsun (koyu mordan laciverte). Kartların köşeleri yuvarlatılmış olsun, hafif gölge efekti olsun. Yazı fontu sans-serif, başlıklar kalın. Butonlarda hover efekti olsun.</code>
+                        </div>
+                    </div>
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h4>🎨 HEX Renk Kodları Nedir?</h4>
+                        <p>Web'de renkler <strong>HEX kodu</strong> ile belirtilir: <code>#</code> işareti ile başlayan 6 haneli bir kod. Örneğin:</p>
+                        <div style="display:flex;gap:12px;flex-wrap:wrap;margin:12px 0;">
+                            <span style="background:#2563eb;color:#fff;padding:4px 14px;border-radius:6px;font-family:var(--font-mono);font-size:0.85rem;">#2563eb Mavi</span>
+                            <span style="background:#dc2626;color:#fff;padding:4px 14px;border-radius:6px;font-family:var(--font-mono);font-size:0.85rem;">#dc2626 Kırmızı</span>
+                            <span style="background:#059669;color:#fff;padding:4px 14px;border-radius:6px;font-family:var(--font-mono);font-size:0.85rem;">#059669 Yeşil</span>
+                            <span style="background:#7c3aed;color:#fff;padding:4px 14px;border-radius:6px;font-family:var(--font-mono);font-size:0.85rem;">#7c3aed Mor</span>
+                            <span style="background:#f59e0b;color:#000;padding:4px 14px;border-radius:6px;font-family:var(--font-mono);font-size:0.85rem;">#f59e0b Turuncu</span>
+                        </div>
+                        <p>Renk seçmek için şu siteleri kullanabilirsiniz:</p>
+                        <ul style="margin-top:8px;">
+                            <li>🎨 <a href="https://coolors.co" target="_blank">coolors.co</a> — Uyumlu renk paletleri oluşturun</li>
+                            <li>🎯 <a href="https://colorhunt.co" target="_blank">colorhunt.co</a> — Hazır renk paletleri keşfedin</li>
+                            <li>📋 <a href="https://htmlcolorcodes.com" target="_blank">htmlcolorcodes.com</a> — Renk seçici + HEX kodları</li>
+                        </ul>
+                        <p style="margin-top:8px;"><strong>Prompt'ta şöyle kullanın:</strong> <em>"Ana renk #2563eb (mavi), arka plan #f8fafc (açık gri), butonlar #059669 (yeşil) olsun."</em></p>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h4>🔤 Font (Yazı Tipi) Seçimi</h4>
+                        <p>Doğru font seçimi sitenizin profesyonel görünümü için çok önemlidir. Web'de en yaygın font kaynağı <strong>Google Fonts</strong>'tur — tamamen ücretsiz ve tüm tarayıcılarda çalışır.</p>
+                        <ul style="margin-top:8px;">
+                            <li>🔤 <a href="https://fonts.google.com" target="_blank">Google Fonts</a> — 1.500+ ücretsiz font. En popülerler: <em>Inter, Roboto, Open Sans, Poppins, Montserrat, Nunito</em></li>
+                            <li>✍️ <a href="https://fonts.google.com/?classification=Handwriting" target="_blank">El Yazısı Fontları</a> — Davetiye, özel sayfalar için: <em>Dancing Script, Great Vibes, Pacifico</em></li>
+                            <li>💻 <a href="https://fonts.google.com/?classification=Monospace" target="_blank">Monospace Fontları</a> — Kod gösterimi için: <em>JetBrains Mono, Fira Code, Source Code Pro</em></li>
+                        </ul>
+                        <p style="margin-top:8px;"><strong>Prompt'ta şöyle kullanın:</strong> <em>"Başlıklarda Google Fonts'tan 'Poppins' fontu kullan (kalın 700), paragraflar için 'Inter' (normal 400). Genel yazı boyutu 16px, başlıklar 32px olsun."</em></p>
+                        <p style="margin-top:8px;">Farklı fontları denemek için: <a href="https://fontpair.co" target="_blank">fontpair.co</a> (uyumlu font çiftleri) ve <a href="https://typescale.com" target="_blank">typescale.com</a> (yazı boyutu oranları)</p>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h4>📐 Boşluk ve Düzen (Layout) Kavramları</h4>
+                        <p>AI'ya boşluk ve düzen konusunda detay verirseniz çok daha iyi sonuçlar alırsınız. İşte sık kullanılan terimler:</p>
+                        <ul style="margin-top:8px;">
+                            <li><strong>Padding (İç boşluk):</strong> Bir kutunun içeriği ile kenarı arasındaki boşluk. <em>"Kartların içinde 24px padding olsun"</em></li>
+                            <li><strong>Margin (Dış boşluk):</strong> Elemanlar arasındaki boşluk. <em>"Bölümler arasında 60px boşluk olsun"</em></li>
+                            <li><strong>Grid (Izgara):</strong> İçeriği sütunlara bölme. <em>"3 sütunlu ızgara düzeninde göster, mobilde tek sütun olsun"</em></li>
+                            <li><strong>Flexbox:</strong> Elemanları yatay veya dikey hizalama. <em>"Logo ve menü yan yana, aralarında boşluk olsun"</em></li>
+                            <li><strong>Container (Kapsayıcı):</strong> İçeriğin maksimum genişliği. <em>"İçerik alanı maksimum 1200px genişliğinde, ortada olsun"</em></li>
+                        </ul>
+                        <p style="margin-top:8px;"><strong>Prompt'ta şöyle kullanın:</strong> <em>"Her bölümde 80px dikey padding olsun. Kartlar arasında 24px boşluk (gap) olsun. İçerik max-width 1140px ile ortalansın. Mobilde padding 20px'e düşsün."</em></p>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h4>🧩 Bileşen Galerilerinden İlham Alın</h4>
+                        <p>AI'ya daha iyi talimat vermek için gerçek web bileşenlerini inceleyin. Bu siteler, yaygın UI bileşenlerinin farklı tasarım örneklerini sergiler — ne istediğinizi daha iyi tarif etmenize yardımcı olur:</p>
+                        <ul style="margin-top:8px;">
+                            <li>🧩 <a href="https://component.gallery/components/" target="_blank">Component Gallery</a> — Navbar, Card, Modal, Footer, Hero gibi yüzlerce bileşen örneği. Bir bileşene tıklayıp farklı sitelerdeki uygulamalarını görün.</li>
+                            <li>🎨 <a href="https://uiverse.io" target="_blank">uiverse.io</a> — Butonlar, kartlar, formlar gibi güzel CSS bileşenleri. Kodu kopyalayıp AI'ya gösterebilirsiniz.</li>
+                            <li>📦 <a href="https://tailwindui.com/components" target="_blank">Tailwind UI Components</a> — Modern component örnekleri (önizleme ücretsiz)</li>
+                            <li>🖼️ <a href="https://ui-patterns.com" target="_blank">UI Patterns</a> — Yaygın tasarım kalıplarını ve ne zaman kullanılacaklarını öğrenin</li>
+                        </ul>
+                        <p style="margin-top:8px;"><strong>Nasıl kullanılır?</strong> Örneğin <a href="https://component.gallery/components/" target="_blank">Component Gallery</a>'de "Card" bileşenine bakın, beğendiğiniz bir tasarımın özelliklerini tespit edin, sonra AI'ya bu detayları verin: <em>"Proje kartları Pinterest tarzı masonry düzeninde olsun, her kartta üstte görsel, altında başlık ve açıklama, köşeleri yuvarlatılmış, hover'da hafifçe yukarı kalksın."</em></p>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h4>🖼️ Ücretsiz Görsel Kaynakları</h4>
+                        <p>Siteniz için yüksek kaliteli, ücretsiz ve telif hakkı olmayan görseller bulabileceğiniz platformlar:</p>
+                        <ul style="margin-top:8px;">
+                            <li>📸 <a href="https://unsplash.com" target="_blank">Unsplash</a> — Yüksek çözünürlüklü, profesyonel fotoğraflar. Tamamen ücretsiz, ticari kullanıma açık.</li>
+                            <li>📷 <a href="https://www.pexels.com" target="_blank">Pexels</a> — Ücretsiz stok fotoğraflar ve videolar. Lisans gerektirmez.</li>
+                            <li>🖼️ <a href="https://pixabay.com" target="_blank">Pixabay</a> — 4 milyon+ ücretsiz görsel, illüstrasyon ve vektör.</li>
+                            <li>🎭 <a href="https://undraw.co/illustrations" target="_blank">unDraw</a> — Tamamen ücretsiz, özelleştirilebilir SVG illüstrasyonlar. Renk seçebilirsiniz.</li>
+                            <li>😀 <a href="https://heroicons.com" target="_blank">Heroicons</a> — Ücretsiz SVG ikonlar. Web siteleri için ideal.</li>
+                            <li>🎨 <a href="https://www.svgrepo.com" target="_blank">SVG Repo</a> — 500.000+ ücretsiz SVG ikon ve illüstrasyon.</li>
+                        </ul>
+                        <p style="margin-top:8px;"><strong>Prompt'ta şöyle kullanın:</strong> <em>"Hero bölümünde Unsplash'tan bir doğa fotoğrafı kullan (placeholder olarak https://images.unsplash.com/photo-xxx formatında). Özellikler bölümünde her kart için Heroicons'tan ikon kullan."</em></p>
+                    </div>
+                </div>
+
+                <!-- Principle 4 — with file/asset guidance -->
+                <div class="principle-card">
+                    <div class="principle-number">4</div>
+                    <h3>İçerik Örnekleri ve Dosyalarınızı Verin</h3>
+                    <div class="prompt-comparison">
+                        <div class="prompt-good" style="flex: 1;">
+                            <span class="prompt-label">✅ İçerik ile Prompt</span>
+                            <code>Portfolyo sitesi oluştur. İçerikler şöyle olsun:
+
+İsim: Ayşe Yılmaz
+Meslek: Grafik Tasarımcı
+Hakkımda: "5 yıldır freelance grafik tasarım yapıyorum..."
+
+Projeler:
+- Logo Tasarımı — Cafe Mola için modern logo
+- Afiş Tasarımı — Müzik festivali afişi
+- Web Tasarımı — E-ticaret sitesi arayüzü
+
+Her proje bir kart içinde gösterilsin, kartlarda proje ismi ve açıklaması olsun.</code>
+                        </div>
+                    </div>
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h4>📁 Kendi Dosyalarınızı / Görsellerinizi Kullanma</h4>
+                        <p>Masaüstü editörlerde (Cursor, VS Code vb.) kendi dosyalarınızı projeye ekleyebilirsiniz:</p>
+                        <ul style="margin-top:8px;">
+                            <li>📸 Fotoğraflarınızı proje klasörüne koyun, sonra AI'ya: <em>"images klasöründeki profil.jpg dosyasını hero bölümünde kullan"</em></li>
+                            <li>🎨 Bir mockup/tasarım görseliniz varsa: <em>"Ekteki tasarım görselini referans alarak bu sayfayı oluştur"</em> (Cursor/Copilot bunu destekler)</li>
+                            <li>📄 Metin içeriğinizi doğrudan prompt'a yapıştırın veya dosya olarak verin</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Principle 5 — Web Search & API (NEW) -->
+                <div class="principle-card">
+                    <div class="principle-number">5</div>
+                    <h3>Web Araması ve API Kullanımı İsteyin</h3>
+                    <p class="principle-tip">AI araçlarının birçoğu web'den bilgi çekebilir veya API'lerden veri alabilir. Bunu prompt'larınızda kullanın:</p>
+                    <div class="prompt-comparison">
+                        <div class="prompt-good" style="flex: 1;">
+                            <span class="prompt-label">✅ Web Araması Örnekleri</span>
+                            <code>🔍 "Bu siteye hava durumu widget'ı ekle. OpenWeatherMap API'sini kullan, İstanbul için güncel hava durumunu göstersin."
+
+📊 "Döviz kurları bölümü ekle. Güncel USD/TRY ve EUR/TRY kurlarını bir API'den çekip göstersin."
+
+📰 "Haber akışı bölümü ekle. Bir RSS feed'den son haberleri çekip listelesin."
+
+🗺️ "İletişim sayfasına Google Maps haritası ekle, koordinatlar: 41.0082, 28.9784 (İstanbul)"</code>
+                        </div>
+                    </div>
+                    <div class="warning-box" style="margin-top:16px;">
+                        ⚠️ <strong>API anahtarı uyarısı:</strong> Bazı API'ler anahtar (key) gerektirir. GitHub Pages'da yayınladığınızda bu anahtar kodunuzda görünür olur. Hassas API anahtarlarını frontend'de kullanmaktan kaçının.
+                    </div>
+                </div>
+
+                <!-- Principle 6 -->
+                <div class="principle-card">
+                    <div class="principle-number">6</div>
+                    <h3>Referans Gösterin</h3>
+                    <div class="prompt-comparison">
+                        <div class="prompt-good" style="flex: 1;">
+                            <span class="prompt-label">✅ Referanslı Prompt</span>
+                            <code>Apple.com'un minimalist tarzında bir ürün tanıtım sayfası yap. Büyük ürün görseli ortada, altında kısa özellik açıklamaları, siyah-beyaz renk şeması. Scroll'da paralaks efekti olsun.</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <h3>💡 Altın Kurallar</h3>
+                <div style="display:grid;gap:16px;">
+                    <div>
+                        <strong>1. İteratif (adım adım) çalışın:</strong>
+                        <p>Sonuç beğenmediyseniz, AI'ya neyi beğenmediğinizi söyleyin: <em>"Butonlar çok küçük, daha büyük yap"</em>, <em>"Renkleri daha canlı yap"</em>, <em>"Navigasyon barını sabit yap"</em> gibi düzeltmeler her zaman yapabilirsiniz.</p>
+                    </div>
+                    <div>
+                        <strong>2. Tek seferde detaylı prompt da olur:</strong>
+                        <p>Her şeyi adım adım vermek zorunda değilsiniz. Çok detaylı tek bir prompt ile de harika sonuçlar alabilirsiniz. Proje örneklerimizdeki promptlar buna iyi bir örnektir.</p>
+                    </div>
+                    <div>
+                        <strong>3. Hataları AI'ya gösterin:</strong>
+                        <p>Bir şey çalışmıyorsa, hata mesajını kopyalayıp AI'ya yapıştırın: <em>"Bu hatayı alıyorum: [hata mesajı]. Düzeltir misin?"</em> — AI hataları çözmekte çok iyidir.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- Fundamentals Section -->
+    <!-- ================================================================ -->
+    <section class="section" id="fundamentals">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">📚 Temel Kavramlar</span>
+                <h2>HTML, CSS ve JavaScript Nedir?</h2>
+                <p>AI aracınızla konuşurken bu üç terimi bilmek, ne istediğinizi çok daha iyi ifade etmenizi sağlar.</p>
+            </div>
+
+            <div class="fundamentals-grid">
+                <!-- HTML Card -->
+                <div class="fundamental-card">
+                    <div class="fund-icon">🏗️</div>
+                    <h3>HTML</h3>
+                    <p>Web sayfasının <strong>iskelet yapısıdır</strong>. Başlıklar, paragraflar, resimler, butonlar — sayfadaki her şey HTML etiketleri ile tanımlanır.</p>
+                    <div class="analogy">🏠 Ev benzetmesi: HTML = Evin duvarları, odaları, kapıları</div>
+                    <div class="code-mini">
+                        <code>&lt;h1&gt;Merhaba Dünya&lt;/h1&gt;</code>
+                        <code>&lt;p&gt;Bu bir paragraf.&lt;/p&gt;</code>
+                        <code>&lt;img src="foto.jpg"&gt;</code>
+                    </div>
+                </div>
+
+                <!-- CSS Card -->
+                <div class="fundamental-card">
+                    <div class="fund-icon">🎨</div>
+                    <h3>CSS</h3>
+                    <p>Sayfanın <strong>görünümünü ve tasarımını</strong> belirler. Renkler, yazı tipleri, boşluklar, animasyonlar — her şeyin nasıl göründüğü CSS ile ayarlanır.</p>
+                    <div class="analogy">🏠 Ev benzetmesi: CSS = Boyası, dekorasyonu, mobilyaları</div>
+                    <div class="code-mini">
+                        <code>color: #6366f1;</code>
+                        <code>font-size: 18px;</code>
+                        <code>background: linear-gradient(...);</code>
+                    </div>
+                </div>
+
+                <!-- JavaScript Card -->
+                <div class="fundamental-card">
+                    <div class="fund-icon">⚡</div>
+                    <h3>JavaScript</h3>
+                    <p>Sayfaya <strong>hareket ve etkileşim</strong> katar. Butona tıklayınca bir şey olması, form göndermek, animasyonlar — hepsi JavaScript ile çalışır.</p>
+                    <div class="analogy">🏠 Ev benzetmesi: JavaScript = Elektrik, su tesisatı, akıllı ev sistemi</div>
+                    <div class="code-mini">
+                        <code>button.addEventListener('click', ...)</code>
+                        <code>document.getElementById('menu')</code>
+                        <code>fetch('https://api.example.com')</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsive Design Demo -->
+            <div class="concept-section">
+                <h3>📱 Responsive (Duyarlı) Tasarım</h3>
+                <p>Web sitenizin telefon, tablet ve masaüstünde farklı boyutlara uyum sağlamasıdır. AI araçlarına "mobil uyumlu olsun" demeniz yeterlidir.</p>
+                
+                <div class="responsive-demo">
+                    <div class="device device-mobile">
+                        <div class="device-frame">
+                            <div class="device-screen">
+                                <div class="mini-nav"></div>
+                                <div class="mini-hero"></div>
+                                <div class="mini-block"></div>
+                                <div class="mini-block"></div>
+                            </div>
+                        </div>
+                        <span>📱 Telefon</span>
+                        <small>Tek sütun düzen</small>
+                    </div>
+                    <div class="device device-tablet">
+                        <div class="device-frame">
+                            <div class="device-screen">
+                                <div class="mini-nav"></div>
+                                <div class="mini-hero"></div>
+                                <div class="mini-row">
+                                    <div class="mini-block"></div>
+                                    <div class="mini-block"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <span>📱 Tablet</span>
+                        <small>2 sütun düzen</small>
+                    </div>
+                    <div class="device device-desktop">
+                        <div class="device-frame">
+                            <div class="device-screen">
+                                <div class="mini-nav"></div>
+                                <div class="mini-hero"></div>
+                                <div class="mini-row">
+                                    <div class="mini-block"></div>
+                                    <div class="mini-block"></div>
+                                    <div class="mini-block"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <span>🖥️ Masaüstü</span>
+                        <small>Çok sütunlu düzen</small>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 Piksel mi, düzen mi?</strong>
+                    <p>Günümüz telefonları fiziksel olarak 1080p, 1440p hatta daha yüksek çözünürlüğe sahip. Ancak tarayıcılar <strong>"CSS pikseli"</strong> denen mantıksal bir birim kullanır — örneğin 1080px fiziksel genişliğe sahip bir telefon, tarayıcıda ~360-414px olarak görünür. Bu yüzden responsive tasarımda önemli olan piksel sayısı değil, <strong>içeriğin farklı ekran boyutlarına uyum sağlaması</strong>dır. AI aracınıza "mobil uyumlu ve responsive olsun" demeniz yeterlidir.</p>
+                </div>
+            </div>
+
+            <!-- Key Concepts Grid -->
+            <div class="concept-section">
+                <h3>🧩 Sık Karşılaşacağınız Kavramlar</h3>
+                <p>AI aracınızla çalışırken bu terimleri görebilirsiniz. Hepsini ezberlemenize gerek yok — karşılaşınca buraya dönüp bakabilirsiniz.</p>
+
+                <div class="concepts-grid">
+                    <div class="concept-card">
+                        <h4>📄 index.html</h4>
+                        <p>Web sitenizin ana sayfası. Tarayıcı bir siteyi açtığında ilk bu dosyayı arar. Her web sitesinin bir <code>index.html</code> dosyası vardır.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>🎨 style.css</h4>
+                        <p>Sitenizin tasarım dosyası. Renkler, yazı boyutları, boşluklar bu dosyada tanımlanır. HTML dosyasına bağlanır.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>⚡ script.js</h4>
+                        <p>Sitenize etkileşim katan JavaScript dosyası. Buton tıklamaları, animasyonlar, form işlemleri burada yazılır.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>📁 Dosya Yapısı</h4>
+                        <p>Tipik bir site: ana klasörde <code>index.html</code>, <code>style.css</code>, <code>script.js</code> ve resimler için bir <code>images/</code> klasörü bulunur.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>🔗 URL / Link</h4>
+                        <p>Web adreslerinin teknik adı. <code>https://siteniz.com</code> gibi. GitHub Pages'te siteniz <code>kullaniciadi.github.io</code> adresinde yayınlanır.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>🌐 Domain</h4>
+                        <p>Sitenizin adı, örneğin <code>google.com</code>. Ücretsiz alt alan adları (<code>.github.io</code>, <code>.vercel.app</code>) veya özel domain satın alabilirsiniz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- Local Development Section (Before Hosting) -->
+    <!-- ================================================================ -->
+    <section class="section" id="local-dev" style="background: var(--gray-50);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💻 Yerel Geliştirme</span>
+                <h2>Sitenizi Bilgisayarınızda Test Edin</h2>
+                <p>Yayınlamadan önce sitenizi kendi bilgisayarınızda çalıştırıp test edebilirsiniz. İşte 3 yöntem:</p>
+            </div>
+
+            <div class="local-methods">
+                <!-- Method 1 -->
+                <div class="method-card">
+                    <span class="method-number">Yöntem 1</span>
+                    <h3>📂 Dosyayı Doğrudan Açın</h3>
+                    <p>En basit yöntem: <code>index.html</code> dosyasına çift tıklayın, tarayıcınızda açılır.</p>
+                    <ol>
+                        <li>Proje klasörünüze gidin</li>
+                        <li><code>index.html</code> dosyasına çift tıklayın</li>
+                        <li>Tarayıcıda siteniz açılır (adres: <code>file:///...</code>)</li>
+                        <li>Değişiklik yaptıktan sonra sayfayı yenileyin (F5)</li>
+                    </ol>
+                    <div class="method-pros-cons">
+                        <span class="pro">✅ En kolay yöntem</span>
+                        <span class="pro">✅ Kurulum gerektirmez</span>
+                        <span class="con">⚠️ Bazı özellikler çalışmayabilir (aşağıya bakın)</span>
+                    </div>
+
+                    <div class="warning-box" style="margin-top:16px;">
+                        <h4>⚠️ <code>file:///</code> ile Açmak Ne Zaman Yetmez?</h4>
+                        <p>Basit HTML + CSS + JS projelerinde dosyayı çift tıklayıp açmak gayet yeterlidir. Ancak şu durumlarda <strong>yerel bir sunucu</strong> (Live Server veya Python sunucusu) gerekir:</p>
+                        <ul style="margin:12px 0;line-height:2;">
+                            <li><strong><code>fetch()</code> ile veri çekme:</strong> JavaScript'te <code>fetch("veri.json")</code> gibi dosya okuma işlemleri <code>file:///</code> protokolünde <strong>CORS hatası</strong> verir. Sunucu gerekir.</li>
+                            <li><strong>ES Modülleri (<code>type="module"</code>):</strong> Modern JavaScript modülleri (<code>import/export</code>) sadece HTTP üzerinden çalışır.</li>
+                            <li><strong>Service Worker / PWA:</strong> Offline çalışma özellikleri <code>http://</code> veya <code>https://</code> gerektirir.</li>
+                            <li><strong>API çağrısı yapan projeler:</strong> Harici API'lerden veri çeken sayfalar sunucu olmadan çalışmayabilir.</li>
+                        </ul>
+                        <p><strong>🐍 Python ile hızlı sunucu:</strong> Terminal/Komut satırında proje klasörünüze gidin ve şu komutu çalıştırın:</p>
+                        <div class="code-example" style="margin-top:8px;">
+                            <div class="code-header">Terminal / Komut Satırı</div>
+                            <pre><code>python -m http.server 8000</code></pre>
+                        </div>
+                        <p style="margin-top:8px;">Ardından tarayıcıda <code>http://localhost:8000</code> adresine gidin. Siteniz gerçek bir sunucudaymış gibi çalışacaktır. Durdurmak için terminalde <kbd>Ctrl+C</kbd> basın.</p>
+                        <p style="margin-top:8px;"><strong>Kural:</strong> Sadece HTML, CSS ve basit JS kullanıyorsanız → çift tıkla yeter. <code>fetch()</code>, modül veya API kullanıyorsanız → sunucu gerekir.</p>
+                    </div>
+                </div>
+
+                <!-- Method 2 -->
+                <div class="method-card">
+                    <span class="method-number">Yöntem 2</span>
+                    <h3>🔌 VS Code Live Server</h3>
+                    <p>Visual Studio Code kullanıyorsanız, Live Server eklentisi ile değişiklikleriniz anında tarayıcıda güncellenir.</p>
+                    <ol>
+                        <li><a href="https://code.visualstudio.com" target="_blank">VS Code</a>'u indirip kurun</li>
+                        <li>Sol panelde Extensions (Eklentiler) sekmesini açın</li>
+                        <li>"Live Server" arayıp kurun</li>
+                        <li><code>index.html</code>'e sağ tıklayıp "Open with Live Server" seçin</li>
+                        <li>Tarayıcı otomatik açılır, her kaydettiğinizde sayfa yenilenir</li>
+                    </ol>
+                    <div class="method-pros-cons">
+                        <span class="pro">✅ Otomatik yenileme</span>
+                        <span class="pro">✅ Gerçek sunucu gibi çalışır</span>
+                        <span class="con">⚠️ VS Code kurulumu gerekli</span>
+                    </div>
+                </div>
+
+                <!-- Method 3 -->
+                <div class="method-card">
+                    <span class="method-number">Yöntem 3</span>
+                    <h3>🌐 Tarayıcı Tabanlı Araçlar</h3>
+                    <p>Bolt.new, Lovable veya Replit kullanıyorsanız, zaten tarayıcıda canlı önizleme görürsünüz.</p>
+                    <ol>
+                        <li>Bolt.new / Lovable / Replit'te projenizi açın</li>
+                        <li>Sağ panelde otomatik canlı önizleme görürsünüz</li>
+                        <li>Her değişiklik anında yansır</li>
+                        <li>İndirip yerel geliştirmeye geçmek isterseniz "Export" / "Download" butonunu kullanın</li>
+                    </ol>
+                    <div class="method-pros-cons">
+                        <span class="pro">✅ Hiçbir kurulum gerektirmez</span>
+                        <span class="pro">✅ Her cihazdan erişim</span>
+                        <span class="con">⚠️ İnternet bağlantısı gerekli</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DevTools -->
+            <div class="devtools-section">
+                <h3>🔍 Tarayıcı Geliştirici Araçları (DevTools)</h3>
+                <p>Tüm tarayıcılarda yerleşik olarak bulunan güçlü araçlar. Sitenizi incelemenizi, hataları bulmanızı ve canlı düzenlemeler yapmanızı sağlar.</p>
+
+                <div class="devtools-open">
+                    <h4>Nasıl Açılır?</h4>
+
+                    <div class="browser-shortcuts">
+                        <div class="browser-shortcut-group">
+                            <div class="browser-label">🟢 Chrome / Edge</div>
+                            <div class="shortcut-grid">
+                                <div class="shortcut"><kbd>F12</kbd><span>Aç / Kapat</span></div>
+                                <div class="shortcut"><kbd>Ctrl + Shift + I</kbd><span>Windows / Linux</span></div>
+                                <div class="shortcut"><kbd>Cmd + Option + I</kbd><span>Mac</span></div>
+                                <div class="shortcut"><kbd>Ctrl + Shift + M</kbd><span>Mobil görünüm (Win/Linux)</span></div>
+                                <div class="shortcut"><kbd>Cmd + Shift + M</kbd><span>Mobil görünüm (Mac)</span></div>
+                            </div>
+                        </div>
+
+                        <div class="browser-shortcut-group">
+                            <div class="browser-label">🟠 Firefox</div>
+                            <div class="shortcut-grid">
+                                <div class="shortcut"><kbd>F12</kbd><span>Aç / Kapat</span></div>
+                                <div class="shortcut"><kbd>Ctrl + Shift + I</kbd><span>Windows / Linux</span></div>
+                                <div class="shortcut"><kbd>Cmd + Option + I</kbd><span>Mac</span></div>
+                                <div class="shortcut"><kbd>Ctrl + Shift + M</kbd><span>Responsive mod (Win/Linux)</span></div>
+                                <div class="shortcut"><kbd>Cmd + Option + M</kbd><span>Responsive mod (Mac)</span></div>
+                            </div>
+                        </div>
+
+                        <div class="browser-shortcut-group">
+                            <div class="browser-label">🔵 Safari (Mac)</div>
+                            <div class="shortcut-grid">
+                                <div class="shortcut"><kbd>Cmd + Option + I</kbd><span>DevTools aç</span></div>
+                                <div class="shortcut"><kbd>Cmd + Ctrl + R</kbd><span>Responsive mod</span></div>
+                            </div>
+                            <div class="warning-box" style="margin-top: 12px; padding: 12px 16px;">
+                                ⚠️ Safari'de DevTools varsayılan olarak kapalıdır. Önce etkinleştirin: <strong>Ayarlar → Gelişmiş → "Web geliştiricileri için özellikleri göster"</strong> kutusunu işaretleyin.
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 16px; font-size: 0.9rem; color: var(--gray-500);">💡 Tüm tarayıcılarda <strong>Sağ Tık → İncele (Inspect)</strong> ile de açılabilir.</p>
+                </div>
+
+                <div class="devtools-tabs">
+                    <div class="devtool-tab">
+                        <h4>📋 Elements</h4>
+                        <p>Sayfanın HTML yapısını görün. Herhangi bir elemana tıklayıp CSS özelliklerini canlı olarak değiştirebilirsiniz.</p>
+                        <p class="devtool-tip">💡 Renkleri denemek için mükemmel! Değişiklikler geçicidir, sayfayı yenileyince sıfırlanır.</p>
+                    </div>
+                    <div class="devtool-tab">
+                        <h4>🎨 Styles</h4>
+                        <p>Seçili elemanın CSS kurallarını görüntüleyin. Değerleri tıklayıp anında düzenleyebilirsiniz.</p>
+                        <p class="devtool-tip">💡 Beğendiğiniz değişiklikleri not alıp CSS dosyanıza uygulayın.</p>
+                    </div>
+                    <div class="devtool-tab">
+                        <h4>⚠️ Console</h4>
+                        <p>JavaScript hatalarını gösterir. Kırmızı mesajlar varsa, AI aracınıza bu hataları kopyalayıp yapıştırın.</p>
+                        <p class="devtool-tip">💡 "Console'da şu hata var: [hata mesajı]" şeklinde AI'ya sorun.</p>
+                    </div>
+                </div>
+
+                <!-- Device Toolbar Detailed Guide -->
+                <div class="device-toolbar-guide" style="margin-top: 32px;">
+                    <h4>📱 Device Toolbar — Mobil Görünümü Test Etme</h4>
+                    <p style="margin-bottom: 16px;">Sitenizi yayınlamadan önce farklı cihazlarda nasıl göründüğünü <strong>masaüstü tarayıcınızdan</strong> test edebilirsiniz. Bu özellik tüm tarayıcılarda yerleşik olarak gelir.</p>
+
+                    <div class="device-toolbar-steps">
+                        <div class="dt-step">
+                            <div class="dt-step-number">1</div>
+                            <div class="dt-step-content">
+                                <strong>DevTools'u açın</strong> (F12 veya yukarıdaki kısayollar) ve ardından <strong>Device Toolbar</strong> ikonuna tıklayın — telefon+tablet şeklinde küçük bir ikondur. Veya doğrudan kısayol kullanın (Chrome/Edge: <kbd>Ctrl+Shift+M</kbd>).
+                            </div>
+                        </div>
+                        <div class="dt-step">
+                            <div class="dt-step-number">2</div>
+                            <div class="dt-step-content">
+                                <strong>Cihaz seçin:</strong> Üstteki açılır menüden iPhone SE, iPhone 14 Pro, iPad, Samsung Galaxy gibi popüler cihazları seçebilirsiniz. Ya da "Responsive" modunda boyutları sürükleyerek ayarlayın.
+                            </div>
+                        </div>
+                        <div class="dt-step">
+                            <div class="dt-step-number">3</div>
+                            <div class="dt-step-content">
+                                <strong>Kontrol edin:</strong> Yazılar taşıyor mu? Butonlara rahatça tıklanabiliyor mu? Yatay kaydırma çubuğu oluşuyor mu? Sağda gereksiz boşluk var mı?
+                            </div>
+                        </div>
+                        <div class="dt-step">
+                            <div class="dt-step-number">4</div>
+                            <div class="dt-step-content">
+                                <strong>Sorun bulursanız → AI'ya sorun:</strong> "Sitem mobilde sağa taşıyor, düzelt" veya "iPhone SE'de menü düzgün görünmüyor" gibi promptlar yazın.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 16px;">
+                        💡 <strong>İpucu:</strong> Gerçek telefonunuzda da test etmek isterseniz, bilgisayar ve telefon aynı Wi-Fi'dayken <code>python -m http.server</code> çalıştırıp telefondan bilgisayarınızın IP adresine (örn: <code>192.168.1.x:8000</code>) bağlanabilirsiniz.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- Manual Edits Section -->
+    <!-- ================================================================ -->
+    <section class="section" id="manual-edits">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">✏️ Kod Düzenleme</span>
+                <h2>Basit Değişiklikler Kendiniz Yapın</h2>
+                <p>AI'dan her küçük değişiklik için prompt yazmak yerine, bazı basit düzenlemeleri kendiniz yapabilirsiniz. İşte en yaygın 6 düzenleme:</p>
+            </div>
+
+            <div class="edits-grid">
+                <!-- Edit 1: Text Changes -->
+                <div class="edit-card">
+                    <h3>1. Metin Değiştirme</h3>
+                    <p>Herhangi bir metni bulmak ve değiştirmek için editörünüzde <strong>Ctrl+H</strong> (Mac: Cmd+H) kullanın.</p>
+                    <div class="code-example">
+                        <div class="code-header">index.html</div>
+                        <pre><code><span class="code-comment">&lt;!-- Eski metin --&gt;</span>
+<span class="code-old">&lt;h1&gt;Hoş Geldiniz&lt;/h1&gt;</span>
+
+<span class="code-comment">&lt;!-- Yeni metin --&gt;</span>
+<span class="code-new">&lt;h1&gt;Merhaba, Ben Ahmet!&lt;/h1&gt;</span></code></pre>
+                    </div>
+                    <p class="edit-tip">💡 İpucu: <code>Ctrl+H</code> ile "Hoş Geldiniz" yazıp "Merhaba, Ben Ahmet!" ile değiştirebilirsiniz.</p>
+                </div>
+
+                <!-- Edit 2: Colors -->
+                <div class="edit-card">
+                    <h3>2. Renk Değiştirme</h3>
+                    <p>CSS dosyanızda renk kodlarını bulun ve değiştirin. Renkler genellikle <strong>#</strong> ile başlar (HEX format).</p>
+                    <div class="code-example">
+                        <div class="code-header">style.css</div>
+                        <pre><code><span class="code-comment">/* Ana rengi değiştir */</span>
+<span class="code-old">background: #6366f1;</span>
+<span class="code-new">background: #e74c3c;</span>
+
+<span class="code-comment">/* Yazı rengini değiştir */</span>
+<span class="code-old">color: #333333;</span>
+<span class="code-new">color: #1a1a2e;</span></code></pre>
+                    </div>
+                    <p class="edit-tip">💡 Renk seçmek için <a href="https://coolors.co" target="_blank">coolors.co</a> veya <a href="https://htmlcolorcodes.com" target="_blank">htmlcolorcodes.com</a> kullanabilirsiniz.</p>
+                </div>
+
+                <!-- Edit 3: Images -->
+                <div class="edit-card">
+                    <h3>3. Resim Değiştirme</h3>
+                    <p>Resimleri değiştirmek için <code>src</code> özelliğindeki dosya adını güncelleyin.</p>
+                    <div class="code-example">
+                        <div class="code-header">index.html</div>
+                        <pre><code><span class="code-comment">&lt;!-- Eski resim --&gt;</span>
+<span class="code-old">&lt;img src="images/photo.jpg" alt="Fotoğraf"&gt;</span>
+
+<span class="code-comment">&lt;!-- Yeni resim --&gt;</span>
+<span class="code-new">&lt;img src="images/profil.jpg" alt="Profil fotoğrafım"&gt;</span></code></pre>
+                    </div>
+                    <p class="edit-tip">💡 Yeni resmi aynı klasöre koyup adını güncelleyin. <code>alt</code> yazısı resim yüklenmezse görünür.</p>
+                </div>
+
+                <!-- Edit 4: Links (Twitter→X update + tel: example) -->
+                <div class="edit-card">
+                    <h3>4. Link (Bağlantı) Ekleme/Değiştirme</h3>
+                    <p><code>&lt;a href="..."&gt;</code> etiketlerinde URL'yi güncelleyin. Sosyal medya, e-posta veya telefon bağlantısı ekleyebilirsiniz.</p>
+                    <div class="code-example">
+                        <div class="code-header">index.html</div>
+                        <pre><code><span class="code-comment">&lt;!-- Sosyal medya linki (X / eski Twitter) --&gt;</span>
+<span class="code-new">&lt;a href="https://x.com/kullaniciadi"&gt;X (Twitter)&lt;/a&gt;</span>
+
+<span class="code-comment">&lt;!-- E-posta linki --&gt;</span>
+<span class="code-new">&lt;a href="mailto:ornek@email.com"&gt;Bana yazın&lt;/a&gt;</span>
+
+<span class="code-comment">&lt;!-- Telefon linki (mobilde doğrudan arar) --&gt;</span>
+<span class="code-new">&lt;a href="tel:+905551234567"&gt;Beni Arayın&lt;/a&gt;</span></code></pre>
+                    </div>
+                    <p class="edit-tip">💡 <code>mailto:</code> e-posta, <code>tel:</code> telefon, <code>https://</code> web sitesi bağlantısı açar.</p>
+                </div>
+
+                <!-- Edit 5: Font Size -->
+                <div class="edit-card">
+                    <h3>5. Yazı Boyutu Değiştirme</h3>
+                    <p>CSS'te <code>font-size</code> değerini bulun ve sayıyı artırıp azaltın.</p>
+                    <div class="code-example">
+                        <div class="code-header">style.css</div>
+                        <pre><code><span class="code-comment">/* Başlık boyutunu büyüt */</span>
+<span class="code-old">font-size: 24px;</span>
+<span class="code-new">font-size: 36px;</span>
+
+<span class="code-comment">/* Paragraf boyutunu ayarla */</span>
+<span class="code-old">font-size: 14px;</span>
+<span class="code-new">font-size: 18px;</span></code></pre>
+                    </div>
+                    <p class="edit-tip">💡 <code>px</code> = piksel. Sayı büyüdükçe yazı da büyür. Genel metin için 16-18px idealdir.</p>
+                </div>
+
+                <!-- Edit 6: Spacing -->
+                <div class="edit-card">
+                    <h3>6. Boşluk Ayarlama</h3>
+                    <p>CSS'te <code>margin</code> (dış boşluk) ve <code>padding</code> (iç boşluk) değerlerini değiştirin.</p>
+                    <div class="code-example">
+                        <div class="code-header">style.css</div>
+                        <pre><code><span class="code-comment">/* Dış boşluk (margin) */</span>
+<span class="code-old">margin: 10px;</span>
+<span class="code-new">margin: 30px;</span>
+
+<span class="code-comment">/* İç boşluk (padding) */</span>
+<span class="code-old">padding: 8px 16px;</span>
+<span class="code-new">padding: 16px 32px;</span></code></pre>
+                    </div>
+                    <p class="edit-tip">💡 <code>margin</code> elementin dışındaki, <code>padding</code> içindeki boşluktur. Değerler: üst sağ alt sol sırasıyla.</p>
+                </div>
+            </div>
+
+            <!-- Mini Practice Task -->
+            <div class="tip-box" style="margin-top: 48px;">
+                <h4>🧪 Mini Pratik Görev</h4>
+                <p>Aşağıdaki 3 küçük değişikliği kendi projenizde deneyin:</p>
+                <ol style="margin-top: 12px; padding-left: 20px; color: #78350f;">
+                    <li style="margin-bottom: 8px;"><strong>Metin değiştirin:</strong> Sayfanızdaki başlık metnini kendi adınızla güncelleyin (<code>Ctrl+H</code> ile).</li>
+                    <li style="margin-bottom: 8px;"><strong>Renk değiştirin:</strong> CSS dosyanızdaki bir <code>#</code> renk kodunu <a href="https://coolors.co" target="_blank" style="color: #92400e; font-weight: 600;">coolors.co</a>'dan seçtiğiniz yeni bir renkle değiştirin.</li>
+                    <li style="margin-bottom: 8px;"><strong>Link ekleyin:</strong> Sayfanıza bir <code>&lt;a href="mailto:..."&gt;</code> e-posta linki ekleyin.</li>
+                </ol>
+                <p style="margin-top: 12px;">Bu 3 görevi tamamladığınızda, AI olmadan küçük düzenlemeler yapabileceğinize güveneceksiniz! 🎉</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- Projects Section -->
+    <!-- ================================================================ -->
+    <section class="section section-alt" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🚀 Projeler</span>
+                <h2>Hazır Proje Örnekleri ve Promptlar</h2>
+                <p>Aşağıdaki promptları doğrudan AI aracınıza yapıştırarak projeleri oluşturabilirsiniz.</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: Portfolyo -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-mockup mockup-portfolio">
+                            <div class="mockup-nav"></div>
+                            <div class="mockup-hero-block"></div>
+                            <div class="mockup-grid-3"></div>
+                            <div class="mockup-footer"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-difficulty easy">Kolay</span>
+                        <h3>Kişisel Portfolyo Sitesi</h3>
+                        <p>Kendinizi tanıtacağınız, projelerinizi sergileyeceğiniz profesyonel bir portfolyo.</p>
+                        <div class="project-prompt">
+                            <div class="prompt-header">
+                                <span>📋 Prompt — Kopyala ve Yapıştır</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopyala</button>
+                            </div>
+                            <pre class="prompt-text">Kişisel portfolyo web sitesi oluştur. Tek sayfa (single page) olsun. Bölümler:
+
+1) Hero/Karşılama: Büyük başlık "Merhaba, ben [İsim]", altında kısa açıklama ve "Projelerimi Gör" butonu
+2) Hakkımda: Sol tarafta yuvarlak fotoğraf alanı (placeholder), sağda biyografi metni
+3) Beceriler: 4 sütunlu ızgara, her birinde ikon ve beceri adı
+4) Projeler: 3 proje kartı — her kartta görsel alanı, proje adı, açıklama ve "İncele" butonu
+5) İletişim: Basit form (isim, e-posta, mesaj) ve sosyal medya ikonları
+6) Footer: Telif hakkı yazısı
+
+Tasarım: Modern, minimalist. Ana renk: #2563eb (mavi), arka plan beyaz, kartlarda hafif gölge. Font: sans-serif. Scroll animasyonları olsun. Tamamen mobil uyumlu (responsive) olsun.
+
+Dosya yapısı: index.html, style.css, script.js şeklinde ayrı dosyalar olsun.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Blog -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-mockup mockup-blog">
+                            <div class="mockup-nav"></div>
+                            <div class="mockup-post"></div>
+                            <div class="mockup-post"></div>
+                            <div class="mockup-post"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-difficulty medium">Orta</span>
+                        <h3>Kişisel Blog</h3>
+                        <p>Yazılarınızı paylaşacağınız şık bir blog sitesi.</p>
+                        <div class="project-prompt">
+                            <div class="prompt-header">
+                                <span>📋 Prompt — Kopyala ve Yapıştır</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopyala</button>
+                            </div>
+                            <pre class="prompt-text">Kişisel blog web sitesi oluştur. Birden fazla sayfa olsun:
+
+Sayfa 1 — Ana Sayfa (index.html):
+- Üstte sabit navigasyon: Blog adı (sol), menü linkleri (sağ)
+- Blog yazılarının listesi kart formatında
+- Sağ tarafta veya altta: Hakkımda kısa kutusu, Kategoriler listesi
+
+Sayfa 2 — Yazı Detay (post.html):
+- Başlık, yazar, tarih, kategori etiketi
+- Yazı içeriği (örnek uzun metin koy)
+- Alt kısımda "Önceki Yazı" ve "Sonraki Yazı" navigasyonu
+
+Sayfa 3 — Hakkımda (about.html):
+- Fotoğraf alanı, detaylı biyografi, sosyal medya linkleri
+
+Tasarım: Temiz, okunabilir, beyaz arka plan, tipografi odaklı. Ana renk: #059669 (yeşil tonları). Mobil uyumlu olsun.
+
+Örnek blog yazıları (3 adet) oluştur: teknoloji, seyahat ve yemek konularında.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Restoran -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-mockup mockup-restaurant">
+                            <div class="mockup-nav"></div>
+                            <div class="mockup-hero-big"></div>
+                            <div class="mockup-menu-grid"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-difficulty easy">Kolay</span>
+                        <h3>Restoran / Kafe Sitesi</h3>
+                        <p>Küçük işletmeler için şık bir tanıtım sayfası.</p>
+                        <div class="project-prompt">
+                            <div class="prompt-header">
+                                <span>📋 Prompt — Kopyala ve Yapıştır</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopyala</button>
+                            </div>
+                            <pre class="prompt-text">Bir kafe/restoran için tanıtım web sitesi oluştur. Tek sayfa olsun.
+
+İşletme Bilgileri:
+- İsim: "Kahve Durağı"
+- Slogan: "Her yudumda bir hikaye"
+- Adres: İstanbul, Kadıköy
+- Çalışma saatleri: 08:00 - 22:00
+
+Bölümler:
+1) Hero: Tam ekran arka plan görseli (placeholder), üstünde kafe adı ve sloganı
+2) Hakkımızda: Kısa hikaye, kuruluş yılı
+3) Menü: Kategorilere ayrılmış (Kahveler, Tatlılar, Atıştırmalıklar). Her üründe isim ve fiyat.
+4) Galeri: 6 adet fotoğraf placeholder'ı ızgara düzeninde
+5) Konum ve İletişim: Google Maps placeholder, adres, telefon, çalışma saatleri
+6) Footer: Sosyal medya ikonları
+
+Tasarım: Sıcak renkler (kahverengi, krem tonları), zarif font seçimi. Mobil uyumlu.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: CV -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-mockup mockup-cv">
+                            <div class="mockup-sidebar"></div>
+                            <div class="mockup-main-content"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-difficulty easy">Kolay</span>
+                        <h3>Online CV / Özgeçmiş</h3>
+                        <p>İş başvurularında kullanabileceğiniz dijital CV.</p>
+                        <div class="project-prompt">
+                            <div class="prompt-header">
+                                <span>📋 Prompt — Kopyala ve Yapıştır</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopyala</button>
+                            </div>
+                            <pre class="prompt-text">Online CV (özgeçmiş) web sayfası oluştur. Tek sayfa, A4 kağıt görünümünde.
+
+Sol Sütun (koyu arka plan):
+- Profil fotoğrafı (yuvarlak placeholder)
+- İsim ve unvan
+- İletişim bilgileri (e-posta, telefon, konum)
+- Beceriler (progress bar ile göster: Photoshop %90, Illustrator %85, Figma %80)
+- Yabancı Dil (İngilizce: İleri, Almanca: Orta)
+
+Sağ Sütun (açık arka plan):
+- Profil/Özet paragrafı
+- İş Deneyimi (3 adet, tarih, şirket, pozisyon, açıklama)
+- Eğitim (2 adet, tarih, okul, bölüm)
+- Sertifikalar
+
+Tasarım: Profesyonel, temiz. Yazdırılabilir olsun (print CSS). Renk: koyu lacivert + beyaz. Mobilde tek sütun olsun.
+
+Örnek kişi: "Mehmet Kaya, Dijital Pazarlama Uzmanı" olarak doldur.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Landing Page -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-mockup mockup-landing">
+                            <div class="mockup-nav"></div>
+                            <div class="mockup-hero-split"></div>
+                            <div class="mockup-features"></div>
+                            <div class="mockup-cta"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-difficulty medium">Orta</span>
+                        <h3>Ürün Tanıtım Sayfası</h3>
+                        <p>Bir ürün veya hizmeti tanıtmak için landing page.</p>
+                        <div class="project-prompt">
+                            <div class="prompt-header">
+                                <span>📋 Prompt — Kopyala ve Yapıştır</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopyala</button>
+                            </div>
+                            <pre class="prompt-text">Bir mobil uygulama için landing page (tanıtım sayfası) oluştur.
+
+Uygulama: "FitTakip" — Egzersiz ve beslenme takip uygulaması
+
+Bölümler:
+1) Hero: Sol tarafta başlık, açıklama ve "Hemen İndir" butonu. Sağ tarafta telefon mockup'ı (CSS ile oluştur).
+2) Özellikler: 3 sütun — "Egzersiz Takibi", "Kalori Sayacı", "İlerleme Grafikleri"
+3) Nasıl Çalışır: 3 adımlı süreç (1-Kaydol, 2-Hedef Belirle, 3-Takip Et)
+4) Kullanıcı Yorumları: 3 testimonial kartı
+5) Fiyatlandırma: 2 plan (Ücretsiz, Premium — aylık 49.99 TL)
+6) SSS: 4-5 accordion soru-cevap
+7) CTA: "Bugün başla" bölümü, e-posta giriş alanı
+
+Tasarım: Gradient arka planlar (mor-mavi), modern, enerjik. Animasyonlar olsun. Tamamen responsive.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: Photo Gallery -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-mockup mockup-gallery">
+                            <div class="mockup-nav"></div>
+                            <div class="mockup-masonry"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-difficulty medium">Orta</span>
+                        <h3>Fotoğraf Galerisi / Portfolyo</h3>
+                        <p>Fotoğraflarınızı sergileyen görsel odaklı site.</p>
+                        <div class="project-prompt">
+                            <div class="prompt-header">
+                                <span>📋 Prompt — Kopyala ve Yapıştır</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopyala</button>
+                            </div>
+                            <pre class="prompt-text">Fotoğraf portfolyosu web sitesi oluştur.
+
+Ana Sayfa:
+- Minimal navigasyon (Fotoğrafçı adı sol üst, menü sağ üst)
+- Masonry düzeninde fotoğraf galerisi
+- Placeholder görseller için farklı boyutlarda renkli kutular kullan
+- Fotoğraflara tıklanınca lightbox açılsın
+- Üstte kategori filtreleri: Tümü, Portre, Manzara, Sokak, Mimari
+
+Hakkımda Sayfası:
+- Büyük portre alanı, biyografi, kullanılan ekipman listesi, iletişim formu
+
+Tasarım: Siyah arka plan, fotoğraflar ön planda. Minimal tipografi. Grid responsive olsun.
+
+Lightbox'ı sadece HTML, CSS ve JavaScript ile yap, harici kütüphane kullanma.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7: CSV/JSON Data Viewer (NEW) -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-mockup mockup-data">
+                            <div class="mockup-nav"></div>
+                            <div class="mockup-table">
+                                <div class="mockup-table-header"></div>
+                                <div class="mockup-table-row"></div>
+                                <div class="mockup-table-row"></div>
+                                <div class="mockup-table-row"></div>
+                                <div class="mockup-table-row"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-difficulty medium">Orta</span>
+                        <h3>CSV / JSON Veri Görüntüleyici</h3>
+                        <p>Veri dosyalarınızı tablo ve grafik olarak görüntüleyen interaktif bir sayfa.</p>
+                        <div class="project-prompt">
+                            <div class="prompt-header">
+                                <span>📋 Prompt — Kopyala ve Yapıştır</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopyala</button>
+                            </div>
+                            <pre class="prompt-text">CSV ve JSON veri görüntüleyici web uygulaması oluştur.
+
+Özellikler:
+1) Dosya yükleme alanı: Kullanıcı CSV veya JSON dosyası sürükleyip bırakabilsin
+2) Otomatik tablo oluşturma: Yüklenen veriyi düzenli bir tablo halinde göster
+3) Sıralama: Sütun başlıklarına tıklanınca A-Z veya Z-A sıralansın
+4) Arama/Filtreleme: Üstte bir arama kutusu, tabloda anlık filtreleme yapsın
+5) Basit grafik: Chart.js kullanarak veriyi çubuk veya pasta grafik olarak gösterme seçeneği
+6) Dışa aktarma: Filtrelenmiş veriyi CSV olarak indirme butonu
+
+Tasarım: Temiz, profesyonel, dashboard tarzı. Koyu tema seçeneği olsun. Ana renk: #3b82f6.
+
+Örnek olarak 10 satırlık bir ülke verisi JSON'ı içine göm (ülke, başkent, nüfus, kıta).</pre>
+                        </div>
+                        <div class="info-box" style="margin-top: 20px;">
+                            <h4>📊 Hazır Veri Kaynakları — CSV ve JSON</h4>
+                            <p>Bu tür projeler için kullanabileceğiniz ücretsiz, açık veri kaynakları:</p>
+                            <ul style="margin-top:8px;">
+                                <li>🌍 <a href="https://raw.githubusercontent.com/datasets/population/main/data/population.csv" target="_blank">Dünya Nüfus Verileri (CSV)</a> — Ülke bazlı yıllık nüfus (World Bank)</li>
+                                <li>🏙️ <a href="https://raw.githubusercontent.com/datasets/world-cities/master/data/world-cities.csv" target="_blank">Dünya Şehirleri (CSV)</a> — İsim, ülke, alt bölge bilgisi</li>
+                                <li>🚢 <a href="https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv" target="_blank">Titanic Yolcuları (CSV)</a> — Klasik veri bilimi veri seti</li>
+                                <li>🌍 <a href="https://restcountries.com/v3.1/all" target="_blank">REST Countries API (JSON)</a> — Tüm ülkelerin detaylı bilgisi</li>
+                                <li>🏅 <a href="https://api.nobelprize.org/v1/prize.json" target="_blank">Nobel Ödülleri API (JSON)</a> — Tüm Nobel ödülleri ve kazananlar</li>
+                                <li>🌍 <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson" target="_blank">USGS Deprem Verileri (JSON)</a> — Son 30 günün depremleri</li>
+                            </ul>
+                            <p style="margin-top:8px;">Daha fazla veri seti için: <a href="https://www.kaggle.com/datasets" target="_blank">Kaggle Datasets</a>, <a href="https://datasetsearch.research.google.com/" target="_blank">Google Dataset Search</a>, <a href="https://data.tuik.gov.tr/" target="_blank">TÜİK Açık Veri</a></p>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <h4>📋 Gerçek Veri ile Örnek Promptlar</h4>
+                            <p style="margin-bottom: 12px;">Yukarıdaki veri kaynaklarını kullanarak AI'ya şöyle promptlar yazabilirsiniz:</p>
+                            <div class="project-prompt">
+                                <div class="prompt-header">
+                                    <span>📋 Örnek Prompt 1 — Dünya Nüfus Verileri</span>
+                                    <button class="copy-btn" onclick="copyPrompt(this)">Kopyala</button>
+                                </div>
+                                <pre class="prompt-text">CSV veri görüntüleyici web uygulaması oluştur. Uygulama açıldığında şu URL'den veriyi otomatik çeksin:
+https://raw.githubusercontent.com/datasets/population/main/data/population.csv
+
+Özellikler:
+1) Veriyi tablo halinde göster (sütunlar: Country Name, Year, Value)
+2) Üstte ülke arama kutusu olsun, yazıldıkça tabloda filtrelesin
+3) Yıl aralığı seçimi olsun (slider veya dropdown ile)
+4) Chart.js ile seçilen ülkenin yıllar bazında nüfus grafiğini çizsin
+5) Birden fazla ülkeyi karşılaştırma seçeneği olsun
+
+Tasarım: Dashboard tarzı, temiz, koyu tema. Ana renk: #3b82f6.</pre>
+                            </div>
+                            <div class="project-prompt" style="margin-top: 12px;">
+                                <div class="prompt-header">
+                                    <span>📋 Örnek Prompt 2 — Deprem Verileri</span>
+                                    <button class="copy-btn" onclick="copyPrompt(this)">Kopyala</button>
+                                </div>
+                                <pre class="prompt-text">Canlı deprem verisi gösteren bir dashboard oluştur. Veriyi şu API'den çek:
+https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson
+
+Özellikler:
+1) Son 30 günün 4.5+ büyüklüğündeki depremlerini tablo halinde listele (yer, büyüklük, tarih, derinlik)
+2) Büyüklüğe göre sıralama ve filtreleme
+3) En büyük 10 depremi vurgulayan bir bölüm
+4) Chart.js ile büyüklük dağılımı histogram grafiği
+5) Bölgelere göre deprem sayısı pasta grafiği
+
+Tasarım: Koyu tema, kırmızı ve turuncu vurgular. Profesyonel dashboard görünümü. Responsive olsun.</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8: Wedding/Event Invitation (NEW) -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-mockup mockup-event">
+                            <div class="mockup-event-hero"></div>
+                            <div class="mockup-event-details"></div>
+                            <div class="mockup-event-rsvp"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <span class="project-difficulty easy">Kolay</span>
+                        <h3>Düğün / Etkinlik Davetiyesi</h3>
+                        <p>Özel günleriniz için dijital davetiye sayfası.</p>
+                        <div class="project-prompt">
+                            <div class="prompt-header">
+                                <span>📋 Prompt — Kopyala ve Yapıştır</span>
+                                <button class="copy-btn" onclick="copyPrompt(this)">Kopyala</button>
+                            </div>
+                            <pre class="prompt-text">Dijital düğün davetiyesi web sayfası oluştur. Tek sayfa, zarif ve romantik.
+
+Bilgiler:
+- Çift: Elif &amp; Can
+- Tarih: 15 Haziran 2026, Cumartesi, Saat 18:00
+- Mekan: Çırağan Sarayı, İstanbul
+
+Bölümler:
+1) Hero: Tam ekran, çiçekli/zarif arka plan (CSS gradient ile), çiftin isimleri büyük el yazısı fontu ile, tarih
+2) Geri sayım: Düğün tarihine kalan gün, saat, dakika, saniye (JavaScript ile canlı)
+3) Hikayemiz: Tanışma hikayesi, 3-4 milestone (tarih çizelgesi formatında)
+4) Mekan bilgisi: Adres, Google Maps embed placeholder, ulaşım bilgisi
+5) RSVP formu: İsim, kişi sayısı, yemek tercihi (et/tavuk/vejetaryen), not alanı
+6) Fotoğraf galerisi: 6-8 placeholder fotoğraf grid düzeninde
+
+Tasarım: Romantik, zarif. Renk paleti: altın (#d4af37), krem (#f5f0e8), koyu yeşil (#2d5a27). El yazısı fontu başlıklarda. Hafif paralaks efekti. Mobil uyumlu.
+
+Font: Google Fonts'tan "Great Vibes" veya "Dancing Script" başlıklar için.</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- Hosting Section -->
+    <!-- ================================================================ -->
+    <section class="section" id="hosting">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🚀 Yayınlama</span>
+                <h2>Sitenizi İnternete Yayınlayın</h2>
+                <p>Projenizi tamamladınız, yerel olarak test ettiniz — şimdi tüm dünya ile paylaşma zamanı! İşte ücretsiz yayınlama yöntemleri:</p>
+            </div>
+
+            <!-- GitHub Pages Main Guide -->
+            <div class="hosting-main">
+                <div class="hosting-hero-card">
+                    <div class="hosting-hero-header">
+                        <span class="hosting-icon">🐙</span>
+                        <h3>GitHub Pages</h3>
+                        <span class="hosting-badge">ÖNERİLEN</span>
+                    </div>
+                    <p class="hosting-desc">GitHub Pages, statik web sitelerini ücretsiz olarak yayınlamanın en popüler yoludur. GitHub hesabınız varsa hemen kullanabilirsiniz.</p>
+
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>GitHub Hesabı Oluşturun</h4>
+                                <p><a href="https://github.com" target="_blank">github.com</a> adresine gidin ve ücretsiz bir hesap açın.</p>
+                                <div class="info-box" style="margin-top: 12px;">
+                                    💡 <strong>Kullanıcı adınızı nasıl bulursunuz?</strong>
+                                    <ul style="margin:8px 0 0 0; line-height:2;">
+                                        <li>Sağ üst köşedeki <strong>profil fotoğrafınıza</strong> tıklayın — açılan menüde kullanıcı adınız yazar</li>
+                                        <li>Profil sayfanıza gidin — URL'nin son kısmı kullanıcı adınızdır (github.com/<strong>kullaniciadi</strong>)</li>
+                                        <li>Yeni repo oluştururken <strong>Owner</strong> alanında kullanıcı adınızı görebilirsiniz</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Yeni Repository (Depo) Oluşturun</h4>
+                                <p>GitHub'da sağ üstteki <strong>+</strong> butonuna tıklayıp "New repository" seçin. İsim olarak <code>kullaniciadi.github.io</code> yazın.</p>
+                                <div class="info-box">
+                                    ℹ️ Repository ismini tam olarak <strong>kullaniciadi.github.io</strong> formatında yazmanız gerekir. Örnek: <code>ahmet123.github.io</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Dosyalarınızı Yükleyin</h4>
+                                <p>Boş bir repo oluşturduğunuzda sayfada göreceğiniz <strong>"uploading an existing file"</strong> linkine tıklayın. Tüm proje dosyalarınızı (<code>index.html</code>, <code>style.css</code>, <code>script.js</code>, resimler) sürükleyip bırakın.</p>
+                                <div class="info-box" style="margin-top: 12px;">
+                                    ℹ️ <strong>Daha sonra dosya yüklemek için:</strong> Reponuza tekrar girdiğinizde bu link artık görünmez. Bunun yerine sayfadaki <strong>"Add file"</strong> butonuna tıklayıp açılan menüden <strong>"Upload files"</strong> seçeneğini kullanın.
+                                </div>
+                                <div class="guide-screenshot">
+                                    <p style="text-align: center; color: var(--gray-500); font-size: 0.9rem;">📸 Dosyalarınızı sürükleyip GitHub'a yükleyin. "Commit changes" butonuna tıklamayı unutmayın.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Siteniz Yayında! 🎉</h4>
+                                <p><code>kullaniciadi.github.io</code> formatındaki repolar için GitHub Pages <strong>otomatik olarak etkindir</strong> — ekstra ayar gerekmez. Birkaç dakika bekleyin, ardından siteniz şu adreste yayında olacak:</p>
+                                <div class="url-display">
+                                    <code>https://kullaniciadi.github.io</code>
+                                </div>
+
+                                <div class="info-box" style="margin-top: 12px;">
+                                    ⚠️ <strong>index.html dosyası şart!</strong> GitHub Pages reponun kök dizininde (root) bir <code>index.html</code> arar. Bu dosya yoksa siteniz açılmaz.
+                                    <ul style="margin:8px 0 0 0; line-height:2;">
+                                        <li>Dosyalarınız bir klasörün içindeyse (ör. <code>site/index.html</code>), <strong>Settings → Pages</strong> bölümünden klasör yolunu ayarlamanız gerekir</li>
+                                        <li>En kolay yol: <code>index.html</code>, <code>style.css</code> ve <code>script.js</code> dosyalarını doğrudan reponun kök dizinine yüklemektir</li>
+                                    </ul>
+                                </div>
+
+                                <div class="update-guide">
+                                    <h4>🔄 Güncelleme Yapmak İçin</h4>
+                                    <p>Repository'nize gidip dosyaları düzenleyin veya yeni dosyalar yükleyin. Değişiklikler birkaç dakika içinde otomatik yansır.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GitHub Pages Limits -->
+                    <div class="limits-box">
+                        <h4>📊 GitHub Pages Limitleri</h4>
+                        <p>Kişisel siteler ve portfolyolar için fazlasıyla yeterli, ancak sınırları bilmek faydalı:</p>
+                        <div class="limits-grid">
+                            <div class="limit-item">
+                                <span class="limit-value">1 GB</span>
+                                <span class="limit-label">Maksimum repo boyutu</span>
+                            </div>
+                            <div class="limit-item">
+                                <span class="limit-value">100 GB/ay</span>
+                                <span class="limit-label">Aylık bant genişliği</span>
+                            </div>
+                            <div class="limit-item">
+                                <span class="limit-value">10/saat</span>
+                                <span class="limit-label">Build (derleme) limiti</span>
+                            </div>
+                            <div class="limit-item">
+                                <span class="limit-value">Yalnızca Statik</span>
+                                <span class="limit-label">Backend/veritabanı yok</span>
+                            </div>
+                            <div class="limit-item">
+                                <span class="limit-value">100 MB</span>
+                                <span class="limit-label">Dosya başına maks. boyut</span>
+                            </div>
+                        </div>
+                        <p style="margin-top:12px;font-size:0.85rem;color:var(--gray-500);">💡 Web arayüzünden yükleme limiti dosya başına 25 MB'dir. Daha büyük dosyalar için Git komut satırını kullanın.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alternative Hosting -->
+            <h3 class="subsection-title">🌐 Diğer Ücretsiz Hosting Alternatifleri</h3>
+
+            <div class="hosting-alternatives">
+                <!-- Vercel -->
+                <div class="alt-hosting-card">
+                    <div class="alt-hosting-icon">▲</div>
+                    <h4>Vercel</h4>
+                    <p>Next.js'in yaratıcıları tarafından geliştirildi. Otomatik HTTPS, hızlı CDN ve kolay deploy.</p>
+                    <ul>
+                        <li>✅ Ücretsiz SSL sertifikası</li>
+                        <li>✅ GitHub ile otomatik deploy</li>
+                        <li>✅ Serverless Functions desteği</li>
+                        <li>✅ Özel domain bağlama</li>
+                    </ul>
+                    <div class="alt-hosting-steps">
+                        <strong>📋 Nasıl Kullanılır?</strong>
+                        <ol>
+                            <li><a href="https://vercel.com" target="_blank">vercel.com</a>'a gidin, GitHub ile giriş yapın</li>
+                            <li>"New Project" tıklayın</li>
+                            <li>GitHub repo'nuzu seçin</li>
+                            <li>"Deploy" butonuna basın — siteniz yayında!</li>
+                        </ol>
+                        <p style="margin-top: 8px;"><a href="https://vercel.com/docs" target="_blank">📖 Vercel Dökümantasyonu →</a></p>
+                    </div>
+                </div>
+
+                <!-- Netlify -->
+                <div class="alt-hosting-card">
+                    <div class="alt-hosting-icon">◆</div>
+                    <h4>Netlify</h4>
+                    <p>Sürükle-bırak ile dosya yükleme özelliği ile en kolay yayınlama deneyimi. Form desteği de dahil.</p>
+                    <ul>
+                        <li>✅ Drag & Drop deploy</li>
+                        <li>✅ Ücretsiz form işleme</li>
+                        <li>✅ Anında geri alma (rollback)</li>
+                        <li>✅ 100GB/ay bant genişliği</li>
+                    </ul>
+                    <div class="alt-hosting-steps">
+                        <strong>📋 Nasıl Kullanılır?</strong>
+                        <ol>
+                            <li><a href="https://netlify.com" target="_blank">netlify.com</a>'a gidin, hesap oluşturun</li>
+                            <li>"Sites" sekmesinde alt kısımdaki alana dosyalarınızı sürükleyin</li>
+                            <li>Otomatik olarak deploy edilir</li>
+                            <li>Özel domain eklemek için "Domain settings"e gidin</li>
+                        </ol>
+                        <p style="margin-top: 8px;"><a href="https://docs.netlify.com" target="_blank">📖 Netlify Dökümantasyonu →</a></p>
+                    </div>
+                </div>
+
+                <!-- Cloudflare Pages -->
+                <div class="alt-hosting-card">
+                    <div class="alt-hosting-icon">☁️</div>
+                    <h4>Cloudflare Pages</h4>
+                    <p>Dünyanın en büyük CDN ağı ile ultra hızlı site yayınlama. Sınırsız bant genişliği!</p>
+                    <ul>
+                        <li>✅ Sınırsız bant genişliği</li>
+                        <li>✅ Global CDN (250+ lokasyon)</li>
+                        <li>✅ Otomatik HTTPS</li>
+                        <li>✅ Workers ile backend desteği</li>
+                    </ul>
+                    <div class="alt-hosting-steps">
+                        <strong>📋 Nasıl Kullanılır?</strong>
+                        <ol>
+                            <li><a href="https://pages.cloudflare.com" target="_blank">pages.cloudflare.com</a>'a gidin</li>
+                            <li>"Create a project" tıklayın</li>
+                            <li>GitHub repo'nuzu bağlayın veya dosya yükleyin</li>
+                            <li>Build ayarlarını yapın ve deploy edin</li>
+                        </ol>
+                        <p style="margin-top: 8px;"><a href="https://developers.cloudflare.com/pages" target="_blank">📖 Cloudflare Pages Dokümantasyonu →</a></p>
+                    </div>
+                </div>
+
+                <!-- Firebase Hosting -->
+                <div class="alt-hosting-card">
+                    <div class="alt-hosting-icon">🔥</div>
+                    <h4>Firebase Hosting</h4>
+                    <p>Google'ın altyapısı ile güçlü hosting. Firestore veritabanı ve Auth ile entegre çalışır.</p>
+                    <ul>
+                        <li>✅ Google CDN altyapısı</li>
+                        <li>✅ 10GB depolama (ücretsiz)</li>
+                        <li>✅ Firestore & Auth entegrasyonu</li>
+                        <li>✅ Özel domain desteği</li>
+                    </ul>
+                    <div class="alt-hosting-steps">
+                        <strong>📋 Nasıl Kullanılır?</strong>
+                        <ol>
+                            <li><a href="https://firebase.google.com" target="_blank">firebase.google.com</a>'a gidin</li>
+                            <li>Google hesabınızla giriş yapın, yeni proje oluşturun</li>
+                            <li>Firebase CLI'ı kurun: <code>npm install -g firebase-tools</code></li>
+                            <li><code>firebase init hosting</code> ve <code>firebase deploy</code> komutlarını çalıştırın</li>
+                        </ol>
+                        <p style="margin-top: 8px;"><a href="https://firebase.google.com/docs/hosting" target="_blank">📖 Firebase Hosting Dökümantasyonu →</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- Advanced: Project-Based Repos -->
+            <!-- ============================================================ -->
+            <div style="margin-top:64px;">
+                <h3 class="subsection-title">🚀 İleri Seviye: Her Proje İçin Ayrı Repository</h3>
+                <p style="text-align:center;color:var(--gray-600);margin-bottom:32px;">Birden fazla farklı web sitesi yayınlamak istiyorsanız, her biri için ayrı repo oluşturmak işlerinizi çok kolaylaştırır.</p>
+
+                <div class="hosting-hero-card" style="border-left:4px solid var(--accent);">
+                    <h4 style="margin-bottom:16px;">📂 Neden Tek Repo Yerine Ayrı Repolar?</h4>
+
+                    <p>Yukarıdaki rehberde <code>kullaniciadi.github.io</code> adında tek bir repo oluşturmayı öğrendiniz. Bu, ana siteniz (portfolyo, kişisel sayfa) için idealdir. Ancak zamanla farklı amaçlarla başka siteler de oluşturmak isteyebilirsiniz:</p>
+
+                    <ul style="margin:16px 0;line-height:2;">
+                        <li>🎨 Portfolyo siteniz</li>
+                        <li>💍 Bir düğün davetiye sayfası</li>
+                        <li>📝 Bir blog</li>
+                        <li>📊 Bir etkinlik veya proje tanıtım sayfası</li>
+                        <li>🎮 Bir web oyunu veya deneme projesi</li>
+                    </ul>
+
+                    <p>Bunların hepsini tek <code>kullaniciadi.github.io</code> reposuna koymak, dosyalar karıştığı için bakımı ve güncellemeyi çok zorlaştırır. GitHub'ın web arayüzünden dosya yüklediğinizde, hangi dosyanın hangi siteye ait olduğunu takip etmek içinden çıkılmaz hâle gelir.</p>
+
+                    <div class="info-box" style="margin:20px 0;">
+                        💡 <strong>Altın kural:</strong> Her farklı amaçlı web sitesi için ayrı bir GitHub repository'si oluşturun. Böylece her proje birbirinden bağımsız kalır, güncelleme ve bakım çok daha kolay olur.
+                    </div>
+
+                    <h4 style="margin:24px 0 12px;">🔀 İki Yaklaşımın Karşılaştırması</h4>
+                    <div class="comparison-table-wrapper">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Tek Repo (kullaniciadi.github.io)</th>
+                                    <th>Proje Bazlı Ayrı Repolar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Adres</td>
+                                    <td><code>kullaniciadi.github.io</code></td>
+                                    <td><code>kullaniciadi.github.io/repo-adi</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Dosya düzeni</td>
+                                    <td>Tüm projeler iç içe, karışabilir</td>
+                                    <td>Her repo sadece kendi dosyalarını içerir</td>
+                                </tr>
+                                <tr>
+                                    <td>Güncelleme</td>
+                                    <td>Yanlış dosyayı değiştirme riski</td>
+                                    <td>Sadece o projenin dosyalarını görürsünüz</td>
+                                </tr>
+                                <tr>
+                                    <td>Silme / Arşivleme</td>
+                                    <td>Klasörleri tek tek silmek zor</td>
+                                    <td>Repoyu silin veya arşivleyin — temiz!</td>
+                                </tr>
+                                <tr>
+                                    <td>En iyi kullanım</td>
+                                    <td>Ana kişisel siteniz (portfolyo, CV)</td>
+                                    <td>Her ek proje / deneme / etkinlik sitesi</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 style="margin:28px 0 16px;">📋 Adım Adım: Proje Bazlı Repo ile Site Yayınlama</h4>
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Yeni Repo Oluşturun</h4>
+                                <p>GitHub'da <strong>"+"</strong> → <strong>"New repository"</strong>. Repo adını projenize göre verin, örneğin: <code>dugun-davetiye</code>, <code>blog</code>, <code>etkinlik-2025</code>.</p>
+                                <p><strong>"Public"</strong> seçin ve <strong>"Add a README file"</strong> kutucuğunu işaretleyin.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Dosyalarınızı Yükleyin</h4>
+                                <p><strong>"Add file"</strong> → <strong>"Upload files"</strong> ile projenin dosyalarını yükleyin. Ana dosya yine <code>index.html</code> olmalı.</p>
+                                <div class="info-box">
+                                    <strong>📁 İki farklı dosya konumu seçeneğiniz var:</strong><br><br>
+                                    <strong>Seçenek A — Kök dizin (root):</strong> Dosyaları doğrudan repoya yükleyin. Pages ayarlarında kaynak olarak <code>/ (root)</code> seçin.<br><br>
+                                    <strong>Seçenek B — <code>/docs</code> klasörü:</strong> Repoda bir <code>docs</code> klasörü oluşturup site dosyalarını oraya koyun. Pages ayarlarında kaynak olarak <code>/docs</code> seçin. Bu yöntem, repo kökünde README ve diğer proje dosyalarını ayırmanızı sağlar — daha düzenlidir.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>GitHub Pages'i Aktifleştirin</h4>
+                                <p>Repo ayarlarına gidin: <strong>Settings</strong> → <strong>Pages</strong> → <strong>Branch: main</strong> seçin.</p>
+                                <p>Klasör olarak dosyalarınızın konumuna göre <strong><code>/ (root)</code></strong> veya <strong><code>/docs</code></strong> seçin → <strong>"Save"</strong>.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>🎉 Siteniz Yayında!</h4>
+                                <p>Birkaç dakika içinde site şu adreste yayınlanacak:</p>
+                                <div class="url-display">
+                                    <code>https://kullaniciadi.github.io/repo-adi</code>
+                                </div>
+                                <p style="margin-top:8px;">Örneğin repo adınız <code>dugun-davetiye</code> ise:<br>
+                                <strong><code>https://kullaniciadi.github.io/dugun-davetiye</code></strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="margin:28px 0 12px;">📁 <code>/docs</code> Klasörü Ne İşe Yarar?</h4>
+                    <p>Normalde web sitesi dosyalarınızı (<code>index.html</code>, <code>style.css</code>, vb.) doğrudan repo köküne yüklersiniz. Ancak <code>/docs</code> klasörünü kullanmanın avantajları vardır:</p>
+                    <ul style="margin:12px 0;line-height:2;">
+                        <li>📄 Repo kökünde <code>README.md</code> dosyası ile projenizin açıklamasını yazabilirsiniz</li>
+                        <li>📂 Web sitesi dosyaları <code>/docs</code> içinde düzenli ve ayrı durur</li>
+                        <li>🧹 Proje notlarınız, tasarım dosyalarınız gibi şeyler ile yayınlanan site dosyaları birbirine karışmaz</li>
+                    </ul>
+
+                    <div class="code-example">
+                        <div class="code-header">Örnek repo yapısı (/docs kullanımı)</div>
+                        <pre><code>dugun-davetiye/
+├── README.md          ← Proje açıklaması (yayınlanmaz)
+├── notlar.txt         ← Kendi notlarınız (yayınlanmaz)
+└── docs/
+    ├── index.html     ← Ana sayfa (yayınlanır ✅)
+    ├── style.css      ← Stiller (yayınlanır ✅)
+    ├── script.js      ← JavaScript (yayınlanır ✅)
+    └── images/
+        └── foto.jpg   ← Görseller (yayınlanır ✅)</code></pre>
+                    </div>
+
+                    <div class="warning-box" style="margin-top:20px;">
+                        ⚠️ <strong>Dikkat:</strong> <code>/docs</code> klasörünü kullanıyorsanız, GitHub Pages ayarlarında klasörü <strong><code>/docs</code></strong> olarak seçmeyi unutmayın! Aksi hâlde siteniz 404 hatası verir.
+                    </div>
+
+                    <div class="info-box" style="margin-top:20px;">
+                        💡 <strong>GitHub'da klasör nasıl oluşturulur?</strong> Web arayüzünde doğrudan klasör oluşturamazsınız. Bunun yerine <strong>"Add file" → "Create new file"</strong> seçin ve dosya adına <code>docs/index.html</code> yazın — GitHub otomatik olarak <code>docs</code> klasörünü oluşturur. Ardından diğer dosyaları <strong>"Add file" → "Upload files"</strong> ile <code>docs</code> klasörüne yükleyebilirsiniz.
+                    </div>
+
+                    <h4 style="margin:28px 0 12px;">🗂️ Önerilen Repo Stratejisi</h4>
+                    <div class="info-box" style="margin:0;background:linear-gradient(135deg, rgba(99,102,241,0.05), rgba(14,165,233,0.05));">
+                        <p style="font-size:1rem;"><strong>Ana siteniz</strong> → <code>kullaniciadi.github.io</code> reposu (portfolyo, CV, kişisel sayfa)</p>
+                        <p style="margin-top:8px;font-size:1rem;"><strong>Her ek proje</strong> → Ayrı repo (<code>dugun-davetiye</code>, <code>blog</code>, <code>proje-tanitim</code>, <code>etkinlik-2025</code>, vb.)</p>
+                        <p style="margin-top:16px;">Bu şekilde ana siteniz <code>kullaniciadi.github.io</code> adresinde, diğer projeleriniz ise <code>kullaniciadi.github.io/repo-adi</code> adreslerinde yayınlanır. Her biri birbirinden tamamen bağımsızdır — birini güncellemek, silmek veya arşivlemek diğerlerini hiç etkilemez.</p>
+                    </div>
+
+                    <h4 style="margin:28px 0 12px;">🔗 Ana Sayfanızdan Diğer Projelerinize Link Verme</h4>
+                    <p>Tüm projeleriniz aynı <code>kullaniciadi.github.io</code> altında olduğu için, ana sitenizden diğer projelerinize kolayca link verebilirsiniz:</p>
+                    <div class="code-example">
+                        <div class="code-header">index.html (ana sitenizde)</div>
+                        <pre><code>&lt;!-- Portfolyonuzdaki projeler bölümünde --&gt;
+&lt;a href="/dugun-davetiye"&gt;💍 Düğün Davetiye Sayfası&lt;/a&gt;
+&lt;a href="/blog"&gt;📝 Blog'um&lt;/a&gt;
+&lt;a href="/etkinlik-2025"&gt;📊 Etkinlik Sayfası&lt;/a&gt;</code></pre>
+                    </div>
+                    <p style="margin-top:12px;font-size:0.9rem;color:var(--gray-600);">Bu linkler otomatik olarak <code>kullaniciadi.github.io/dugun-davetiye</code> gibi adreslere yönlendirir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- Frontend & Backend Section -->
+    <!-- ================================================================ -->
+    <section class="section" id="frontend-backend" style="background: var(--gray-50);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🔄 Frontend & Backend</span>
+                <h2>Frontend vs Backend: Farkı Anlayın</h2>
+                <p>Web sitelerinin iki temel katmanı vardır. AI araçları ile yaptığımız siteler genellikle sadece frontend'tir — ve bu çoğu proje için yeterlidir!</p>
+            </div>
+
+            <!-- Visual Explainer -->
+            <div class="fb-explainer">
+                <div class="fb-card fb-frontend">
+                    <h3>🎨 Frontend (Ön Yüz)</h3>
+                    <div class="fb-tech">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                    <p>Kullanıcının gördüğü ve etkileşime girdiği her şey. Tarayıcıda çalışır.</p>
+                    <ul>
+                        <li>📄 Sayfanın yapısı ve içeriği</li>
+                        <li>🎨 Tasarım, renkler, animasyonlar</li>
+                        <li>🖱️ Buton tıklamaları, menüler</li>
+                        <li>📱 Mobil uyumluluk</li>
+                        <li>📝 Form arayüzleri</li>
+                    </ul>
+                </div>
+
+                <div class="fb-arrow">
+                    <span>⇄</span>
+                    <small>API / HTTP</small>
+                </div>
+
+                <div class="fb-card fb-backend">
+                    <h3>⚙️ Backend (Arka Yüz)</h3>
+                    <div class="fb-tech">
+                        <span>Node.js</span>
+                        <span>Python</span>
+                        <span>Veritabanı</span>
+                    </div>
+                    <p>Sunucuda çalışan, kullanıcının görmediği kısım. Veri işleme ve depolama.</p>
+                    <ul>
+                        <li>🗄️ Veritabanı işlemleri</li>
+                        <li>🔐 Kullanıcı girişi ve güvenlik</li>
+                        <li>📧 E-posta gönderme</li>
+                        <li>💳 Ödeme işlemleri</li>
+                        <li>📊 Veri analizi ve raporlama</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Restaurant Analogy -->
+            <div class="fb-analogy">
+                <h4>🍽️ Restoran Benzetmesi</h4>
+                <p>
+                    Bir restoran düşünün: <strong>Frontend = yemek salonu</strong> (müşterinin gördüğü kısım — menü, masalar, dekorasyon, garson). 
+                    <strong>Backend = mutfak</strong> (müşterinin görmediği kısım — yemek pişirme, malzeme depolama, sipariş yönetimi). 
+                    AI ile yaptığımız statik siteler, sadece "yemek salonu" kısmını oluşturur — ve kişisel siteler, portfolyolar, bloglar için bu fazlasıyla yeterlidir!
+                </p>
+            </div>
+
+            <!-- Static vs Dynamic -->
+            <div class="static-dynamic">
+                <div class="sd-card">
+                    <h4>📄 Statik Site (Sadece Frontend)</h4>
+                    <p>HTML, CSS ve JavaScript dosyalarından oluşur. Sunucuda hiçbir işlem yapılmaz, dosyalar olduğu gibi kullanıcıya gönderilir.</p>
+                    <div class="sd-examples">
+                        <span>Kişisel Site</span>
+                        <span>Portfolyo</span>
+                        <span>Blog</span>
+                        <span>CV Sayfası</span>
+                        <span>Düğün Davetiyesi</span>
+                        <span>Ürün Tanıtımı</span>
+                    </div>
+                    <ul>
+                        <li>✅ GitHub Pages, Vercel, Netlify ile ücretsiz yayınlanır</li>
+                        <li>✅ Süper hızlı (CDN ile)</li>
+                        <li>✅ Güvenlik riski minimal</li>
+                        <li>✅ AI araçları ile kolayca yapılabilir</li>
+                    </ul>
+                </div>
+                <div class="sd-card">
+                    <h4>⚙️ Dinamik Site (Frontend + Backend)</h4>
+                    <p>Sunucuda kod çalışır, veritabanından veri çekilir. Her kullanıcıya farklı içerik gösterilebilir.</p>
+                    <div class="sd-examples">
+                        <span>E-ticaret</span>
+                        <span>Sosyal Medya</span>
+                        <span>Online Bankacılık</span>
+                        <span>Forum/Yorum Sistemi</span>
+                        <span>Rezervasyon Sistemi</span>
+                    </div>
+                    <ul>
+                        <li>⚠️ Sunucu ve veritabanı gerektirir</li>
+                        <li>⚠️ Daha karmaşık ve maliyetli</li>
+                        <li>⚠️ Güvenlik bilgisi önemli</li>
+                        <li>⚠️ Bakım ve güncelleme gerektirir</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Can Do / Can't Do -->
+            <div class="backend-grid">
+                <div class="backend-card can-do">
+                    <h3>✅ Statik Site ile Yapabilecekleriniz</h3>
+                    <ul>
+                        <li>
+                            <strong>Kişisel web sitesi / Portfolyo</strong>
+                            <span>Projelerinizi, hakkınızda bilgileri ve iletişim formunu gösterin</span>
+                        </li>
+                        <li>
+                            <strong>Blog yazıları</strong>
+                            <span>Markdown veya HTML ile yazılar yayınlayın</span>
+                        </li>
+                        <li>
+                            <strong>İletişim formu (Formspree ile)</strong>
+                            <span><a href="https://formspree.io" target="_blank">Formspree.io</a> kullanarak form verilerini e-postanıza alın</span>
+                        </li>
+                        <li>
+                            <strong>Yorum sistemi (Giscus ile)</strong>
+                            <span><a href="https://giscus.app" target="_blank">Giscus</a> ile GitHub Discussions tabanlı yorum sistemi ekleyin</span>
+                        </li>
+                        <li>
+                            <strong>Fotoğraf galerisi & Etkinlik sayfası</strong>
+                            <span>Düğün davetiyeleri, etkinlik bilgileri, galeri sayfaları</span>
+                        </li>
+                        <li>
+                            <strong>Veri görselleştirme (CSV/JSON)</strong>
+                            <span>Statik veri dosyalarını tabloya veya grafiğe dönüştürün</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="backend-card cannot-do">
+                    <h3>❌ Statik Site ile Yapamayacaklarınız</h3>
+                    <ul>
+                        <li>
+                            <strong>Kullanıcı kayıt/giriş sistemi</strong>
+                            <span>Gerçek authentication backend gerektirir (ancak Auth0, Firebase Auth alternatiftir)</span>
+                        </li>
+                        <li>
+                            <strong>Veritabanına veri kaydetme</strong>
+                            <span>Kullanıcıların veri girip kaydetmesi sunucu gerektirir</span>
+                        </li>
+                        <li>
+                            <strong>E-posta gönderme</strong>
+                            <span>Doğrudan frontend'den e-posta gönderilemez (Formspree alternatiftir)</span>
+                        </li>
+                        <li>
+                            <strong>Ödeme alma</strong>
+                            <span>Stripe/PayPal entegrasyonu backend gerektirir</span>
+                        </li>
+                        <li>
+                            <strong>Gerçek zamanlı sohbet</strong>
+                            <span>WebSocket sunucusu gerektirir</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- localStorage / Cookies Discussion -->
+            <div class="workaround-section">
+                <h3>🔧 Backend Olmadan Çözümler</h3>
+                <p>Bazı "backend gerektirir" gibi görünen işlemleri aslında ücretsiz servislerle veya tarayıcı özellikleriyle çözebilirsiniz:</p>
+
+                <div class="workaround-grid">
+                    <div class="workaround-item">
+                        <h4>💾 localStorage</h4>
+                        <p>Tarayıcıda küçük veriler saklayın. Tema tercihi, checklist durumu, son görüntülenen sayfa gibi. Veriler sadece o tarayıcıda kalır.</p>
+                    </div>
+                    <div class="workaround-item">
+                        <h4>🍪 Cookies</h4>
+                        <p>Küçük metin verileri saklayın. Dil tercihi, kabul edilen bildirimler gibi. localStorage'a benzer ama sunucuya da gönderilir.</p>
+                    </div>
+                    <div class="workaround-item">
+                        <h4>📬 Formspree / Formcarry</h4>
+                        <p>İletişim formlarınızdan gelen verileri e-postanıza yönlendirin. Backend yazmadan form işleme. Aylık 50 gönderim ücretsiz.</p>
+                    </div>
+                    <div class="workaround-item">
+                        <h4>💬 Giscus / Disqus</h4>
+                        <p>Blog yazılarınıza yorum sistemi ekleyin. Giscus GitHub Discussions kullanır ve tamamen ücretsiz.</p>
+                    </div>
+                    <div class="workaround-item">
+                        <h4>🔐 Auth0 / Firebase Auth</h4>
+                        <p>Kullanıcı giriş sistemi ekleyin — Google, GitHub, e-posta ile giriş. <a href="https://auth0.com" target="_blank">Auth0</a> aylık 7.000 aktif kullanıcı ücretsiz.</p>
+                    </div>
+                    <div class="workaround-item">
+                        <h4>📊 Google Sheets API</h4>
+                        <p>Google Sheets'i basit bir veritabanı olarak kullanın. Form verilerini direkt bir tabloya kaydedin.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Free Database Services -->
+            <div class="data-storage-section">
+                <h3 class="subsection-title">🗄️ Ücretsiz Veritabanı Servisleri</h3>
+                <p style="text-align: center; color: var(--gray-600); max-width: 700px; margin: 0 auto 32px;">Projeniz büyüdükçe gerçek bir veritabanına ihtiyaç duyabilirsiniz. İşte ücretsiz katmanları cömert olan popüler servisler:</p>
+
+                <div class="storage-grid">
+                    <div class="storage-item">
+                        <h4>🔥 Firebase Firestore</h4>
+                        <p>Google'ın NoSQL bulut veritabanı. Gerçek zamanlı veri senkronizasyonu. Frontend SDK ile doğrudan bağlanabilirsiniz.</p>
+                        <ul>
+                            <li>✅ 1 GB depolama (ücretsiz)</li>
+                            <li>✅ 50.000 okuma/gün</li>
+                            <li>✅ 20.000 yazma/gün</li>
+                            <li>✅ Gerçek zamanlı senkronizasyon</li>
+                        </ul>
+                        <a href="https://firebase.google.com/docs/firestore" target="_blank" style="font-size: 0.85rem; font-weight: 600;">📖 Firestore Dökümantasyonu →</a>
+                    </div>
+
+                    <div class="storage-item">
+                        <h4>⚡ Supabase</h4>
+                        <p>Açık kaynaklı Firebase alternatifi. PostgreSQL veritabanı, auth, storage ve gerçek zamanlı abonelik desteği.</p>
+                        <ul>
+                            <li>✅ 500 MB veritabanı (ücretsiz)</li>
+                            <li>✅ 1 GB dosya depolama</li>
+                            <li>✅ 50.000 aktif kullanıcı/ay</li>
+                            <li>✅ PostgreSQL (SQL desteği)</li>
+                        </ul>
+                        <a href="https://supabase.com/docs" target="_blank" style="font-size: 0.85rem; font-weight: 600;">📖 Supabase Dökümantasyonu →</a>
+                    </div>
+
+                    <div class="storage-item">
+                        <h4>🍃 MongoDB Atlas</h4>
+                        <p>Dünyanın en popüler NoSQL veritabanı. JSON benzeri belgeler ile esnek veri modeli.</p>
+                        <ul>
+                            <li>✅ 512 MB depolama (ücretsiz)</li>
+                            <li>✅ Paylaşımlı cluster</li>
+                            <li>✅ MongoDB Compass (GUI araç)</li>
+                            <li>✅ Esnek şema, hızlı başlangıç</li>
+                        </ul>
+                        <a href="https://www.mongodb.com/atlas" target="_blank" style="font-size: 0.85rem; font-weight: 600;">📖 MongoDB Atlas →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Backend Platforms -->
+            <div class="full-backend-section" style="margin-top: 48px;">
+                <h3>🖥️ Tam Backend İstiyorsanız</h3>
+                <p>Projeniz gerçek bir backend gerektiriyorsa, bu platformlar ücretsiz başlangıç katmanları sunar:</p>
+
+                <div class="backend-platforms">
+                    <div class="platform-card">
+                        <h4>🚂 Railway</h4>
+                        <p>Node.js, Python, Go ve daha fazlası. GitHub'dan otomatik deploy. Aylık $5 ücretsiz kredi.</p>
+                        <a href="https://railway.app" target="_blank">railway.app →</a>
+                    </div>
+                    <div class="platform-card">
+                        <h4>🎨 Render</h4>
+                        <p>Statik siteler, web servisleri, veritabanları — hepsi tek platformda. Ücretsiz katman mevcut.</p>
+                        <a href="https://render.com" target="_blank">render.com →</a>
+                    </div>
+                    <div class="platform-card">
+                        <h4>🪁 Fly.io</h4>
+                        <p>Docker container'larını dünya genelinde dağıtın. 3 paylaşımlı VM ücretsiz.</p>
+                        <a href="https://fly.io" target="_blank">fly.io →</a>
+                    </div>
+                    <div class="platform-card">
+                        <h4>⚡ Replit</h4>
+                        <p>Tarayıcıdan tam backend uygulamaları geliştirip deploy edin. AI destekli kodlama dahil.</p>
+                        <a href="https://replit.com" target="_blank">replit.com →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- Checklist Section -->
+    <!-- ================================================================ -->
+    <section class="section" id="checklist">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">✅ Kontrol Listesi</span>
+                <h2>İlk Web Siteniz İçin Yol Haritası</h2>
+                <p>Aşağıdaki adımları sırayla takip edin. Tamamladıklarınızı işaretleyin — ilerlemeniz tarayıcınızda kaydedilir.</p>
+            </div>
+
+            <div class="checklist-container">
+                <div class="checklist-item">
+                    <input type="checkbox" id="check1">
+                    <label for="check1">
+                        <strong>1. AI aracınızı seçin ve kurun</strong>
+                        <span>Cursor, Claude, Windsurf (masaüstü) veya Bolt.new, Lovable, Replit (tarayıcı tabanlı) — birini seçip başlayın.</span>
+                    </label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">
+                        <strong>2. İlk prompt'unuzu yazın</strong>
+                        <span>Prompt rehberimizden ilham alarak AI'ya ne istediğinizi detaylıca anlatın. Türkçe yazabilirsiniz.</span>
+                    </label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">
+                        <strong>3. HTML, CSS, JS temellerini öğrenin</strong>
+                        <span>Temel Kavramlar bölümünü okuyarak AI'ın ürettiği kodu daha iyi anlamlandırın.</span>
+                    </label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">
+                        <strong>4. Sitenizi yerel olarak test edin</strong>
+                        <span>index.html'i tarayıcıda açın veya Live Server kullanın. Gerektiğinde Python sunucusu çalıştırın (Yerel Geliştirme bölümüne bakın).</span>
+                    </label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check5">
+                    <label for="check5">
+                        <strong>5. DevTools ile sitenizi inceleyin</strong>
+                        <span>F12 ile geliştirici araçlarını açın, mobil görünümü kontrol edin, hataları bulun.</span>
+                    </label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check6">
+                    <label for="check6">
+                        <strong>6. Basit düzenlemeleri kendiniz yapın</strong>
+                        <span>Metin, renk, link gibi küçük değişiklikleri "Kod Düzenleme" bölümündeki yöntemlerle uygulayın.</span>
+                    </label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check7">
+                    <label for="check7">
+                        <strong>7. Proje örneklerinden birini deneyin</strong>
+                        <span>Hazır promptları AI aracınıza yapıştırarak portfolyo, blog, CV veya veri görüntüleyici projesi oluşturun.</span>
+                    </label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check8">
+                    <label for="check8">
+                        <strong>8. GitHub hesabı oluşturun</strong>
+                        <span>github.com'a gidin ve ücretsiz bir hesap açın. Kullanıcı adınız sitenizin URL'si olacak.</span>
+                    </label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check9">
+                    <label for="check9">
+                        <strong>9. Sitenizi GitHub Pages'e yükleyin</strong>
+                        <span>Yayınlama bölümündeki adımları takip ederek sitenizi internete çıkarın.</span>
+                    </label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check10">
+                    <label for="check10">
+                        <strong>10. Sitenizin linkini paylaşın 🎉</strong>
+                        <span>kullaniciadi.github.io adresini arkadaşlarınızla, ailenizle ve sosyal medyada paylaşın!</span>
+                    </label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check11">
+                    <label for="check11">
+                        <strong>11. Frontend & Backend farkını öğrenin</strong>
+                        <span>Projeniz büyüdükçe nelere ihtiyacınız olacağını anlamak için Frontend & Backend bölümünü okuyun.</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- Footer -->
+    <!-- ================================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="footer-credits">
+                    <div class="footer-credit-item">
+                        <span class="footer-credit-icon">✍️</span>
+                        <span>Bu rehber <strong>Güvenç Usanmaz</strong> tarafından hazırlanmıştır.</span>
+                    </div>
+                    <div class="footer-credit-item">
+                        <span class="footer-credit-icon">🤖</span>
+                        <span>İçeriğin oluşturulmasında ve düzenlenmesinde yapay zeka araçlarından (LLM) yararlanılmıştır.</span>
+                    </div>
+                </div>
+
+                <div class="footer-opensource">
+                    <div class="footer-opensource-header">
+                        <span>🐙</span>
+                        <strong>Açık Kaynak</strong>
+                    </div>
+                    <a href="https://github.com/anadolubiltekmyo/YapayZekaAkademisi" target="_blank" class="footer-repo-link">github.com/anadolubiltekmyo/YapayZekaAkademisi</a>
+                    <div class="footer-contribute">
+                        <span>📌 Issue açın — hata, öneri veya soru bildirin</span>
+                        <span>🔀 Pull Request gönderin — düzeltme veya ekleme önerin</span>
+                        <span>🍴 Fork'layın — kendi kopyanızı oluşturup özgürce düzenleyin</span>
+                    </div>
+                </div>
+
+                <p class="footer-year">Eğitim amaçlı hazırlanmıştır — 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Yukarı çık">↑</button>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
