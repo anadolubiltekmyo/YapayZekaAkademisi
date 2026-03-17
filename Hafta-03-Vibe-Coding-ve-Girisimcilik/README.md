@@ -26,7 +26,7 @@ Bu klasör, 14 Mart Cumartesi ve 15 Mart Pazar günleri gerçekleştirilen eğit
 * 📂 **Materyaller:**
   * [Sunum Linki (HTML)](./YZ_Akademi_vibe_coding_web_sunum.html)
   * [Sunum Dosyası (PDF)](./YZ_Akademi_vibe_coding_web_sunum.pdf)
-  * [AI ile Web Geliştirme Rehberi (HTML)](./YZ_Akademi_vibe_coding_web_sunum.pdf)
+  * [AI ile Web Geliştirme Rehberi (HTML)](./YZ_Akademi_ai_ile_web_rehberi.html)
   * [Proje Kodları (ZIP)](./YZ_Akademi_vibe_coding_proje_kodlar.zip)
 
 **4. Girişimcilik Uygulamaları: Yalın Kanvas (Lean Canvas) İş Modeli (13:00 - 14:00)**
