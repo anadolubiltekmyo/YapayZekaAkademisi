@@ -1,6 +1,7 @@
 ## 1. KURUMSAL KİMLİK OLUŞTURMA PROMPTLARI
 
 ### 1.1 Marka Tanımı ve Strateji Promptu
+
 Markanızın temel stratejisini, konumlandırmasını ve kişiliğini belirlemek için aşağıdaki komutu kullanabilirsiniz:
 
 ```
@@ -23,7 +24,7 @@ Aşağıdaki çıktıları üret:
 
 ## 1.2 Marka Hikâyesi Promptu
 
-### Markanıza derinlik katmak ve hedef kitlenizle duygusal bağ kuracak bir hikâye yaratmak için bu komutu deneyin:
+Markanıza derinlik katmak ve hedef kitlenizle duygusal bağ kuracak bir hikâye yaratmak için bu komutu deneyin:
 
 ```
 Bir markanın kurumsal hikâyesini oluştur.
