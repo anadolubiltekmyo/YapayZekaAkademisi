@@ -1,4 +1,4 @@
-## 1. KURUMSAL KİMLİK OLUŞTURMA PROMPTLARI
+## 1. KURUMSAL KİMLİK OLUŞTURMA REHBERİ
 
 ### 1.1 Marka Tanımı ve Strateji Promptu
 
