@@ -46,10 +46,10 @@ Anlatım stili: Hikâyeleştirme (storytelling), akıcı ve ilham verici
 ## 2. LOGO TASARIMI PROMPTLARI
 
 ### 2.1 Detaylı Profesyonel Prompt
-Görsel üretim araçlarında (Midjourney, DALL-E 3, Adobe Firefly vb.) tüm detaylara hakim olduğunuz, kapsamlı bir kurumsal logo üretmek için bu yapıyı kullanabilirsiniz:
+Görsel üretim araçlarında (Midjourney, DALL-E 3, Adobe Firefly, Gemini, ChatGPT vb.) tüm detaylara hakim olduğunuz, kapsamlı bir kurumsal logo üretmek için bu yapıyı kullanabilirsiniz:
 
 ```
-“Yapay Zeka Akademisi” için kurumsal bir logo üret.
+“[Marka]” için kurumsal bir logo üret.
 
 BAĞLAM:
 - Alan: Eğitim ve yapay zekâ
@@ -84,7 +84,7 @@ NEGATİF:
 ### 2.2 Kısa İngilizce Prompt (Araç bağımsız)
 
 ```
-Minimal flat vector logo for “Yapay Zeka Akademisi”.
+Minimal flat vector logo for “[Marka]”.
 
 Geometric icon with neural network motif.
 Clean grid structure, crisp edges.
@@ -104,7 +104,7 @@ Deliver:
 ### 2.3 Basit Başlangıç Promptu
 
 ```
-Minimal ve modern bir logo tasarla.
+[Marka] için minimal ve modern bir logo tasarla.
 
 Tema: Teknoloji ve güven
 Stil: Flat design
@@ -117,7 +117,7 @@ Format: Sadece ikon, yazı yok
 ### 3.1 Renk Paleti Promptu
 
 ```
-Markam için profesyonel bir renk paleti oluştur.
+[Marka] için profesyonel bir renk paleti oluştur.
 
 Marka özellikleri:
 - Yenilikçi
@@ -133,27 +133,10 @@ Aşağıdaki çıktıları üret:
 5. Renk kullanım rehberi (nerede hangi renk kullanılmalı)
 ```
 
-### 3.1 Renk Paleti Promptu
-
-
-```
-Markanın kurumsal kimliği için tipografi öner.
-
-Aşağıdakileri üret:
-
-- 3 birincil font
-- 3 ikincil font
-
-Her font için:
-- Kullanım alanı (başlık, paragraf, vurgu)
-- Stil açıklaması (modern, teknik, okunabilirlik vb.)
-- Web uyumluluğu
-```
-
 ### 3.2 Tipografi Promptu
 
 ```
-Markanın kurumsal kimliği için tipografi öner.
+[Marka]'nın kurumsal kimliği için tipografi öner.
 
 Aşağıdakileri üret:
 
@@ -171,7 +154,7 @@ Her font için:
 ### 4.1 Brand Book Promptu
 
 ```
-Bir marka için detaylı kurumsal kimlik kılavuzu oluştur.
+[Marka] için detaylı kurumsal kimlik kılavuzu oluştur.
 
 Başlıklar:
 
@@ -190,7 +173,7 @@ Başlıklar:
 ### 4.1 Brand Book Promptu
 
 ```
-Kurumsal marka dili için 10 maddelik kullanım kuralı oluştur.
+Kurumsal [Marka] dili için 10 maddelik kullanım kuralı oluştur.
 
 Ton:
 - Profesyonel
@@ -205,7 +188,7 @@ Her madde kısa ve uygulanabilir olsun.
 ### 5.1 Sunum Metni Promptu
 
 ```
-“Yapay Zeka Akademisi” için profesyonel bir sunum metni oluştur.
+[Marka] için profesyonel bir sunum metni oluştur.
 
 10 slayt olacak şekilde üret.
 
@@ -221,7 +204,7 @@ Dil: Akıcı, profesyonel, etkileyici
 
 ### 5.2 Slayt Tasarım Promptu
 ```
-Aşağıdaki metne uygun PowerPoint sunumu oluştur:
+Aşağıdaki metne uygun profesyonel bir sunum oluştur:
 
 [Metin buraya eklenecek]
 
@@ -239,7 +222,7 @@ Modern, sade, kurumsal
 ```
 ### 5.3 İnfografik Promptu
 ```
-“Yapay Zeka Akademisi” için infografik tasarla.
+[Marka] için infografik tasarla.
 
 Süreç:
 Araştırma → Strateji → Tasarım → Test → Yaygınlaştırma
@@ -250,5 +233,5 @@ Stil:
 - Yüksek kontrast
 
 Renk:
-Marka renkleri ile uyumlu
+[Marka] renkleri ile uyumlu
 ```
