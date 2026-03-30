@@ -29,7 +29,7 @@ Bu klasör, 28 Mart Cumartesi ve 29 Mart Pazar günleri gerçekleştirilen eğit
   * [Kurumsal Kimlik ve Sunum Rehberi](./kurumsal-kimlik-ve-sunum-rehberi)
   * [Merka Örnekleri](./marka-ornekleri)
 * 📂 **Derste Yapılan Uygulama Çalışmaları:**
-  * [Sunum Dosyaları (PDF)](./kurumsal-kimlik-ve-sunum-rehberi)
+  * [Sunum Dosyaları (PDF)](#)
 
 **4. Otonom Sistemler (13:00 - 14:00)**
 * **Eğitmen:** Öğr. Gör. Mücahid ARVASİ
