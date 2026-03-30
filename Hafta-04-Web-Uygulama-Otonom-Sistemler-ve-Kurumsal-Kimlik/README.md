@@ -29,8 +29,8 @@ Bu klasör, 28 Mart Cumartesi ve 29 Mart Pazar günleri gerçekleştirilen eğit
   * [Kurumsal Kimlik ve Sunum Rehberi](./kurumsal-kimlik-ve-sunum-rehberi)
   * [Merka Örnekleri](./marka-ornekleri)
 * 📂 **Derste Yapılan Uygulama Çalışmaları:**
-  * [Sunum Dosyaları Part 1 (ZIP)](./yza_kurumsal_kimlik_katilimci_calismalari_part1.zip)
-  * [Sunum Dosyaları Part 2 (ZIP)](./yza_kurumsal_kimlik_katilimci_calismalari_part2.zip)
+  * [Sunum Dosyaları Part 1 (ZIP)](./kurumsal_kimlik_katilimci_uygulamalari/yza_kurumsal_kimlik_katilimci_calismalari_part1.zip)
+  * [Sunum Dosyaları Part 2 (ZIP)](./kurumsal_kimlik_katilimci_uygulamalari/yza_kurumsal_kimlik_katilimci_calismalari_part2.zip)
 
 **4. Otonom Sistemler (13:00 - 14:00)**
 * **Eğitmen:** Öğr. Gör. Mücahid ARVASİ
