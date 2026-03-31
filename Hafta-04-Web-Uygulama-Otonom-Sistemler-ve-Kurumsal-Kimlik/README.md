@@ -10,13 +10,13 @@ Bu klasör, 28 Mart Cumartesi ve 29 Mart Pazar günleri gerçekleştirilen eğit
 * **Eğitmen:** Arda KAYAGİL
 * 📺 [Oturum Video Kaydını İzle](https://www.youtube.com/watch?v=qIfsqGicjyM)
 * 📂 **Materyaller:**
-  * [Sunum Dosyası](./internet-egitim.pptx)
+  * [Sunum Dosyası (PPTX)](./internet-egitim.pptx)
 
 **2. Otonom Sistemler: Özelleştirilmiş Yapay Zeka Personası, Ajan Mimarisi ve Mega-Prompt Kullanımı (13:00 - 14:00)**
 * **Eğitmen:** Öğr. Gör. Mücahid ARVASİ
 * 📺 [Oturum Video Kaydını İzle](https://youtu.be/qIfsqGicjyM?si=XI5DUPqeJ5Yj6ykU&t=7024)
 * 📂 **Materyaller:**
-  * [Sunum Dosyası](./YZA_Otonom_Sistemler-1.pdf)
+  * [Sunum Dosyası (PDF)](./YZA_Otonom_Sistemler-1.pdf)
 
 ---
 
@@ -36,4 +36,4 @@ Bu klasör, 28 Mart Cumartesi ve 29 Mart Pazar günleri gerçekleştirilen eğit
 * **Eğitmen:** Öğr. Gör. Mücahid ARVASİ
 * 📺 [Oturum Video Kaydını İzle](https://www.youtube.com/watch?v=tv7GGsf7oM8)
 * 📂 **Materyaller:**
-  * [Sunum Dosyası](././YZA_Otonom_Sistemler-2.pdf)
+  * [Sunum Dosyası (PDF)](././YZA_Otonom_Sistemler-2.pdf)
