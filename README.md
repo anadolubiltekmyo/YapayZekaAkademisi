@@ -16,7 +16,6 @@ Anadolu Üniversitesi Yapay Zeka Akademisi tarafından düzenlenen hafta sonu e�
 
 | Hafta | Tarih | Kapsam | Materyaller |
 | :---: | :--- | :--- | :---: |
-| **1** | 15 Nisan | İleri Prompt Engineering: Akademik Bağlam | 
-  * [Sunum Dosyası  (PPTX)](./ileri_prompt_stratejileri.pptx)
+| **1** | 15 Nisan | İleri Prompt Engineering: Akademik Bağlam | [📁 Sunum Dosyası  (PPTX)](./ileri_prompt_stratejileri.pptx) |
 ---
 *Not: Eğitim videolarını izlemek ve sunum dosyalarını indirmek için ilgili haftanın klasörüne tıklayabilirsiniz.*
