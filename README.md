@@ -2,7 +2,7 @@
 
 Anadolu Üniversitesi Yapay Zeka Akademisi tarafından düzenlenen hafta sonu eğitimlerinin ders materyallerine, sunumlarına ve video kayıtlarına bu arşivden ulaşabilirsiniz.
 
-## 📅 Eğitim Müfredatı ve Materyaller
+## 📅 Online Eğitim Müfredatı ve Materyaller
 
 | Hafta | Tarih | Kapsam | Materyaller |
 | :---: | :--- | :--- | :---: |
@@ -11,5 +11,12 @@ Anadolu Üniversitesi Yapay Zeka Akademisi tarafından düzenlenen hafta sonu e�
 | **3** | 14 - 15 Mart | Vibe Coding, Uygulama Geliştirme ve Girişimcilik İş Modelleri | [📁 Klasöre Git](./Hafta-03-Vibe-Coding-ve-Girisimcilik) |
 | **4** | 28 - 29 Mart | AI ile Web Uygulama, Otonom Sistemler ve Kurumsal Kimlik | [📁 Klasöre Git](./Hafta-04-Web-Uygulama-Otonom-Sistemler-ve-Kurumsal-Kimlik) |
 
+
+## 📅 Yüz Yüze Eğitim Müfredatı ve Materyaller
+
+| Hafta | Tarih | Kapsam | Materyaller |
+| :---: | :--- | :--- | :---: |
+| **1** | 15 Nisan | İleri Prompt Engineering: Akademik Bağlam | 
+  * [Sunum Dosyası  (PPTX)](./ileri_prompt_stratejileri.pptx)
 ---
 *Not: Eğitim videolarını izlemek ve sunum dosyalarını indirmek için ilgili haftanın klasörüne tıklayabilirsiniz.*
