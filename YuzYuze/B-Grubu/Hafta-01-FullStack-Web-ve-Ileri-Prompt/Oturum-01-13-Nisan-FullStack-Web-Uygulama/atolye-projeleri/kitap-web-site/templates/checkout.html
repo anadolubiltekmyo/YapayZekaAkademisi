@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Ödeme - KitapDünyası{% endblock %}
+
+{% block content %}
+<h2 class="mb-4"><i class="bi bi-credit-card"></i> Ödeme</h2>
+
+<div class="row">
+    <!-- Order Summary -->
+    <div class="col-lg-5 order-lg-2 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Sipariş Özeti</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                {% for item in items %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ item['title'] }}</strong>
+                        <br><small class="text-muted">x{{ item['quantity'] }}</small>
+                    </div>
+                    <span>₺{{ "%.2f"|format(item['price'] * item['quantity']) }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class="card-footer d-flex justify-content-between">
+                <strong class="fs-5">Toplam</strong>
+                <strong class="fs-5 text-primary">₺{{ "%.2f"|format(total) }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Form -->
+    <div class="col-lg-7 order-lg-1">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <form method="post">
+                    <h5 class="mb-3"><i class="bi bi-geo-alt"></i> Teslimat Bilgileri</h5>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Teslimat Adresi</label>
+                        <textarea class="form-control" id="address" name="address" rows="3" required
+                                  placeholder="Mahalle, sokak, bina no, daire no, ilçe, il"></textarea>
+                    </div>
+
+                    <hr>
+                    <h5 class="mb-3"><i class="bi bi-credit-card-2-front"></i> Ödeme Bilgileri</h5>
+                    <div class="alert alert-info small">
+                        <i class="bi bi-info-circle"></i> Bu bir demo ödeme sayfasıdır. Gerçek bir ödeme yapılmayacaktır.
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="card_name" class="form-label">Kart Üzerindeki İsim</label>
+                        <input type="text" class="form-control" id="card_name" name="card_name"
+                               placeholder="Ad Soyad" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="card_number" class="form-label">Kart Numarası</label>
+                        <input type="text" class="form-control" id="card_number" name="card_number"
+                               placeholder="1234 5678 9012 3456" maxlength="19" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="expiry" class="form-label">Son Kullanma Tarihi</label>
+                            <input type="text" class="form-control" id="expiry" name="expiry"
+                                   placeholder="AA/YY" maxlength="5" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cvv" name="cvv"
+                                   placeholder="123" maxlength="4" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg w-100 mt-2">
+                        <i class="bi bi-lock"></i> Siparişi Tamamla — ₺{{ "%.2f"|format(total) }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

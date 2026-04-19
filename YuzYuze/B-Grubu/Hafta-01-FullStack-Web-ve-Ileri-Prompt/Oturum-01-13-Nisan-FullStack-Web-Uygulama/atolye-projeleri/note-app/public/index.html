@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NotDefteri - Not Alma Uygulaması</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Auth Section -->
+  <div id="auth-section" class="auth-container">
+    <div class="auth-card">
+      <h1 class="app-title">📝 NotDefteri</h1>
+      <p class="app-subtitle">Notlarınızı güvenle saklayın</p>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form">
+        <h2>Giriş Yap</h2>
+        <div class="form-group">
+          <label for="login-username">Kullanıcı Adı</label>
+          <input type="text" id="login-username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Şifre</label>
+          <input type="password" id="login-password" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary">Giriş Yap</button>
+        <p class="auth-switch">Hesabınız yok mu? <a href="#" id="show-register">Kayıt Olun</a></p>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" class="auth-form hidden">
+        <h2>Kayıt Ol</h2>
+        <div class="form-group">
+          <label for="reg-username">Kullanıcı Adı</label>
+          <input type="text" id="reg-username" required minlength="3" maxlength="30" autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="reg-email">E-posta</label>
+          <input type="email" id="reg-email" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Şifre</label>
+          <input type="password" id="reg-password" required minlength="6" autocomplete="new-password">
+        </div>
+        <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+        <p class="auth-switch">Zaten hesabınız var mı? <a href="#" id="show-login">Giriş Yapın</a></p>
+      </form>
+
+      <div id="auth-error" class="error-msg hidden"></div>
+    </div>
+  </div>
+
+  <!-- App Section -->
+  <div id="app-section" class="hidden">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <h1>📝 NotDefteri</h1>
+      </div>
+      <div class="header-center">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18"><circle cx="11" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="text" id="search-input" placeholder="Notlarda ara...">
+        </div>
+      </div>
+      <div class="header-right">
+        <span id="user-greeting"></span>
+        <select id="sort-select" title="Sıralama">
+          <option value="updated">Son Güncellenen</option>
+          <option value="created">Oluşturma Tarihi</option>
+          <option value="title">Başlığa Göre</option>
+        </select>
+        <button id="logout-btn" class="btn btn-outline" title="Çıkış Yap">Çıkış</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <button id="new-note-btn" class="btn btn-primary btn-new-note">+ Yeni Not</button>
+
+      <div id="notes-container" class="notes-grid"></div>
+      <div id="empty-state" class="empty-state hidden">
+        <div class="empty-icon">📋</div>
+        <h3>Henüz notunuz yok</h3>
+        <p>Yeni bir not ekleyerek başlayın!</p>
+      </div>
+    </main>
+  </div>
+
+  <!-- Note Modal -->
+  <div id="note-modal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <input type="text" id="modal-title" placeholder="Başlık..." class="modal-title-input">
+        <div class="modal-actions">
+          <div class="color-picker">
+            <button class="color-btn" data-color="#ffffff" style="background:#ffffff" title="Beyaz"></button>
+            <button class="color-btn" data-color="#fff3b0" style="background:#fff3b0" title="Sarı"></button>
+            <button class="color-btn" data-color="#b6f7c1" style="background:#b6f7c1" title="Yeşil"></button>
+            <button class="color-btn" data-color="#b0d4ff" style="background:#b0d4ff" title="Mavi"></button>
+            <button class="color-btn" data-color="#ffb0b0" style="background:#ffb0b0" title="Kırmızı"></button>
+            <button class="color-btn" data-color="#e8b0ff" style="background:#e8b0ff" title="Mor"></button>
+            <button class="color-btn" data-color="#ffd6a5" style="background:#ffd6a5" title="Turuncu"></button>
+          </div>
+          <button id="modal-pin-btn" class="btn-icon" title="Sabitle">📌</button>
+          <button id="modal-delete-btn" class="btn-icon btn-danger hidden" title="Sil">🗑️</button>
+          <button id="modal-close-btn" class="btn-icon" title="Kapat">✕</button>
+        </div>
+      </div>
+      <textarea id="modal-content" placeholder="Notunuzu yazın..."></textarea>
+      <div class="modal-footer">
+        <span id="modal-date" class="modal-date"></span>
+        <button id="modal-save-btn" class="btn btn-primary">Kaydet</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

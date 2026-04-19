@@ -1,0 +1,35 @@
+PROMPTLAR
+
+Prompt 1:
+Bana cok da kapsamli olmayacak bir universite web sayfasi olustur. Bu universite web sayfasi Simpson temali olacak. Universite hocalari simpson karakterleri olsun. universite bolumleri de simpsonda cok islenen konulalra ilgili hayali bolum isimleri olabilir. Simpson karakter fotograflarini webde uygun sayfalari tarayarak bulmaya calis, gercek karakterlerin fotograflarini kullanman guzel olur. Duyurular sayfasinda yine dizi temasinda duyurular olabilir.
+
+Prompt 2:
+https://docs.google.com/forms/d/e/1FAIpQLSe_Hm8-lqa_dftChwaxb9CRm5Tnl9mqewjMu3sUEn1UokHtIQ/viewform bu web sayfasi icin qr code olsutur python kodu yazarak. qr kodu da resim olarak kaydet
+
+Prompt 3:
+Online kitap satin alinabilecek bir web sitesi olustur. login sistemi olsun, kullanici bilgileri iliskisel veritabaninda tutulsun. su an localde calismasini istioyurz web sayfasinin, setup gerektirmeyen bir veritabani kullanmaya calis. sepet olsun, eski siparis bilgilerini ulasailbilirsin, dummy odeme sayfasi olsun. kitap kapaklarini da webden tarayip bulmaya calis
+
+Prompt 4:
+Online peynir satan bir web sayfasi yapacagiz. Su an icin iliskisel veritabani olusturma. sepet mantiginin duzgun calismasini bekliyorum. sepete urun ekleme, sepetten urun cikartma, sepeti bosaltma. peynirlerin fiyatlari, yoresi bulunsun. peynirlerin resimlerini sen kendin uret. sepet kullanimini cookie kullanarak olustur.
+
+Prompt 5:
+Bir not alma web uygulamasi gelistirmek istiyorum. Login sistemi olacak. Kullanicilar notlarini gorebilir, degistirebilir, silebilir, yeni notlar ekleyebilir ve baska gererkli ozellikler olabilir. veritabani olacak uygulamanin.
+
+Prompt 6:
+Bu web uygulamasi docker imaji olarak paketle cunku bu web uygulamasini fly.io da bu docker imaji ile yayinlamak istiyorum. fly.io deploymenti icin gerekli tum komutları otomatik halistir.
+
+Prompt 7:
+	
+arkaplanda gpt4.5 nano kullanacak bir masaustu chatbot uygulamasi gelistirtmek istiyorum. gevmis sohbetler saklnasin, arayuz olarak cluadeun arayuzune benzesin. sk-proj-ABCDEF bu da secret keyimiz	
+
+Prompt 8: 
+
+https://developers.openai.com/api/docs/models yanlis biliyorsun dedigim model aslinda var, yeni cikti 5.4 nano bunu kullancaksin
+
+Prompt 9:
+
+groq api anahtarim gsk_ABCD bu servisin modellerini kullanabileyim chatbot
+
+*API Anahatarlari değiştirilmiştir. Su anki halleri calismamaktadir.
+
+*Proje kodlarındaki bagimlikliklarin (kütüphanelerin) olduğu klasörler proje dosya boyutunu küçültebilmek adına silinmiştir. Ilgili kodları calistirmak icin bagimlikliklarin kurulumu gerekmektedir.

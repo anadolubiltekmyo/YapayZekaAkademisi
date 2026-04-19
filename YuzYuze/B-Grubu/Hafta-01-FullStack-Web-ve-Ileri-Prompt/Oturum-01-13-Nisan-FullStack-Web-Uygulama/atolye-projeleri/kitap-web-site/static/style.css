@@ -1,0 +1,100 @@
+/* ── KitapDünyası Custom Styles ────────────────────────────────── */
+
+body {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Hero */
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.hero-section .lead {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Book Cards */
+.book-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.book-cover {
+    height: 280px;
+    object-fit: cover;
+    background-color: #e9ecef;
+}
+
+.book-detail-cover {
+    max-height: 450px;
+    object-fit: contain;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-size: 1.3rem;
+}
+
+/* Cards */
+.card {
+    border-radius: 0.75rem;
+    border: none;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+/* Badge tweaks */
+.badge {
+    font-weight: 500;
+}
+
+/* Alert animations */
+.alert {
+    border-radius: 0.5rem;
+}
+
+/* Table */
+.table td, .table th {
+    vertical-align: middle;
+}
+
+/* Button styles */
+.btn {
+    border-radius: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+    
+    .hero-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .book-cover {
+        height: 200px;
+    }
+}

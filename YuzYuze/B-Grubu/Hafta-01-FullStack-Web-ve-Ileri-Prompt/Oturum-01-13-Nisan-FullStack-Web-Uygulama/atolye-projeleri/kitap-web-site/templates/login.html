@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Giriş Yap - KitapDünyası{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <h3 class="text-center mb-4"><i class="bi bi-box-arrow-in-right"></i> Giriş Yap</h3>
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-posta</label>
+                        <input type="email" class="form-control" id="email" name="email" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Şifre</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Giriş Yap</button>
+                </form>
+                <hr>
+                <p class="text-center mb-0">
+                    Hesabınız yok mu? <a href="{{ url_for('register') }}">Kayıt olun</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

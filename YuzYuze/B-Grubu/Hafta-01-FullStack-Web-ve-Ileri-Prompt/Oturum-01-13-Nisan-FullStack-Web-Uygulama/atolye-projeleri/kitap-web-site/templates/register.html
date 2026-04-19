@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Kayıt Ol - KitapDünyası{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <h3 class="text-center mb-4"><i class="bi bi-person-plus"></i> Kayıt Ol</h3>
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Ad Soyad</label>
+                        <input type="text" class="form-control" id="name" name="name" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-posta</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Şifre (min. 6 karakter)</label>
+                        <input type="password" class="form-control" id="password" name="password" minlength="6" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm" class="form-label">Şifre Tekrar</label>
+                        <input type="password" class="form-control" id="confirm" name="confirm" minlength="6" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Kayıt Ol</button>
+                </form>
+                <hr>
+                <p class="text-center mb-0">
+                    Zaten hesabınız var mı? <a href="{{ url_for('login') }}">Giriş yapın</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

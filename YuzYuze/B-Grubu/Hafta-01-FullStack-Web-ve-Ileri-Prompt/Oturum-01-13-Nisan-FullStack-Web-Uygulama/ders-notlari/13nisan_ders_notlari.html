@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack Web Uygulamaları: Mimari, Geliştirme ve Deployment</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #dbeafe;
+            --secondary: #7c3aed;
+            --secondary-light: #ede9fe;
+            --success: #059669;
+            --success-light: #d1fae5;
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            font-size: 16px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #7c3aed 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+        .hero .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .toc h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        .toc ol {
+            padding-left: 1.5rem;
+        }
+        .toc li {
+            margin-bottom: 0.4rem;
+        }
+        .toc a {
+            color: var(--gray-700);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .toc a:hover {
+            color: var(--primary);
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.8rem;
+        }
+
+        .section-number {
+            background: var(--primary);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: var(--gray-900);
+            line-height: 1.3;
+        }
+        .section-header .en {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: var(--gray-800);
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            color: var(--gray-700);
+            margin-top: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p { margin-bottom: 1rem; }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+
+        ul, ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        li { margin-bottom: 0.3rem; }
+
+        /* Info Boxes */
+        .info-box {
+            border-radius: var(--radius);
+            padding: 1rem 1.2rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+        .info-box.tip {
+            background: var(--success-light);
+            border-left: 4px solid var(--success);
+        }
+        .info-box.warning {
+            background: var(--warning-light);
+            border-left: 4px solid var(--warning);
+        }
+        .info-box.danger {
+            background: var(--danger-light);
+            border-left: 4px solid var(--danger);
+        }
+        .info-box.note {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+        }
+        .info-box.purple {
+            background: var(--secondary-light);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Code blocks */
+        pre {
+            background: var(--gray-900);
+            color: #e5e7eb;
+            padding: 1.2rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        code {
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.88em;
+        }
+        p code, li code, td code {
+            background: var(--gray-100);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            color: var(--danger);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.92rem;
+        }
+        th, td {
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--gray-200);
+            text-align: left;
+        }
+        th {
+            background: var(--gray-100);
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+        tr:nth-child(even) td {
+            background: var(--gray-50);
+        }
+
+        /* Prompt examples */
+        .prompt-box {
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: #e2e8f0;
+            border-radius: var(--radius);
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        .prompt-box::before {
+            content: '💬 Örnek Prompt';
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .prompt-box.no-label::before {
+            content: '';
+            display: none;
+        }
+        .prompt-box p {
+            margin: 0;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Diagrams */
+        .diagram {
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        .diagram svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Comparison cards */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .compare-card {
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            border: 2px solid var(--gray-200);
+        }
+        .compare-card h4 {
+            margin-top: 0;
+            font-size: 1rem;
+        }
+        .compare-card ul {
+            font-size: 0.9rem;
+        }
+        .compare-card.static {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+        .compare-card.dynamic {
+            border-color: var(--secondary);
+            background: var(--secondary-light);
+        }
+
+        /* Step list */
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+        .steps li {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--gray-200);
+            margin-top: 2rem;
+        }
+
+        /* Terminal output */
+        .terminal {
+            background: #0d1117;
+            color: #c9d1d9;
+            border-radius: 8px;
+            padding: 1rem 1.2rem;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        .terminal .prompt-sign {
+            color: #58a6ff;
+        }
+        .terminal .comment {
+            color: #6e7681;
+        }
+        .terminal .success {
+            color: #3fb950;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 1.5rem; }
+            .section { padding: 1.2rem; }
+            .compare-grid { grid-template-columns: 1fr; }
+            pre { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <h1>🌐 Full-Stack Web Uygulamaları</h1>
+    <p class="subtitle">Mimari, Geliştirme ve Deployment — Vibe Coding ile sıfırdan canlıya taşıma rehberi</p>
+</header>
+
+<div class="container">
+
+    <!-- İçindekiler -->
+    <nav class="toc">
+        <h2>📑 İçindekiler</h2>
+        <ol>
+            <li><a href="#statik-dinamik">Statik vs Dinamik Web Sayfaları</a></li>
+            <li><a href="#veri-saklama">Veri Saklama Yolları: Cookie → localStorage → Veritabanı</a></li>
+            <li><a href="#veritabani-temelleri">Veritabanı Temelleri: Tablolar, İlişkiler, SQL</a></li>
+            <li><a href="#bulut-veritabanlari">Bulut Tabanlı Veritabanları: Kolay Başlangıç</a></li>
+            <li><a href="#frontend-backend">Frontend ve Backend Ayrımı</a></li>
+            <li><a href="#proje-yapisi">Proje Yapısı ve Teknoloji Seçimi</a></li>
+            <li><a href="#crud-uygulama">Vibe Coding ile CRUD Uygulaması</a></li>
+            <li><a href="#auth-login">Kullanıcı Yönetimi ve Giriş Sistemleri</a></li>
+            <li><a href="#guvenlik">Güvenlik: Bilinmesi Gerekenler</a></li>
+            <li><a href="#api-cors">Web Servisleri, API Entegrasyonu ve CORS</a></li>
+            <li><a href="#github-pages">Hosting: GitHub Pages ile Statik Siteler</a></li>
+            <li><a href="#vps-deployment">Gerçek Sunucu Deployment: VPS ile Yayına Alma</a></li>
+            <li><a href="#ssh-terminal">SSH, Terminal Komutları ve Uzak Sunucu Yönetimi</a></li>
+            <li><a href="#servis-yonetimi">Process ve Servis Yönetimi</a></li>
+            <li><a href="#domain-ssl">Domain ve SSL Sertifikası</a></li>
+            <li><a href="#prompt-koleksiyonu">Prompt Koleksiyonu: Derste Deneyin</a></li>
+            <li><a href="#sozluk">Terimler Sözlüğü</a></li>
+        </ol>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 1: Statik vs Dinamik -->
+    <!-- ============================================================ -->
+    <section class="section" id="statik-dinamik">
+        <div class="section-header">
+            <span class="section-number">1</span>
+            <h2>Statik vs Dinamik Web Sayfaları <span class="en">Static vs Dynamic Web Pages</span></h2>
+        </div>
+
+        <p>
+            Bir web sitesini ziyaret ettiğinizde tarayıcınız (Chrome, Firefox, Safari…) bir <strong>sunucuya</strong> istek gönderir ve gelen yanıtı ekranınızda gösterir. Ama tüm web siteleri aynı şekilde çalışmaz. İki temel kategori vardır:
+        </p>
+
+        <div class="compare-grid">
+            <div class="compare-card static">
+                <h4>📄 Statik Web Sayfası</h4>
+                <ul>
+                    <li>Sunucuda hazır HTML/CSS/JS dosyaları bulunur</li>
+                    <li>Her kullanıcıya <strong>aynı içerik</strong> gönderilir</li>
+                    <li>Sunucu tarafında işlem yapılmaz</li>
+                    <li>Blog, portfolyo, tanıtım sitesi için ideal</li>
+                    <li>GitHub Pages ile ücretsiz yayınlanabilir</li>
+                </ul>
+            </div>
+            <div class="compare-card dynamic">
+                <h4>⚡ Dinamik Web Sayfası</h4>
+                <ul>
+                    <li>Sunucu, her istekte <strong>içeriği üretir</strong></li>
+                    <li>Kullanıcıya özel sayfalar gösterilir</li>
+                    <li>Veritabanından veri çekilir, formlar işlenir</li>
+                    <li>E-ticaret, sosyal medya, dashboard için gerekli</li>
+                    <li>Bir <strong>backend sunucusu</strong> gerektirir</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="diagram">
+            <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="font-family: system-ui, sans-serif;">
+                <!-- Statik -->
+                <rect x="10" y="10" width="370" height="200" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+                <text x="195" y="38" text-anchor="middle" font-size="14" font-weight="700" fill="#1e3a5f">📄 Statik Sayfa</text>
+                <rect x="30" y="55" width="80" height="50" rx="8" fill="#fff" stroke="#93c5fd" stroke-width="1.5"/>
+                <text x="70" y="82" text-anchor="middle" font-size="11" fill="#374151">🖥️ Tarayıcı</text>
+                <line x1="110" y1="80" x2="175" y2="80" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+                <text x="143" y="72" text-anchor="middle" font-size="9" fill="#4b5563">GET /</text>
+                <rect x="175" y="55" width="90" height="50" rx="8" fill="#fff" stroke="#93c5fd" stroke-width="1.5"/>
+                <text x="220" y="82" text-anchor="middle" font-size="11" fill="#374151">📁 Sunucu</text>
+                <line x1="265" y1="80" x2="295" y2="80" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+                <rect x="295" y="55" width="70" height="50" rx="8" fill="#fff" stroke="#93c5fd" stroke-width="1.5"/>
+                <text x="330" y="78" text-anchor="middle" font-size="10" fill="#374151">index.html</text>
+                <text x="330" y="92" text-anchor="middle" font-size="9" fill="#6b7280">style.css</text>
+                <text x="195" y="130" text-anchor="middle" font-size="11" fill="#4b5563">Hazır dosyayı olduğu gibi gönderir</text>
+                <text x="195" y="148" text-anchor="middle" font-size="10" fill="#059669">✅ Basit · Hızlı · Ucuz</text>
+
+                <!-- Dinamik -->
+                <rect x="420" y="10" width="370" height="200" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+                <text x="605" y="38" text-anchor="middle" font-size="14" font-weight="700" fill="#3b0764">⚡ Dinamik Sayfa</text>
+                <rect x="440" y="55" width="80" height="50" rx="8" fill="#fff" stroke="#c4b5fd" stroke-width="1.5"/>
+                <text x="480" y="82" text-anchor="middle" font-size="11" fill="#374151">🖥️ Tarayıcı</text>
+                <line x1="520" y1="80" x2="568" y2="80" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow-purple)"/>
+                <text x="544" y="72" text-anchor="middle" font-size="9" fill="#4b5563">GET /profil</text>
+                <rect x="568" y="55" width="90" height="50" rx="8" fill="#fff" stroke="#c4b5fd" stroke-width="1.5"/>
+                <text x="613" y="76" text-anchor="middle" font-size="10" fill="#374151">⚙️ Backend</text>
+                <text x="613" y="92" text-anchor="middle" font-size="9" fill="#6b7280">(Node/Python)</text>
+                <line x1="658" y1="80" x2="688" y2="80" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow-purple)"/>
+                <rect x="688" y="55" width="70" height="50" rx="8" fill="#fff" stroke="#c4b5fd" stroke-width="1.5"/>
+                <text x="723" y="78" text-anchor="middle" font-size="10" fill="#374151">🗄️ DB</text>
+                <text x="723" y="92" text-anchor="middle" font-size="9" fill="#6b7280">Veritabanı</text>
+                <text x="605" y="130" text-anchor="middle" font-size="11" fill="#4b5563">Kullanıcıya özel sayfa üretir</text>
+                <text x="605" y="148" text-anchor="middle" font-size="10" fill="#7c3aed">🔒 Giriş · 📊 Dashboard · 🛒 Sepet</text>
+
+                <defs>
+                    <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                        <path d="M0,0 L8,3 L0,6 Z" fill="#2563eb"/>
+                    </marker>
+                    <marker id="arrow-purple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                        <path d="M0,0 L8,3 L0,6 Z" fill="#7c3aed"/>
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+
+        <h3>Gerçek Dünya Örnekleri</h3>
+        <table>
+            <tr><th>Web Sitesi</th><th>Tür</th><th>Neden?</th></tr>
+            <tr><td>Kişisel blog</td><td>Statik</td><td>Her ziyaretçi aynı içeriği görür</td></tr>
+            <tr><td>Wikipedia</td><td>Dinamik</td><td>Arama yapılır, sayfa sunucu tarafında üretilir</td></tr>
+            <tr><td>Online mağaza</td><td>Dinamik</td><td>Kullanıcı girişi, sepet, ödeme var</td></tr>
+            <tr><td>Firma tanıtım sayfası</td><td>Statik</td><td>İletişim formu dışında sabit içerik</td></tr>
+            <tr><td>Öğrenci not sistemi</td><td>Dinamik</td><td>Her öğrenci kendi notlarını görür</td></tr>
+        </table>
+
+        <div class="info-box note">
+            <strong>💡 Hatırlatma:</strong>
+            Statik siteler çok daha kolay ve ucuz yayınlanır — GitHub Pages, Netlify, Vercel gibi platformlarda ücretsiz barındırılabilir. Ancak kullanıcı girişi, veri kaydetme gibi işlemler gerektiriyorsanız dinamik bir yapıya (backend + veritabanı) ihtiyacınız var demektir.
+        </div>
+
+        <h3>Hangisini Seçmeliyim?</h3>
+        <p>Kendinize şu soruyu sorun: <em>"Kullanıcılar siteye veri kaydedecek mi?"</em></p>
+        <ul>
+            <li><strong>Hayır</strong> → Statik site yeterli (blog, portfolyo, dokümantasyon)</li>
+            <li><strong>Evet</strong> → Dinamik site gerekli (kullanıcı girişi, CRUD işlemleri, dashboard)</li>
+        </ul>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 2: Veri Saklama Yolları -->
+    <!-- ============================================================ -->
+    <section class="section" id="veri-saklama">
+        <div class="section-header">
+            <span class="section-number">2</span>
+            <h2>Veri Saklama Yolları <span class="en">Data Storage Methods</span></h2>
+        </div>
+
+        <p>
+            Bir web uygulamasında kullanıcı verilerini saklamanın birkaç farklı yolu vardır. Her birinin kendine özgü avantajları ve sınırlamaları var. Bunları <strong>basitten karmaşığa</strong> doğru inceleyelim:
+        </p>
+
+        <h3>🍪 Cookie (Çerez)</h3>
+        <p>
+            Cookie, tarayıcıda saklanan küçük metin parçalarıdır (en fazla ~4 KB). Sunucu tarafından ayarlanabilir ve her istekle birlikte sunucuya otomatik gönderilir.
+        </p>
+        <ul>
+            <li><strong>Kullanım:</strong> Oturum yönetimi (session), dil tercihi, "beni hatırla" seçeneği</li>
+            <li><strong>Avantaj:</strong> Sunucu ile otomatik paylaşılır</li>
+            <li><strong>Dezavantaj:</strong> Çok küçük (4 KB), her istekte gönderilir (performans), güvenlik riskleri (XSS)</li>
+        </ul>
+
+        <pre><code>// Cookie oluşturma (JavaScript)
+document.cookie = "tema=koyu; max-age=86400; path=/";
+
+// Cookie okuma
+console.log(document.cookie); // "tema=koyu"</code></pre>
+
+        <h3>💾 localStorage &amp; sessionStorage</h3>
+        <p>
+            Tarayıcıda veri saklamanın modern yolu. Cookie'den çok daha büyük alan sunar (~5-10 MB).
+        </p>
+
+        <table>
+            <tr><th>Özellik</th><th>localStorage</th><th>sessionStorage</th></tr>
+            <tr><td>Ömür</td><td>Kalıcı (silinene kadar)</td><td>Sekme kapanınca silinir</td></tr>
+            <tr><td>Boyut</td><td>~5-10 MB</td><td>~5-10 MB</td></tr>
+            <tr><td>Sunucuya gönderilir mi?</td><td>❌ Hayır</td><td>❌ Hayır</td></tr>
+            <tr><td>Kullanım</td><td>Kullanıcı tercihleri, sepet</td><td>Geçici form verileri</td></tr>
+        </table>
+
+        <pre><code>// localStorage kullanımı
+localStorage.setItem("kullanici", "Ali");
+let isim = localStorage.getItem("kullanici"); // "Ali"
+localStorage.removeItem("kullanici");
+
+// JSON veri saklama
+let sepet = [
+  { urun: "Laptop", fiyat: 25000 },
+  { urun: "Mouse", fiyat: 500 }
+];
+localStorage.setItem("sepet", JSON.stringify(sepet));
+
+// Okuma
+let kayitliSepet = JSON.parse(localStorage.getItem("sepet"));</code></pre>
+
+        <h3>🗄️ Veritabanı (Database)</h3>
+        <p>
+            Gerçek uygulamalar için <strong>en doğru çözüm</strong> veritabanıdır. Veritabanı, verilerin sunucu tarafında düzenli şekilde saklandığı bir sistemdir.
+        </p>
+        <ul>
+            <li>Verilere tüm cihazlardan erişilir (telefon, tablet, laptop…)</li>
+            <li>Büyük miktarda veri saklanabilir (milyonlarca kayıt)</li>
+            <li>Veriler güvenli şekilde korunur (yetkilendirme)</li>
+            <li>Aynı anda binlerce kullanıcı erişebilir</li>
+        </ul>
+
+        <div class="info-box warning">
+            <strong>⚠️ Önemli Fark:</strong>
+            Cookie ve localStorage verileri <strong>sadece o tarayıcıda</strong> bulunur. Kullanıcı farklı bir cihazdan girdiğinde veriler görünmez. Telefonunuzu değiştirseniz veya tarayıcı verisini temizleseniz her şey kaybolur. Veritabanı ise <strong>sunucuda</strong> durur — her yerden erişilebilir, kalıcı ve güvenlidir.
+        </div>
+
+        <h3>📊 Karşılaştırma Tablosu</h3>
+        <table>
+            <tr>
+                <th>Özellik</th>
+                <th>Cookie 🍪</th>
+                <th>localStorage 💾</th>
+                <th>Veritabanı 🗄️</th>
+            </tr>
+            <tr><td>Saklama yeri</td><td>Tarayıcı</td><td>Tarayıcı</td><td>Sunucu</td></tr>
+            <tr><td>Kapasite</td><td>~4 KB</td><td>~5-10 MB</td><td>Sınırsız*</td></tr>
+            <tr><td>Farklı cihazdan erişim</td><td>❌</td><td>❌</td><td>✅</td></tr>
+            <tr><td>Güvenlik</td><td>Düşük</td><td>Orta</td><td>Yüksek</td></tr>
+            <tr><td>Sunucu gerekli mi?</td><td>❌</td><td>❌</td><td>✅</td></tr>
+            <tr><td>Arama/filtreleme</td><td>❌</td><td>Kısıtlı</td><td>✅ (SQL)</td></tr>
+            <tr><td>Çoklu kullanıcı</td><td>❌ (cihaza özel)</td><td>❌ (cihaza özel)</td><td>✅</td></tr>
+        </table>
+        <p style="font-size:0.85rem; color: var(--gray-600);">* Sunucunun disk kapasitesiyle sınırlıdır.</p>
+
+        <div class="info-box tip">
+            <strong>🎯 Pratik Kural:</strong>
+            <ul style="margin-bottom:0">
+                <li>Basit tercihler (tema, dil) → <code>localStorage</code></li>
+                <li>Oturum/giriş bilgisi → <code>Cookie</code> (HttpOnly, sunucu tarafı)</li>
+                <li>Kullanıcı verileri, iş verileri → <strong>Veritabanı</strong></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 3: Veritabanı Temelleri -->
+    <!-- ============================================================ -->
+    <section class="section" id="veritabani-temelleri">
+        <div class="section-header">
+            <span class="section-number">3</span>
+            <h2>Veritabanı Temelleri <span class="en">Database Fundamentals</span></h2>
+        </div>
+
+        <p>
+            Veritabanı (database) verilerin düzenli biçimde saklandığı, aranabildiği ve yönetilebildiği bir sistemdir. Bunu bir <strong>Excel tablosu</strong> gibi düşünebilirsiniz — ama çok daha güçlü, çok daha hızlı ve çok sayıda kullanıcıya aynı anda hizmet verebilen bir yapı.
+        </p>
+
+        <h3>📋 Tablo (Table) Nedir?</h3>
+        <p>
+            Veritabanının temel yapı taşı <strong>tablo</strong>dur. Her tablo, belirli bir veri türünü (kullanıcılar, ürünler, siparişler…) düzenli satır ve sütunlar halinde saklar:
+        </p>
+
+        <h4>Örnek: <code>kullanicilar</code> tablosu</h4>
+        <table>
+            <tr><th>id</th><th>ad</th><th>email</th><th>sifre_hash</th><th>kayit_tarihi</th></tr>
+            <tr><td>1</td><td>Ayşe Yılmaz</td><td>ayse@email.com</td><td>$2b$10$xK…</td><td>2026-04-01</td></tr>
+            <tr><td>2</td><td>Mehmet Demir</td><td>mehmet@email.com</td><td>$2b$10$pQ…</td><td>2026-04-05</td></tr>
+            <tr><td>3</td><td>Zeynep Kara</td><td>zeynep@email.com</td><td>$2b$10$rT…</td><td>2026-04-10</td></tr>
+        </table>
+
+        <ul>
+            <li><strong>Satır (Row / Record):</strong> Tek bir kayıt — örneğin bir kullanıcı</li>
+            <li><strong>Sütun (Column / Field):</strong> Bir özellik — örneğin "email" veya "ad"</li>
+            <li><strong>id:</strong> Her satırı benzersiz tanımlayan numara (Primary Key)</li>
+        </ul>
+
+        <h3>🔗 İlişkiler (Relations)</h3>
+        <p>
+            Tablolar birbirleriyle <strong>ilişkilendirilebilir</strong>. Örneğin bir e-ticaret sitesinde:
+        </p>
+        <ul>
+            <li><code>kullanicilar</code> tablosu → Kullanıcı bilgileri</li>
+            <li><code>siparisler</code> tablosu → Her sipariş, hangi kullanıcıya ait olduğunu belirtir</li>
+        </ul>
+
+        <h4>Örnek: <code>siparisler</code> tablosu</h4>
+        <table>
+            <tr><th>id</th><th>kullanici_id</th><th>urun</th><th>tutar</th><th>tarih</th></tr>
+            <tr><td>101</td><td>1</td><td>Laptop</td><td>25000 ₺</td><td>2026-04-12</td></tr>
+            <tr><td>102</td><td>1</td><td>Mouse</td><td>500 ₺</td><td>2026-04-12</td></tr>
+            <tr><td>103</td><td>3</td><td>Klavye</td><td>1200 ₺</td><td>2026-04-13</td></tr>
+        </table>
+        <p>
+            Burada <code>kullanici_id</code> sütunu, <code>kullanicilar</code> tablosundaki <code>id</code> ile eşleşir. Bu bir <strong>Foreign Key</strong> (yabancı anahtar) ilişkisidir. Sayesinde "Ayşe'nin siparişleri neler?" sorusunu cevaplayabiliriz.
+        </p>
+
+        <h3>📝 SQL ile Temel İşlemler (CRUD)</h3>
+        <p>
+            SQL (Structured Query Language), veritabanıyla konuşmak için kullanılan dildir. Dört temel işlem vardır — kısaca <strong>CRUD</strong>:
+        </p>
+
+        <table>
+            <tr><th>İşlem</th><th>SQL Komutu</th><th>Anlamı</th></tr>
+            <tr><td><strong>C</strong>reate</td><td><code>INSERT INTO</code></td><td>Yeni kayıt ekle</td></tr>
+            <tr><td><strong>R</strong>ead</td><td><code>SELECT</code></td><td>Veri oku / listele</td></tr>
+            <tr><td><strong>U</strong>pdate</td><td><code>UPDATE</code></td><td>Mevcut kaydı güncelle</td></tr>
+            <tr><td><strong>D</strong>elete</td><td><code>DELETE</code></td><td>Kayıt sil</td></tr>
+        </table>
+
+        <pre><code>-- Yeni kullanıcı ekle (Create)
+INSERT INTO kullanicilar (ad, email) VALUES ('Ali Can', 'ali@email.com');
+
+-- Tüm kullanıcıları listele (Read)
+SELECT * FROM kullanicilar;
+
+-- Belirli kullanıcının emailini güncelle (Update)
+UPDATE kullanicilar SET email = 'yeni@email.com' WHERE id = 1;
+
+-- Kullanıcı sil (Delete)
+DELETE FROM kullanicilar WHERE id = 2;
+
+-- Ayşe'nin siparişlerini getir (İlişkisel sorgu)
+SELECT s.urun, s.tutar
+FROM siparisler s
+JOIN kullanicilar k ON s.kullanici_id = k.id
+WHERE k.ad = 'Ayşe Yılmaz';</code></pre>
+
+        <h3>SQL vs NoSQL</h3>
+        <p>İki ana veritabanı kategorisi vardır:</p>
+        <table>
+            <tr><th>Özellik</th><th>SQL (İlişkisel)</th><th>NoSQL (Belge Tabanlı)</th></tr>
+            <tr><td>Yapı</td><td>Tablolar, satırlar, sütunlar</td><td>Esnek JSON belgeleri</td></tr>
+            <tr><td>Örnekler</td><td>PostgreSQL, MySQL, SQLite</td><td>MongoDB, Firebase Firestore</td></tr>
+            <tr><td>İlişkiler</td><td>Güçlü (JOIN)</td><td>Sınırlı</td></tr>
+            <tr><td>Esneklik</td><td>Şema sabit</td><td>Şema esnek</td></tr>
+            <tr><td>Ne zaman?</td><td>Yapısal veri, ilişkiler önemliyse</td><td>Hızlı prototipleme, esnek veri</td></tr>
+        </table>
+
+        <div class="info-box tip">
+            <strong>💡 Başlangıç İçin:</strong>
+            Vibe coding ile uygulama geliştirirken genellikle başlangıçta NoSQL (Firebase, Supabase) daha kolaydır. Ama SQL bilmek büyük avantajdır — AI'a "PostgreSQL kullan, kullanıcılar ve siparişler tablosu oluştur, aralarında foreign key ilişkisi kur" dediğinizde, AI çok daha kaliteli kod üretir.
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 4: Bulut Veritabanları -->
+    <!-- ============================================================ -->
+    <section class="section" id="bulut-veritabanlari">
+        <div class="section-header">
+            <span class="section-number">4</span>
+            <h2>Bulut Tabanlı Veritabanları <span class="en">Cloud Databases</span></h2>
+        </div>
+
+        <p>
+            Veritabanı kullanmak normalde bir sunucu kurmayı, yazılımı yüklemeyi ve yönetmeyi gerektirir. Ancak bugün <strong>bulut tabanlı (cloud-hosted) veritabanları</strong> sayesinde bunların hiçbirini yapmadan, dakikalar içinde çalışan bir veritabanına sahip olabilirsiniz. Bunlara bazen <strong>BaaS</strong> (Backend as a Service) de denir.
+        </p>
+
+        <h3>🔥 Firebase (Google)</h3>
+        <p>
+            Google'ın geliştirdiği, en popüler BaaS platformu. Ücretsiz planı oldukça cömerttir. Veritabanı olarak <strong>Firestore</strong> (NoSQL) sunar.
+        </p>
+        <ul>
+            <li>✅ Ücretsiz katman (Spark planı): 1 GB depolama, 50.000 okuma/gün</li>
+            <li>✅ Gerçek zamanlı veri senkronizasyonu</li>
+            <li>✅ Kolay kullanıcı kimlik doğrulama (Auth)</li>
+            <li>✅ Dosya depolama (Storage)</li>
+            <li>⚠️ NoSQL — karmaşık sorgular zor olabilir</li>
+        </ul>
+        <p><a href="https://firebase.google.com/" target="_blank">🔗 firebase.google.com</a></p>
+
+        <h3>⚡ Supabase</h3>
+        <p>
+            "Açık kaynak Firebase alternatifi" olarak bilinen Supabase, arka planda <strong>PostgreSQL</strong> (SQL) kullanır. SQL seven geliştiriciler için ideal.
+        </p>
+        <ul>
+            <li>✅ Ücretsiz katman: 500 MB depolama, 2 proje</li>
+            <li>✅ Gerçek SQL veritabanı (PostgreSQL)</li>
+            <li>✅ Otomatik REST API oluşturma</li>
+            <li>✅ Yerleşik Auth sistemi</li>
+            <li>✅ Real-time abonelikler</li>
+        </ul>
+        <p><a href="https://supabase.com/" target="_blank">🔗 supabase.com</a></p>
+
+        <h3>📦 PocketBase</h3>
+        <p>
+            Tek dosyada çalışan, kendi sunucunuza kurulabilen açık kaynak backend. SQLite tabanlıdır.
+        </p>
+        <ul>
+            <li>✅ Tamamen ücretsiz ve açık kaynak</li>
+            <li>✅ Tek çalıştırılabilir dosya — kurulum gerektirmez</li>
+            <li>✅ Admin paneli dahili</li>
+            <li>✅ Auth, dosya depolama, real-time dahil</li>
+            <li>⚠️ Çok büyük ölçekli projeler için uygun değil</li>
+        </ul>
+        <p><a href="https://pocketbase.io/" target="_blank">🔗 pocketbase.io</a></p>
+
+        <h3>Karşılaştırma</h3>
+        <table>
+            <tr><th>Özellik</th><th>Firebase</th><th>Supabase</th><th>PocketBase</th></tr>
+            <tr><td>Veritabanı</td><td>NoSQL (Firestore)</td><td>SQL (PostgreSQL)</td><td>SQL (SQLite)</td></tr>
+            <tr><td>Ücretsiz katman</td><td>Cömert</td><td>İyi</td><td>Tamamen ücretsiz</td></tr>
+            <tr><td>Hosting</td><td>Google bulut</td><td>Supabase bulut</td><td>Kendi sunucunuz</td></tr>
+            <tr><td>Auth</td><td>✅</td><td>✅</td><td>✅</td></tr>
+            <tr><td>Dosya depolama</td><td>✅</td><td>✅</td><td>✅</td></tr>
+            <tr><td>Admin paneli</td><td>Firebase Console</td><td>Dashboard</td><td>Dahili admin UI</td></tr>
+            <tr><td>Zorluk seviyesi</td><td>Kolay</td><td>Kolay-Orta</td><td>Kolay</td></tr>
+        </table>
+
+        <div class="prompt-box">
+            <p>"Supabase kullanarak bir görev yönetim uygulaması yap. Kullanıcı giriş yapabilsin (email/şifre), görev ekleyebilsin, tamamlanmış olarak işaretleyebilsin ve silebilsin. React frontend, Supabase backend."</p>
+        </div>
+
+        <div class="info-box tip">
+            <strong>🎯 Derste Deneme İçin Öneri:</strong>
+            Supabase veya Firebase ile başlayın. 5 dakikada bir proje oluşturup API anahtarınızı alabilirsiniz. AI'a "Firebase/Supabase projem var, API anahtarım şu, bana bir CRUD uygulaması yaz" demeniz yeterli.
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 5: Frontend-Backend Ayrımı -->
+    <!-- ============================================================ -->
+    <section class="section" id="frontend-backend">
+        <div class="section-header">
+            <span class="section-number">5</span>
+            <h2>Frontend ve Backend Ayrımı <span class="en">Frontend vs Backend</span></h2>
+        </div>
+
+        <p>
+            Bir web uygulaması iki ana bölümden oluşur: <strong>Frontend</strong> (kullanıcının gördüğü) ve <strong>Backend</strong> (kullanıcının görmediği, sunucu tarafı). Bu ayrımı bir restoran örneğiyle anlayalım:
+        </p>
+
+        <div class="diagram">
+            <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg" style="font-family: system-ui, sans-serif;">
+                <!-- Restoran analojisi -->
+                <rect x="10" y="10" width="380" height="260" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+                <text x="200" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a5f">🍽️ Yemek Salonu = Frontend</text>
+                <text x="200" y="62" text-anchor="middle" font-size="12" fill="#4b5563">Müşterinin gördüğü ve etkileştiği yer</text>
+
+                <text x="40" y="95" font-size="12" fill="#374151">• 📋 Menü (arayüz tasarımı)</text>
+                <text x="40" y="118" font-size="12" fill="#374151">• 🪑 Masa düzeni (sayfa yapısı)</text>
+                <text x="40" y="141" font-size="12" fill="#374151">• 🔔 Garson çağırma (buton tıklama)</text>
+                <text x="40" y="164" font-size="12" fill="#374151">• 📝 Sipariş verme (form gönderme)</text>
+
+                <rect x="40" y="185" width="150" height="30" rx="6" fill="#2563eb" opacity="0.15"/>
+                <text x="115" y="205" text-anchor="middle" font-size="11" font-weight="600" fill="#1e40af">HTML · CSS · JavaScript</text>
+                <rect x="210" y="185" width="150" height="30" rx="6" fill="#2563eb" opacity="0.15"/>
+                <text x="285" y="205" text-anchor="middle" font-size="11" font-weight="600" fill="#1e40af">React · Vue · Svelte</text>
+
+                <text x="200" y="250" text-anchor="middle" font-size="11" fill="#4b5563">Tarayıcıda (Chrome, Firefox) çalışır</text>
+
+                <!-- Backend -->
+                <rect x="410" y="10" width="380" height="260" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+                <text x="600" y="38" text-anchor="middle" font-size="15" font-weight="700" fill="#3b0764">👨‍🍳 Mutfak = Backend</text>
+                <text x="600" y="62" text-anchor="middle" font-size="12" fill="#4b5563">Müşterinin görmediği ama işin yapıldığı yer</text>
+
+                <text x="440" y="95" font-size="12" fill="#374151">• 🍳 Yemek pişirme (veri işleme)</text>
+                <text x="440" y="118" font-size="12" fill="#374151">• 🧊 Buzdolabı (veritabanı)</text>
+                <text x="440" y="141" font-size="12" fill="#374151">• 📦 Malzeme deposu (dosya sistemi)</text>
+                <text x="440" y="164" font-size="12" fill="#374151">• 🧾 Fatura kesme (iş mantığı)</text>
+
+                <rect x="440" y="185" width="150" height="30" rx="6" fill="#7c3aed" opacity="0.15"/>
+                <text x="515" y="205" text-anchor="middle" font-size="11" font-weight="600" fill="#5b21b6">Node.js · Python · Go</text>
+                <rect x="610" y="185" width="150" height="30" rx="6" fill="#7c3aed" opacity="0.15"/>
+                <text x="685" y="205" text-anchor="middle" font-size="11" font-weight="600" fill="#5b21b6">Express · Flask · Django</text>
+
+                <text x="600" y="250" text-anchor="middle" font-size="11" fill="#4b5563">Sunucuda (VPS, bulut) çalışır</text>
+            </svg>
+        </div>
+
+        <h3>Frontend — Ön Uç</h3>
+        <p>Kullanıcının doğrudan gördüğü ve etkileştiği kısımdır:</p>
+        <ul>
+            <li><strong>HTML:</strong> Sayfanın yapısı (başlık, paragraf, buton, form…)</li>
+            <li><strong>CSS:</strong> Sayfanın görünümü (renkler, yazı tipleri, düzen…)</li>
+            <li><strong>JavaScript:</strong> Sayfanın davranışı (tıklama, animasyon, veri gönderme…)</li>
+        </ul>
+        <p>Modern frontend geliştirmede genellikle <strong>framework</strong> (çerçeve) kullanılır: React, Vue.js, Svelte, Angular gibi. Bu çerçeveler, büyük arayüzleri bileşenler (components) halinde organize etmenizi sağlar.</p>
+
+        <h3>Backend — Arka Uç</h3>
+        <p>Kullanıcının görmediği, sunucu tarafında çalışan kısımdır:</p>
+        <ul>
+            <li>Kullanıcı girişi ve oturum yönetimi</li>
+            <li>Veritabanı okuma/yazma işlemleri</li>
+            <li>İş mantığı (fiyat hesaplama, e-posta gönderme…)</li>
+            <li>API (Application Programming Interface) sunma</li>
+            <li>Güvenlik kontrolleri</li>
+        </ul>
+
+        <h3>API: İkisini Birbirine Bağlayan Köprü</h3>
+        <p>
+            Frontend ve backend, <strong>API</strong> aracılığıyla iletişim kurar. Frontend bir istek gönderir (örneğin "kullanıcı listesini getir"), backend bu isteği işler ve sonucu JSON formatında döner:
+        </p>
+        <pre><code>// Frontend'den backend'e istek gönderme (fetch API)
+const yanit = await fetch("https://api.example.com/kullanicilar");
+const kullanicilar = await yanit.json();
+
+// Backend'in döndürdüğü JSON yanıt:
+[
+  { "id": 1, "ad": "Ayşe", "email": "ayse@email.com" },
+  { "id": 2, "ad": "Mehmet", "email": "mehmet@email.com" }
+]</code></pre>
+
+        <div class="info-box note">
+            <strong>💡 Full-Stack Nedir?</strong>
+            Hem frontend hem backend geliştirme yapabilen kişiye <strong>Full-Stack Developer</strong> denir. Bu derste amacımız vibe coding ile her iki tarafı da AI'a yazdırmak — ama hangi parçanın ne işe yaradığını bilmeniz, AI'a doğru talimat vermenizi sağlar.
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 6: Proje Yapısı ve Teknoloji Seçimi -->
+    <!-- ============================================================ -->
+    <section class="section" id="proje-yapisi">
+        <div class="section-header">
+            <span class="section-number">6</span>
+            <h2>Proje Yapısı ve Teknoloji Seçimi <span class="en">Project Structure & Tech Stack</span></h2>
+        </div>
+
+        <p>
+            Bir web uygulaması projesinde dosyalar belirli bir düzende organize edilir. AI araçlarına proje oluşturttuğunuzda genellikle şöyle bir yapı göreceksiniz:
+        </p>
+
+        <pre><code>my-app/
+├── frontend/                  # Ön yüz (kullanıcı arayüzü)
+│   ├── public/
+│   │   └── index.html         # Ana HTML dosyası
+│   ├── src/
+│   │   ├── App.jsx            # Ana bileşen
+│   │   ├── components/        # UI bileşenleri
+│   │   │   ├── Header.jsx
+│   │   │   ├── TodoList.jsx
+│   │   │   └── LoginForm.jsx
+│   │   ├── pages/             # Sayfa bileşenleri
+│   │   └── styles/            # CSS dosyaları
+│   └── package.json           # Frontend bağımlılıkları
+│
+├── backend/                   # Arka uç (sunucu)
+│   ├── server.js              # Ana sunucu dosyası
+│   ├── routes/                # API yolları
+│   │   ├── auth.js            # Giriş/kayıt API'leri
+│   │   └── todos.js           # CRUD API'leri
+│   ├── models/                # Veritabanı modelleri
+│   ├── middleware/            # Ara katmanlar (auth kontrolü vs.)
+│   ├── .env                   # Gizli ayarlar (API anahtarları)
+│   └── package.json           # Backend bağımlılıkları
+│
+├── README.md                  # Proje açıklaması
+└── .gitignore                 # Git'e eklenmeyecek dosyalar</code></pre>
+
+        <h3>Popüler Teknoloji Yığınları (Tech Stacks)</h3>
+        <table>
+            <tr><th>Stack</th><th>Frontend</th><th>Backend</th><th>Veritabanı</th><th>Not</th></tr>
+            <tr><td><strong>MERN</strong></td><td>React</td><td>Node.js + Express</td><td>MongoDB</td><td>En popüler JavaScript stack</td></tr>
+            <tr><td><strong>PERN</strong></td><td>React</td><td>Node.js + Express</td><td>PostgreSQL</td><td>SQL tercih edenler için</td></tr>
+            <tr><td><strong>Django</strong></td><td>Django Templates</td><td>Python + Django</td><td>PostgreSQL</td><td>Python sevenlere hızlı başlangıç</td></tr>
+            <tr><td><strong>Next.js</strong></td><td>React</td><td>Next.js API Routes</td><td>Herhangi biri</td><td>Full-stack React framework</td></tr>
+            <tr><td><strong>Flask</strong></td><td>HTML/Jinja</td><td>Python + Flask</td><td>SQLite/PostgreSQL</td><td>Hafif, öğrenimi kolay</td></tr>
+            <tr><td><strong>SvelteKit</strong></td><td>Svelte</td><td>SvelteKit</td><td>Herhangi biri</td><td>Modern ve performanslı</td></tr>
+        </table>
+
+        <div class="info-box purple">
+            <strong>🤖 Vibe Coding İpucu:</strong>
+            AI'a proje oluştururken stack belirtin: <em>"React frontend + Node.js/Express backend + Supabase veritabanı ile bir not alma uygulaması oluştur"</em> demek, belirsiz bir istekten çok daha iyi sonuç verir.
+        </div>
+
+        <h3>Cursor / Bolt / Replit ile Başlangıç</h3>
+        <table>
+            <tr><th>Araç</th><th>Ne Yapıyor?</th><th>Avantaj</th></tr>
+            <tr>
+                <td><strong>Cursor</strong></td>
+                <td>VS Code tabanlı AI-first IDE; mevcut projeler üzerinde çalışır</td>
+                <td>Tam kontrol, dosya düzenleme, agent modu</td>
+            </tr>
+            <tr>
+                <td><strong>Bolt.new</strong></td>
+                <td>Tarayıcıda tam proje oluşturan AI aracı</td>
+                <td>Kurulum gerektirmez, anında prototip</td>
+            </tr>
+            <tr>
+                <td><strong>Replit</strong></td>
+                <td>Tarayıcı tabanlı geliştirme ortamı + AI Agent</td>
+                <td>Tek tıkla deploy, işbirliği</td>
+            </tr>
+            <tr>
+                <td><strong>v0.dev</strong></td>
+                <td>Vercel'in AI UI oluşturucu aracı</td>
+                <td>Hızlı frontend prototipleme</td>
+            </tr>
+            <tr>
+                <td><strong>Lovable.dev</strong></td>
+                <td>Prompt ile tam uygulama oluşturma</td>
+                <td>Kolay, GUI odaklı, Supabase entegrasyonu</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 7: Vibe Coding ile CRUD Uygulaması -->
+    <!-- ============================================================ -->
+    <section class="section" id="crud-uygulama">
+        <div class="section-header">
+            <span class="section-number">7</span>
+            <h2>Vibe Coding ile CRUD Uygulaması <span class="en">Building a CRUD App</span></h2>
+        </div>
+
+        <p>
+            CRUD, her web uygulamasının temelinde yatan dört işlemdir:
+            <strong>C</strong>reate (oluştur), <strong>R</strong>ead (oku), <strong>U</strong>pdate (güncelle), <strong>D</strong>elete (sil).
+            Bir görev listesi (todo), not defteri, adres defteri — hepsi aslında birer CRUD uygulamasıdır.
+        </p>
+
+        <h3>Adım Adım: Görev Yönetim Uygulaması</h3>
+
+        <h4>1. Adım — Projeyi Tanımlayın</h4>
+        <div class="prompt-box">
+            <p>"React + Node.js + Express + SQLite kullanarak bir görev yönetim (todo) uygulaması oluştur. Şu özellikler olsun:<br><br>
+            - Yeni görev ekleme (başlık + açıklama)<br>
+            - Görevleri listeleme<br>
+            - Görevi tamamlanmış olarak işaretleme<br>
+            - Görevi silme<br>
+            - Görev düzenleme<br><br>
+            Backend'de Express ile REST API oluştur. Frontend temiz ve modern görünsün, Tailwind CSS kullan."</p>
+        </div>
+
+        <h4>2. Adım — Veritabanını Ekleyin</h4>
+        <div class="prompt-box">
+            <p>"Veritabanında 'tasks' tablosu olsun. Sütunlar: id (otomatik artan), title (metin), description (metin), completed (boolean, varsayılan false), created_at (tarih). SQLite kullanarak veritabanını oluştur ve backend API'lerini bu tabloya bağla."</p>
+        </div>
+
+        <h4>3. Adım — Arayüzü İyileştirin</h4>
+        <div class="prompt-box">
+            <p>"Görev listesine tarih filtreleme ekle. Ayrıca tamamlanmış görevler üzeri çizili görünsün. Ekranın üstüne toplam görev sayısı ve tamamlanan görev sayısını gösteren bir özet kutusu ekle."</p>
+        </div>
+
+        <h4>4. Adım — Hataları Düzeltin</h4>
+        <div class="prompt-box">
+            <p>"Görev ekleme formunda boş başlık gönderme engellensin. Backend'de de validasyon yap — başlık boşsa 400 hata kodu dönsün. Frontend'de kullanıcıya Türkçe hata mesajı göster."</p>
+        </div>
+
+        <div class="info-box tip">
+            <strong>🎯 Vibe Coding'in Altın Kuralı:</strong>
+            Tek seferde her şeyi istemeyin. Küçük adımlarla ilerleyin: önce temel yapıyı oluşturun, sonra özellik ekleyin, sonra görünümü iyileştirin. Her adımda sonucu test edin, çalışıyorsa bir sonraki adıma geçin.
+        </div>
+
+        <h3>Basit Bir CRUD API Neye Benzer?</h3>
+        <pre><code>// Express.js ile basit REST API örneği
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+let gorevler = []; // Veritabanı yerine geçici dizi
+let sonrakiId = 1;
+
+// CREATE - Yeni görev ekle
+app.post('/api/gorevler', (req, res) => {
+  const gorev = {
+    id: sonrakiId++,
+    baslik: req.body.baslik,
+    tamamlandi: false
+  };
+  gorevler.push(gorev);
+  res.status(201).json(gorev);
+});
+
+// READ - Tüm görevleri listele
+app.get('/api/gorevler', (req, res) => {
+  res.json(gorevler);
+});
+
+// UPDATE - Görevi güncelle
+app.put('/api/gorevler/:id', (req, res) => {
+  const gorev = gorevler.find(g => g.id === parseInt(req.params.id));
+  if (!gorev) return res.status(404).json({ hata: 'Görev bulunamadı' });
+  gorev.baslik = req.body.baslik || gorev.baslik;
+  gorev.tamamlandi = req.body.tamamlandi ?? gorev.tamamlandi;
+  res.json(gorev);
+});
+
+// DELETE - Görevi sil
+app.delete('/api/gorevler/:id', (req, res) => {
+  gorevler = gorevler.filter(g => g.id !== parseInt(req.params.id));
+  res.status(204).send();
+});
+
+app.listen(3000, () => console.log('Sunucu 3000 portunda çalışıyor'));</code></pre>
+
+        <div class="info-box note">
+            <strong>💡 REST API Nedir?</strong>
+            REST, web üzerinde veri alışverişi için kullanılan bir mimari stildir. Her veri kaynağı (görevler, kullanıcılar…) bir URL ile temsil edilir. HTTP metotları ile işlem yapılır: <code>GET</code> (oku), <code>POST</code> (oluştur), <code>PUT</code> (güncelle), <code>DELETE</code> (sil).
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 8: Auth ve Login Sistemleri -->
+    <!-- ============================================================ -->
+    <section class="section" id="auth-login">
+        <div class="section-header">
+            <span class="section-number">8</span>
+            <h2>Kullanıcı Yönetimi ve Giriş Sistemleri <span class="en">Authentication & Authorization</span></h2>
+        </div>
+
+        <p>
+            Çoğu web uygulamasında kullanıcıların <strong>hesap oluşturması</strong> ve <strong>giriş yapması</strong> gerekir. Bu iki kavram sıkça karıştırılır:
+        </p>
+
+        <table>
+            <tr><th>Kavram</th><th>İngilizce</th><th>Ne İşe Yarar?</th><th>Analoji</th></tr>
+            <tr>
+                <td><strong>Kimlik Doğrulama</strong></td>
+                <td>Authentication</td>
+                <td>"Sen kimsin?" sorusuna cevap verir</td>
+                <td>Havaalanında pasaport kontrolü</td>
+            </tr>
+            <tr>
+                <td><strong>Yetkilendirme</strong></td>
+                <td>Authorization</td>
+                <td>"Ne yapmaya yetkilisin?" sorusuna cevap verir</td>
+                <td>Business lounge'a giriş kartı</td>
+            </tr>
+        </table>
+
+        <h3>Giriş Yöntemleri</h3>
+
+        <h4>1. Email + Şifre (Klasik)</h4>
+        <p>En yaygın yöntem. Kullanıcı email ve şifre ile kayıt olur, giriş yapar.</p>
+        <ul>
+            <li>Şifre <strong>asla düz metin (plain text) olarak saklanmaz!</strong></li>
+            <li>Şifre <strong>hash</strong>'lenerek (bcrypt, argon2) saklanır</li>
+            <li>Giriş sırasında girilen şifrenin hash'i, veritabanındaki hash ile karşılaştırılır</li>
+        </ul>
+
+        <pre><code>// Node.js'de şifre hash'leme (bcrypt)
+const bcrypt = require('bcrypt');
+
+// Kayıt sırasında — şifreyi hash'le
+const hash = await bcrypt.hash("kullanici_sifresi", 10);
+// Sonuç: "$2b$10$xKq3JZx..." gibi bir hash
+
+// Giriş sırasında — hash'i kontrol et
+const eslesme = await bcrypt.compare("girilen_sifre", hash);
+// true veya false döner</code></pre>
+
+        <h4>2. OAuth — Sosyal Giriş (Google, GitHub, Apple…)</h4>
+        <p>
+            Kullanıcı kendi şifresini oluşturmak yerine, mevcut bir hesabıyla (Google, GitHub vb.) giriş yapar. Bu yönteme <strong>OAuth 2.0</strong> denir.
+        </p>
+
+        <div class="diagram">
+            <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" style="font-family: system-ui, sans-serif;">
+                <rect x="10" y="40" width="120" height="70" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+                <text x="70" y="72" text-anchor="middle" font-size="12" fill="#1e3a5f">👤 Kullanıcı</text>
+                <text x="70" y="92" text-anchor="middle" font-size="10" fill="#4b5563">"Google ile giriş yap"</text>
+
+                <line x1="130" y1="75" x2="200" y2="75" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow-blue)"/>
+                <text x="165" y="67" text-anchor="middle" font-size="9" fill="#4b5563">1. Tıklar</text>
+
+                <rect x="200" y="40" width="120" height="70" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+                <text x="260" y="72" text-anchor="middle" font-size="12" fill="#7f1d1d">🌐 Google</text>
+                <text x="260" y="92" text-anchor="middle" font-size="10" fill="#4b5563">Kimliği doğrular</text>
+
+                <line x1="320" y1="75" x2="390" y2="75" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+                <text x="355" y="67" text-anchor="middle" font-size="9" fill="#4b5563">2. Token</text>
+
+                <rect x="390" y="40" width="120" height="70" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+                <text x="450" y="72" text-anchor="middle" font-size="12" fill="#3b0764">⚙️ Backend</text>
+                <text x="450" y="92" text-anchor="middle" font-size="10" fill="#4b5563">Token'ı doğrular</text>
+
+                <line x1="510" y1="75" x2="570" y2="75" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrow-purple)"/>
+                <text x="540" y="67" text-anchor="middle" font-size="9" fill="#4b5563">3. Oturum</text>
+
+                <rect x="570" y="40" width="120" height="70" rx="10" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+                <text x="630" y="72" text-anchor="middle" font-size="12" fill="#064e3b">✅ Giriş OK</text>
+                <text x="630" y="92" text-anchor="middle" font-size="10" fill="#4b5563">Dashboard'a yönlendir</text>
+
+                <defs>
+                    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                        <path d="M0,0 L8,3 L0,6 Z" fill="#dc2626"/>
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+
+        <p><strong>OAuth avantajları:</strong></p>
+        <ul>
+            <li>Kullanıcı yeni şifre hatırlamak zorunda kalmaz</li>
+            <li>Siz şifre saklamak zorunda kalmazsınız (güvenlik artışı)</li>
+            <li>Kayıt/giriş süreci çok daha hızlı</li>
+        </ul>
+
+        <h4>3. JWT (JSON Web Token)</h4>
+        <p>
+            Kullanıcı giriş yaptıktan sonra, sunucu bir <strong>token</strong> (jeton) üretir ve kullanıcıya gönderir. Kullanıcı sonraki isteklerde bu token'ı göndererek kimliğini kanıtlar. Token'ın içinde kullanıcı bilgisi şifrelenmiş olarak bulunur.
+        </p>
+        <pre><code>// JWT token oluşturma (Node.js)
+const jwt = require('jsonwebtoken');
+
+// Giriş başarılı → token üret
+const token = jwt.sign(
+  { id: kullanici.id, email: kullanici.email },
+  process.env.JWT_SECRET,       // Gizli anahtar (.env dosyasında)
+  { expiresIn: '24h' }          // 24 saat geçerli
+);
+
+// Frontend bu token'ı her istekte gönderir:
+// Authorization: Bearer eyJhbGciOiJIUzI1NiIs...</code></pre>
+
+        <div class="prompt-box">
+            <p>"React + Express ile kullanıcı giriş sistemi yap. Email/şifre ile kayıt ve giriş olsun. Şifreleri bcrypt ile hashle. JWT token ile oturum yönet. Ayrıca Google OAuth ile giriş seçeneği ekle (passport.js kullan). Giriş yapmamış kullanıcılar dashboard sayfasına erişemesin."</p>
+        </div>
+
+        <div class="info-box warning">
+            <strong>⚠️ Kritik Güvenlik Kuralları:</strong>
+            <ul style="margin-bottom:0">
+                <li>Şifreleri <strong>asla</strong> düz metin olarak veritabanına kaydetmeyin</li>
+                <li>JWT secret'ını <code>.env</code> dosyasında saklayın, koda yazmayın</li>
+                <li><code>.env</code> dosyasını <strong>asla</strong> GitHub'a yüklemeyin (<code>.gitignore</code>'a ekleyin)</li>
+                <li>HTTPS kullanın — şifrelerin ağ üzerinden şifresiz gitmesini önleyin</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 9: Güvenlik -->
+    <!-- ============================================================ -->
+    <section class="section" id="guvenlik">
+        <div class="section-header">
+            <span class="section-number">9</span>
+            <h2>Güvenlik: Bilinmesi Gerekenler <span class="en">Web Security Essentials</span></h2>
+        </div>
+
+        <p>
+            Web uygulamalarında güvenlik, <strong>sonradan eklenen bir özellik değil, baştan düşünülmesi gereken bir zorunluluk</strong>tur. Vibe coding ile uygulama geliştirirken bile şu temel güvenlik konularını bilmelisiniz:
+        </p>
+
+        <h3>💉 SQL Injection (SQL Enjeksiyonu)</h3>
+        <p>
+            Saldırgan, form alanlarına SQL kodu yazarak veritabanınıza müdahale eder. Dünyanın en yaygın web güvenlik açığıdır.
+        </p>
+
+        <h4>❌ Kötü Örnek (Asla böyle yapmayın!)</h4>
+        <pre><code>// TEHLIKE! Kullanıcı girişi doğrudan SQL sorgusuna ekleniyor
+const query = `SELECT * FROM kullanicilar 
+               WHERE email = '${req.body.email}' 
+               AND sifre = '${req.body.sifre}'`;
+// Kullanıcı email alanına: ' OR '1'='1 yazarsa TÜM kullanıcıları getirir!</code></pre>
+
+        <h4>✅ Doğru Yol: Parametreli Sorgular (Prepared Statements)</h4>
+        <pre><code>// GÜVENLİ: Parametreli sorgu kullanımı
+const query = `SELECT * FROM kullanicilar WHERE email = ? AND sifre_hash = ?`;
+db.run(query, [req.body.email, hash], (err, row) => {
+  // Kullanıcının girdiği değerler otomatik olarak temizlenir (escape edilir)
+});</code></pre>
+
+        <h3>🕸️ XSS (Cross-Site Scripting)</h3>
+        <p>
+            Saldırgan, bir forma veya URL'ye JavaScript kodu ekler. Bu kod diğer kullanıcıların tarayıcısında çalışır ve cookie'lerini çalabilir.
+        </p>
+
+        <h4>❌ Kötü Örnek</h4>
+        <pre><code>// Kullanıcının girdiği metin doğrudan HTML'e ekleniyor
+document.innerHTML = kullaniciYorumu; 
+// Kullanıcı yorum alanına: &lt;script&gt;document.cookie&lt;/script&gt; yazabilir!</code></pre>
+
+        <h4>✅ Doğru Yol</h4>
+        <pre><code>// textContent kullanarak HTML çalıştırılmasını engelle
+element.textContent = kullaniciYorumu;
+
+// Veya DOMPurify gibi bir kütüphane ile temizle
+import DOMPurify from 'dompurify';
+element.innerHTML = DOMPurify.sanitize(kullaniciYorumu);</code></pre>
+
+        <h3>🔑 Şifre Saklama</h3>
+        <table>
+            <tr><th>Yöntem</th><th>Güvenli mi?</th><th>Açıklama</th></tr>
+            <tr><td>Düz metin (<code>123456</code>)</td><td>❌ ASLA</td><td>Veritabanı sızarsa tüm şifreler ele geçer</td></tr>
+            <tr><td>MD5 hash</td><td>❌ Yetersiz</td><td>Rainbow table saldırıları ile kırılabilir</td></tr>
+            <tr><td>SHA-256 hash</td><td>⚠️ Zayıf</td><td>Salt olmadan yetersiz</td></tr>
+            <tr><td><strong>bcrypt / argon2</strong></td><td>✅ Önerilen</td><td>Salt + cost factor ile güçlü hashing</td></tr>
+        </table>
+
+        <h3>🔒 HTTPS ve Gizli Bilgi Yönetimi</h3>
+        <ul>
+            <li><strong>HTTPS</strong> kullanın — tüm veri alışverişi şifrelenir</li>
+            <li>API anahtarları ve şifreleri <strong><code>.env</code></strong> dosyasında saklayın</li>
+            <li><code>.env</code> dosyasını <code>.gitignore</code>'a ekleyin</li>
+            <li>Frontend kodunda <strong>asla</strong> gizli anahtarlar bulunmamalıdır (tarayıcıda herkes görebilir!)</li>
+        </ul>
+
+        <pre><code># .env dosyası (gizli kalmalı, GitHub'a YÜKLEME!)
+DATABASE_URL=postgresql://user:pass@localhost:5432/mydb
+JWT_SECRET=cok-gizli-bir-anahtar-12345
+GOOGLE_CLIENT_ID=abc123...
+GOOGLE_CLIENT_SECRET=xyz789...</code></pre>
+
+        <pre><code># .gitignore dosyası
+.env
+node_modules/
+dist/</code></pre>
+
+        <h3>🛡️ Güvenlik Kontrol Listesi</h3>
+        <table>
+            <tr><th>Kontrol</th><th>Neden?</th></tr>
+            <tr><td>✅ Parametreli SQL sorguları kullan</td><td>SQL injection önleme</td></tr>
+            <tr><td>✅ Kullanıcı girdilerini temizle (sanitize)</td><td>XSS önleme</td></tr>
+            <tr><td>✅ Şifreleri bcrypt/argon2 ile hashle</td><td>Veri sızıntısında koruma</td></tr>
+            <tr><td>✅ HTTPS kullan</td><td>İletişim şifreleme</td></tr>
+            <tr><td>✅ .env dosyası kullan</td><td>Gizli bilgi koruması</td></tr>
+            <tr><td>✅ Rate limiting uygula</td><td>Brute force saldırı önleme</td></tr>
+            <tr><td>✅ CORS ayarlarını yapılandır</td><td>Yetkisiz erişim engelleme</td></tr>
+            <tr><td>✅ Bağımlılıkları güncel tut</td><td>Bilinen güvenlik açıklarından kaçınma</td></tr>
+        </table>
+
+        <div class="prompt-box">
+            <p>"Mevcut Express uygulamamı güvenlik açısından kontrol et ve şu iyileştirmeleri yap: helmet middleware ekle, rate limiting uygula (her IP'den dakikada en fazla 100 istek), CORS ayarlarını sadece frontend domain'ime izin verecek şekilde yapılandır, tüm SQL sorgularında parametreli sorgular kullandığımızdan emin ol."</p>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 10: API ve CORS -->
+    <!-- ============================================================ -->
+    <section class="section" id="api-cors">
+        <div class="section-header">
+            <span class="section-number">10</span>
+            <h2>Web Servisleri, API Entegrasyonu ve CORS <span class="en">APIs, Integration & CORS</span></h2>
+        </div>
+
+        <p>
+            Modern web uygulamaları çoğunlukla dış servislerle iletişim kurar: hava durumu API'si, ödeme sistemi, harita servisi, e-posta gönderme… Bu servislere <strong>API</strong> (Application Programming Interface) aracılığıyla erişilir.
+        </p>
+
+        <h3>Popüler API Örnekleri</h3>
+        <table>
+            <tr><th>Servis</th><th>Ne Yapıyor?</th><th>Ücretsiz mi?</th></tr>
+            <tr><td><a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap</a></td><td>Hava durumu verileri</td><td>✅ Ücretsiz katman var</td></tr>
+            <tr><td><a href="https://exchangeratesapi.io/" target="_blank">ExchangeRates API</a></td><td>Döviz kurları</td><td>✅ Ücretsiz katman var</td></tr>
+            <tr><td><a href="https://developers.google.com/maps" target="_blank">Google Maps</a></td><td>Harita ve konum servisleri</td><td>⚠️ Sınırlı ücretsiz</td></tr>
+            <tr><td><a href="https://stripe.com/docs/api" target="_blank">Stripe</a></td><td>Ödeme işlemleri</td><td>⚠️ Komisyon bazlı</td></tr>
+            <tr><td><a href="https://resend.com/" target="_blank">Resend</a></td><td>E-posta gönderme</td><td>✅ Ücretsiz katman var</td></tr>
+        </table>
+
+        <h3>API Nasıl Kullanılır?</h3>
+        <pre><code>// Hava durumu API'si ile veri çekme örneği
+const API_KEY = process.env.WEATHER_API_KEY; // .env'den al
+
+const yanit = await fetch(
+  `https://api.openweathermap.org/data/2.5/weather?q=Istanbul&appid=${API_KEY}&units=metric&lang=tr`
+);
+const veri = await yanit.json();
+
+console.log(`İstanbul: ${veri.main.temp}°C, ${veri.weather[0].description}`);
+// Çıktı: İstanbul: 18°C, açık</code></pre>
+
+        <h3>🚧 CORS Nedir? (Cross-Origin Resource Sharing)</h3>
+        <p>
+            CORS, tarayıcıların güvenlik mekanizmasıdır. Bir web sayfası, <strong>farklı bir domain'deki</strong> API'ye istek göndermeye çalıştığında tarayıcı bunu engeller — ta ki backend bu isteğe izin verene kadar.
+        </p>
+
+        <div class="info-box warning">
+            <strong>⚠️ Sık Karşılaşılan Hata:</strong>
+            <code style="color:#dc2626; background:#fee2e2">Access to fetch at 'http://localhost:3000/api/...' from origin 'http://localhost:5173' has been blocked by CORS policy</code><br><br>
+            Bu hata, frontend'iniz bir adreste (örn. localhost:5173), backend'iniz başka bir adreste (örn. localhost:3000) çalışırken ortaya çıkar. Backend'in frontend'e izin vermesi gerekir.
+        </div>
+
+        <h4>CORS'u Çözme (Express.js)</h4>
+        <pre><code>// Backend'de CORS izni verme
+const cors = require('cors');
+
+// Yöntem 1: Sadece belirli adreslere izin ver (ÖNERİLEN)
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://benim-sitem.com'],
+  credentials: true  // Cookie gönderimi için
+}));
+
+// Yöntem 2: Herkese izin ver (SADECE geliştirme ortamında!)
+// app.use(cors()); // ÜRETİMDE KULLANMAYIN!</code></pre>
+
+        <div class="prompt-box">
+            <p>"Express backend'ime CORS middleware'i ekle. Geliştirme ortamında localhost:5173'e izin versin, production'da sadece https://benim-sitem.com adresine izin versin. Ortam değişkenine göre (NODE_ENV) otomatik geçiş yapsın."</p>
+        </div>
+
+        <h3>Dış API Entegrasyonu İpuçları</h3>
+        <ul>
+            <li>API anahtarınızı <strong>frontend'de değil, backend'de</strong> kullanın (güvenlik)</li>
+            <li>API yanıtlarını <strong>cache</strong>'leyin (maliyet + hız)</li>
+            <li>Rate limit'lere dikkat edin (çoğu ücretsiz planda sınırlı istek hakkı var)</li>
+            <li>Hata durumlarını ele alın (API'nin çökmesi uygulamanızı çökertmemeli)</li>
+        </ul>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 11: GitHub Pages -->
+    <!-- ============================================================ -->
+    <section class="section" id="github-pages">
+        <div class="section-header">
+            <span class="section-number">11</span>
+            <h2>Hosting: GitHub Pages ile Statik Siteler <span class="en">GitHub Pages Hosting</span></h2>
+        </div>
+
+        <p>
+            <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>, GitHub üzerindeki depolarınızdan <strong>ücretsiz</strong> statik web sitesi yayınlamanızı sağlar. Blog, portfolyo, dokümantasyon, ders notları gibi statik içerikler için idealdir.
+        </p>
+
+        <h3>Adım Adım Yayınlama</h3>
+        <ol class="steps">
+            <li>
+                <strong>GitHub hesabı oluşturun</strong> (eğer yoksa): <a href="https://github.com/join" target="_blank">github.com/join</a>
+            </li>
+            <li>
+                <strong>Yeni bir repo oluşturun:</strong> <code>github.com/new</code> adresinden "my-website" gibi bir isimle public repo oluşturun
+            </li>
+            <li>
+                <strong>Dosyalarınızı yükleyin:</strong> <code>index.html</code> dosyanızı reponun kök dizinine ekleyin (sürükle-bırak veya git push)
+            </li>
+            <li>
+                <strong>GitHub Pages'i aktifleştirin:</strong> Repo → Settings → Pages → Branch: "main" seçin → Save
+            </li>
+            <li>
+                <strong>Birkaç dakika bekleyin:</strong> Siteniz <code>https://kullanici-adiniz.github.io/repo-adiniz/</code> adresinde yayında!
+            </li>
+        </ol>
+
+        <div class="terminal">
+            <span class="comment"># Git ile dosyaları yükleme (terminal)</span><br>
+            <span class="prompt-sign">$</span> git init<br>
+            <span class="prompt-sign">$</span> git add .<br>
+            <span class="prompt-sign">$</span> git commit -m "İlk yayın"<br>
+            <span class="prompt-sign">$</span> git remote add origin https://github.com/KULLANICI/REPO.git<br>
+            <span class="prompt-sign">$</span> git push -u origin main<br>
+            <span class="success">✓ Dosyalar yüklendi! GitHub Pages birkaç dakikada aktif olacak.</span>
+        </div>
+
+        <h3>React / Vite Projesini GitHub Pages'de Yayınlama</h3>
+        <p>Frontend framework ile oluşturulan projeler önce <strong>build</strong> edilip (statik dosyalara dönüştürülüp) yayınlanmalıdır:</p>
+
+        <div class="prompt-box">
+            <p>"Vite ile oluşturduğum React projemi GitHub Pages'de yayınlamak istiyorum. vite.config.js'de base path'i ayarla, package.json'a deploy script'i ekle, ve GitHub Actions ile otomatik deploy workflow'u oluştur."</p>
+        </div>
+
+        <div class="info-box warning">
+            <strong>⚠️ GitHub Pages Sınırlamaları:</strong>
+            <ul style="margin-bottom:0">
+                <li>Sadece <strong>statik</strong> dosyalar sunulabilir (HTML, CSS, JS, resimler)</li>
+                <li>Backend kodu çalıştırılamaz (Node.js, Python yok!)</li>
+                <li>Veritabanı barındırılamaz</li>
+                <li>API endpoint'leri oluşturulamaz</li>
+            </ul>
+            Yani kullanıcı girişi, form verileri kaydetme gibi işlemler için başka bir çözüm (Firebase, Supabase veya kendi sunucunuz) gerekir.
+        </div>
+
+        <h3>Alternatif Ücretsiz Statik Hosting</h3>
+        <table>
+            <tr><th>Platform</th><th>Özellik</th><th>Link</th></tr>
+            <tr><td><strong>Netlify</strong></td><td>Otomatik deploy, form işleme, serverless functions</td><td><a href="https://www.netlify.com/" target="_blank">netlify.com</a></td></tr>
+            <tr><td><strong>Vercel</strong></td><td>Next.js uyumlu, serverless functions, hızlı CDN</td><td><a href="https://vercel.com/" target="_blank">vercel.com</a></td></tr>
+            <tr><td><strong>Cloudflare Pages</strong></td><td>Hızlı, sınırsız bant genişliği, Workers desteği</td><td><a href="https://pages.cloudflare.com/" target="_blank">pages.cloudflare.com</a></td></tr>
+        </table>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 12: VPS Deployment -->
+    <!-- ============================================================ -->
+    <section class="section" id="vps-deployment">
+        <div class="section-header">
+            <span class="section-number">12</span>
+            <h2>Gerçek Sunucu Deployment: VPS ile Yayına Alma <span class="en">VPS Deployment</span></h2>
+        </div>
+
+        <p>
+            Statik hosting (GitHub Pages) yetersiz kaldığında — yani <strong>backend, veritabanı, kullanıcı girişi</strong> gibi şeyler gerektiğinde — kendi sunucunuza ihtiyacınız var. <strong>VPS (Virtual Private Server)</strong>, size internet üzerinde kendi sanal bilgisayarınızı verir. Bu bilgisayara istediğiniz yazılımı yükleyebilir, web uygulamanızı çalıştırabilirsiniz.
+        </p>
+
+        <h3>🌍 VPS Sağlayıcıları</h3>
+        <table>
+            <tr><th>Sağlayıcı</th><th>Başlangıç Fiyatı</th><th>Özellik</th><th>Link</th></tr>
+            <tr>
+                <td><strong>Vultr</strong></td>
+                <td>~$6/ay</td>
+                <td>İstanbul lokasyonu var, kolay arayüz</td>
+                <td><a href="https://www.vultr.com/" target="_blank">vultr.com</a></td>
+            </tr>
+            <tr>
+                <td><strong>DigitalOcean</strong></td>
+                <td>~$6/ay</td>
+                <td>Mükemmel dokümantasyon, "Droplet" VPS</td>
+                <td><a href="https://www.digitalocean.com/" target="_blank">digitalocean.com</a></td>
+            </tr>
+            <tr>
+                <td><strong>Hetzner</strong></td>
+                <td>~€4/ay</td>
+                <td>Avrupa merkezli, uygun fiyatlı, güçlü donanım</td>
+                <td><a href="https://www.hetzner.com/" target="_blank">hetzner.com</a></td>
+            </tr>
+            <tr>
+                <td><strong>Linode (Akamai)</strong></td>
+                <td>~$5/ay</td>
+                <td>Güvenilir, iyi topluluk desteği</td>
+                <td><a href="https://www.linode.com/" target="_blank">linode.com</a></td>
+            </tr>
+            <tr>
+                <td><strong>AWS EC2</strong></td>
+                <td>Değişken</td>
+                <td>En büyük bulut platformu, 1 yıl ücretsiz katman</td>
+                <td><a href="https://aws.amazon.com/ec2/" target="_blank">aws.amazon.com/ec2</a></td>
+            </tr>
+        </table>
+
+        <h3>VPS'de Tipik Deployment Adımları</h3>
+        <p>Bir VPS aldıktan sonra yapılacaklar:</p>
+        <ol class="steps">
+            <li>VPS'e <strong>SSH ile bağlanma</strong> (bir sonraki bölümde detaylı anlatılacak)</li>
+            <li>Gerekli yazılımları kurma (<strong>Node.js, Python, nginx, PostgreSQL…</strong>)</li>
+            <li>Proje kodlarını sunucuya aktarma (Git ile <code>git clone</code>)</li>
+            <li>Bağımlılıkları yükleme (<code>npm install</code> veya <code>pip install</code>)</li>
+            <li>Veritabanını ayarlama</li>
+            <li>Ortam değişkenlerini yapılandırma (<code>.env</code> dosyası)</li>
+            <li>Uygulamayı başlatma ve <strong>servis olarak tanımlama</strong></li>
+            <li><strong>Nginx</strong> ile reverse proxy ayarlama</li>
+            <li><strong>SSL sertifikası</strong> kurma (HTTPS)</li>
+        </ol>
+
+        <div class="info-box note">
+            <strong>💡 Reverse Proxy Nedir?</strong>
+            Uygulamanız genelde 3000 veya 8080 gibi bir portta çalışır. Ama kullanıcılar <code>https://benim-sitem.com</code> adresine (port 443) girer. <strong>Nginx</strong>, bu trafiği yakalayıp uygulamanıza yönlendirir. Buna <em>reverse proxy</em> denir. Ayrıca Nginx, statik dosyaları doğrudan sunarak uygulamanızın yükünü azaltır.
+        </div>
+
+        <h3>Örnek: Node.js Uygulamasını Vultr'da Yayınlama</h3>
+        <div class="terminal">
+            <span class="comment"># 1. Sunucuya bağlanma</span><br>
+            <span class="prompt-sign">$</span> ssh root@SUNUCU_IP_ADRESI<br><br>
+
+            <span class="comment"># 2. Sistemi güncelleme</span><br>
+            <span class="prompt-sign">$</span> apt update && apt upgrade -y<br><br>
+
+            <span class="comment"># 3. Node.js kurulumu (NodeSource üzerinden)</span><br>
+            <span class="prompt-sign">$</span> curl -fsSL https://deb.nodesource.com/setup_20.x | bash -<br>
+            <span class="prompt-sign">$</span> apt install -y nodejs<br><br>
+
+            <span class="comment"># 4. PostgreSQL kurulumu</span><br>
+            <span class="prompt-sign">$</span> apt install -y postgresql postgresql-contrib<br><br>
+
+            <span class="comment"># 5. Proje kodlarını çekme</span><br>
+            <span class="prompt-sign">$</span> cd /var/www<br>
+            <span class="prompt-sign">$</span> git clone https://github.com/KULLANICI/PROJE.git<br>
+            <span class="prompt-sign">$</span> cd PROJE<br><br>
+
+            <span class="comment"># 6. Bağımlılıkları yükleme</span><br>
+            <span class="prompt-sign">$</span> npm install --production<br><br>
+
+            <span class="comment"># 7. Ortam değişkenlerini ayarlama</span><br>
+            <span class="prompt-sign">$</span> cp .env.example .env<br>
+            <span class="prompt-sign">$</span> nano .env <span class="comment"># Veritabanı bilgilerini girin</span><br><br>
+
+            <span class="comment"># 8. Uygulamayı başlatma (test amaçlı)</span><br>
+            <span class="prompt-sign">$</span> node server.js<br>
+            <span class="success">✓ Sunucu 3000 portunda çalışıyor</span>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 13: SSH ve Terminal -->
+    <!-- ============================================================ -->
+    <section class="section" id="ssh-terminal">
+        <div class="section-header">
+            <span class="section-number">13</span>
+            <h2>SSH, Terminal Komutları ve Uzak Sunucu Yönetimi <span class="en">SSH & Remote Server Management</span></h2>
+        </div>
+
+        <p>
+            <strong>SSH (Secure Shell)</strong>, uzak bir bilgisayara güvenli şekilde bağlanmanızı sağlayan bir protokoldür. VPS'inize erişmenin ana yoludur. Sanki sunucunun başında oturuyormuş gibi komut çalıştırabilirsiniz.
+        </p>
+
+        <h3>🔑 SSH Bağlantısı</h3>
+        <div class="terminal">
+            <span class="comment"># Temel SSH bağlantısı (şifre ile)</span><br>
+            <span class="prompt-sign">$</span> ssh root@123.456.789.10<br><br>
+
+            <span class="comment"># SSH anahtar çifti oluşturma (daha güvenli)</span><br>
+            <span class="prompt-sign">$</span> ssh-keygen -t ed25519 -C "benim@email.com"<br>
+            <span class="comment"># Oluşan dosyalar: ~/.ssh/id_ed25519 (özel) ve ~/.ssh/id_ed25519.pub (genel)</span><br><br>
+
+            <span class="comment"># Genel anahtarı sunucuya kopyalama</span><br>
+            <span class="prompt-sign">$</span> ssh-copy-id root@123.456.789.10<br><br>
+
+            <span class="comment"># Artık şifresiz bağlanabilirsiniz</span><br>
+            <span class="prompt-sign">$</span> ssh root@123.456.789.10<br>
+            <span class="success">Welcome to Ubuntu 24.04 LTS</span>
+        </div>
+
+        <h3>📂 Temel Linux/Terminal Komutları</h3>
+        <table>
+            <tr><th>Komut</th><th>Ne Yapar?</th><th>Örnek</th></tr>
+            <tr><td><code>ls</code></td><td>Dizin içeriğini listeler</td><td><code>ls -la /var/www</code></td></tr>
+            <tr><td><code>cd</code></td><td>Dizin değiştirir</td><td><code>cd /var/www/proje</code></td></tr>
+            <tr><td><code>pwd</code></td><td>Bulunduğunuz dizini gösterir</td><td><code>pwd</code> → <code>/root</code></td></tr>
+            <tr><td><code>mkdir</code></td><td>Yeni klasör oluşturur</td><td><code>mkdir projeler</code></td></tr>
+            <tr><td><code>cp</code></td><td>Dosya kopyalar</td><td><code>cp .env.example .env</code></td></tr>
+            <tr><td><code>mv</code></td><td>Dosyayı taşır/yeniden adlandırır</td><td><code>mv eski.txt yeni.txt</code></td></tr>
+            <tr><td><code>rm</code></td><td>Dosya siler</td><td><code>rm dosya.txt</code></td></tr>
+            <tr><td><code>cat</code></td><td>Dosya içeriğini gösterir</td><td><code>cat .env</code></td></tr>
+            <tr><td><code>nano</code></td><td>Terminal metin editörü</td><td><code>nano .env</code></td></tr>
+            <tr><td><code>vim</code></td><td>Gelişmiş metin editörü</td><td><code>vim server.js</code></td></tr>
+            <tr><td><code>htop</code></td><td>CPU/RAM kullanımını gösterir</td><td><code>htop</code></td></tr>
+            <tr><td><code>df -h</code></td><td>Disk kullanımını gösterir</td><td><code>df -h</code></td></tr>
+            <tr><td><code>ufw</code></td><td>Güvenlik duvarı yönetimi</td><td><code>ufw allow 80</code></td></tr>
+        </table>
+
+        <h3>✏️ Terminal Metin Editörleri</h3>
+        <p>Sunucuda dosyaları düzenlemek için terminal tabanlı editörler kullanılır:</p>
+
+        <h4>nano (Kolay)</h4>
+        <div class="terminal">
+            <span class="prompt-sign">$</span> nano /var/www/proje/.env<br>
+            <span class="comment"># Dosya açılır → değişiklikleri yapın</span><br>
+            <span class="comment"># Ctrl+O = Kaydet, Ctrl+X = Çık</span>
+        </div>
+
+        <h4>vim (Güçlü ama öğrenme eğrisi var)</h4>
+        <div class="terminal">
+            <span class="prompt-sign">$</span> vim /var/www/proje/.env<br>
+            <span class="comment"># i = Yazma moduna geç</span><br>
+            <span class="comment"># ESC = Normal moda dön</span><br>
+            <span class="comment"># :wq = Kaydet ve çık</span><br>
+            <span class="comment"># :q! = Kaydetmeden çık</span>
+        </div>
+
+        <h3>📁 Dosya Aktarma (SCP)</h3>
+        <div class="terminal">
+            <span class="comment"># Bilgisayarınızdan sunucuya dosya kopyalama</span><br>
+            <span class="prompt-sign">$</span> scp ./build.zip root@SUNUCU_IP:/var/www/proje/<br><br>
+
+            <span class="comment"># Sunucudan bilgisayarınıza dosya indirme</span><br>
+            <span class="prompt-sign">$</span> scp root@SUNUCU_IP:/var/log/app.log ./loglar/
+        </div>
+
+        <div class="info-box tip">
+            <strong>🎯 İpucu: SSH Config Dosyası</strong>
+            <p>Her seferinde IP adresi yazmak yerine, <code>~/.ssh/config</code> dosyasına kısayol ekleyebilirsiniz:</p>
+            <pre style="margin-bottom:0"><code>Host sunucum
+    HostName 123.456.789.10
+    User root
+    IdentityFile ~/.ssh/id_ed25519</code></pre>
+            <p style="margin-bottom:0; margin-top:0.5rem">Artık <code>ssh sunucum</code> yazmanız yeterli!</p>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 14: Servis Yönetimi -->
+    <!-- ============================================================ -->
+    <section class="section" id="servis-yonetimi">
+        <div class="section-header">
+            <span class="section-number">14</span>
+            <h2>Process ve Servis Yönetimi <span class="en">Process & Service Management</span></h2>
+        </div>
+
+        <p>
+            Sunucuda <code>node server.js</code> komutuyla uygulamanızı başlattığınızda, SSH bağlantısını kapattığınızda uygulama da <strong>kapanır</strong>. Uygulamanızın sürekli çalışması için onu bir <strong>servis</strong> (service) olarak tanımlamanız gerekir.
+        </p>
+
+        <h3>🔄 PM2 — Node.js Process Manager</h3>
+        <p>
+            PM2, Node.js uygulamalarını arka planda çalıştıran, çökmelerde otomatik yeniden başlatan bir process manager'dır. En kolay çözümdür.
+        </p>
+
+        <div class="terminal">
+            <span class="comment"># PM2 kurulumu</span><br>
+            <span class="prompt-sign">$</span> npm install -g pm2<br><br>
+
+            <span class="comment"># Uygulamayı başlatma</span><br>
+            <span class="prompt-sign">$</span> pm2 start server.js --name "benim-uygulama"<br><br>
+
+            <span class="comment"># Durum kontrolü</span><br>
+            <span class="prompt-sign">$</span> pm2 status<br>
+            ┌─────────────────┬────┬─────────┬────────┬───────┐<br>
+            │ Name            │ id │ status  │ cpu    │ mem   │<br>
+            ├─────────────────┼────┼─────────┼────────┼───────┤<br>
+            │ benim-uygulama  │ 0  │ online  │ 0.1%   │ 45 MB │<br>
+            └─────────────────┴────┴─────────┴────────┴───────┘<br><br>
+
+            <span class="comment"># Logları görme</span><br>
+            <span class="prompt-sign">$</span> pm2 logs benim-uygulama<br><br>
+
+            <span class="comment"># Uygulamayı yeniden başlatma</span><br>
+            <span class="prompt-sign">$</span> pm2 restart benim-uygulama<br><br>
+
+            <span class="comment"># Durdurma ve silme</span><br>
+            <span class="prompt-sign">$</span> pm2 stop benim-uygulama<br>
+            <span class="prompt-sign">$</span> pm2 delete benim-uygulama<br><br>
+
+            <span class="comment"># Sunucu yeniden başlayınca otomatik çalışsın</span><br>
+            <span class="prompt-sign">$</span> pm2 startup<br>
+            <span class="prompt-sign">$</span> pm2 save
+        </div>
+
+        <h3>⚙️ systemd — Linux Servis Yönetimi</h3>
+        <p>
+            Linux'un yerleşik servis yöneticisi <strong>systemd</strong>, hem Node.js hem Python hem de diğer uygulamalar için çalışır. PM2'ye göre daha "düşük seviyeli" ama daha esnek ve evrenseldir.
+        </p>
+
+        <h4>Servis dosyası oluşturma</h4>
+        <div class="terminal">
+            <span class="prompt-sign">$</span> nano /etc/systemd/system/benim-uygulama.service
+        </div>
+
+        <pre><code>[Unit]
+Description=Benim Web Uygulamam
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/proje
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=10
+Environment=NODE_ENV=production
+EnvironmentFile=/var/www/proje/.env
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+
+        <div class="terminal">
+            <span class="comment"># Servisi etkinleştir ve başlat</span><br>
+            <span class="prompt-sign">$</span> systemctl daemon-reload<br>
+            <span class="prompt-sign">$</span> systemctl enable benim-uygulama <span class="comment"># Sunucu açılışında otomatik başla</span><br>
+            <span class="prompt-sign">$</span> systemctl start benim-uygulama<br><br>
+
+            <span class="comment"># Durum kontrolü</span><br>
+            <span class="prompt-sign">$</span> systemctl status benim-uygulama<br>
+            <span class="success">● benim-uygulama.service - Benim Web Uygulamam</span><br>
+            <span class="success">     Active: active (running)</span><br><br>
+
+            <span class="comment"># Logları görme</span><br>
+            <span class="prompt-sign">$</span> journalctl -u benim-uygulama -f<br><br>
+
+            <span class="comment"># Yeniden başlatma</span><br>
+            <span class="prompt-sign">$</span> systemctl restart benim-uygulama
+        </div>
+
+        <h3>🌐 Nginx Reverse Proxy Yapılandırması</h3>
+        <p>
+            Nginx, kullanıcıdan gelen HTTP/HTTPS isteklerini uygulamanıza yönlendirir:
+        </p>
+
+        <div class="terminal">
+            <span class="prompt-sign">$</span> apt install -y nginx<br>
+            <span class="prompt-sign">$</span> nano /etc/nginx/sites-available/benim-uygulama
+        </div>
+
+        <pre><code>server {
+    listen 80;
+    server_name benim-sitem.com www.benim-sitem.com;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_cache_bypass $http_upgrade;
+    }
+}</code></pre>
+
+        <div class="terminal">
+            <span class="comment"># Yapılandırmayı etkinleştir</span><br>
+            <span class="prompt-sign">$</span> ln -s /etc/nginx/sites-available/benim-uygulama /etc/nginx/sites-enabled/<br>
+            <span class="prompt-sign">$</span> nginx -t <span class="comment"># Yapılandırmayı test et</span><br>
+            <span class="prompt-sign">$</span> systemctl restart nginx
+        </div>
+
+        <div class="prompt-box">
+            <p>"Ubuntu 24.04 VPS'imde Node.js + Express uygulamamı production'a almak istiyorum. Şunları adım adım anlat: PM2 ile uygulamayı arka planda çalıştır, Nginx reverse proxy kur ve SSL sertifikası ekle (Let's Encrypt). Ayrıca güvenlik duvarını (ufw) sadece 22, 80, 443 portlarına izin verecek şekilde yapılandır."</p>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 15: Domain ve SSL -->
+    <!-- ============================================================ -->
+    <section class="section" id="domain-ssl">
+        <div class="section-header">
+            <span class="section-number">15</span>
+            <h2>Domain ve SSL Sertifikası <span class="en">Domain & SSL Certificate</span></h2>
+        </div>
+
+        <p>
+            VPS'inizde uygulamanız çalıştıktan sonra, kullanıcıların IP adresi yerine <strong>alan adı (domain)</strong> ile erişmesini ve bağlantının <strong>HTTPS</strong> ile şifrelenmesini sağlamak önemlidir.
+        </p>
+
+        <h3>🌐 Domain (Alan Adı) Alma</h3>
+        <p>Domain'ler çeşitli kayıt kuruluşlarından (registrar) satın alınır:</p>
+        <table>
+            <tr><th>Kayıt Kuruluşu</th><th>Yıllık Fiyat (yaklaşık)</th><th>Not</th></tr>
+            <tr><td><a href="https://www.namecheap.com/" target="_blank">Namecheap</a></td><td>~$9-12/yıl (.com)</td><td>Popüler, iyi arayüz</td></tr>
+            <tr><td><a href="https://www.cloudflare.com/products/registrar/" target="_blank">Cloudflare Registrar</a></td><td>Maliyet fiyatına (~$9/yıl)</td><td>Kâr marjı yok, en ucuz seçenek</td></tr>
+            <tr><td><a href="https://porkbun.com/" target="_blank">Porkbun</a></td><td>~$8-10/yıl (.com)</td><td>Uygun fiyatlı, ilk yıl indirimli</td></tr>
+        </table>
+
+        <h4>DNS Ayarı</h4>
+        <p>Domain'i aldıktan sonra, domain'in DNS ayarlarında bir <strong>A kaydı</strong> oluşturup VPS'inizin IP adresini göstermeniz gerekir:</p>
+        <table>
+            <tr><th>Tür</th><th>Ad</th><th>Değer</th><th>TTL</th></tr>
+            <tr><td>A</td><td>@</td><td>123.456.789.10</td><td>3600</td></tr>
+            <tr><td>A</td><td>www</td><td>123.456.789.10</td><td>3600</td></tr>
+        </table>
+
+        <h3>🔒 SSL Sertifikası (HTTPS)</h3>
+        <p>
+            <a href="https://letsencrypt.org/" target="_blank">Let's Encrypt</a>, ücretsiz SSL sertifikası sunan bir sertifika otoritesidir. <strong>Certbot</strong> aracıyla birkaç komutla kurulabilir:
+        </p>
+
+        <div class="terminal">
+            <span class="comment"># Certbot kurulumu</span><br>
+            <span class="prompt-sign">$</span> apt install -y certbot python3-certbot-nginx<br><br>
+
+            <span class="comment"># SSL sertifikası alma (otomatik Nginx yapılandırması)</span><br>
+            <span class="prompt-sign">$</span> certbot --nginx -d benim-sitem.com -d www.benim-sitem.com<br><br>
+
+            <span class="comment"># Otomatik yenileme testi</span><br>
+            <span class="prompt-sign">$</span> certbot renew --dry-run<br>
+            <span class="success">✓ SSL sertifikası kuruldu! Siteniz artık HTTPS ile erişilebilir.</span>
+        </div>
+
+        <div class="info-box tip">
+            <strong>🎯 SSL Otomatik Yenileme:</strong>
+            Let's Encrypt sertifikaları 90 gün geçerlidir. Certbot otomatik olarak bir cron job oluşturur ve sertifikayı süresi dolmadan yeniler. Siz bir şey yapmanıza gerek yok!
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 16: Prompt Koleksiyonu -->
+    <!-- ============================================================ -->
+    <section class="section" id="prompt-koleksiyonu">
+        <div class="section-header">
+            <span class="section-number">16</span>
+            <h2>Prompt Koleksiyonu: Derste Deneyin <span class="en">Prompt Collection</span></h2>
+        </div>
+
+        <p>
+            İşte derste ve sonrasında AI araçlarıyla deneyebileceğiniz çeşitli prompt örnekleri. Bu promptları Cursor, Bolt.new, Replit veya ChatGPT gibi araçlarda kullanabilirsiniz.
+        </p>
+
+        <h3>🟢 Başlangıç Seviyesi</h3>
+
+        <div class="prompt-box">
+            <p>"HTML, CSS ve JavaScript ile tek sayfalık bir kişisel portfolyo sitesi oluştur. Üstte navigasyon menüsü, 'Hakkımda', 'Projelerim', 'İletişim' bölümleri olsun. Responsive tasarım (mobil uyumlu) olsun. Modern ve şık görünsün."</p>
+        </div>
+
+        <div class="prompt-box">
+            <p>"localStorage kullanan bir alışveriş listesi uygulaması yap. Ürün ekleme, silme ve tamamlandı olarak işaretleme olsun. Sayfa yenilendiğinde veriler kaybolmasın. Sadece HTML + CSS + vanilla JavaScript kullan, harici kütüphane kullanma."</p>
+        </div>
+
+        <h3>🟡 Orta Seviye — CRUD + Backend</h3>
+
+        <div class="prompt-box">
+            <p>"React + Express + SQLite ile bir not defteri uygulaması yap. Her not bir başlık, içerik ve oluşturma tarihi içersin. Notları listeleme, ekleme, düzenleme ve silme olsun. Notları kategorilere ayırabilelim. Arama fonksiyonu olsun. Modern arayüz (Tailwind CSS)."</p>
+        </div>
+
+        <div class="prompt-box">
+            <p>"Supabase kullanarak bir anket uygulaması yap. Admin panelinden yeni anket oluşturulabilsin (çoktan seçmeli sorular). Kullanıcılar anketi yanıtlayabilsin. Sonuçlar gerçek zamanlı grafikle gösterilsin (Chart.js). React frontend."</p>
+        </div>
+
+        <h3>🔴 İleri Seviye — Auth + Deployment</h3>
+
+        <div class="prompt-box">
+            <p>"Next.js + Supabase ile bir blog platformu yap. Email/şifre ile kayıt ve giriş olsun. Her kullanıcı kendi blog yazılarını yazabilsin (Markdown destekli editör). Yazılar herkese açık olsun, düzenleme sadece yazara ait olsun. SEO uyumlu server-side rendering kullan."</p>
+        </div>
+
+        <div class="prompt-box">
+            <p>"Node.js + Express + PostgreSQL ile bir envanter yönetim sistemi yap. Ürün ekleme/düzenleme/silme, kategori yönetimi, stok takibi olsun. JWT ile kullanıcı girişi, rol bazlı yetkilendirme (admin ve standart kullanıcı). API dökümanı (Swagger) oluştur. Docker Compose ile veritabanı ve uygulama container'ı ayarla."</p>
+        </div>
+
+        <h3>🚀 Deployment Promptları</h3>
+
+        <div class="prompt-box">
+            <p>"Ubuntu 24.04 VPS'ime Node.js uygulamamı deploy etmek istiyorum. Adım adım bir deployment script'i oluştur: 1) Node.js ve npm kur, 2) PostgreSQL kur ve veritabanı oluştur, 3) Projeyi git clone ile çek, 4) PM2 ile çalıştır, 5) Nginx reverse proxy kur, 6) Let's Encrypt ile SSL ayarla, 7) UFW güvenlik duvarını yapılandır."</p>
+        </div>
+
+        <div class="prompt-box">
+            <p>"React frontend'imi Vercel'e, Express backend'imi kendi VPS'ime deploy etmek istiyorum. Frontend'de API URL'ini ortam değişkeninden okunan şekilde ayarla. Backend'de CORS'u sadece Vercel domain'ine izin verecek şekilde yapılandır. Her iki taraf için de deployment talimatlarını adım adım yaz."</p>
+        </div>
+
+        <div class="info-box purple">
+            <strong>🤖 İyi Prompt Yazma İpuçları:</strong>
+            <ul style="margin-bottom:0">
+                <li><strong>Spesifik olun:</strong> "Bir uygulama yap" yerine hangi teknolojileri, hangi özellikleri istediğinizi belirtin</li>
+                <li><strong>Adım adım ilerleyin:</strong> Her şeyi tek seferde istemeyin, özellik özellik ekleyin</li>
+                <li><strong>Hataları anlatın:</strong> "Çalışmıyor" yerine hata mesajını ve hangi adımda aldığınızı söyleyin</li>
+                <li><strong>Teknik terimler kullanın:</strong> "Verileri kaydet" yerine "PostgreSQL'e INSERT yap" veya "REST API endpoint oluştur" deyin</li>
+                <li><strong>Görünümü tanımlayın:</strong> "Güzel olsun" yerine "Tailwind CSS, dark mode, sidebar navigation, responsive" gibi detaylar verin</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BÖLÜM 17: Terimler Sözlüğü -->
+    <!-- ============================================================ -->
+    <section class="section" id="sozluk">
+        <div class="section-header">
+            <span class="section-number">17</span>
+            <h2>Terimler Sözlüğü <span class="en">Glossary</span></h2>
+        </div>
+
+        <p>Bu ders notlarında geçen teknik terimlerin özet açıklamaları:</p>
+
+        <h3>🌐 Web Temelleri</h3>
+        <table>
+            <tr><th>Terim</th><th>Açıklama</th></tr>
+            <tr><td><strong>HTML</strong></td><td>Web sayfasının yapısını tanımlayan işaretleme dili (başlıklar, paragraflar, butonlar…)</td></tr>
+            <tr><td><strong>CSS</strong></td><td>Web sayfasının görünümünü belirleyen stil dili (renkler, düzen, yazı tipleri…)</td></tr>
+            <tr><td><strong>JavaScript</strong></td><td>Web sayfasına etkileşim katan programlama dili (tıklama, animasyon, veri gönderme…)</td></tr>
+            <tr><td><strong>Frontend</strong></td><td>Kullanıcının gördüğü ve etkileştiği arayüz. Tarayıcıda çalışır.</td></tr>
+            <tr><td><strong>Backend</strong></td><td>Sunucu tarafı: veritabanı, iş mantığı, API. Kullanıcı doğrudan görmez.</td></tr>
+            <tr><td><strong>Full-Stack</strong></td><td>Hem frontend hem backend geliştirme yapabilme becerisi veya projesi.</td></tr>
+            <tr><td><strong>API</strong></td><td>Application Programming Interface — programların birbiriyle iletişim kurma arayüzü.</td></tr>
+            <tr><td><strong>REST API</strong></td><td>HTTP üzerinden çalışan, URL tabanlı web API standardı.</td></tr>
+            <tr><td><strong>JSON</strong></td><td>Veri alışverişi için en yaygın format. <code>{"ad": "Ali", "yas": 25}</code></td></tr>
+            <tr><td><strong>HTTP / HTTPS</strong></td><td>Web iletişim protokolü. HTTPS şifreli versiyonudur (SSL/TLS).</td></tr>
+            <tr><td><strong>URL</strong></td><td>Web adresi. Örn: <code>https://example.com/api/users</code></td></tr>
+            <tr><td><strong>DNS</strong></td><td>Alan adlarını IP adreslerine çeviren sistem.</td></tr>
+            <tr><td><strong>CORS</strong></td><td>Cross-Origin Resource Sharing — farklı kaynaklardan gelen isteklerin kontrolü.</td></tr>
+            <tr><td><strong>CDN</strong></td><td>İçerik Dağıtım Ağı — statik dosyaları dünya genelinde dağıtır.</td></tr>
+        </table>
+
+        <h3>🗄️ Veritabanı</h3>
+        <table>
+            <tr><th>Terim</th><th>Açıklama</th></tr>
+            <tr><td><strong>Database</strong></td><td>Verilerin düzenli saklandığı sistem.</td></tr>
+            <tr><td><strong>SQL</strong></td><td>Yapısal veri sorgulama dili. SELECT, INSERT, UPDATE, DELETE.</td></tr>
+            <tr><td><strong>NoSQL</strong></td><td>Esnek şemalı, JSON belge tabanlı veritabanları (MongoDB, Firestore).</td></tr>
+            <tr><td><strong>CRUD</strong></td><td>Create, Read, Update, Delete — 4 temel veri işlemi.</td></tr>
+            <tr><td><strong>Table / Tablo</strong></td><td>Veritabanında satır ve sütunlardan oluşan veri yapısı.</td></tr>
+            <tr><td><strong>Primary Key</strong></td><td>Her satırı benzersiz tanımlayan sütun (genellikle <code>id</code>).</td></tr>
+            <tr><td><strong>Foreign Key</strong></td><td>Başka bir tablonun primary key'ine referans veren sütun.</td></tr>
+            <tr><td><strong>ORM</strong></td><td>Object-Relational Mapping — SQL yerine programlama diliyle veritabanı yönetimi (Prisma, Sequelize).</td></tr>
+            <tr><td><strong>Migration</strong></td><td>Veritabanı şemasını sürüm kontrollü şekilde değiştirme.</td></tr>
+        </table>
+
+        <h3>🔒 Güvenlik</h3>
+        <table>
+            <tr><th>Terim</th><th>Açıklama</th></tr>
+            <tr><td><strong>Authentication</strong></td><td>Kimlik doğrulama — "Sen kimsin?"</td></tr>
+            <tr><td><strong>Authorization</strong></td><td>Yetkilendirme — "Ne yapmaya yetkin var?"</td></tr>
+            <tr><td><strong>OAuth</strong></td><td>Google, GitHub gibi servislerin kimlik doğrulama protokolü.</td></tr>
+            <tr><td><strong>JWT</strong></td><td>JSON Web Token — şifrelenmiş kullanıcı bilgisi içeren jeton.</td></tr>
+            <tr><td><strong>Hash</strong></td><td>Tek yönlü şifreleme — girdiyi sabit uzunlukta çıktıya dönüştürür (bcrypt).</td></tr>
+            <tr><td><strong>SQL Injection</strong></td><td>Formlardan SQL kodu enjekte ederek veritabanına müdahale saldırısı.</td></tr>
+            <tr><td><strong>XSS</strong></td><td>Cross-Site Scripting — sayfaya kötü amaçlı script enjeksiyonu.</td></tr>
+            <tr><td><strong>SSL / TLS</strong></td><td>İnternet iletişimini şifreleyen protokol (HTTPS).</td></tr>
+            <tr><td><strong>Rate Limiting</strong></td><td>Belirli sürede yapılabilecek istek sayısını sınırlama.</td></tr>
+        </table>
+
+        <h3>🚀 Deployment &amp; Altyapı</h3>
+        <table>
+            <tr><th>Terim</th><th>Açıklama</th></tr>
+            <tr><td><strong>VPS</strong></td><td>Virtual Private Server — kiralık sanal sunucu.</td></tr>
+            <tr><td><strong>SSH</strong></td><td>Secure Shell — uzak sunucuya güvenli bağlantı protokolü.</td></tr>
+            <tr><td><strong>Deployment</strong></td><td>Uygulamayı kullanıcıların erişebileceği sunucuya yükleyip çalıştırma.</td></tr>
+            <tr><td><strong>Nginx</strong></td><td>Web sunucusu ve reverse proxy yazılımı.</td></tr>
+            <tr><td><strong>Reverse Proxy</strong></td><td>Gelen istekleri arka plandaki uygulamaya yönlendiren ara katman.</td></tr>
+            <tr><td><strong>PM2</strong></td><td>Node.js uygulamalarını arka planda yöneten process manager.</td></tr>
+            <tr><td><strong>systemd</strong></td><td>Linux'un yerleşik servis yönetim sistemi.</td></tr>
+            <tr><td><strong>Docker</strong></td><td>Uygulamayı tüm bağımlılıklarıyla birlikte paketleyen konteyner teknolojisi.</td></tr>
+            <tr><td><strong>CI/CD</strong></td><td>Sürekli entegrasyon / sürekli dağıtım — otomatik test ve deploy.</td></tr>
+            <tr><td><strong>Domain</strong></td><td>Alan adı — example.com gibi insanın okuyabileceği adres.</td></tr>
+            <tr><td><strong>BaaS</strong></td><td>Backend as a Service — Firebase, Supabase gibi hazır backend platformları.</td></tr>
+        </table>
+
+        <div class="info-box tip">
+            <strong>🗺️ Daha İleri Gitmek İsteyenlere:</strong>
+            <ul style="margin-bottom:0">
+                <li><a href="https://roadmap.sh/full-stack" target="_blank">roadmap.sh/full-stack</a> — Full-stack geliştirici yol haritası</li>
+                <li><a href="https://roadmap.sh/backend" target="_blank">roadmap.sh/backend</a> — Backend geliştirici yol haritası</li>
+                <li><a href="https://roadmap.sh/devops" target="_blank">roadmap.sh/devops</a> — DevOps ve deployment yol haritası</li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Learn" target="_blank">MDN Web Docs</a> — Web teknolojileri referansı (Mozilla)</li>
+                <li><a href="https://component.gallery/components/" target="_blank">component.gallery</a> — UI bileşen isimleri ve örnekleri</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>
+            <a href="https://yzakademi.anadolu.edu.tr/" target="_blank">Anadolu Üniversitesi Yapay Zeka Akademisi</a> — Full-Stack Web Uygulamaları: Mimari, Geliştirme ve Deployment
+        </p>
+        <p>✍️ Bu ders notları Güvenç Usanmaz tarafından hazırlanmıştır.</p>
+        <p>🤖 İçeriğin oluşturulmasında ve düzenlenmesinde yapay zeka araçlarından (LLM) yararlanılmıştır.</p>
+        <p style="margin-top:1rem;">2026 · Bu sayfa kurs materyali olarak hazırlanmıştır.</p>
+    </footer>
+
+</div><!-- .container -->
+
+</body>
+</html>

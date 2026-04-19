@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yöresel Peynir Dünyası</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Yöresel Peynir Dünyası</h1>
+            <div class="cart-icon" id="cart-btn">
+                🛒 Sepetim (<span id="cart-count">0</span>)
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="products-section">
+            <h2>Ürünlerimiz</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- Ürünler buraya JS ile eklenecek -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Sepet Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Sepetiniz</h2>
+                <button class="close-btn" id="close-cart-btn">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Sepet öğeleri buraya JS ile eklenecek -->
+            </div>
+            <div class="cart-footer">
+                <h3>Toplam: <span id="cart-total">0</span> TL</h3>
+                <div class="cart-actions">
+                    <button class="clear-cart-btn" id="clear-cart-btn" onclick="clearCart()">Sepeti Boşalt</button>
+                    <button class="checkout-btn">Alışverişi Tamamla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

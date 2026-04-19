@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM API Entegrasyonu ve İleri Prompt Engineering</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #dbeafe;
+            --secondary: #7c3aed;
+            --secondary-light: #ede9fe;
+            --success: #059669;
+            --success-light: #d1fae5;
+            --warning: #d97706;
+            --warning-light: #fef3c7;
+            --danger: #dc2626;
+            --danger-light: #fee2e2;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --radius: 12px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.7; color: var(--gray-800); background: var(--gray-50); font-size: 16px; }
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #7c3aed 50%, #2563eb 100%); color: white; padding: 3rem 2rem; text-align: center; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 0.5rem; font-weight: 800; }
+        .hero .subtitle { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+        .toc { background: white; border-radius: var(--radius); padding: 2rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .toc h2 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary); }
+        .toc ol { padding-left: 1.5rem; }
+        .toc li { margin-bottom: 0.4rem; }
+        .toc a { color: var(--gray-700); text-decoration: none; }
+        .toc a:hover { color: var(--primary); }
+        .section { background: white; border-radius: var(--radius); padding: 2rem; margin-bottom: 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .section-header { display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--primary-light); padding-bottom: 0.8rem; }
+        .section-number { background: var(--primary); color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem; flex-shrink: 0; }
+        .section-header h2 { font-size: 1.5rem; color: var(--gray-900); line-height: 1.3; }
+        .section-header .en { color: var(--gray-600); font-size: 0.9rem; font-weight: 400; }
+        h3 { font-size: 1.2rem; color: var(--gray-800); margin-top: 1.8rem; margin-bottom: 0.8rem; }
+        h4 { font-size: 1.05rem; color: var(--gray-700); margin-top: 1.3rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; }
+        a { color: var(--primary); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.3rem; }
+        .info-box { border-radius: var(--radius); padding: 1rem 1.2rem; margin: 1rem 0; font-size: 0.95rem; }
+        .info-box.tip { background: var(--success-light); border-left: 4px solid var(--success); }
+        .info-box.warning { background: var(--warning-light); border-left: 4px solid var(--warning); }
+        .info-box.danger { background: var(--danger-light); border-left: 4px solid var(--danger); }
+        .info-box.note { background: var(--primary-light); border-left: 4px solid var(--primary); }
+        .info-box.purple { background: var(--secondary-light); border-left: 4px solid var(--secondary); }
+        .info-box strong { display: block; margin-bottom: 0.3rem; }
+        pre { background: var(--gray-900); color: #e5e7eb; padding: 1.2rem; border-radius: 8px; overflow-x: auto; margin: 1rem 0; font-size: 0.9rem; line-height: 1.6; }
+        code { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace; font-size: 0.88em; }
+        p code, li code, td code { background: var(--gray-100); padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--danger); }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem; }
+        th, td { padding: 0.6rem 0.8rem; border: 1px solid var(--gray-200); text-align: left; }
+        th { background: var(--gray-100); font-weight: 600; color: var(--gray-700); }
+        tr:nth-child(even) td { background: var(--gray-50); }
+        .prompt-box { background: linear-gradient(135deg, #1e293b, #334155); color: #e2e8f0; border-radius: var(--radius); padding: 1.2rem 1.5rem; margin: 1rem 0; position: relative; }
+        .prompt-box::before { content: '💬 Örnek Prompt'; display: block; font-size: 0.8rem; font-weight: 600; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .prompt-box p { margin: 0; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.9rem; line-height: 1.6; }
+        .terminal { background: #0d1117; color: #c9d1d9; border-radius: 8px; padding: 1rem 1.2rem; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 0.85rem; line-height: 1.7; margin: 1rem 0; overflow-x: auto; }
+        .terminal .ps { color: #58a6ff; }
+        .terminal .cm { color: #6e7681; }
+        .terminal .ok { color: #3fb950; }
+        .footer { text-align: center; padding: 2rem; color: var(--gray-600); font-size: 0.85rem; border-top: 1px solid var(--gray-200); margin-top: 2rem; }
+        @media (max-width: 640px) { .hero h1 { font-size: 1.5rem; } .section { padding: 1.2rem; } pre { font-size: 0.8rem; } }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <h1>🤖 LLM API Entegrasyonu &amp; Prompt Engineering</h1>
+    <p class="subtitle">OpenAI, Gemini, Groq ve Ollama API'lerini web uygulamalarınıza entegre etme rehberi</p>
+</header>
+
+<div class="container">
+
+<nav class="toc">
+    <h2>📑 İçindekiler</h2>
+    <ol>
+        <li><a href="#dinamik-deploy">Dinamik Web Uygulaması Yayınlama Sorunu</a></li>
+        <li><a href="#vps">Klasik Yol: VPS ile Sunucu Yönetimi</a></li>
+        <li><a href="#docker-deploy">Kolay Yol: Docker ve Bulut Deploy</a></li>
+        <li><a href="#web-servis">Web Servisi ve API Nedir?</a></li>
+        <li><a href="#api-key">API Key, Token ve Context Window</a></li>
+        <li><a href="#openai-api">OpenAI API Kullanımı</a></li>
+        <li><a href="#gemini-api">Google Gemini API Kullanımı</a></li>
+        <li><a href="#groq-api">Groq API: Ultra Hızlı Çıkarım</a></li>
+        <li><a href="#ollama">Ollama: Yerel (Local) LLM Kullanımı</a></li>
+        <li><a href="#web-entegrasyon">LLM'i Web Uygulamasına Entegre Etme</a></li>
+        <li><a href="#ai-servisleri">Diğer AI Servisleri: Resim, Ses, Video</a></li>
+        <li><a href="#sistem-prompt">Sistem Promptları ve Rol Tasarımı</a></li>
+        <li><a href="#tool-use">Tool Use (Fonksiyon Çağırma)</a></li>
+        <li><a href="#structured-output">Structured Output: Yapılandırılmış Çıktı</a></li>
+        <li><a href="#sentetik-veri">Sentetik Veri Üretimi</a></li>
+        <li><a href="#mega-prompt">Mega-Prompt ve İleri Teknikler</a></li>
+        <li><a href="#debug">Debugging ve Hata Ayıklama Stratejileri</a></li>
+        <li><a href="#sozluk">Terimler Sözlüğü</a></li>
+    </ol>
+</nav>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 1 -->
+<!-- ============================================================ -->
+<section class="section" id="dinamik-deploy">
+    <div class="section-header">
+        <span class="section-number">1</span>
+        <h2>Dinamik Web Uygulaması Yayınlama Sorunu <span class="en">Deploying Dynamic Web Apps</span></h2>
+    </div>
+
+    <p>Statik bir web sitesi (sadece HTML/CSS/JS) yayınlamak kolaydır — GitHub Pages'e yüklersiniz, biter. Ama <strong>dinamik bir web uygulaması</strong> (backend + veritabanı + API) yayınlamak çok daha zordur. Çünkü artık işin içinde <strong>sürekli çalışan bir sunucu</strong> vardır.</p>
+
+    <h3>Statik vs Dinamik: Fark Ne?</h3>
+    <table>
+        <tr><th>Özellik</th><th>Statik Site</th><th>Dinamik Uygulama</th></tr>
+        <tr><td>Sunucu gerekli mi?</td><td>❌ Hayır</td><td>✅ Evet, 7/24 çalışan sunucu</td></tr>
+        <tr><td>Nereye yüklenir?</td><td>GitHub Pages, Netlify</td><td>VPS, Bulut platformu</td></tr>
+        <tr><td>Veritabanı</td><td>Yok</td><td>Var (PostgreSQL, MongoDB…)</td></tr>
+        <tr><td>Maliyet</td><td>Ücretsiz</td><td>Genellikle ücretli</td></tr>
+        <tr><td>Zorluk</td><td>⭐ Kolay</td><td>⭐⭐⭐⭐ Zor</td></tr>
+    </table>
+
+    <h3>Kendi Bilgisayarımı Sunucu Olarak Kullanamaz mıyım?</h3>
+    <p>Teorik olarak evet, ama pratikte <strong>çok sorunludur:</strong></p>
+    <ul>
+        <li><strong>Dinamik IP adresi:</strong> Ev internet bağlantınızın IP adresi sürekli değişir. Bugün 85.107.x.x iken yarın başka olur. Kullanıcılar sizi bulamaz.</li>
+        <li><strong>Stabilite:</strong> Bilgisayarınız 7/24 açık olmalı. Elektrik kesintisi? Bilgisayar çökmesi? Windows güncellemesi? → Siteniz çöker.</li>
+        <li><strong>İnternet hızı:</strong> Ev internet bağlantılarında upload hızı çok düşüktür (genellikle 5-10 Mbps). 50 kullanıcı bile sitenizi yavaşlatır.</li>
+        <li><strong>Güvenlik:</strong> Ev bilgisayarını internete açmak güvenlik riski taşır.</li>
+        <li><strong>ISP kısıtlamaları:</strong> Çoğu internet servis sağlayıcı, ev bağlantısında sunucu çalıştırmayı yasaklar.</li>
+    </ul>
+
+    <div class="info-box danger">
+        <strong>🛑 Sonuç:</strong>
+        Kendi bilgisayarınızı sunucu olarak kullanmak, ödev veya denemeler için olabilir ama gerçek bir uygulama için <strong>asla uygun değildir</strong>. Bunun yerine VPS veya bulut platformları kullanılır.
+    </div>
+
+    <h3>Peki Ne Yapacağız?</h3>
+    <p>İki ana yol var:</p>
+    <ol>
+        <li><strong>Klasik yol — VPS:</strong> Bir sanal sunucu kiralayıp Linux komutlarıyla her şeyi kendiniz kurmak (zor ama tam kontrol)</li>
+        <li><strong>Kolay yol — Docker + Bulut:</strong> Uygulamayı Docker ile paketleyip Fly.io, Railway gibi platformlara yüklemek (çok daha basit)</li>
+    </ol>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 2 -->
+<!-- ============================================================ -->
+<section class="section" id="vps">
+    <div class="section-header">
+        <span class="section-number">2</span>
+        <h2>Klasik Yol: VPS ile Sunucu Yönetimi <span class="en">VPS Server Management</span></h2>
+    </div>
+
+    <p><strong>VPS</strong> (Virtual Private Server), bir veri merkezindeki fiziksel sunucunun sanal bir dilimini kiralama yöntemidir. Size ayrılmış bir Linux bilgisayar verilir — 7/24 açık, sabit IP adresli, yüksek hızlı internet bağlantılı.</p>
+
+    <h3>Popüler VPS Sağlayıcıları</h3>
+    <table>
+        <tr><th>Sağlayıcı</th><th>Başlangıç Fiyatı</th><th>Adres</th><th>Not</th></tr>
+        <tr><td>Hetzner</td><td>~€4/ay</td><td><a href="https://www.hetzner.com/cloud" target="_blank">hetzner.com</a></td><td>Avrupa lokasyonu, ucuz, güvenilir</td></tr>
+        <tr><td>DigitalOcean</td><td>$6/ay</td><td><a href="https://www.digitalocean.com" target="_blank">digitalocean.com</a></td><td>Kolay arayüz, iyi dokümantasyon</td></tr>
+        <tr><td>Vultr</td><td>$2.50/ay</td><td><a href="https://www.vultr.com" target="_blank">vultr.com</a></td><td>Çok geniş lokasyon ağı, ucuz başlangıç</td></tr>
+        <tr><td>Linode (Akamai)</td><td>$5/ay</td><td><a href="https://www.linode.com" target="_blank">linode.com</a></td><td>Köklü firma, stabil altyapı</td></tr>
+        <tr><td>Contabo</td><td>~€6/ay</td><td><a href="https://contabo.com" target="_blank">contabo.com</a></td><td>Çok ucuz, yüksek kaynak</td></tr>
+        <tr><td>AWS Lightsail</td><td>$5/ay</td><td><a href="https://aws.amazon.com/lightsail/" target="_blank">aws.amazon.com/lightsail</a></td><td>Amazon altyapısı</td></tr>
+        <tr><td>Oracle Cloud</td><td>Ücretsiz</td><td><a href="https://www.oracle.com/cloud/free/" target="_blank">oracle.com/cloud/free</a></td><td>Always Free tier: 2 VM + 24 GB RAM</td></tr>
+    </table>
+
+    <h3>VPS Kurulumu: Bilmeniz Gereken Linux Komutları</h3>
+    <p>VPS genellikle Ubuntu Linux ile gelir ve her şeyi <strong>terminal</strong> (komut satırı) üzerinden yaparsınız. Grafiksel arayüz yoktur!</p>
+
+    <h4>📡 SSH ile Bağlanma</h4>
+    <p>SSH (Secure Shell), sunucunuza uzaktan güvenli bağlantı sağlar:</p>
+    <div class="terminal">
+        <span class="cm"># Sunucuya bağlan</span><br>
+        <span class="ps">$</span> ssh root@185.92.123.45<br><br>
+        <span class="cm"># SSH anahtarı ile bağlan (şifresiz, daha güvenli)</span><br>
+        <span class="ps">$</span> ssh -i ~/.ssh/id_rsa root@185.92.123.45<br><br>
+        <span class="cm"># Farklı port kullanıyorsa</span><br>
+        <span class="ps">$</span> ssh -p 2222 root@185.92.123.45
+    </div>
+
+    <h4>📁 Dosya İşlemleri</h4>
+    <div class="terminal">
+        <span class="cm"># Bulunduğun klasörü göster</span><br>
+        <span class="ps">$</span> pwd<br>
+        <span class="ok">/root</span><br><br>
+        <span class="cm"># Dosyaları listele</span><br>
+        <span class="ps">$</span> ls -la<br><br>
+        <span class="cm"># Klasör oluştur</span><br>
+        <span class="ps">$</span> mkdir /var/www/myapp<br><br>
+        <span class="cm"># Klasöre gir</span><br>
+        <span class="ps">$</span> cd /var/www/myapp<br><br>
+        <span class="cm"># Dosya kopyala / taşı / sil</span><br>
+        <span class="ps">$</span> cp dosya.txt yedek.txt<br>
+        <span class="ps">$</span> mv dosya.txt yeni_ad.txt<br>
+        <span class="ps">$</span> rm dosya.txt
+    </div>
+
+    <h4>📤 Bilgisayardan Sunucuya Dosya Aktarma (SCP / SFTP)</h4>
+    <div class="terminal">
+        <span class="cm"># SCP: Tek dosya yükle</span><br>
+        <span class="ps">$</span> scp app.zip root@185.92.123.45:/var/www/myapp/<br><br>
+        <span class="cm"># SCP: Klasör yükle (-r = recursive)</span><br>
+        <span class="ps">$</span> scp -r ./proje root@185.92.123.45:/var/www/myapp/<br><br>
+        <span class="cm"># Sunucudan dosya indir</span><br>
+        <span class="ps">$</span> scp root@185.92.123.45:/var/log/app.log ./
+    </div>
+
+    <h4>✏️ Terminal Metin Editörleri</h4>
+    <div class="terminal">
+        <span class="cm"># nano — en kolay editör (yeni başlayanlar için)</span><br>
+        <span class="ps">$</span> nano /var/www/myapp/.env<br>
+        <span class="cm"># Ctrl+O = Kaydet, Ctrl+X = Çık</span><br><br>
+        <span class="cm"># vim — güçlü ama öğrenmesi zor</span><br>
+        <span class="ps">$</span> vim /var/www/myapp/.env<br>
+        <span class="cm"># i = yazma modu, Esc → :wq = kaydet ve çık</span><br><br>
+        <span class="cm"># Dosya içeriğini okuma (düzenlemeden)</span><br>
+        <span class="ps">$</span> cat .env<br>
+        <span class="ps">$</span> less app.log <span class="cm"># Uzun dosyalar için (q ile çık)</span>
+    </div>
+
+    <h4>📦 Program Kurulumu</h4>
+    <div class="terminal">
+        <span class="cm"># Paket listesini güncelle</span><br>
+        <span class="ps">$</span> sudo apt update<br><br>
+        <span class="cm"># Node.js kur</span><br>
+        <span class="ps">$</span> curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -<br>
+        <span class="ps">$</span> sudo apt install -y nodejs<br><br>
+        <span class="cm"># Python kur</span><br>
+        <span class="ps">$</span> sudo apt install -y python3 python3-pip<br><br>
+        <span class="cm"># Nginx (reverse proxy) kur</span><br>
+        <span class="ps">$</span> sudo apt install -y nginx
+    </div>
+
+    <h4>⚙️ systemctl ile Servis Yönetimi</h4>
+    <p>Uygulamanızın sunucu yeniden başlasa bile otomatik çalışmasını sağlamak için bir <strong>systemd servisi</strong> oluşturursunuz:</p>
+    <div class="terminal">
+        <span class="cm"># Servis dosyası oluştur</span><br>
+        <span class="ps">$</span> sudo nano /etc/systemd/system/myapp.service
+    </div>
+    <pre><code># /etc/systemd/system/myapp.service
+[Unit]
+Description=My Node.js App
+After=network.target
+
+[Service]
+WorkingDirectory=/var/www/myapp
+ExecStart=/usr/bin/node server.js
+Restart=always
+EnvironmentFile=/var/www/myapp/.env
+User=www-data
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+    <div class="terminal">
+        <span class="cm"># Servisi etkinleştir ve başlat</span><br>
+        <span class="ps">$</span> sudo systemctl daemon-reload<br>
+        <span class="ps">$</span> sudo systemctl enable myapp <span class="cm"># Açılışta otomatik başlat</span><br>
+        <span class="ps">$</span> sudo systemctl start myapp<br><br>
+        <span class="cm"># Durum kontrol / durdur / yeniden başlat</span><br>
+        <span class="ps">$</span> sudo systemctl status myapp<br>
+        <span class="ps">$</span> sudo systemctl stop myapp<br>
+        <span class="ps">$</span> sudo systemctl restart myapp<br><br>
+        <span class="cm"># Logları görüntüle</span><br>
+        <span class="ps">$</span> sudo journalctl -u myapp -f <span class="cm"># -f = canlı takip</span>
+    </div>
+
+    <h4>🌐 Domain ve SSL Ayarları</h4>
+    <p>İşler burada daha da karmaşıklaşır:</p>
+    <ol>
+        <li><strong>Domain satın al</strong> (NameCheap, Google Domains, Turhost… — yıllık ~$10-15)</li>
+        <li><strong>DNS ayarlarını yap</strong> — Domain'in A kaydını sunucu IP'sine yönlendir</li>
+        <li><strong>Nginx reverse proxy kur</strong> — 80/443 portunu uygulamanıza yönlendir</li>
+        <li><strong>SSL sertifikası al</strong> — Let's Encrypt ile ücretsiz (certbot)</li>
+    </ol>
+    <div class="terminal">
+        <span class="cm"># SSL sertifikası alma (Let's Encrypt)</span><br>
+        <span class="ps">$</span> sudo apt install certbot python3-certbot-nginx<br>
+        <span class="ps">$</span> sudo certbot --nginx -d myapp.com -d www.myapp.com<br>
+        <span class="ok">Congratulations! Your certificate and chain have been saved.</span>
+    </div>
+
+    <div class="info-box warning">
+        <strong>⚠️ VPS Zorluğu Özeti:</strong>
+        Sadece "uygulamamı internete koymak" için: Linux komutları + SSH + dosya aktarımı + program kurulumu + servis yönetimi + domain + DNS + Nginx + SSL öğrenmek gerekiyor. Programcı olmayanlar için bu duvar oldukça yüksek!
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 3 -->
+<!-- ============================================================ -->
+<section class="section" id="docker-deploy">
+    <div class="section-header">
+        <span class="section-number">3</span>
+        <h2>Kolay Yol: Docker ve Bulut Deploy <span class="en">Docker & Cloud Deployment</span></h2>
+    </div>
+
+    <p>VPS kurmak çok iş. Peki daha kolay bir yol yok mu? Var: <strong>Docker</strong> ile uygulamanızı paketleyip, bulut platformlarına tek komutla yüklemek.</p>
+
+    <h3>Docker Nedir?</h3>
+    <p>Docker, uygulamanızı tüm bağımlılıklarıyla (Node.js, Python, veritabanı…) birlikte bir <strong>konteyner</strong> (kutunun içine paketler gibi) haline getirir. Bu pakete <strong>Docker image</strong> (imaj) denir.</p>
+    <p>Düşünün ki bir taşınma kutusu hazırlıyorsunuz — içine uygulamanızı, Node.js'i, tüm npm paketlerini, .env dosyanızı koyuyorsunuz. Bu kutuyu herhangi bir bilgisayara götürüp açtığınızda uygulama hemen çalışıyor.</p>
+
+    <h3>Dockerfile Örneği</h3>
+    <pre><code># Dockerfile — uygulamanızı paketleme tarifi
+FROM node:22-alpine          # Temel: Node.js 22 yüklü küçük Linux
+
+WORKDIR /app                  # Çalışma klasörü
+
+COPY package*.json ./         # Önce paket dosyalarını kopyala
+RUN npm install               # Bağımlılıkları kur
+
+COPY . .                      # Tüm uygulama kodunu kopyala
+
+EXPOSE 3000                   # Port 3000'i aç
+CMD ["node", "server.js"]     # Uygulamayı başlat</code></pre>
+
+    <div class="info-box tip">
+        <strong>🎯 AI ile Dockerfile Oluşturma:</strong>
+        Dockerfile yazmayı bilmenize gerek yok! AI'a "Express uygulam için Dockerfile oluştur" deyin, size hazırlar. Hatta projenin tüm dosyalarını verip "bunu deploy edilebilir hale getir" demeniz yeterli.
+    </div>
+
+    <div class="prompt-box">
+        <p>"Express.js backend uygulamam var. Bu uygulamayı Docker ile paketlemek istiyorum. Dockerfile, .dockerignore ve gerekli tüm yapılandırmayı oluştur. Uygulama port 3000'de çalışıyor ve .env dosyasından environment variable okuyor."</p>
+    </div>
+
+    <h3>Docker Komutları (Temel)</h3>
+    <div class="terminal">
+        <span class="cm"># Docker imajı oluştur</span><br>
+        <span class="ps">$</span> docker build -t myapp .<br><br>
+        <span class="cm"># Konteyneri çalıştır</span><br>
+        <span class="ps">$</span> docker run -p 3000:3000 --env-file .env myapp<br><br>
+        <span class="cm"># Çalışan konteynerleri listele</span><br>
+        <span class="ps">$</span> docker ps<br><br>
+        <span class="cm"># Konteyneri durdur</span><br>
+        <span class="ps">$</span> docker stop container_id
+    </div>
+
+    <h3>Docker İmajını Nereye Yükleriz? (Ücretsiz Platformlar)</h3>
+    <p>Docker imajınızı alıp doğrudan çalıştıran bulut platformları vardır. VPS gibi Linux komutları bilmenize gerek yok — platform her şeyi halleder:</p>
+
+    <table>
+        <tr><th>Platform</th><th>Ücretsiz Katman</th><th>Zorluk</th><th>Özellik</th></tr>
+        <tr><td><strong><a href="https://fly.io" target="_blank">Fly.io</a></strong></td><td>✅ 3 küçük VM ücretsiz</td><td>⭐⭐ Kolay</td><td>Docker deploy, global dağıtım, PostgreSQL dahil</td></tr>
+        <tr><td><strong><a href="https://railway.com" target="_blank">Railway</a></strong></td><td>✅ $5/ay kredi</td><td>⭐ Çok kolay</td><td>GitHub bağla → otomatik deploy, DB dahil</td></tr>
+        <tr><td><strong><a href="https://render.com" target="_blank">Render</a></strong></td><td>✅ Ücretsiz (uyku modlu)</td><td>⭐ Çok kolay</td><td>GitHub bağla → otomatik deploy</td></tr>
+        <tr><td><strong><a href="https://www.koyeb.com" target="_blank">Koyeb</a></strong></td><td>✅ 1 nano servis</td><td>⭐⭐ Kolay</td><td>Docker / GitHub deploy</td></tr>
+        <tr><td><strong><a href="https://coolify.io" target="_blank">Coolify</a></strong></td><td>✅ Self-hosted (VPS'e kurulur)</td><td>⭐⭐ Orta</td><td>Kendi Heroku'nuz, açık kaynak</td></tr>
+    </table>
+
+    <h3>Fly.io ile Deploy Örneği</h3>
+    <div class="terminal">
+        <span class="cm"># Fly.io CLI kur</span><br>
+        <span class="ps">$</span> curl -L https://fly.io/install.sh | sh<br><br>
+        <span class="cm"># Giriş yap</span><br>
+        <span class="ps">$</span> fly auth login<br><br>
+        <span class="cm"># Uygulamayı oluştur ve deploy et</span><br>
+        <span class="ps">$</span> fly launch <span class="cm"># İlk sefer — Dockerfile'ı otomatik algılar</span><br>
+        <span class="ps">$</span> fly deploy <span class="cm"># Sonraki güncellemeler</span><br><br>
+        <span class="cm"># Environment variable ekle</span><br>
+        <span class="ps">$</span> fly secrets set OPENAI_API_KEY=sk-proj-abc123...<br><br>
+        <span class="cm"># Logları izle</span><br>
+        <span class="ps">$</span> fly logs<br><br>
+        <span class="ok">✅ https://myapp.fly.dev adresinde yayında!</span>
+    </div>
+
+    <h3>Railway ile Deploy (En Kolay)</h3>
+    <p>Railway daha da basittir — Docker bile gerekmez:</p>
+    <ol>
+        <li><a href="https://railway.com" target="_blank">railway.com</a>'a GitHub ile giriş yapın</li>
+        <li>"New Project" → "Deploy from GitHub repo" seçin</li>
+        <li>Repo'nuzu seçin → Railway otomatik algılar (Node.js, Python…)</li>
+        <li>Environment Variables ekleyin (API anahtarları)</li>
+        <li>Deploy! Birkaç dakikada yayında</li>
+    </ol>
+
+    <h3>Karşılaştırma: VPS vs Docker + Bulut</h3>
+    <table>
+        <tr><th>Özellik</th><th>VPS (Klasik)</th><th>Docker + Bulut</th></tr>
+        <tr><td>Linux bilgisi</td><td>Şart</td><td>Gerekmez</td></tr>
+        <tr><td>SSH / Terminal</td><td>Her şey terminal</td><td>Web arayüzü + birkaç komut</td></tr>
+        <tr><td>SSL sertifikası</td><td>Kendin ayarla</td><td>Otomatik</td></tr>
+        <tr><td>Domain</td><td>Kendin bağla</td><td>Ücretsiz subdomain verilir</td></tr>
+        <tr><td>Ölçekleme</td><td>Manuel</td><td>Otomatik</td></tr>
+        <tr><td>Maliyet</td><td>~$5-10/ay</td><td>Ücretsiz başlangıç</td></tr>
+        <tr><td>Tam kontrol</td><td>✅ Her şeye erişim</td><td>❌ Sınırlı</td></tr>
+        <tr><td>Zorluk seviyesi</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐</td></tr>
+    </table>
+
+    <div class="info-box purple">
+        <strong>🤖 Vibe Coding Yaklaşımı:</strong>
+        AI'a "Express uygulamam için Dockerfile yaz ve Fly.io'ya deploy etmem için adımları göster" deyin. Dockerfile'ı oluşturacak, fly.toml yapılandırmasını hazırlayacak, hatta komutları sırasıyla size verecektir. VPS'teki onlarca adım, burada 3-4 komuta iner.
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 4 -->
+<!-- ============================================================ -->
+<section class="section" id="web-servis">
+    <div class="section-header">
+        <span class="section-number">4</span>
+        <h2>Web Servisi ve API Nedir? <span class="en">Web Services & APIs</span></h2>
+    </div>
+
+    <p>Bir <strong>web servisi</strong>, internet üzerinden erişilebilen bir yazılım hizmetidir. Hava durumu verisi, döviz kurları, harita bilgisi, ödeme işleme — bunların hepsi birer web servisidir. Siz kendi uygulamanızdan bu servislere <strong>API</strong> (Application Programming Interface) aracılığıyla bağlanırsınız.</p>
+
+    <p>LLM sağlayıcıları (OpenAI, Google, Anthropic…) da birer web servisidir. ChatGPT web sitesine gittiğinizde aslında tarayıcınız arka planda OpenAI API'sine istek gönderir. Siz de kendi uygulamanızdan aynı API'yi çağırabilirsiniz!</p>
+
+    <h3>API İletişimi Nasıl Çalışır?</h3>
+    <p>Neredeyse tüm modern API iletişimi şu düzende çalışır:</p>
+    <ol>
+        <li>Uygulamanız bir <strong>HTTP isteği</strong> gönderir (genellikle POST)</li>
+        <li>İstek bir <strong>URL</strong> (endpoint) adresine gider</li>
+        <li>İstek başlığında (header) <strong>API anahtarınız</strong> bulunur</li>
+        <li>İstek gövdesinde (body) verileriniz <strong>JSON</strong> formatında gönderilir</li>
+        <li>Sunucu yanıtı yine JSON olarak döner</li>
+    </ol>
+
+    <pre><code>// Genel yapı — tüm LLM API'leri buna benzer
+const yanit = await fetch("https://api.ornek.com/v1/chat", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer API_ANAHTARINIZ"    // Kimlik doğrulama
+  },
+  body: JSON.stringify({
+    model: "model-adi",
+    messages: [
+      { role: "user", content: "Merhaba!" }     // Kullanıcı mesajı
+    ]
+  })
+});
+const veri = await yanit.json();
+console.log(veri.choices[0].message.content);    // AI'ın yanıtı</code></pre>
+
+    <div class="info-box note">
+        <strong>💡 Neden API Kullanıyoruz?</strong>
+        ChatGPT sitesinde zaten konuşabiliyoruz, neden API'ye ihtiyaç var? Çünkü API ile:<br>
+        • Kendi uygulamanıza AI özelliği ekleyebilirsiniz (chatbot, öneri sistemi…)<br>
+        • Yüzlerce isteği otomatik gönderebilirsiniz (toplu veri işleme)<br>
+        • Kullanıcılarınıza AI destekli hizmet sunabilirsiniz<br>
+        • Sistem promptu ve ayarlarla AI'ın davranışını kontrol edebilirsiniz
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 5 -->
+<!-- ============================================================ -->
+<section class="section" id="api-key">
+    <div class="section-header">
+        <span class="section-number">5</span>
+        <h2>API Key, Token ve Context Window <span class="en">API Keys, Tokens & Context</span></h2>
+    </div>
+
+    <h3>🔑 API Key (API Anahtarı)</h3>
+    <p>API anahtarı, servisin sizi tanımasını sağlayan <strong>gizli bir şifredir</strong>. Tıpkı bir bina giriş kartı gibi — kim olduğunuzu kanıtlar ve erişiminizi belirler.</p>
+
+    <table>
+        <tr><th>Sağlayıcı</th><th>API Key Alma Adresi</th><th>Ücretsiz Kullanım</th></tr>
+        <tr><td>OpenAI</td><td><a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a></td><td>Kredi kartı gerekli, $5-18 başlangıç kredisi</td></tr>
+        <tr><td>Google Gemini</td><td><a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a></td><td>✅ Ücretsiz katman (cömert)</td></tr>
+        <tr><td>Groq</td><td><a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a></td><td>✅ Ücretsiz katman</td></tr>
+        <tr><td>Anthropic</td><td><a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a></td><td>Kredi kartı gerekli, $5 başlangıç</td></tr>
+    </table>
+
+    <div class="info-box danger">
+        <strong>🛑 API Anahtarı Güvenliği:</strong>
+        • API anahtarını <strong>asla</strong> frontend koduna (JavaScript, HTML) yazmayın — tarayıcıda herkes görebilir!<br>
+        • <code>.env</code> dosyasında saklayın, <code>.gitignore</code>'a ekleyin<br>
+        • GitHub'a yüklemeyin — botlar saniyeler içinde bulup kötüye kullanır<br>
+        • API çağrılarını <strong>backend</strong> üzerinden yapın
+    </div>
+
+    <pre><code># .env dosyası (gizli kalmalı!)
+OPENAI_API_KEY=sk-proj-abc123...
+GEMINI_API_KEY=AIzaSy...
+GROQ_API_KEY=gsk_...</code></pre>
+
+    <h3>🔤 Token Nedir?</h3>
+    <p>LLM'ler metni kelime kelime değil, <strong>token</strong> adı verilen küçük parçalar halinde işler. Bir token yaklaşık ¾ kelime veya 3-4 karakterdir.</p>
+
+    <table>
+        <tr><th>Metin</th><th>Yaklaşık Token</th></tr>
+        <tr><td>"Merhaba dünya"</td><td>~3 token</td></tr>
+        <tr><td>Bir paragraf (~100 kelime)</td><td>~130-150 token</td></tr>
+        <tr><td>Bir sayfa (~500 kelime)</td><td>~650-750 token</td></tr>
+        <tr><td>Bir kitap (~80.000 kelime)</td><td>~100.000 token</td></tr>
+    </table>
+
+    <p><strong>Neden önemli?</strong> Çünkü API'ler token başına ücret alır:</p>
+    <table>
+        <tr><th>Model</th><th>Giriş (Input)</th><th>Çıkış (Output)</th><th>~1000 soru-cevap maliyeti</th></tr>
+        <tr><td>GPT-4.1</td><td>$2 / 1M token</td><td>$8 / 1M token</td><td>~$2-5</td></tr>
+        <tr><td>GPT-4.1-mini</td><td>$0.40 / 1M token</td><td>$1.60 / 1M token</td><td>~$0.50</td></tr>
+        <tr><td>Gemini 2.5 Flash</td><td>Ücretsiz katman var</td><td>Ücretsiz katman var</td><td>$0 (limite kadar)</td></tr>
+        <tr><td>Groq (Llama 3)</td><td>Ücretsiz katman var</td><td>Ücretsiz katman var</td><td>$0 (limite kadar)</td></tr>
+    </table>
+
+    <h3>📏 Context Window (Bağlam Penceresi)</h3>
+    <p>Bir LLM'in tek seferde işleyebildiği toplam token sayısıdır (girdi + çıktı). Sohbet uzadıkça bu pencere dolar ve model eski mesajları "unutmaya" başlar.</p>
+    <table>
+        <tr><th>Model</th><th>Context Window</th><th>Yaklaşık Sayfa</th></tr>
+        <tr><td>GPT-4.1</td><td>1M token</td><td>~2500 sayfa</td></tr>
+        <tr><td>Gemini 2.5 Pro</td><td>1M token</td><td>~2500 sayfa</td></tr>
+        <tr><td>Claude 4 Sonnet</td><td>200K token</td><td>~500 sayfa</td></tr>
+        <tr><td>Llama 3.3 70B</td><td>128K token</td><td>~320 sayfa</td></tr>
+    </table>
+
+    <div class="info-box tip">
+        <strong>💡 Token Sayısını Görme:</strong>
+        <a href="https://platform.openai.com/tokenizer" target="_blank">platform.openai.com/tokenizer</a> — OpenAI'ın ücretsiz tokenizer aracı ile metninizin kaç token olduğunu görebilirsiniz.
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 6 -->
+<!-- ============================================================ -->
+<section class="section" id="openai-api">
+    <div class="section-header">
+        <span class="section-number">6</span>
+        <h2>OpenAI API Kullanımı <span class="en">OpenAI API</span></h2>
+    </div>
+
+    <p><a href="https://platform.openai.com/docs" target="_blank">OpenAI API</a>, ChatGPT'nin arkasındaki GPT modellerine programatik erişim sağlar.</p>
+
+    <h3>Kurulum</h3>
+    <div class="terminal">
+        <span class="ps">$</span> npm install openai
+    </div>
+
+    <h3>Temel Kullanım (Node.js)</h3>
+    <pre><code>import OpenAI from 'openai';
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY  // .env dosyasından
+});
+
+const yanit = await openai.chat.completions.create({
+  model: "gpt-4.1-mini",             // Hızlı ve ucuz model
+  messages: [
+    { role: "system", content: "Sen yardımcı bir asistansın." },
+    { role: "user",   content: "JavaScript'te dizi sıralama nasıl yapılır?" }
+  ],
+  temperature: 0.7,                   // Yaratıcılık (0=katı, 1=yaratıcı)
+  max_tokens: 500                     // Maksimum yanıt uzunluğu
+});
+
+console.log(yanit.choices[0].message.content);</code></pre>
+
+    <h3>Önemli Parametreler</h3>
+    <table>
+        <tr><th>Parametre</th><th>Ne İşe Yarar?</th><th>Varsayılan</th></tr>
+        <tr><td><code>model</code></td><td>Hangi modeli kullanacağınız</td><td>—</td></tr>
+        <tr><td><code>messages</code></td><td>Sohbet geçmişi (system, user, assistant rolleri)</td><td>—</td></tr>
+        <tr><td><code>temperature</code></td><td>0 = deterministik, 1 = yaratıcı</td><td>1</td></tr>
+        <tr><td><code>max_tokens</code></td><td>Yanıtın maksimum uzunluğu</td><td>Model limiti</td></tr>
+        <tr><td><code>stream</code></td><td><code>true</code> ise yanıt kelime kelime akar (ChatGPT gibi)</td><td>false</td></tr>
+    </table>
+
+    <h3>Streaming (Akış) — ChatGPT Efekti</h3>
+    <pre><code>const stream = await openai.chat.completions.create({
+  model: "gpt-4.1-mini",
+  messages: [{ role: "user", content: "Kısa bir hikaye yaz" }],
+  stream: true                        // Kelime kelime akar
+});
+
+for await (const parca of stream) {
+  const metin = parca.choices[0]?.delta?.content || "";
+  process.stdout.write(metin);        // Ekrana anında yaz
+}</code></pre>
+
+    <h3>Model Seçim Rehberi</h3>
+    <table>
+        <tr><th>Model</th><th>Hız</th><th>Maliyet</th><th>Ne Zaman?</th></tr>
+        <tr><td><code>gpt-4.1-nano</code></td><td>⚡⚡⚡</td><td>💰</td><td>Basit sınıflandırma, çıkarım</td></tr>
+        <tr><td><code>gpt-4.1-mini</code></td><td>⚡⚡</td><td>💰💰</td><td>Çoğu genel iş için yeterli</td></tr>
+        <tr><td><code>gpt-4.1</code></td><td>⚡</td><td>💰💰💰</td><td>Karmaşık kodlama, analiz</td></tr>
+        <tr><td><code>o3-mini</code></td><td>🐢</td><td>💰💰💰</td><td>Zor matematik, mantık problemleri</td></tr>
+    </table>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 7 -->
+<!-- ============================================================ -->
+<section class="section" id="gemini-api">
+    <div class="section-header">
+        <span class="section-number">7</span>
+        <h2>Google Gemini API Kullanımı <span class="en">Gemini API</span></h2>
+    </div>
+
+    <p>Google Gemini'nin <strong>ücretsiz katmanı</strong> oldukça cömerttir ve başlangıç için idealdir. <a href="https://aistudio.google.com/" target="_blank">Google AI Studio</a>'dan API anahtarı alabilirsiniz.</p>
+
+    <h3>Kurulum</h3>
+    <div class="terminal">
+        <span class="ps">$</span> npm install @google/genai
+    </div>
+
+    <h3>Temel Kullanım</h3>
+    <pre><code>import { GoogleGenAI } from "@google/genai";
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+const yanit = await ai.models.generateContent({
+  model: "gemini-2.5-flash",
+  contents: "Türkiye'nin en büyük 5 şehrini listele"
+});
+
+console.log(yanit.text);</code></pre>
+
+    <h3>Sohbet (Çok Turlu Konuşma)</h3>
+    <pre><code>const chat = ai.chats.create({
+  model: "gemini-2.5-flash",
+  history: [
+    { role: "user", parts: [{ text: "Benim adım Ayşe." }] },
+    { role: "model", parts: [{ text: "Merhaba Ayşe! Nasıl yardımcı olabilirim?" }] }
+  ]
+});
+
+const yanit = await chat.sendMessage({ message: "Adımı hatırlıyor musun?" });
+console.log(yanit.text); // "Evet, adınız Ayşe!"</code></pre>
+
+    <div class="info-box tip">
+        <strong>🎯 Gemini Ücretsiz Katman (Nisan 2026):</strong>
+        • Gemini 2.5 Flash: 500 istek/gün ücretsiz<br>
+        • Gemini 2.5 Pro: 25 istek/gün ücretsiz<br>
+        • Öğrenci projeleri ve prototipler için mükemmel
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 8 -->
+<!-- ============================================================ -->
+<section class="section" id="groq-api">
+    <div class="section-header">
+        <span class="section-number">8</span>
+        <h2>Groq API: Ultra Hızlı Çıkarım <span class="en">Groq API</span></h2>
+    </div>
+
+    <p><a href="https://groq.com/" target="_blank">Groq</a>, özel <strong>LPU</strong> (Language Processing Unit) çipiyle açık kaynak modelleri (Llama, Mistral) <em>inanılmaz hızda</em> çalıştırır. Ücretsiz katmanı da vardır. API formatı OpenAI ile neredeyse aynıdır — geçiş çok kolay.</p>
+
+    <h3>Kurulum ve Kullanım</h3>
+    <div class="terminal">
+        <span class="ps">$</span> npm install groq-sdk
+    </div>
+
+    <pre><code>import Groq from "groq-sdk";
+
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
+const yanit = await groq.chat.completions.create({
+  model: "llama-3.3-70b-versatile",  // Llama 3.3 70B
+  messages: [
+    { role: "system", content: "Kısa ve öz cevap ver." },
+    { role: "user", content: "Node.js nedir?" }
+  ],
+  temperature: 0.5,
+  max_tokens: 300
+});
+
+console.log(yanit.choices[0].message.content);</code></pre>
+
+    <h3>Groq'ta Kullanılabilen Modeller</h3>
+    <table>
+        <tr><th>Model</th><th>Boyut</th><th>Özellik</th></tr>
+        <tr><td><code>llama-3.3-70b-versatile</code></td><td>70B</td><td>Güçlü genel amaçlı model</td></tr>
+        <tr><td><code>llama-3.1-8b-instant</code></td><td>8B</td><td>Çok hızlı, basit görevler</td></tr>
+        <tr><td><code>mixtral-8x7b-32768</code></td><td>46.7B MoE</td><td>Mistral'in MoE modeli</td></tr>
+        <tr><td><code>gemma2-9b-it</code></td><td>9B</td><td>Google'ın açık kaynak modeli</td></tr>
+    </table>
+
+    <div class="info-box note">
+        <strong>💡 OpenAI Uyumlu API:</strong>
+        Groq'un API formatı OpenAI ile aynıdır. Kodunuzda sadece base URL ve API key'i değiştirerek OpenAI → Groq geçişi yapabilirsiniz. Aynı şey birçok sağlayıcı için de geçerlidir (Together AI, Fireworks, OpenRouter…).
+    </div>
+
+    <h4>OpenAI SDK ile Groq Kullanma</h4>
+    <pre><code>import OpenAI from 'openai';
+
+// Aynı OpenAI kütüphanesi, farklı endpoint!
+const groq = new OpenAI({
+  apiKey: process.env.GROQ_API_KEY,
+  baseURL: "https://api.groq.com/openai/v1"
+});
+
+const yanit = await groq.chat.completions.create({
+  model: "llama-3.3-70b-versatile",
+  messages: [{ role: "user", content: "Merhaba!" }]
+});</code></pre>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 9 -->
+<!-- ============================================================ -->
+<section class="section" id="ollama">
+    <div class="section-header">
+        <span class="section-number">9</span>
+        <h2>Ollama: Yerel (Local) LLM Kullanımı <span class="en">Local LLM with Ollama</span></h2>
+    </div>
+
+    <p><a href="https://ollama.com/" target="_blank">Ollama</a>, LLM'leri <strong>kendi bilgisayarınızda</strong> çalıştırmanızı sağlar. İnternet bağlantısı, API anahtarı veya ücret gerekmez. Veri gizliliği açısından da idealdir — verileriniz bilgisayarınızdan çıkmaz.</p>
+
+    <h3>Kurulum ve İlk Kullanım</h3>
+    <div class="terminal">
+        <span class="cm"># macOS / Linux</span><br>
+        <span class="ps">$</span> curl -fsSL https://ollama.com/install.sh | sh<br><br>
+        <span class="cm"># Bir model indir ve çalıştır</span><br>
+        <span class="ps">$</span> ollama pull llama3.2<br>
+        <span class="ps">$</span> ollama run llama3.2<br>
+        <span class="ok">>>> Merhaba! Ben Llama. Size nasıl yardımcı olabilirim?</span>
+    </div>
+
+    <h3>Popüler Ollama Modelleri</h3>
+    <table>
+        <tr><th>Model</th><th>Boyut</th><th>RAM İhtiyacı</th><th>Kullanım</th></tr>
+        <tr><td><code>llama3.2:3b</code></td><td>2 GB</td><td>~4 GB</td><td>Hafif görevler, eski bilgisayarlar</td></tr>
+        <tr><td><code>llama3.2</code></td><td>4.7 GB</td><td>~8 GB</td><td>Genel amaçlı, dengeli</td></tr>
+        <tr><td><code>mistral</code></td><td>4.1 GB</td><td>~8 GB</td><td>Hızlı, Avrupa yapımı</td></tr>
+        <tr><td><code>codellama</code></td><td>3.8 GB</td><td>~8 GB</td><td>Kodlama odaklı</td></tr>
+        <tr><td><code>llama3.3:70b</code></td><td>40 GB</td><td>~48 GB</td><td>En güçlü, GPU gerekli</td></tr>
+    </table>
+
+    <h3>Ollama API (Yerel HTTP Sunucu)</h3>
+    <p>Ollama çalışırken otomatik olarak <code>http://localhost:11434</code> adresinde bir API sunucu başlatır. Bu API de OpenAI uyumludur!</p>
+
+    <pre><code>// Ollama API — kodunuzdan yerel LLM çağırma
+const yanit = await fetch("http://localhost:11434/api/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    model: "llama3.2",
+    messages: [
+      { role: "user", content: "Fibonacci sayılarını açıkla" }
+    ],
+    stream: false
+  })
+});
+const veri = await yanit.json();
+console.log(veri.message.content);</code></pre>
+
+    <h4>OpenAI SDK ile Ollama Kullanma</h4>
+    <pre><code>import OpenAI from 'openai';
+
+const ollama = new OpenAI({
+  apiKey: "ollama",                          // Herhangi bir değer
+  baseURL: "http://localhost:11434/v1"       // Yerel Ollama API
+});
+
+const yanit = await ollama.chat.completions.create({
+  model: "llama3.2",
+  messages: [{ role: "user", content: "Merhaba!" }]
+});</code></pre>
+
+    <div class="info-box tip">
+        <strong>🎯 Ollama'nın Avantajları:</strong>
+        • 💰 Tamamen ücretsiz — sınırsız kullanım<br>
+        • 🔒 Verileriniz bilgisayarınızdan çıkmaz<br>
+        • 📴 İnternetsiz çalışır<br>
+        • 🔄 OpenAI uyumlu API — kod değişikliği minimum
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 10 -->
+<!-- ============================================================ -->
+<section class="section" id="web-entegrasyon">
+    <div class="section-header">
+        <span class="section-number">10</span>
+        <h2>LLM'i Web Uygulamasına Entegre Etme <span class="en">LLM Web Integration</span></h2>
+    </div>
+
+    <p>LLM API'sini web uygulamanıza entegre ederken <strong>en kritik kural:</strong> API çağrılarını <strong>backend'den</strong> yapın. Frontend'e API anahtarı koymak = anahtarınızı herkese vermek demektir.</p>
+
+    <h3>Doğru Mimari</h3>
+    <pre><code>Kullanıcı (Tarayıcı)
+    │
+    │ 1. "Şu soruyu sor" → POST /api/chat
+    ▼
+Backend (Express.js)
+    │
+    │ 2. API anahtarı ile → OpenAI/Gemini/Ollama
+    ▼
+LLM Sağlayıcı
+    │
+    │ 3. Yanıt (JSON)
+    ▼
+Backend → 4. Kullanıcıya JSON yanıt döner</code></pre>
+
+    <h3>Tam Örnek: Express + OpenAI Chatbot</h3>
+    <h4>Backend (server.js)</h4>
+    <pre><code>import express from 'express';
+import OpenAI from 'openai';
+import cors from 'cors';
+
+const app = express();
+app.use(cors({ origin: "http://localhost:5173" }));
+app.use(express.json());
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { mesaj } = req.body;
+    const yanit = await openai.chat.completions.create({
+      model: "gpt-4.1-mini",
+      messages: [
+        { role: "system", content: "Türkçe cevap ver. Kısa ve öz ol." },
+        { role: "user", content: mesaj }
+      ]
+    });
+    res.json({ cevap: yanit.choices[0].message.content });
+  } catch (hata) {
+    res.status(500).json({ hata: "Bir sorun oluştu." });
+  }
+});
+
+app.listen(3000);</code></pre>
+
+    <h4>Frontend (React bileşeni — kısaltılmış)</h4>
+    <pre><code>const [mesaj, setMesaj] = useState("");
+const [cevap, setCevap] = useState("");
+
+async function gonder() {
+  const yanit = await fetch("http://localhost:3000/api/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ mesaj })
+  });
+  const veri = await yanit.json();
+  setCevap(veri.cevap);
+}</code></pre>
+
+    <div class="prompt-box">
+        <p>"React + Express ile bir AI chatbot uygulaması yap. Backend'de OpenAI API kullan. Sohbet geçmişi tutulan, streaming destekli (kelime kelime akan yanıt), modern görünümlü bir chat arayüzü olsun. Mesajlar yerel olarak saklanmasın, sadece oturumda kalsın."</p>
+    </div>
+
+    <div class="info-box warning">
+        <strong>⚠️ Sağlayıcı Değiştirme Kolaylığı:</strong>
+        OpenAI SDK'sını kullanıyorsanız, sadece <code>baseURL</code> ve <code>apiKey</code> değiştirerek Groq, Ollama, Together AI gibi sağlayıcılara geçiş yapabilirsiniz. Kodunuzun geri kalanı aynı kalır!
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 11 -->
+<!-- ============================================================ -->
+<section class="section" id="ai-servisleri">
+    <div class="section-header">
+        <span class="section-number">11</span>
+        <h2>Diğer AI Servisleri: Resim, Ses, Video <span class="en">AI Services Beyond LLMs</span></h2>
+    </div>
+
+    <p>LLM'ler sadece metin üretir. Ama yapay zeka dünyası bundan çok daha geniş! Resim oluşturma, ses sentezi, konuşma tanıma (transkripsiyon), video üretme ve daha birçok AI hizmeti API olarak kullanılabilir. Bu servisleri uygulamanıza entegre ederek çok daha zengin deneyimler yaratabilirsiniz.</p>
+
+    <h3>🖼️ Resim Oluşturma (Image Generation)</h3>
+    <table>
+        <tr><th>Servis</th><th>Adres</th><th>Ücretsiz?</th><th>Özellik</th></tr>
+        <tr><td><strong>OpenAI DALL·E 3</strong></td><td><a href="https://platform.openai.com/docs/guides/images" target="_blank">platform.openai.com</a></td><td>Ücretli (~$0.04/resim)</td><td>Metin → Resim, yüksek kalite, API ile kolay</td></tr>
+        <tr><td><strong>Replicate</strong></td><td><a href="https://replicate.com" target="_blank">replicate.com</a></td><td>✅ Ücretsiz başlangıç</td><td>Flux, SDXL ve yüzlerce açık kaynak model. En geniş model pazarı</td></tr>
+        <tr><td><strong>Stability AI</strong></td><td><a href="https://platform.stability.ai" target="_blank">platform.stability.ai</a></td><td>Sınırlı ücretsiz</td><td>Stable Diffusion resmi API'si</td></tr>
+        <tr><td><strong>Fal.ai</strong></td><td><a href="https://fal.ai" target="_blank">fal.ai</a></td><td>✅ Ücretsiz kredi</td><td>Hızlı çıkarım, Flux modelleri, gerçek zamanlı</td></tr>
+        <tr><td><strong>Together AI</strong></td><td><a href="https://www.together.ai" target="_blank">together.ai</a></td><td>✅ $5 kredi</td><td>LLM + resim modelleri tek platformda</td></tr>
+    </table>
+
+    <h4>Replicate ile Resim Oluşturma Örneği</h4>
+    <pre><code>// Replicate API — Flux ile resim üret
+const yanit = await fetch("https://api.replicate.com/v1/predictions", {
+  method: "POST",
+  headers: {
+    "Authorization": `Bearer ${process.env.REPLICATE_API_TOKEN}`,
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    model: "black-forest-labs/flux-schnell",
+    input: {
+      prompt: "A cute robot reading a book in a cozy library, digital art"
+    }
+  })
+});
+const veri = await yanit.json();
+// veri.output → resim URL'si</code></pre>
+
+    <h3>🎤 Konuşma Tanıma / Transkripsiyon (Speech-to-Text)</h3>
+    <p>Ses dosyasını metne çeviren servisler — podcast transkripti, toplantı notu, altyazı oluşturma gibi işler için:</p>
+    <table>
+        <tr><th>Servis</th><th>Adres</th><th>Ücretsiz?</th><th>Özellik</th></tr>
+        <tr><td><strong>OpenAI Whisper API</strong></td><td><a href="https://platform.openai.com/docs/guides/speech-to-text" target="_blank">platform.openai.com</a></td><td>Ücretli ($0.006/dk)</td><td>Çok dilli, yüksek doğruluk</td></tr>
+        <tr><td><strong>Groq Whisper</strong></td><td><a href="https://console.groq.com/docs/speech-text" target="_blank">console.groq.com</a></td><td>✅ Ücretsiz katman</td><td>Whisper modeli ultra hızlı (LPU ile)</td></tr>
+        <tr><td><strong>AssemblyAI</strong></td><td><a href="https://www.assemblyai.com" target="_blank">assemblyai.com</a></td><td>✅ Ücretsiz katman</td><td>Konuşmacı ayırma, duygu analizi, özetleme</td></tr>
+        <tr><td><strong>Deepgram</strong></td><td><a href="https://deepgram.com" target="_blank">deepgram.com</a></td><td>✅ $200 kredi</td><td>Gerçek zamanlı transkripsiyon, çok hızlı</td></tr>
+    </table>
+
+    <h4>Groq Whisper ile Transkripsiyon Örneği</h4>
+    <pre><code>import Groq from "groq-sdk";
+import fs from "fs";
+
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+
+const transkript = await groq.audio.transcriptions.create({
+  file: fs.createReadStream("toplanti.mp3"),
+  model: "whisper-large-v3",
+  language: "tr"          // Türkçe
+});
+
+console.log(transkript.text); // "Merhaba, bugünkü toplantıda..."</code></pre>
+
+    <h3>🔊 Ses Sentezi / Text-to-Speech (TTS)</h3>
+    <p>Metni doğal insan sesine çeviren servisler:</p>
+    <table>
+        <tr><th>Servis</th><th>Adres</th><th>Ücretsiz?</th><th>Özellik</th></tr>
+        <tr><td><strong>OpenAI TTS</strong></td><td><a href="https://platform.openai.com/docs/guides/text-to-speech" target="_blank">platform.openai.com</a></td><td>Ücretli ($15/1M karakter)</td><td>6 farklı ses, çok doğal</td></tr>
+        <tr><td><strong>ElevenLabs</strong></td><td><a href="https://elevenlabs.io" target="_blank">elevenlabs.io</a></td><td>✅ 10.000 karakter/ay</td><td>En gerçekçi sesler, ses klonlama, 32 dil</td></tr>
+        <tr><td><strong>Replicate (Kokoro TTS)</strong></td><td><a href="https://replicate.com" target="_blank">replicate.com</a></td><td>✅ Ücretsiz başlangıç</td><td>Açık kaynak TTS modelleri</td></tr>
+    </table>
+
+    <h3>🎬 Video Oluşturma</h3>
+    <table>
+        <tr><th>Servis</th><th>Adres</th><th>Özellik</th></tr>
+        <tr><td><strong>Replicate (Wan, LTX)</strong></td><td><a href="https://replicate.com" target="_blank">replicate.com</a></td><td>Metin/resim → video, açık kaynak modeller</td></tr>
+        <tr><td><strong>Fal.ai (Kling, Wan)</strong></td><td><a href="https://fal.ai" target="_blank">fal.ai</a></td><td>Hızlı video üretim API'si</td></tr>
+        <tr><td><strong>Luma AI</strong></td><td><a href="https://lumalabs.ai" target="_blank">lumalabs.ai</a></td><td>Dream Machine — metin → video</td></tr>
+    </table>
+
+    <h3>🧩 Çoklu Model Platformları (Model Hub)</h3>
+    <p>Tek bir API ile yüzlerce farklı modele erişebileceğiniz platformlar:</p>
+    <table>
+        <tr><th>Platform</th><th>Adres</th><th>Ücretsiz?</th><th>Ne Sunar?</th></tr>
+        <tr><td><strong>Replicate</strong></td><td><a href="https://replicate.com" target="_blank">replicate.com</a></td><td>✅ Ücretsiz başlangıç</td><td>LLM, resim, ses, video — binlerce açık kaynak model</td></tr>
+        <tr><td><strong>Hugging Face</strong></td><td><a href="https://huggingface.co/inference-api" target="_blank">huggingface.co</a></td><td>✅ Ücretsiz katman</td><td>En büyük model deposu, inference API</td></tr>
+        <tr><td><strong>OpenRouter</strong></td><td><a href="https://openrouter.ai" target="_blank">openrouter.ai</a></td><td>Modele göre</td><td>Tek API ile tüm LLM'lere erişim (OpenAI uyumlu)</td></tr>
+        <tr><td><strong>Together AI</strong></td><td><a href="https://www.together.ai" target="_blank">together.ai</a></td><td>✅ $5 kredi</td><td>Açık kaynak LLM + görüntü modelleri</td></tr>
+    </table>
+
+    <div class="info-box purple">
+        <strong>🤖 Replicate Neden Önemli?</strong>
+        Replicate, açık kaynak AI modellerini <strong>tek satır kodla</strong> çalıştırmanızı sağlar. Kendi sunucunuz, GPU'nuz gerekmez. Flux ile resim, Whisper ile transkripsiyon, Kokoro ile ses sentezi, Wan ile video — hepsi aynı platformda. Ücretsiz başlangıç kredisi var ve kullandıkça ödeme modeli çalışır.
+    </div>
+
+    <div class="info-box tip">
+        <strong>💡 Proje Fikri:</strong>
+        Bu servisleri birleştirerek güçlü uygulamalar yapabilirsiniz:<br>
+        • <strong>Podcast özetleyici:</strong> Whisper (ses → metin) + LLM (metin → özet)<br>
+        • <strong>Hikaye kitabı:</strong> LLM (hikaye yaz) + DALL·E (illüstrasyon) + TTS (seslendir)<br>
+        • <strong>Çok dilli seslendirme:</strong> Whisper (transkript) + LLM (çeviri) + ElevenLabs (seslendir)<br>
+        • <strong>Ürün açıklaması:</strong> Resim → LLM (açıklama yaz) → TTS (sesli reklam)
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 12 -->
+<!-- ============================================================ -->
+<section class="section" id="sistem-prompt">
+    <div class="section-header">
+        <span class="section-number">12</span>
+        <h2>Sistem Promptları ve Rol Tasarımı <span class="en">System Prompts & Persona Design</span></h2>
+    </div>
+
+    <p><strong>Sistem promptu</strong> (system prompt), AI'a "kim olduğunu" ve "nasıl davranacağını" söyleyen talimattır. Kullanıcının görmediği bu talimat, AI'ın her yanıtını şekillendirir.</p>
+
+    <h3>messages Dizisindeki Roller</h3>
+    <table>
+        <tr><th>Rol</th><th>Açıklama</th><th>Kim Yazar?</th></tr>
+        <tr><td><code>system</code></td><td>AI'ın davranış kuralları, kişiliği, kısıtlamaları</td><td>Geliştirici (gizli)</td></tr>
+        <tr><td><code>user</code></td><td>Kullanıcının gönderdiği mesaj</td><td>Son kullanıcı</td></tr>
+        <tr><td><code>assistant</code></td><td>AI'ın önceki yanıtları</td><td>LLM</td></tr>
+    </table>
+
+    <h3>İyi Sistem Promptu Örnekleri</h3>
+
+    <h4>Müşteri Destek Botu</h4>
+    <pre><code>{
+  role: "system",
+  content: `Sen "TechShop" e-ticaret sitesinin müşteri destek asistanısın.
+  
+Kurallar:
+- Sadece TechShop ürünleri ve hizmetleri hakkında bilgi ver.
+- Rakip firmalar hakkında yorum yapma.
+- Bilmediğin konularda "Bu konuda size yardımcı olamıyorum, 
+  lütfen destek@techshop.com adresine yazın" de.
+- Kısa, kibar ve profesyonel cevaplar ver.
+- İade politikası: 14 gün içinde iade kabul edilir.
+- Kargo: 200 TL üzeri siparişlerde ücretsiz.`
+}</code></pre>
+
+    <h4>Kod İnceleme Asistanı</h4>
+    <pre><code>{
+  role: "system",
+  content: `Sen deneyimli bir senior yazılım mühendisisin.
+  
+Görevin: Verilen kodu incelemek ve iyileştirme önerileri sunmak.
+  
+Her incelemede şu başlıkları kullan:
+1. 🐛 Hatalar — Potansiyel buglar
+2. 🔒 Güvenlik — Güvenlik açıkları
+3. ⚡ Performans — Optimizasyon önerileri
+4. 📖 Okunabilirlik — Kod kalitesi
+
+Yanıtlarını Türkçe ver. Markdown formatı kullan.`
+}</code></pre>
+
+    <div class="info-box purple">
+        <strong>🤖 Persona Tasarım İpuçları:</strong>
+        • <strong>Rol verin:</strong> "Sen bir ... asistanısın / uzmanısın"<br>
+        • <strong>Kısıtlama koyun:</strong> Neleri yapmaması gerektiğini belirtin<br>
+        • <strong>Format belirleyin:</strong> Markdown, tablo, liste, JSON…<br>
+        • <strong>Dil belirtin:</strong> "Türkçe cevap ver"<br>
+        • <strong>Ton belirtin:</strong> "Samimi / profesyonel / akademik"
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 12 -->
+<!-- ============================================================ -->
+<section class="section" id="tool-use">
+    <div class="section-header">
+        <span class="section-number">13</span>
+        <h2>Tool Use (Fonksiyon Çağırma) <span class="en">Function Calling / Tool Use</span></h2>
+    </div>
+
+    <p><strong>Tool Use</strong>, LLM'in "Bunu yapamıyorum, ama şu fonksiyonu çağırırsak yapabiliriz" demesini sağlar. Örneğin AI hava durumunu bilmez — ama siz bir <code>havaDurumunuGetir(sehir)</code> fonksiyonu tanımlarsınız, AI gerektiğinde bunu çağırır.</p>
+
+    <h3>Nasıl Çalışır?</h3>
+    <ol>
+        <li>Siz kullanılabilecek "araçları" (tools) tanımlarsınız</li>
+        <li>Kullanıcı bir soru sorar</li>
+        <li>LLM, soruyu cevaplamak için bir araç çağırmaya karar verir</li>
+        <li>Siz bu aracı gerçekten çalıştırırsınız</li>
+        <li>Sonucu LLM'e geri gönderirsiniz</li>
+        <li>LLM, sonucu kullanarak doğal dilde yanıt verir</li>
+    </ol>
+
+    <pre><code>const yanit = await openai.chat.completions.create({
+  model: "gpt-4.1-mini",
+  messages: [{ role: "user", content: "İstanbul'da hava nasıl?" }],
+  tools: [{
+    type: "function",
+    function: {
+      name: "hava_durumu_getir",
+      description: "Belirtilen şehrin güncel hava durumunu getirir",
+      parameters: {
+        type: "object",
+        properties: {
+          sehir: { type: "string", description: "Şehir adı" }
+        },
+        required: ["sehir"]
+      }
+    }
+  }]
+});
+
+// LLM yanıtı: "hava_durumu_getir" fonksiyonunu { sehir: "İstanbul" } ile çağır
+// → Siz gerçek API'yi çağırırsınız → Sonucu LLM'e geri gönderirsiniz
+// → LLM: "İstanbul'da şu an 18°C ve parçalı bulutlu."</code></pre>
+
+    <div class="info-box note">
+        <strong>💡 Tool Use Nerede Kullanılır?</strong>
+        • Hava durumu, döviz kuru gibi güncel veri çekme<br>
+        • Veritabanı sorgusu çalıştırma<br>
+        • E-posta gönderme, bildirim oluşturma<br>
+        • Hesaplama yapma, dosya okuma/yazma<br>
+        • Dış API'lere istek gönderme
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 13 -->
+<!-- ============================================================ -->
+<section class="section" id="structured-output">
+    <div class="section-header">
+        <span class="section-number">14</span>
+        <h2>Structured Output: Yapılandırılmış Çıktı <span class="en">Structured Output</span></h2>
+    </div>
+
+    <p>Normalde LLM serbest metin üretir. Ama uygulama geliştirirken genellikle <strong>belirli bir formatta</strong> (JSON, tablo…) veri almanız gerekir. <strong>Structured Output</strong> özelliği, LLM'in her zaman geçerli JSON üretmesini garanti eder.</p>
+
+    <h3>Neden Gerekli?</h3>
+    <p>Diyelim AI'dan bir ürün listesi istiyorsunuz. Serbest metin olarak "İşte ürünler: 1) Laptop — 25000 TL, 2) Mouse…" gibi yanıtlar gelir. Bunu programatik olarak parse etmek zordur. Ama JSON şeması tanımlarsanız:</p>
+
+    <pre><code>const yanit = await openai.chat.completions.create({
+  model: "gpt-4.1-mini",
+  messages: [{
+    role: "user",
+    content: "3 popüler laptop öner. Her biri için isim, fiyat (TL) ve özellik ver."
+  }],
+  response_format: {
+    type: "json_schema",
+    json_schema: {
+      name: "laptop_onerileri",
+      schema: {
+        type: "object",
+        properties: {
+          laptoplar: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                isim: { type: "string" },
+                fiyat: { type: "number" },
+                ozellik: { type: "string" }
+              },
+              required: ["isim", "fiyat", "ozellik"]
+            }
+          }
+        },
+        required: ["laptoplar"]
+      }
+    }
+  }
+});
+
+// Garanti JSON çıktı:
+// { "laptoplar": [
+//   { "isim": "MacBook Air M3", "fiyat": 45000, "ozellik": "Hafif, uzun pil" },
+//   ...
+// ]}</code></pre>
+
+    <div class="info-box tip">
+        <strong>🎯 Kullanım Alanları:</strong>
+        • Veri çıkarımı (extraction): Metinden isim, tarih, adres çekme<br>
+        • Sınıflandırma: Duygu analizi, kategori atama<br>
+        • Veritabanına yazma: AI çıktısını doğrudan DB'ye kaydetme<br>
+        • API entegrasyonu: AI çıktısını başka servislere gönderme
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 14 -->
+<!-- ============================================================ -->
+<section class="section" id="sentetik-veri">
+    <div class="section-header">
+        <span class="section-number">15</span>
+        <h2>Sentetik Veri Üretimi <span class="en">Synthetic Data Generation</span></h2>
+    </div>
+
+    <p>LLM'ler, uygulamanızı test etmek veya veritabanını doldurmak için <strong>gerçekçi sahte veri</strong> üretebilir. Buna <em>sentetik veri</em> denir.</p>
+
+    <pre><code>const yanit = await openai.chat.completions.create({
+  model: "gpt-4.1-mini",
+  messages: [{
+    role: "user",
+    content: `10 tane gerçekçi Türk kullanıcı verisi üret. JSON dizisi olarak dön.
+    Her kullanıcı: ad, soyad, email, sehir, yas alanları içersin.`
+  }],
+  response_format: { type: "json_object" }
+});
+
+// Çıktı: [ { "ad": "Elif", "soyad": "Yıldırım", "email": "elif.y@email.com", 
+//            "sehir": "Ankara", "yas": 28 }, ... ]</code></pre>
+
+    <div class="prompt-box">
+        <p>"E-ticaret uygulamam için 50 tane gerçekçi test ürünü üret. Her ürünün adı, açıklaması (Türkçe, 1-2 cümle), fiyatı (TL, 10-5000 arası), kategorisi (Elektronik, Giyim, Ev, Spor, Kitap) ve stok sayısı (0-500) olsun. JSON dizisi formatında ver."</p>
+    </div>
+
+    <div class="info-box note">
+        <strong>💡 Nerede Kullanılır?</strong>
+        • Veritabanını test verisiyle doldurma<br>
+        • Demo/sunumlar için gerçekçi içerik<br>
+        • Frontend tasarımı test etme (uzun/kısa isimler, aşırı değerler)<br>
+        • Makine öğrenmesi eğitim verisi üretme
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 15 -->
+<!-- ============================================================ -->
+<section class="section" id="mega-prompt">
+    <div class="section-header">
+        <span class="section-number">16</span>
+        <h2>Mega-Prompt ve İleri Teknikler <span class="en">Advanced Prompt Techniques</span></h2>
+    </div>
+
+    <p><strong>Mega-prompt</strong>, AI'a tek seferde çok detaylı bir talimat vermek için kullanılan uzun ve yapılandırılmış promptlardır. Parçalar halinde değil, tüm bağlamı tek seferde verir.</p>
+
+    <h3>Mega-Prompt Şablonu</h3>
+    <pre><code># ROL
+Sen [rol tanımı]sın.
+
+# BAĞLAM
+[Projenin / işin açıklaması]
+
+# GİRDİ
+[Ne alacaksın]
+
+# GÖREV
+[Ne yapacaksın — adım adım]
+
+# KISITLAMALAR
+- [Yapmaması gerekenler]
+- [Sınırlar]
+
+# ÇIKTI FORMATI
+[Beklenen format — JSON, Markdown, tablo vs.]
+
+# ÖRNEKLER
+[Girdi → Çıktı örnekleri]</code></pre>
+
+    <h3>Diğer Teknikler</h3>
+    <table>
+        <tr><th>Teknik</th><th>Açıklama</th><th>Örnek</th></tr>
+        <tr><td><strong>Few-Shot</strong></td><td>Birkaç örnek vererek istenen formatı gösterme</td><td>"Örnek: Girdi: 'harika film' → Çıktı: pozitif"</td></tr>
+        <tr><td><strong>Chain of Thought</strong></td><td>"Adım adım düşün" diyerek mantık yürüttürme</td><td>"Bu problemi adım adım çöz, her adımı göster"</td></tr>
+        <tr><td><strong>Role Prompting</strong></td><td>AI'a uzman rolü verme</td><td>"Sen 20 yıllık bir güvenlik uzmanısın"</td></tr>
+        <tr><td><strong>Constraint</strong></td><td>Çıktıyı sınırlama</td><td>"En fazla 3 cümle", "Sadece JSON"</td></tr>
+    </table>
+
+    <div class="prompt-box">
+        <p># ROL<br>
+Sen kıdemli bir full-stack web geliştiricisisin.<br><br>
+# BAĞLAM<br>
+Bir öğrenci not takip sistemi geliştiriyorum. React + Express + PostgreSQL kullanıyorum.<br><br>
+# GÖREV<br>
+Aşağıdaki özellikleri içeren tam bir backend API oluştur:<br>
+1. Öğrenci CRUD (isim, numara, bölüm)<br>
+2. Ders CRUD (ad, kod, kredi)<br>
+3. Not girişi (öğrenci + ders + not)<br>
+4. Öğrenci bazlı not ortalaması hesaplama<br><br>
+# KISITLAMALAR<br>
+- Parametreli SQL sorguları kullan (SQL injection koruması)<br>
+- Tüm endpoint'lerde input validasyonu yap<br>
+- Hata durumlarında anlamlı HTTP status kodları dön<br><br>
+# ÇIKTI FORMATI<br>
+Her dosyayı ayrı kod bloğu olarak ver. Dosya adını belirt.</p>
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 16 -->
+<!-- ============================================================ -->
+<section class="section" id="debug">
+    <div class="section-header">
+        <span class="section-number">17</span>
+        <h2>Debugging ve Hata Ayıklama Stratejileri <span class="en">Debugging Strategies</span></h2>
+    </div>
+
+    <p>Vibe coding'de en çok zaman kaybettiren şey <strong>hataları çözmektir</strong>. İşte AI ile daha etkili hata ayıklama yapmanın yolları:</p>
+
+    <h3>Hata Mesajını Doğru Paylaşma</h3>
+    <table>
+        <tr><th>❌ Kötü</th><th>✅ İyi</th></tr>
+        <tr><td>"Çalışmıyor"</td><td>"npm start dediğimde şu hata çıkıyor: [hata mesajı]"</td></tr>
+        <tr><td>"Sayfa açılmıyor"</td><td>"localhost:3000'de 'Cannot GET /' hatası alıyorum"</td></tr>
+        <tr><td>"Veritabanı bozuk"</td><td>"INSERT sorgusu çalışırken 'UNIQUE constraint failed: users.email' hatası alıyorum"</td></tr>
+    </table>
+
+    <h3>Sık Karşılaşılan Hatalar</h3>
+
+    <h4><code>ECONNREFUSED</code> — Bağlantı Reddedildi</h4>
+    <p>Backend sunucusu çalışmıyor veya yanlış portta dinliyor.</p>
+    <pre><code>// Çözüm: Sunucunun çalıştığından emin olun
+// Terminal 1: cd backend && node server.js
+// Terminal 2: cd frontend && npm run dev</code></pre>
+
+    <h4><code>401 Unauthorized</code> — API Key Hatası</h4>
+    <p>API anahtarı yanlış, eksik veya süresi dolmuş.</p>
+    <pre><code>// Kontrol: .env dosyasında anahtar var mı?
+console.log("Key var mı:", !!process.env.OPENAI_API_KEY);
+// "Key var mı: true" yazmalı</code></pre>
+
+    <h4><code>429 Too Many Requests</code> — Rate Limit</h4>
+    <p>Çok fazla istek gönderdiniz. Biraz bekleyip tekrar deneyin veya istek aralıklarını açın.</p>
+
+    <h3>AI'a Hata Gönderme Şablonu</h3>
+    <div class="prompt-box">
+        <p>Şu hatayı alıyorum:<br><br>
+[HATA MESAJINI BURAYA YAPIŞTIRIN]<br><br>
+Çalıştırdığım komut: [komut]<br>
+Dosya: [dosya adı]<br>
+Ne yapmaya çalışıyordum: [açıklama]<br>
+Son yaptığım değişiklik: [ne değiştirdiniz]</p>
+    </div>
+
+    <div class="info-box tip">
+        <strong>🎯 Debug İpuçları:</strong>
+        • Hata mesajını <strong>tam olarak</strong> kopyalayın (ilk ve son satır yetmez)<br>
+        • "Çalışmıyor" yerine <strong>ne bekliyorsunuz</strong> ve <strong>ne oluyor</strong> yazın<br>
+        • Son çalışan halden ne değiştirdiğinizi belirtin<br>
+        • Büyük projede sorunlu dosyayı <strong>izole edin</strong> — tüm projeyi yapıştırmayın
+    </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BÖLÜM 17 -->
+<!-- ============================================================ -->
+<section class="section" id="sozluk">
+    <div class="section-header">
+        <span class="section-number">18</span>
+        <h2>Terimler Sözlüğü <span class="en">Glossary</span></h2>
+    </div>
+
+    <table>
+        <tr><th>Terim</th><th>Açıklama</th></tr>
+        <tr><td><strong>API</strong></td><td>Programların birbiriyle iletişim kurma arayüzü</td></tr>
+        <tr><td><strong>API Key</strong></td><td>API erişimi için gizli kimlik anahtarı</td></tr>
+        <tr><td><strong>Token</strong></td><td>LLM'in metni işleme birimi (~¾ kelime)</td></tr>
+        <tr><td><strong>Context Window</strong></td><td>LLM'in tek seferde işleyebildiği maksimum token</td></tr>
+        <tr><td><strong>System Prompt</strong></td><td>AI'ın davranışını belirleyen gizli talimat</td></tr>
+        <tr><td><strong>Temperature</strong></td><td>Yanıt rastgeleliği (0=katı, 1=yaratıcı)</td></tr>
+        <tr><td><strong>Streaming</strong></td><td>Yanıtın kelime kelime akarak gelmesi</td></tr>
+        <tr><td><strong>Tool Use / Function Calling</strong></td><td>LLM'in dış fonksiyonları çağırabilmesi</td></tr>
+        <tr><td><strong>Structured Output</strong></td><td>LLM'den garantili JSON formatında çıktı alma</td></tr>
+        <tr><td><strong>Few-Shot</strong></td><td>Birkaç örnek vererek formatı gösterme tekniği</td></tr>
+        <tr><td><strong>Chain of Thought</strong></td><td>Adım adım düşünmeye zorlama tekniği</td></tr>
+        <tr><td><strong>Mega-Prompt</strong></td><td>Tüm bağlamı tek seferde veren uzun prompt</td></tr>
+        <tr><td><strong>RAG</strong></td><td>Retrieval-Augmented Generation — dış bilgi kaynağıyla güçlendirilmiş LLM</td></tr>
+        <tr><td><strong>Hallucination</strong></td><td>AI'ın uydurma bilgi üretmesi</td></tr>
+        <tr><td><strong>Rate Limit</strong></td><td>Belirli sürede yapılabilecek API isteği sınırı</td></tr>
+        <tr><td><strong>Endpoint</strong></td><td>API'nin belirli bir işlevine ait URL adresi</td></tr>
+        <tr><td><strong>LLM</strong></td><td>Large Language Model — Büyük Dil Modeli</td></tr>
+        <tr><td><strong>Ollama</strong></td><td>LLM'leri yerel bilgisayarda çalıştırma aracı</td></tr>
+        <tr><td><strong>Groq</strong></td><td>LPU çipiyle açık kaynak modelleri ultra hızlı çalıştıran platform</td></tr>
+        <tr><td><strong>BaaS</strong></td><td>Backend as a Service — hazır backend platformu (Firebase, Supabase)</td></tr>
+        <tr><td><strong>VPS</strong></td><td>Virtual Private Server — kiralık sanal sunucu</td></tr>
+        <tr><td><strong>SSH</strong></td><td>Secure Shell — sunucuya güvenli uzaktan bağlantı protokolü</td></tr>
+        <tr><td><strong>SCP</strong></td><td>Secure Copy — SSH üzerinden dosya aktarımı</td></tr>
+        <tr><td><strong>Docker</strong></td><td>Uygulamayı tüm bağımlılıklarıyla paketleme aracı (konteyner)</td></tr>
+        <tr><td><strong>Docker Image</strong></td><td>Uygulamanın çalıştırılabilir paketi (konteyner şablonu)</td></tr>
+        <tr><td><strong>Container</strong></td><td>Docker imajından oluşturulan çalışan uygulama örneği</td></tr>
+        <tr><td><strong>Dockerfile</strong></td><td>Docker imajını oluşturmak için adım adım tarif dosyası</td></tr>
+        <tr><td><strong>SSL</strong></td><td>Secure Sockets Layer — HTTPS için şifreleme sertifikası</td></tr>
+        <tr><td><strong>systemd / systemctl</strong></td><td>Linux'ta servisleri yöneten sistem (başlat, durdur, otomatik çalıştır)</td></tr>
+        <tr><td><strong>Nginx</strong></td><td>Web sunucusu ve reverse proxy yazılımı</td></tr>
+        <tr><td><strong>Reverse Proxy</strong></td><td>Gelen istekleri arka plandaki uygulamaya yönlendiren aracı</td></tr>
+        <tr><td><strong>Deploy</strong></td><td>Uygulamayı sunucuya yükleyip çalışır hale getirme</td></tr>
+        <tr><td><strong>Replicate</strong></td><td>Açık kaynak AI modellerini API ile çalıştırma platformu</td></tr>
+        <tr><td><strong>TTS</strong></td><td>Text-to-Speech — Metni sese çevirme teknolojisi</td></tr>
+        <tr><td><strong>STT / ASR</strong></td><td>Speech-to-Text / Automatic Speech Recognition — Sesi metne çevirme</td></tr>
+        <tr><td><strong>Whisper</strong></td><td>OpenAI'ın açık kaynak konuşma tanıma modeli</td></tr>
+        <tr><td><strong>Inference</strong></td><td>Eğitilmiş modelin yeni veri üzerinde tahmin/üretim yapması</td></tr>
+    </table>
+
+    <div class="info-box tip">
+        <strong>🗺️ Faydalı Bağlantılar:</strong>
+        <ul style="margin-bottom:0">
+            <li><a href="https://platform.openai.com/docs" target="_blank">OpenAI API Dokümantasyonu</a></li>
+            <li><a href="https://ai.google.dev/docs" target="_blank">Google Gemini API Dokümantasyonu</a></li>
+            <li><a href="https://console.groq.com/docs" target="_blank">Groq API Dokümantasyonu</a></li>
+            <li><a href="https://github.com/ollama/ollama" target="_blank">Ollama GitHub Repo</a></li>
+            <li><a href="https://platform.openai.com/tokenizer" target="_blank">OpenAI Tokenizer</a> — Token sayısı hesaplama</li>
+            <li><a href="https://roadmap.sh/ai-engineer" target="_blank">roadmap.sh/ai-engineer</a> — AI Mühendisi yol haritası</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p><a href="https://yzakademi.anadolu.edu.tr/" target="_blank">Anadolu Üniversitesi Yapay Zeka Akademisi</a> — LLM API Entegrasyonu &amp; Prompt Engineering</p>
+    <p>✍️ Bu ders notları Güvenç Usanmaz tarafından hazırlanmıştır.</p>
+    <p>🤖 İçeriğin oluşturulmasında yapay zeka araçlarından yararlanılmıştır.</p>
+    <p style="margin-top:1rem;">2026 · Bu sayfa kurs materyali olarak hazırlanmıştır.</p>
+</footer>
+
+</div>
+</body>
+</html>
