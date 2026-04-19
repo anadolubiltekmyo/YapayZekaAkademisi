@@ -19,7 +19,7 @@ Anadolu Üniversitesi Yapay Zeka Akademisi tarafından düzenlenen eğitimlerin 
 
 Yüz yüze eğitim iki ayrı grup halinde yürütülmektedir. Her grubun ders programı ve içerik akışı farklıdır.
 
-### 👥 A Grubu — Akademisyen & Yüksek Lisans / Doktora
+### 👥 A Grubu
 **Ders Günleri:** Çarşamba & Perşembe · 17:00–20:00
 
 | Hafta | Tarih | Kapsam | Materyaller |
@@ -28,38 +28,12 @@ Yüz yüze eğitim iki ayrı grup halinde yürütülmektedir. Her grubun ders pr
 
 ---
 
-### 👥 B Grubu — Lisans & Ön Lisans
+### 👥 B Grubu
 **Ders Günleri:** Pazartesi & Salı · 17:00–20:00
 
 | Hafta | Tarih | Kapsam | Materyaller |
 | :---: | :--- | :--- | :---: |
 | **1** | 13 – 14 Nisan | Full-Stack Web Uygulama Geliştirme ve İleri Prompt Mühendisliği | [📁 Klasöre Git](./YuzYuze/B-Grubu/Hafta-01-FullStack-Web-ve-Ileri-Prompt) |
-
----
-
-## 📂 Klasör Yapısı
-
-Her hafta, içerdiği **ders günleri bazında oturumlara** ayrılmıştır. Her oturum klasörünün altında ilgili sunumlar, ders notları ve uygulama çıktıları bulunur.
-
-```
-.
-├── Online\
-│   ├── Hafta-01-YZ-Temelleri-ve-Uretken-YZ\
-│   ├── Hafta-02-Prompt-Muhendisligi-ve-Kodlama\
-│   ├── Hafta-03-Vibe-Coding-ve-Girisimcilik\
-│   └── Hafta-04-Web-Uygulama-Otonom-Sistemler-ve-Kurumsal-Kimlik\
-│
-└── YuzYuze\
-    ├── A-Grubu\
-    │   └── Hafta-01-Ileri-Prompt-ve-Akademik-Icerik\
-    │       ├── Oturum-01-15-Nisan-Ileri-Prompt-Engineering\
-    │       └── Oturum-02-16-Nisan-YZ-ile-Ders-Materyali-Hazirlama\
-    │
-    └── B-Grubu\
-        └── Hafta-01-FullStack-Web-ve-Ileri-Prompt\
-            ├── Oturum-01-13-Nisan-FullStack-Web-Uygulama\
-            └── Oturum-02-14-Nisan-API-ve-Ileri-Prompt\
-```
 
 ---
 
