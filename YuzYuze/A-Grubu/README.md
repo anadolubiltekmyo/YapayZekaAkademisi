@@ -76,21 +76,21 @@ Hafta-01-Ileri-Prompt-ve-Akademik-Icerik\
 │
 └── Oturum-02-16-Nisan-YZ-ile-Ders-Materyali-Hazirlama\
     ├── sunumlar\
-    │   └── NotebookLM - Ders Sunusu.pdf
+    │   └── NotebookLM_-_Ders_Sunusu.pdf
     ├── ders-notlari\
-    │   ├── 1. Hafta - Yapay Zeka Okuryazarligina Giris ve Temel Kavramlar.pdf
-    │   └── Yararli Uygulamalar Listesi.pdf
+    │   ├── 1._Hafta_-_Yapay_Zeka_Okuryazarligina_Giris_ve_Temel_Kavramlar.pdf
+    │   └── Yararli_Uygulamalar_Listesi.pdf
     └── ornek-ciktilar\
         ├── notebooklm\
-        │   ├── NotebookLM - Infografik.png
-        │   ├── NotebookLM - Podcast.m4a
-        │   └── NotebookLM - Videolu Ozet Ornegi.mp4
+        │   ├── NotebookLM_-_Infografik.png
+        │   ├── NotebookLM_-_Podcast.m4a
+        │   └── NotebookLM_-_Videolu_Ozet_Ornegi.mp4
         ├── ai-studio-tts\
-        │   ├── AI Studio - 2.5 Flash TTS Modeli - Erinome 01.wav
-        │   ├── AI Studio - 2.5 Flash TTS Modeli - Erinome 02.wav
-        │   └── AI Studio - 2.5 Flash TTS Modeli - Rasalgethi.wav
+        │   ├── AI_Studio_-_2.5_Flash_TTS_Modeli_-_Erinome_01.wav
+        │   ├── AI_Studio_-_2.5_Flash_TTS_Modeli_-_Erinome_02.wav
+        │   └── AI_Studio_-_2.5_Flash_TTS_Modeli_-_Rasalgethi.wav
         └── canva\
-            └── Canva - Sunu ve Ses Birlestirilerek Olusturulan Video Ornegi.mp4
+            └── Canva_-_Sunu_ve_Ses_Birlestirilerek_Olusturulan_Video_Ornegi.mp4
 ```
 
 ---
@@ -106,6 +106,6 @@ Hafta-01-Ileri-Prompt-ve-Akademik-Icerik\
 - [NotebookLM](https://notebooklm.google.com) — Kaynak temelli akademik asistan
 - [Google AI Studio](https://aistudio.google.com) — TTS ve prompt deneyleri için geliştirici ortamı
 - [Canva](https://www.canva.com) — Sunum ve video üretim platformu
-- Oturum 2 materyallerindeki `Yararli Uygulamalar Listesi.pdf` dosyası
+- Oturum 2 materyallerindeki `Yararli_Uygulamalar_Listesi.pdf` dosyası
 
 ---
