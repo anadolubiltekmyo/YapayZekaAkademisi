@@ -1,9 +1,0 @@
-node_modules
-npm-debug.log*
-notes.db
-notes.db-wal
-notes.db-shm
-.git
-.gitignore
-.env
-*.md
