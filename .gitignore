@@ -1,0 +1,6 @@
+__MACOSX/
+.DS_Store
+Thumbs.db
+node_modules/
+__pycache__/
+.env
