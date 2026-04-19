@@ -10,15 +10,12 @@ Bu klasör, 13 Nisan Pazartesi ve 14 Nisan Salı günleri gerçekleştirilen B G
 
 ### 🔴 13 Nisan Pazartesi
 
-**1. Full-Stack Web Uygulama: Mimari ve Kurulum (17:00 – 18:30)**
+**1. Full-Stack Web Uygulama ve Atölye (17:00 – 20:00)**
 
 - **Eğitmen:** Öğr. Gör. Güvenç Usanmaz
-- **Kapsam:** Proje yapısı ve dosya organizasyonu, frontend-backend ayrımı, veritabanı seçimi, Cursor / Bolt / Replit ile iskelet oluşturma.
-
-**2. Atölye: İlk Web Uygulamanı Ayağa Kaldır (18:30 – 20:00)**
-
-- **Eğitmen:** Öğr. Gör. Güvenç Usanmaz
-- **Kapsam:** Vibe coding ile CRUD uygulaması geliştirme; kullanıcı girişi, veri listeleme, form işlemleri; canlı kod geliştirme pratiği.
+- **Kapsam:**
+  - *17:00 – 18:30 · Teorik Bölüm (Mimari ve Kurulum):* Proje yapısı ve dosya organizasyonu, frontend-backend ayrımı, veritabanı seçimi, Cursor / Bolt / Replit ile iskelet oluşturma.
+  - *18:30 – 20:00 · Atölye (İlk Web Uygulamanı Ayağa Kaldır):* Vibe coding ile CRUD uygulaması geliştirme; kullanıcı girişi, veri listeleme, form işlemleri; canlı kod geliştirme pratiği.
 - 📂 **Ders Notları:**
   - [13 Nisan Ders Notları (HTML)](./Oturum-01-13-Nisan-FullStack-Web-Uygulama/ders-notlari/13nisan_ders_notlari.html)
 - 💻 **Atölye Projeleri:**
@@ -33,18 +30,15 @@ Bu klasör, 13 Nisan Pazartesi ve 14 Nisan Salı günleri gerçekleştirilen B G
 
 ### 🔴 14 Nisan Salı
 
-**3. API Entegrasyonu ve Dış Servisler (17:00 – 18:30)**
+**2. API Entegrasyonu ve İleri Prompt Engineering (17:00 – 20:00)**
 
 - **Eğitmen:** Öğr. Gör. Güvenç Usanmaz
-- **Kapsam:** REST API temelleri ve kullanımı, OpenAI / Gemini API entegrasyonu, üçüncü parti servislerin projeye eklenmesi.
+- **Kapsam:**
+  - *17:00 – 18:30 · API Entegrasyonu ve Dış Servisler:* REST API temelleri ve kullanımı, OpenAI / Gemini API entegrasyonu, üçüncü parti servislerin projeye eklenmesi.
+  - *18:30 – 20:00 · İleri Prompt Engineering (Geliştirici Bağlamı):* Sistem promptları tasarımı, ajan persona kurgusu, mega-prompt teknikleri, debugging ve hata ayıklama stratejileri.
 - 📂 **Ders Notları:**
   - [14 Nisan Ders Notları (HTML)](./Oturum-02-14-Nisan-API-ve-Ileri-Prompt/ders-notlari/14nisan_ders_notlari.html)
-
-**4. İleri Prompt Engineering: Geliştirici Bağlamı (18:30 – 20:00)**
-
-- **Eğitmen:** Öğr. Gör. Güvenç Usanmaz
-- **Kapsam:** Sistem promptları tasarımı, ajan persona kurgusu, mega-prompt teknikleri, debugging ve hata ayıklama stratejileri.
-- 📂 **Prompt Örnekleri:**
+- 📝 **Prompt Örnekleri:**
   - [promptlar.txt](./Oturum-02-14-Nisan-API-ve-Ileri-Prompt/ders-notlari/promptlar.txt)
 
 ---
