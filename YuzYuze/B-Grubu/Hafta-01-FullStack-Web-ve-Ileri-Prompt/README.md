@@ -10,12 +10,10 @@ Bu klasör, 13 Nisan Pazartesi ve 14 Nisan Salı günleri gerçekleştirilen B G
 
 ### 🔴 13 Nisan Pazartesi
 
-**1. Full-Stack Web Uygulama ve Atölye (17:00 – 20:00)**
+**1. Full-Stack Web Uygulama Geliştirme (17:00 – 20:00)**
 
 - **Eğitmen:** Öğr. Gör. Güvenç Usanmaz
-- **Kapsam:**
-  - *17:00 – 18:30 · Teorik Bölüm (Mimari ve Kurulum):* Proje yapısı ve dosya organizasyonu, frontend-backend ayrımı, veritabanı seçimi, Cursor / Bolt / Replit ile iskelet oluşturma.
-  - *18:30 – 20:00 · Atölye (İlk Web Uygulamanı Ayağa Kaldır):* Vibe coding ile CRUD uygulaması geliştirme; kullanıcı girişi, veri listeleme, form işlemleri; canlı kod geliştirme pratiği.
+- **Kapsam:** Proje yapısı ve frontend-backend ayrımı; Cursor / Bolt / Replit ile vibe coding yaklaşımı; CRUD mantığı, kullanıcı girişi, veri listeleme ve form işlemleri. Oturum boyunca farklı alanlardan altı örnek uygulama (chatbot, kitap sitesi, not uygulaması, online alışveriş, QR kod üretici, üniversite sayfası) canlı kod geliştirme pratiğiyle üretilmiştir.
 - 📂 **Ders Notları:**
   - [13 Nisan Ders Notları (HTML)](./Oturum-01-13-Nisan-FullStack-Web-Uygulama/ders-notlari/13nisan_ders_notlari.html)
 - 💻 **Atölye Projeleri:**
@@ -33,9 +31,7 @@ Bu klasör, 13 Nisan Pazartesi ve 14 Nisan Salı günleri gerçekleştirilen B G
 **2. API Entegrasyonu ve İleri Prompt Engineering (17:00 – 20:00)**
 
 - **Eğitmen:** Öğr. Gör. Güvenç Usanmaz
-- **Kapsam:**
-  - *17:00 – 18:30 · API Entegrasyonu ve Dış Servisler:* REST API temelleri ve kullanımı, OpenAI / Gemini API entegrasyonu, üçüncü parti servislerin projeye eklenmesi.
-  - *18:30 – 20:00 · İleri Prompt Engineering (Geliştirici Bağlamı):* Sistem promptları tasarımı, ajan persona kurgusu, mega-prompt teknikleri, debugging ve hata ayıklama stratejileri.
+- **Kapsam:** REST API temelleri; OpenAI ve Gemini API'lerinin bir projeye entegrasyonu; üçüncü parti servislerin kullanımı. İleri prompt tarafında sistem promptları, ajan persona tasarımı ve debugging için mega-prompt teknikleri uygulamalı olarak işlenmiştir.
 - 📂 **Ders Notları:**
   - [14 Nisan Ders Notları (HTML)](./Oturum-02-14-Nisan-API-ve-Ileri-Prompt/ders-notlari/14nisan_ders_notlari.html)
 - 📝 **Prompt Örnekleri:**
