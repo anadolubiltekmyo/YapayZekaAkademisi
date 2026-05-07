@@ -25,6 +25,7 @@ Yüz yüze eğitim iki ayrı grup halinde yürütülmektedir. Her grubun ders pr
 | Hafta | Tarih | Kapsam | Materyaller |
 | :---: | :--- | :--- | :---: |
 | **1** | 15 – 16 Nisan | İleri Prompt Mühendisliği ve Akademik İçerik Üretimi | [📁 Klasöre Git](./YuzYuze/A-Grubu/Hafta-01-Ileri-Prompt-ve-Akademik-Icerik/) |
+| **2** | 22 Nisan | Yapay Zeka Araçları ile Veri Analizi ve Görselleştirme | [📁 Klasöre Git](./YuzYuze/A-Grubu/Hafta-02-Veri-Analizi-ve-Gorsellestirme/) |
 
 ---
 
