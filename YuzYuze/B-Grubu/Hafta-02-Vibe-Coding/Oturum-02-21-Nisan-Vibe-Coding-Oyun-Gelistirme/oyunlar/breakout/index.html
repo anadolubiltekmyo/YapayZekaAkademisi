@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breakout - p5.js</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0f0f13;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      gap: 20px;
+    }
+    #game-container {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #18181f; /* Canvas background match */
+    }
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, #FF4B4B, #FFD03D, #06D6A0, #118AB2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>BREAKOUT</h1>
+  <div id="game-container"></div>
+  <script src="sketch.js"></script>
+</body>
+</html>

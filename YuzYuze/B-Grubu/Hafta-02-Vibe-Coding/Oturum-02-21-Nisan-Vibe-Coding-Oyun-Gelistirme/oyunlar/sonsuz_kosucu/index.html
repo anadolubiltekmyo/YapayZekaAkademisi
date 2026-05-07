@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sonsuz Koşucu</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #111; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script>
+// ─── Constants ───────────────────────────────────────────────────────────────
+const W = 900, H = 400;
+const GROUND_Y = H - 80;
+const GRAVITY = 0.7;
+const JUMP_FORCE = -14;
+const DINO_X = 120;
+
+// ─── State ───────────────────────────────────────────────────────────────────
+let dino, obstacles, clouds, groundTiles;
+let score, speed, frame, gameState;
+let bgStars = [];
+let dayNightT = 0; // 0=day, 1=night, cycles
+let dayPhase = 0;  // accumulated time
+let flashAlpha = 0;
+
+// ─── p5 setup ────────────────────────────────────────────────────────────────
+function setup() {
+  createCanvas(W, H);
+  textFont('monospace');
+  resetGame();
+  generateStars();
+}
+
+function generateStars() {
+  bgStars = [];
+  for (let i = 0; i < 80; i++) {
+    bgStars.push({ x: random(W), y: random(GROUND_Y - 40), r: random(1, 2.5) });
+  }
+}
+
+function resetGame() {
+  dino = new Dino();
+  obstacles = [];
+  clouds = [new Cloud(W * 0.3, 80), new Cloud(W * 0.7, 50), new Cloud(W, 100)];
+  groundTiles = [];
+  for (let x = 0; x < W + 80; x += 80) groundTiles.push(x);
+  score = 0;
+  speed = 4;
+  frame = 0;
+  gameState = 'idle'; // idle | playing | dead
+  dayPhase = 0;
+  dayNightT = 0;
+  flashAlpha = 0;
+}
+
+// ─── draw ─────────────────────────────────────────────────────────────────────
+function draw() {
+  if (gameState === 'idle') { drawIdle(); return; }
+  if (gameState === 'dead') { drawDead(); return; }
+
+  frame++;
+  score += speed * 0.05;
+  dayPhase += 0.002;
+  dayNightT = (sin(dayPhase) + 1) / 2; // 0=day 1=night
+
+  // Speed every 500 pts
+  speed = 4 + floor(score / 500) * 0.8;
+  speed = min(speed, 12);
+
+  // Spawn obstacles
+  if (frame % max(50, 110 - floor(score / 200) * 5) === 0) {
+    spawnObstacle();
+  }
+
+  // Clouds
+  if (frame % 120 === 0) clouds.push(new Cloud(W + 60, random(30, 130)));
+
+  // ── Background ──
+  drawBackground();
+
+  // ── Ground ──
+  drawGround();
+
+  // ── Clouds ──
+  for (let i = clouds.length - 1; i >= 0; i--) {
+    clouds[i].update();
+    clouds[i].draw();
+    if (clouds[i].x < -120) clouds.splice(i, 1);
+  }
+
+  // ── Obstacles ──
+  for (let i = obstacles.length - 1; i >= 0; i--) {
+    obstacles[i].update();
+    obstacles[i].draw();
+    if (dino.hits(obstacles[i])) {
+      gameState = 'dead';
+      flashAlpha = 255;
+    }
+    if (obstacles[i].x < -80) obstacles.splice(i, 1);
+  }
+
+  // ── Dino ──
+  dino.update();
+  dino.draw();
+
+  // ── HUD ──
+  drawHUD();
+
+  // ── Flash effect on death ──
+  if (flashAlpha > 0) {
+    fill(255, 80, 80, flashAlpha);
+    noStroke();
+    rect(0, 0, W, H);
+    flashAlpha -= 20;
+  }
+}
+
+// ─── Backgrounds ─────────────────────────────────────────────────────────────
+function drawBackground() {
+  // Sky gradient: day=blue, night=deep navy
+  let dayTop   = color(135, 206, 250);
+  let dayBot   = color(200, 240, 255);
+  let nightTop = color(10, 10, 40);
+  let nightBot = color(20, 30, 80);
+
+  let topC = lerpColor(dayTop, nightTop, dayNightT);
+  let botC = lerpColor(dayBot, nightBot, dayNightT);
+
+  for (let y = 0; y < GROUND_Y; y++) {
+    let t = y / GROUND_Y;
+    stroke(lerpColor(topC, botC, t));
+    line(0, y, W, y);
+  }
+
+  // Stars (visible at night)
+  noStroke();
+  for (let s of bgStars) {
+    let alpha = map(dayNightT, 0.4, 0.9, 0, 255, true);
+    let twinkle = sin(frame * 0.05 + s.x) * 30;
+    fill(255, 255, 220, alpha + twinkle);
+    ellipse(s.x, s.y, s.r * 2);
+  }
+
+  // Sun / Moon
+  let sunX = W * 0.85;
+  let sunY = 55;
+  if (dayNightT < 0.5) {
+    // Sun
+    let sunA = map(dayNightT, 0, 0.5, 255, 0);
+    noStroke();
+    fill(255, 220, 50, sunA);
+    ellipse(sunX, sunY, 44, 44);
+    fill(255, 240, 100, sunA * 0.3);
+    ellipse(sunX, sunY, 66, 66);
+  } else {
+    // Moon
+    let moonA = map(dayNightT, 0.5, 1, 0, 255);
+    noStroke();
+    fill(220, 220, 200, moonA);
+    ellipse(sunX, sunY, 38, 38);
+    fill(lerpColor(color(dayTop), color(nightTop), dayNightT));
+    ellipse(sunX - 10, sunY - 6, 28, 28);
+  }
+}
+
+function drawGround() {
+  // Move tiles
+  for (let i = 0; i < groundTiles.length; i++) {
+    groundTiles[i] -= speed;
+    if (groundTiles[i] < -80) groundTiles[i] += (groundTiles.length * 80);
+  }
+
+  // Grass strip
+  let grassC = lerpColor(color(80, 180, 60), color(30, 80, 50), dayNightT);
+  let soilC  = lerpColor(color(180, 130, 80), color(60, 45, 30), dayNightT);
+
+  fill(grassC);
+  noStroke();
+  rect(0, GROUND_Y, W, 12);
+
+  fill(soilC);
+  rect(0, GROUND_Y + 12, W, H - GROUND_Y - 12);
+
+  // Ground details (pebbles)
+  fill(lerpColor(color(160, 110, 60), color(40, 35, 25), dayNightT));
+  for (let tx of groundTiles) {
+    ellipse(tx + 20, GROUND_Y + 6, 8, 5);
+    ellipse(tx + 55, GROUND_Y + 9, 5, 4);
+  }
+}
+
+function drawHUD() {
+  let textCol = lerpColor(color(30, 30, 30), color(220, 220, 220), dayNightT);
+  fill(textCol);
+  noStroke();
+  textSize(18);
+  textAlign(RIGHT);
+  text('SKOR: ' + nf(floor(score), 5), W - 20, 35);
+
+  textSize(12);
+  textAlign(LEFT);
+  let lvl = floor(score / 500) + 1;
+  text('HIZ SEVİYESİ: ' + lvl, 20, 35);
+
+  // Day/night indicator
+  let label = dayNightT > 0.5 ? '🌙 GECE' : '☀ GÜNDÜZ';
+  textAlign(CENTER);
+  textSize(13);
+  text(label, W / 2, 35);
+}
+
+// ─── Idle / Dead screens ──────────────────────────────────────────────────────
+function drawIdle() {
+  background(135, 206, 250);
+  drawGroundStatic();
+  let d = new Dino(); d.draw();
+  fill(30);
+  noStroke();
+  textAlign(CENTER);
+  textSize(32);
+  text('SONSUZ KOŞUCU', W / 2, H / 2 - 50);
+  textSize(18);
+  text('BAŞLAMAK İÇİN  BOŞLUK  TUŞUNA BAS', W / 2, H / 2);
+  textSize(13);
+  fill(80);
+  text('BOŞLUK = Zıpla  |  ↓ = Eğil  |  Çift Zıplama = Yüksek engeli aş', W / 2, H / 2 + 35);
+  drawObstacleGuide();
+}
+
+function drawDead() {
+  // Freeze last frame - just overlay UI
+  fill(0, 0, 0, 160);
+  noStroke();
+  rect(0, 0, W, H);
+
+  fill(255, 100, 80);
+  textAlign(CENTER);
+  textSize(36);
+  text('ÇARPTIN!', W / 2, H / 2 - 55);
+
+  fill(255);
+  textSize(22);
+  text('SKOR: ' + floor(score), W / 2, H / 2);
+  textSize(16);
+  text('En yüksek skor bu oyun: ' + floor(score), W / 2, H / 2 + 30);
+
+  fill(200, 255, 200);
+  textSize(18);
+  text('Tekrar oynamak için  BOŞLUK  bas', W / 2, H / 2 + 70);
+}
+
+function drawGroundStatic() {
+  fill(80, 180, 60); noStroke(); rect(0, GROUND_Y, W, 12);
+  fill(180, 130, 80); rect(0, GROUND_Y + 12, W, H - GROUND_Y - 12);
+}
+
+function drawObstacleGuide() {
+  // Small guide at bottom showing obstacle types
+  let gx = W / 2 - 200;
+  let gy = H - 45;
+  fill(30, 30, 30, 180);
+  noStroke();
+  rect(gx - 10, gy - 20, 420, 35, 6);
+  fill(255);
+  textSize(11);
+  textAlign(LEFT);
+  // cactus
+  fill(100, 200, 100); rect(gx, gy - 12, 12, 22, 3);
+  fill(255); text('Kaktüs', gx + 16, gy + 4);
+  // bird
+  fill(255, 160, 60);
+  let bx = gx + 80;
+  ellipse(bx, gy - 4, 22, 12);
+  triangle(bx + 10, gy - 4, bx + 22, gy - 10, bx + 22, gy + 2);
+  fill(255); text('Kuş (eğil)', bx + 14, gy + 4);
+  // tall
+  fill(200, 100, 220);
+  let tx2 = gx + 200;
+  rect(tx2, gy - 20, 18, 30, 3);
+  fill(255); text('Yüksek (2x zıpla)', tx2 + 22, gy + 4);
+}
+
+// ─── Obstacle spawn ───────────────────────────────────────────────────────────
+function spawnObstacle() {
+  let r = random();
+  if (r < 0.40) {
+    obstacles.push(new Cactus());
+  } else if (r < 0.70) {
+    obstacles.push(new Bird());
+  } else {
+    obstacles.push(new TallBlock());
+  }
+}
+
+// ─── Input ────────────────────────────────────────────────────────────────────
+function keyPressed() {
+  if (gameState === 'idle' && keyCode === 32) { gameState = 'playing'; return; }
+  if (gameState === 'dead' && keyCode === 32) { resetGame(); gameState = 'playing'; return; }
+  if (gameState !== 'playing') return;
+
+  if (keyCode === 32) dino.jump();
+  if (keyCode === DOWN_ARROW) dino.duck(true);
+}
+
+function keyReleased() {
+  if (keyCode === DOWN_ARROW) dino.duck(false);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLASS: Dino
+// ─────────────────────────────────────────────────────────────────────────────
+class Dino {
+  constructor() {
+    this.x = DINO_X;
+    this.y = GROUND_Y;
+    this.w = 44;
+    this.h = 56;
+    this.vy = 0;
+    this.onGround = true;
+    this.jumpsLeft = 2;
+    this.ducking = false;
+    this.runFrame = 0;
+    this.runTimer = 0;
+
+    // Colors
+    this.bodyCol  = color(80, 200, 120);
+    this.bellyCol = color(160, 240, 180);
+    this.eyeCol   = color(255, 255, 255);
+    this.pupilCol = color(20, 20, 60);
+    this.limbCol  = color(60, 160, 100);
+  }
+
+  jump() {
+    if (this.ducking) { this.duck(false); return; }
+    if (this.jumpsLeft > 0) {
+      this.vy = JUMP_FORCE;
+      this.onGround = false;
+      this.jumpsLeft--;
+    }
+  }
+
+  duck(state) {
+    if (!this.onGround) return;
+    this.ducking = state;
+  }
+
+  update() {
+    if (gameState !== 'playing') return;
+
+    // Gravity
+    if (!this.onGround) {
+      this.vy += GRAVITY;
+      this.y += this.vy;
+    }
+
+    // Land
+    if (this.y >= GROUND_Y) {
+      this.y = GROUND_Y;
+      this.vy = 0;
+      this.onGround = true;
+      this.jumpsLeft = 2;
+    }
+
+    // Run animation
+    this.runTimer++;
+    if (this.runTimer % 8 === 0) this.runFrame = (this.runFrame + 1) % 4;
+  }
+
+  getHitbox() {
+    if (this.ducking) {
+      return { x: this.x - 22, y: this.y - 24, w: 46, h: 24 };
+    }
+    return { x: this.x - 20, y: this.y - this.h, w: this.w, h: this.h };
+  }
+
+  hits(obs) {
+    let a = this.getHitbox();
+    let b = obs.getHitbox();
+    return !(a.x + a.w < b.x || b.x + b.w < a.x ||
+             a.y + a.h < b.y || b.y + b.h < a.y);
+  }
+
+  draw() {
+    push();
+    translate(this.x, this.y);
+
+    if (this.ducking) {
+      this._drawDucking();
+    } else {
+      this._drawRunning();
+    }
+    pop();
+  }
+
+  _drawRunning() {
+    let rf = this.runFrame;
+    let legSwing = sin(rf * HALF_PI) * 10;
+
+    noStroke();
+
+    // Tail
+    fill(this.limbCol);
+    beginShape();
+    vertex(-18, -20);
+    vertex(-32, -10);
+    vertex(-26, -4);
+    vertex(-14, -16);
+    endShape(CLOSE);
+
+    // Body
+    fill(this.bodyCol);
+    ellipse(0, -30, 42, 52);
+
+    // Belly
+    fill(this.bellyCol);
+    ellipse(6, -24, 22, 32);
+
+    // Head
+    fill(this.bodyCol);
+    ellipse(14, -52, 36, 30);
+
+    // Snout
+    fill(this.bellyCol);
+    rect(22, -52, 14, 14, 4);
+
+    // Nostril
+    fill(60, 140, 80);
+    ellipse(32, -47, 4, 4);
+
+    // Eye
+    fill(this.eyeCol);
+    ellipse(18, -56, 14, 14);
+    fill(this.pupilCol);
+    ellipse(20, -55, 7, 8);
+    // Shine
+    fill(255);
+    ellipse(22, -57, 3, 3);
+
+    // Arm
+    fill(this.limbCol);
+    push();
+    rotate(sin(rf * HALF_PI) * 0.3 - 0.2);
+    rect(10, -38, 8, 20, 4);
+    ellipse(14, -16, 10, 8);
+    pop();
+
+    // Legs
+    fill(this.limbCol);
+    push();
+    translate(-6, 0);
+    rotate(radians(legSwing));
+    rect(-4, -8, 10, 28, 5);
+    // Foot
+    fill(this.bodyCol);
+    rect(-2, 18, 14, 8, 3);
+    pop();
+
+    push();
+    translate(8, 0);
+    rotate(radians(-legSwing));
+    fill(this.limbCol);
+    rect(-4, -8, 10, 28, 5);
+    fill(this.bodyCol);
+    rect(-2, 18, 14, 8, 3);
+    pop();
+  }
+
+  _drawDucking() {
+    noStroke();
+    // Crouched body
+    fill(this.bodyCol);
+    ellipse(0, -18, 50, 28);
+    fill(this.bellyCol);
+    ellipse(8, -14, 26, 18);
+
+    // Head/neck
+    fill(this.bodyCol);
+    ellipse(22, -24, 34, 24);
+    fill(this.bellyCol);
+    rect(28, -26, 12, 12, 4);
+    fill(60, 140, 80); ellipse(36, -22, 4, 4);
+
+    // Eye
+    fill(this.eyeCol); ellipse(24, -28, 12, 12);
+    fill(this.pupilCol); ellipse(26, -27, 6, 7);
+    fill(255); ellipse(28, -29, 3, 3);
+
+    // Tail
+    fill(this.limbCol);
+    beginShape();
+    vertex(-22, -12); vertex(-38, -4); vertex(-30, 2); vertex(-16, -8);
+    endShape(CLOSE);
+
+    // Legs
+    fill(this.limbCol);
+    rect(-10, -4, 10, 18, 5);
+    rect(4, -4, 10, 18, 5);
+    fill(this.bodyCol);
+    rect(-12, 12, 14, 8, 3);
+    rect(2, 12, 14, 8, 3);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLASS: Cactus
+// ─────────────────────────────────────────────────────────────────────────────
+class Cactus {
+  constructor() {
+    let type = floor(random(3));
+    this.x = W + 30;
+    this.type = type; // 0=small, 1=tall, 2=double
+    this.color1 = color(80, 180, 80);
+    this.color2 = color(50, 130, 50);
+    this.spineCol = color(200, 230, 180);
+    this.w = type === 2 ? 60 : 30;
+    this.h = type === 1 ? 60 : 40;
+  }
+
+  update() { this.x -= speed; }
+
+  getHitbox() {
+    return { x: this.x - this.w / 2 + 4, y: GROUND_Y - this.h, w: this.w - 8, h: this.h };
+  }
+
+  draw() {
+    push();
+    translate(this.x, GROUND_Y);
+    noStroke();
+
+    if (this.type === 2) {
+      this._drawSingle(-18, this.h);
+      this._drawSingle(18, this.h * 0.75);
+    } else {
+      this._drawSingle(0, this.h);
+    }
+    pop();
+  }
+
+  _drawSingle(ox, h) {
+    fill(this.color1);
+    // Main body
+    rect(ox - 6, -h, 12, h, 3);
+    // Left arm
+    rect(ox - 18, -h * 0.65, 12, 10, 3);
+    rect(ox - 18, -h * 0.65 - 14, 10, 16, 3);
+    // Right arm
+    rect(ox + 6, -h * 0.45, 12, 10, 3);
+    rect(ox + 8, -h * 0.45 - 12, 10, 14, 3);
+
+    // Spines
+    fill(this.spineCol);
+    for (let i = 0; i < 3; i++) {
+      rect(ox - 10, -h * 0.3 - i * 12, 20, 2, 1);
+    }
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLASS: Bird  (flying obstacle — requires duck)
+// ─────────────────────────────────────────────────────────────────────────────
+class Bird {
+  constructor() {
+    this.x = W + 40;
+    // Fly at dino head height (must duck to avoid)
+    this.y = GROUND_Y - 35;
+    this.flapFrame = 0;
+    this.flapTimer = 0;
+    this.bodyCol  = color(255, 160, 50);
+    this.wingCol  = color(255, 200, 80);
+    this.wingDark = color(220, 130, 30);
+    this.w = 50;
+    this.h = 24;
+  }
+
+  update() {
+    this.x -= speed;
+    this.flapTimer++;
+    if (this.flapTimer % 10 === 0) this.flapFrame = (this.flapFrame + 1) % 2;
+  }
+
+  getHitbox() {
+    return { x: this.x - 22, y: this.y - 14, w: 44, h: 26 };
+  }
+
+  draw() {
+    push();
+    translate(this.x, this.y);
+    noStroke();
+
+    let wingAngle = this.flapFrame === 0 ? -0.5 : 0.4;
+
+    // Wing (back)
+    fill(this.wingDark);
+    push();
+    rotate(wingAngle);
+    ellipse(-4, -8, 36, 14);
+    pop();
+
+    // Body
+    fill(this.bodyCol);
+    ellipse(0, 0, 40, 20);
+
+    // Head
+    fill(this.bodyCol);
+    ellipse(18, -8, 20, 16);
+
+    // Beak
+    fill(255, 220, 50);
+    triangle(26, -8, 38, -6, 26, -4);
+
+    // Eye
+    fill(30);
+    ellipse(21, -10, 6, 6);
+    fill(255);
+    ellipse(22, -11, 2.5, 2.5);
+
+    // Wing (front)
+    fill(this.wingCol);
+    push();
+    rotate(-wingAngle * 0.7);
+    ellipse(-2, -6, 30, 12);
+    pop();
+
+    // Tail feathers
+    fill(this.wingDark);
+    triangle(-18, 0, -38, -6, -38, 6);
+    fill(this.wingCol);
+    triangle(-18, 0, -34, -3, -34, 3);
+
+    pop();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLASS: TallBlock  (requires double jump)
+// ─────────────────────────────────────────────────────────────────────────────
+class TallBlock {
+  constructor() {
+    this.x = W + 30;
+    this.blockH = 90;
+    this.blockW = 28;
+    this.col1 = color(200, 80, 220);
+    this.col2 = color(140, 50, 180);
+    this.shimmer = 0;
+  }
+
+  update() {
+    this.x -= speed;
+    this.shimmer = (this.shimmer + 3) % 360;
+  }
+
+  getHitbox() {
+    return { x: this.x - this.blockW / 2 + 2, y: GROUND_Y - this.blockH, w: this.blockW - 4, h: this.blockH };
+  }
+
+  draw() {
+    push();
+    translate(this.x, GROUND_Y);
+    noStroke();
+
+    let bh = this.blockH;
+    let bw = this.blockW;
+
+    // Shadow
+    fill(0, 0, 0, 40);
+    ellipse(0, 4, bw + 10, 10);
+
+    // Body with gradient-ish via layering
+    fill(this.col2);
+    rect(-bw / 2, -bh, bw, bh, 4);
+
+    fill(this.col1);
+    rect(-bw / 2 + 3, -bh, bw - 6, bh - 4, 4);
+
+    // Shimmer stripe
+    let sx = map(sin(radians(this.shimmer)), -1, 1, -bw / 2, bw / 2);
+    fill(255, 255, 255, 60);
+    rect(sx - 3, -bh + 4, 6, bh - 8, 3);
+
+    // Crystal top
+    fill(240, 160, 255);
+    let tx = 0, ty = -bh;
+    triangle(tx - 10, ty, tx + 10, ty, tx, ty - 16);
+    fill(220, 100, 255);
+    triangle(tx - 4, ty, tx + 4, ty, tx, ty - 10);
+
+    // Warning arrow (↑ jump hint)
+    fill(255, 255, 100, 180);
+    textSize(14);
+    textAlign(CENTER);
+    text('↑↑', 0, -bh - 20);
+
+    pop();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLASS: Cloud
+// ─────────────────────────────────────────────────────────────────────────────
+class Cloud {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.scl = random(0.8, 1.4);
+    this.sp  = random(0.4, 0.9);
+  }
+
+  update() { this.x -= speed * this.sp * 0.3; }
+
+  draw() {
+    push();
+    translate(this.x, this.y);
+    scale(this.scl);
+    let alpha = map(dayNightT, 0, 0.5, 220, 60);
+    noStroke();
+    fill(255, 255, 255, alpha);
+    ellipse(0, 0, 60, 35);
+    ellipse(-25, 8, 40, 28);
+    ellipse(25, 8, 40, 28);
+    ellipse(0, 12, 70, 24);
+    pop();
+  }
+}
+
+</script>
+</body>
+</html>
