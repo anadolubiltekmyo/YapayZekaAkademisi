@@ -37,6 +37,7 @@ Yüz yüze eğitim iki ayrı grup halinde yürütülmektedir. Her grubun ders pr
 | **1** | 13 – 14 Nisan | Full-Stack Web Uygulama Geliştirme ve İleri Prompt Mühendisliği | [📁 Klasöre Git](./YuzYuze/B-Grubu/Hafta-01-FullStack-Web-ve-Ileri-Prompt/) |
 | **2** | 20 – 21 Nisan | Vibe Coding ile Mobil Uygulama ve Oyun Geliştirme | [📁 Klasöre Git](./YuzYuze/B-Grubu/Hafta-02-Vibe-Coding/) |
 | **3** | 27 – 28 Nisan | Yapay Zeka Ajanları ve İleri Bağlam Yönetimi | [📁 Klasöre Git](./YuzYuze/B-Grubu/Hafta-03-YZ-Ajanlari-ve-Baglam-Yonetimi/) |
+| **4** | 4 – 5 Mayıs | Proje Atölyesi | [📁 Klasöre Git](./YuzYuze/B-Grubu/Hafta-04-Proje-Atolyesi/) |
 
 ---
 
