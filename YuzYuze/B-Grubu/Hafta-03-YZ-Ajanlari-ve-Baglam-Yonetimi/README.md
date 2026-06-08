@@ -21,7 +21,12 @@ Bu klasör, 27 Nisan Pazartesi ve 28 Nisan Salı günleri gerçekleştirilen B G
 
 ### 🔴 28 Nisan Salı
 
-*Bu oturumun bilgileri henüz eklenmemiştir.*
+**2. AI ile Görsel/Video Üretimi ve Marka Kimliği (17:00 – 20:00)**
+
+- **Eğitmen:** Mustafa Savaş
+- **Kapsam:** Üretken yapay zeka ile görsel ve video içerik üretimi; metinden görsele ve metinden videoya üretim araçları; marka kimliği oluşturma süreçlerinde YZ kullanımı; uygulamalı atölye çalışması.
+- 🎥 **Ders Kaydı:**
+  - [YouTube'da İzle](https://youtu.be/eGqQhNrThd4)
 
 ---
 

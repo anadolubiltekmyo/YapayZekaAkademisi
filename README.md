@@ -25,7 +25,9 @@ Yüz yüze eğitim iki ayrı grup halinde yürütülmektedir. Her grubun ders pr
 | Hafta | Tarih | Kapsam | Materyaller |
 | :---: | :--- | :--- | :---: |
 | **1** | 15 – 16 Nisan | İleri Prompt Mühendisliği ve Akademik İçerik Üretimi | [📁 Klasöre Git](./YuzYuze/A-Grubu/Hafta-01-Ileri-Prompt-ve-Akademik-Icerik/) |
-| **2** | 22 Nisan | Yapay Zeka Araçları ile Veri Analizi ve Görselleştirme | [📁 Klasöre Git](./YuzYuze/A-Grubu/Hafta-02-Veri-Analizi-ve-Gorsellestirme/) |
+| **2** | 22 Nisan – 6 Mayıs | Veri Analizi, Görselleştirme ve AI ile Görsel/Video Üretimi | [📁 Klasöre Git](./YuzYuze/A-Grubu/Hafta-02-Veri-Analizi-ve-Gorsellestirme/) |
+| **3** | 29 – 30 Nisan | Kod Yazmadan Yapay Zeka Ajanları ve Agent Mimarisi | [📁 Klasöre Git](./YuzYuze/A-Grubu/Hafta-03-Kod-Yazmadan-Ajanlar-ve-Agent-Mimarisi/) |
+| **4** | 13 – 14 Mayıs | Otonom Araştırma Ajanları ve Yapay Zekâ Destekli Ders Materyali | [📁 Klasöre Git](./YuzYuze/A-Grubu/Hafta-04-Otonom-Arastirma-Ajanlari-ve-Ders-Materyali/) |
 
 ---
 
